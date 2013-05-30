@@ -15,15 +15,6 @@ public class Home extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		ListView listview = (ListView)findViewById(R.id.listView1);
-		List<String> temp = new ArrayList<String>();
-		for(int i = 0; i < 59; i++)
-		{
-			temp.add(Integer.toString(i));
-		}
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-	            android.R.layout.simple_list_item_1, temp);
-	    listview.setAdapter(adapter);
 	}
 
 	@Override
