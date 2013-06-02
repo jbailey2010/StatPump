@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,8 @@ public class Home extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		ActionBar ab = getActionBar(); 
+		ab.setDisplayShowTitleEnabled(false);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 	}

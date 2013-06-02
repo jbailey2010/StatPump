@@ -5,17 +5,20 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:icon="@drawable/sp_icon"
+        android:logo="@drawable/sp_full"
+        android:label="Stat Pump"
+        android:theme="@style/AppTheme" >  
         <activity
             android:name="com.example.statpump.Home"
-            android:label="@string/app_name" >
+            android:label="Stat Pump"
+            android:actionBarStyle="@+styles/CustomActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,5 +26,7 @@
             </intent-filter>
         </activity>
     </application>
+    
+    
 
 </manifest>
