@@ -6,11 +6,22 @@ import com.example.statpump.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Handles the user lookup for team specific stuff
+ * @author Jeff
+ *
+ */
 public class HomeTeam extends Activity {
-
+	final Context cont = this;
+	
+	/**
+	 * Sets up the layout, initial loading...etc.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +50,8 @@ public class HomeTeam extends Activity {
 			case R.id.facebook:
 				return true;
 			case R.id.switch_game:
+				Intent intent = new Intent(cont, Home.class);
+		        cont.startActivity(intent);	
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

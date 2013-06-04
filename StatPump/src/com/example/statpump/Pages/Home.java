@@ -11,13 +11,23 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+/**
+ * Handles user lookup for game related stuff
+ * @author Jeff
+ *
+ */
 public class Home extends Activity {
-
+	final Context cont = this;
+	
+	/**
+	 * Sets up initial loading/views for the activity
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +56,8 @@ public class Home extends Activity {
 			case R.id.facebook:
 				return true;
 			case R.id.switch_team:
+				Intent intent = new Intent(cont, HomeTeam.class);
+		        cont.startActivity(intent);	
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
