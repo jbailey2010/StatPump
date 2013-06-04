@@ -43,7 +43,7 @@ public class HomeTeam extends Activity {
 	{  
 		switch (item.getItemId()) 
 		{
-			case R.id.search_player:
+			case R.id.search_player: 
 				return true;
 			case R.id.twitter:
 		    	return true;
