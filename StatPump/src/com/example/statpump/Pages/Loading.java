@@ -42,7 +42,7 @@ public class Loading extends Activity {
 	 */
 	public void dummyFn()
 	{
-		ImageView logo = (ImageView)findViewById(R.id.imageView1);
+		ImageView logo = (ImageView)findViewById(R.id.logo_loading);
 		logo.setOnClickListener(new OnClickListener(){
 
 			@Override

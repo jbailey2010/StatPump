@@ -10,7 +10,7 @@
     android:background="#DEDEDE" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/list_team_parent"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
@@ -23,57 +23,57 @@
         android:background="@drawable/view_well" >
         
 	   <ListView
-	        android:id="@+id/listView1"
+	        android:id="@+id/list_team"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent" >
 	    </ListView>
 	    
     </LinearLayout>
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/team_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Title"
+        android:text="Select a Sport Below"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/team_sport_spinner"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/team_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/team_name_spinner"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/team_sport_spinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/team_clear"
         android:background="@drawable/btn_green"
         style="@style/ButtonText"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/spinner2"
+        android:layout_alignBaseline="@+id/team_submit"
+        android:layout_alignBottom="@+id/team_submit"
+        android:layout_alignLeft="@+id/team_name_spinner"
         android:text="Clear" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/team_submit"
         android:background="@drawable/btn_blue"
         style="@style/ButtonText"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/spinner2"
-        android:layout_below="@+id/spinner2"
+        android:layout_alignRight="@+id/team_name_spinner"
+        android:layout_below="@+id/team_name_spinner"
         android:layout_marginTop="18dp"
         android:text="Set" />
 </RelativeLayout>

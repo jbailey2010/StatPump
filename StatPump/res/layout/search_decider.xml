@@ -24,27 +24,15 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/decider_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="What context would you like to search relative to?"
+        android:text="What context would you like stats relative to?"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/game_search"
-        style="@style/ButtonText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="58dp"
-        android:background="@drawable/btn_blue"
-        android:text="Game" />
 
     <Button
         android:id="@+id/team_search"
@@ -57,5 +45,17 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/btn_blue"
         android:text="Team" />
+
+    <Button
+        android:id="@+id/game_search"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/decider_header"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/btn_blue"
+        android:text="Game" />
 
 </RelativeLayout>

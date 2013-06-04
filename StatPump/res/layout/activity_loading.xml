@@ -8,19 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Loading" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:text="Information Systems"
-        android:textStyle="italic"
-        android:textColor="#0000FF"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/logo_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,13 +18,25 @@
         android:src="@drawable/sp_full" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/loading_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="76dp"
-        android:text="Please wait, attempting to contact the server"
+        android:text="Please wait, attempting to contact the server..."
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/sub_header_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/logo_loading"
+        android:layout_below="@+id/logo_loading"
+        android:layout_marginTop="19dp"
+        android:text="Information Systems"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#0000FF"
+        android:textStyle="italic" />
 
 </RelativeLayout>

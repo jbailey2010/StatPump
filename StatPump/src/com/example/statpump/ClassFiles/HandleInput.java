@@ -24,10 +24,11 @@ public class HandleInput
 	 * Pops up the dialog to allow the user to decide if they want a lookup relative to a game
 	 * or a team
 	 * @param cont
-	 */
+	 */ 
 	public static void chooseTeamOrGame(final Context cont)
 	{
-		final Dialog dialog = new Dialog(cont);
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.setCancelable(false);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.search_decider);
 		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
