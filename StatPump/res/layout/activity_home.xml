@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/game_team1_name_spinner"
         android:layout_centerHorizontal="true"
-        android:text="Odds"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
