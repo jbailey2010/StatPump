@@ -16,8 +16,8 @@
         android:showAsAction="ifRoom|withText" 
         android:title="Facebook"/>
    <item
-        android:id="@+id/switch_team"
+        android:id="@+id/switch_game"  
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
-        android:title="Switch to Team Lookup"/>
+        android:title="Switch to Game Lookup"/>
 </menu>

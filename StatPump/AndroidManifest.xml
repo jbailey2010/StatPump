@@ -5,28 +5,33 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="13"
         android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/sp_icon"
+        android:label="StatPump"
         android:logo="@drawable/sp_full"
-        android:label="Stat Pump"
-        android:theme="@style/AppTheme" >  
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.statpump.Home"
-            android:label="Stat Pump"
-            android:actionBarStyle="@+styles/CustomActionBar"
-            >
+            android:name="com.example.statpump.Pages.Loading"
+            android:label="StatPump"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.statpump.Pages.Home"
+            android:label="" >
+        </activity>
+        <activity
+            android:name="com.example.statpump.Pages.HomeTeam"
+            android:label="" >
+        </activity>
     </application>
-    
-    
 
 </manifest>
