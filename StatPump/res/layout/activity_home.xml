@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#DEDEDE" 
     tools:context=".Home" >
 
     <LinearLayout
@@ -74,22 +75,24 @@
 
     <Button
         android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/spinner2"
-        android:layout_below="@+id/spinner2"
-        android:layout_marginTop="18dp"
+        android:layout_alignRight="@+id/spinner1"
+        android:layout_below="@+id/Spinner01"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/btn_blue"
         android:text="Set" />
 
     <Button
         android:id="@+id/button2"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/Spinner01"
+        android:layout_alignLeft="@+id/spinner1"
+        android:background="@drawable/btn_green"
         android:text="Clear" />
 
 </RelativeLayout>

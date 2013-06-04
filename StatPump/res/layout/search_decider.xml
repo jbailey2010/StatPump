@@ -3,24 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/game_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="56dp"
-        android:text="Game" />
-
-    <Button
-        android:id="@+id/team_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/game_search"
-        android:layout_alignBottom="@+id/game_search"
-        android:layout_alignRight="@+id/textView1"
-        android:text="Team" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -51,5 +33,29 @@
         android:text="What context would you like to search relative to?"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/game_search"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="58dp"
+        android:background="@drawable/btn_blue"
+        android:text="Game" />
+
+    <Button
+        android:id="@+id/team_search"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/game_search"
+        android:layout_alignBottom="@+id/game_search"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_blue"
+        android:text="Team" />
 
 </RelativeLayout>
