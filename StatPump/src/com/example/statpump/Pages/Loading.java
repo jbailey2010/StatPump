@@ -36,7 +36,7 @@ public class Loading extends Activity {
 		getMenuInflater().inflate(R.menu.loading, menu);
 		return true;
 	}
-	
+	 
 	/**
 	 * REMOVE THIS LATER
 	 */

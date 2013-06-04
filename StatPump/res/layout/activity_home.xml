@@ -56,28 +56,6 @@
         android:layout_marginLeft="17dp"
         android:layout_marginTop="30dp" />
 
-    <Button
-        android:id="@+id/game_submit"
-        style="@style/ButtonText"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/game_sport_spinner"
-        android:layout_below="@+id/game_team2_name_spinner"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/btn_blue"
-        android:text="Set" />
-
-    <Button
-        android:id="@+id/game_clear"
-        style="@style/ButtonText"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/game_submit"
-        android:layout_alignBottom="@+id/game_submit"
-        android:layout_alignLeft="@+id/game_sport_spinner"
-        android:background="@drawable/btn_green"
-        android:text="Clear" />
-
     <TextView
         android:id="@+id/odds_view"
         android:layout_width="wrap_content"
@@ -93,5 +71,25 @@
         android:layout_height="40dp"
         android:layout_below="@+id/game_title"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/game_clear"
+        style="@style/ButtonText"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/game_team1_name_spinner"
+        android:layout_below="@+id/odds_view"
+        android:background="@drawable/btn_green"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/game_submit"
+        style="@style/ButtonText"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/game_team2_name_spinner"
+        android:layout_below="@+id/odds_view"
+        android:background="@drawable/btn_blue"
+        android:text="Set" />
 
 </RelativeLayout>
