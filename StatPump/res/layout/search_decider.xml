@@ -48,7 +48,8 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="Would you like stats for a game or for a team?"
+        android:text="What context would you like to search relative to?"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
