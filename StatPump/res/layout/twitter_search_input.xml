@@ -25,7 +25,8 @@
 
     <Button
         android:id="@+id/tweet_search_submit"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -36,7 +37,8 @@
 
     <Button
         android:id="@+id/tweet_search_back"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -46,7 +48,8 @@
 
     <Button
         android:id="@+id/tweet_search_cancel"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tweet_search_submit"

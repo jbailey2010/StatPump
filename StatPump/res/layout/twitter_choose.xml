@@ -22,6 +22,8 @@
         android:layout_below="@+id/twitterChooseHeader"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="32dp"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
         android:text="Search" />
 
     <Button
@@ -32,11 +34,14 @@
         android:layout_alignBottom="@+id/twitterChooseSearch"
         android:layout_alignParentRight="true"
         android:layout_marginRight="25dp"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
         android:text="Tweet" />
 
     <Button
         android:id="@+id/twitter_choose_cancel"
-        style="?android:attr/buttonStyleSmall"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/twitterChooseSearch"

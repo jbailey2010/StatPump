@@ -26,6 +26,8 @@
 
     <Button
         android:id="@+id/twitter_confirm_cancel"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/twitter_confirm_go"
@@ -40,6 +42,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/twitter_confirm_prompt"
         android:layout_marginRight="35dp"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
         android:layout_marginTop="50dp"
         android:text="Open" />
 
