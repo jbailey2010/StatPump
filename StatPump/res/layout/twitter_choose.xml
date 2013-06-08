@@ -3,17 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/twitterChooseHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp"
-        android:text="Would you like to search tweets or tweet something?"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
-
     <Button
         android:id="@+id/twitterChooseSearch"
         android:layout_width="wrap_content"
@@ -48,5 +37,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/twitterChooseHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Would you like to search tweets or tweet something?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitter_choose_cancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text=" "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
