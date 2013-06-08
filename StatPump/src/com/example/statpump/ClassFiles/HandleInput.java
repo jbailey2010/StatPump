@@ -7,6 +7,7 @@ import com.example.statpump.Pages.HomeTeam;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
@@ -19,7 +20,7 @@ import android.widget.Button;
  *
  */ 
 public class HandleInput 
-{
+{ 
 	/**
 	 * Pops up the dialog to allow the user to decide if they want a lookup relative to a game
 	 * or a team

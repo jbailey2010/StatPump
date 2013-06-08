@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/twitterChooseHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:text="Would you like to search tweets or tweet something?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0000FF"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/twitterChooseSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/twitterChooseHeader"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="32dp"
+        android:text="Search" />
+
+    <Button
+        android:id="@+id/twitterChooseTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/twitterChooseSearch"
+        android:layout_alignBottom="@+id/twitterChooseSearch"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:text="Tweet" />
+
+</RelativeLayout>
