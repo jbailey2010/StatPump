@@ -12,7 +12,6 @@
         android:layout_marginTop="26dp"
         android:text="Would you like to search tweets or tweet something?"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#0000FF"
         android:textStyle="bold" />
 
     <Button
@@ -34,5 +33,15 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="25dp"
         android:text="Tweet" />
+
+    <Button
+        android:id="@+id/twitter_choose_cancel"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitterChooseSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Cancel" />
 
 </RelativeLayout>
