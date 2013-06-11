@@ -45,7 +45,9 @@
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/game_team1_name_spinner" />
+            android:layout_marginRight="17dp"
+            android:layout_alignTop="@+id/game_team1_name_spinner"
+            android:background="@drawable/spinner_well" />
 
     <Spinner
         android:id="@+id/game_team1_name_spinner"
@@ -54,7 +56,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/game_sport_spinner"
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:background="@drawable/spinner_well" />
 
     <TextView
         android:id="@+id/odds_view"
@@ -69,8 +72,10 @@
         android:id="@+id/game_sport_spinner"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/game_title"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_well" />
 
     <Button
         android:id="@+id/game_clear"
