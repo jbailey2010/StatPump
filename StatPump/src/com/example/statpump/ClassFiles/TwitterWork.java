@@ -19,6 +19,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import com.example.statpump.R;
 import com.example.statpump.FileIO.ReadFromFile;
 import com.example.statpump.FileIO.WriteToFile;
+import com.example.statpump.InterfaceAugmentation.SwipeDismissListViewTouchListener;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -266,18 +267,32 @@ public class TwitterWork
 	 * @param queryResults
 	 * @param cont
 	 */
-	public static void outputResults(QueryResult queryResults, Context cont)
+	public static void outputResults(QueryResult queryResults, final Context cont)
 	{
-		//searchOutputDialog, searchOutput
 	    List<String> results = new ArrayList<String>(10000);
 	    List<Status> statuses = queryResults.getTweets();
 	    for(Status status: statuses)
 	    {
 	    	results.add(status.getUser().getName() + " (" + status.getCreatedAt() + "):\n\n" + status.getText() + "\n");
 	    }
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(cont,
+	    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(cont,
 	            android.R.layout.simple_list_item_1, results);
 	    searchOutput.setAdapter(adapter);
+	    SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                        searchOutput,
+                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    adapter.remove(adapter.getItem(position));
+                                }
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(cont, "Hiding this tweet temporarily", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+        searchOutput.setOnTouchListener(touchListener);
+        searchOutput.setOnScrollListener(touchListener.makeScrollListener());
 	}
 	
 	/**
