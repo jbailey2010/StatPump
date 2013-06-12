@@ -33,10 +33,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -195,6 +198,7 @@ public class TwitterWork
 	    searchOutputDialog.show();
 	    Button back = (Button)searchOutputDialog.findViewById(R.id.search_back);
 	    Button close = (Button)searchOutputDialog.findViewById(R.id.search_close);
+	    Button help = (Button)searchOutputDialog.findViewById(R.id.search_help);
 	    back.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -208,10 +212,40 @@ public class TwitterWork
 				searchOutputDialog.dismiss();
 			}
 	    });
+	    help.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				helpDialog(cont);
+			}
+	    });
 	    searchOutput = (ListView)searchOutputDialog.findViewById(R.id.tweets_results);
 	    TwitterWork obj = new TwitterWork();
 	    TwitterSearchResults task = obj.new TwitterSearchResults((Activity)cont);
 	    task.execute(cont, query, userTwitter, searchOutputDialog);
+	}
+	
+	/**
+	 * Shows the tweetlist help dialog
+	 * @param cont
+	 */
+	public static void helpDialog(Context cont)
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.tweetlist_help);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+	    dialog.show();
+	    Button close = (Button)dialog.findViewById(R.id.tweet_help_close);
+	    close.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				return;
+			}
+	    });
 	}
 	
 	/**
@@ -293,6 +327,39 @@ public class TwitterWork
                         });
         searchOutput.setOnTouchListener(touchListener);
         searchOutput.setOnScrollListener(touchListener.makeScrollListener());
+        searchOutput.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				String tweet = ((TextView)arg1).getText().toString();
+				tweetPopup(cont, tweet);
+			}
+        });
+	}
+	
+	/**
+	 * Handles the tweet pop up
+	 */
+	public static void tweetPopup(Context cont, String tweet)
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.tweet_popup);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+	    dialog.show();
+	    TextView tweetView = (TextView)dialog.findViewById(R.id.tweet_field);
+	    tweetView.setText(tweet);
+	    Button close = (Button)dialog.findViewById(R.id.tweet_popup_close);
+	    close.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				return;
+			}
+	    });
 	}
 	
 	/**
