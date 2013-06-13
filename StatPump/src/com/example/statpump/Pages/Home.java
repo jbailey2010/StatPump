@@ -1,11 +1,13 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.TwitterWork;
 
 import android.os.Bundle;
@@ -74,6 +76,7 @@ public class Home extends Activity {
 				TwitterWork.twitterInitial(cont);
 		    	return true;
 			case R.id.facebook: 
+				FacebookWork.startFacebook(cont);
 				return true;
 			case R.id.switch_team:
 				Intent intent = new Intent(cont, HomeTeam.class);

@@ -35,6 +35,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="" >
         </activity>
+        <activity
+            android:name="com.example.statpump.ClassFiles.OAuthActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="" >
+        </activity>
     </application>
 
 </manifest>
