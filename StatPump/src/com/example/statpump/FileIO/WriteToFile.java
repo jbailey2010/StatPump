@@ -33,4 +33,14 @@ public class WriteToFile
 		editor.putString("Token Secret", token.getTokenSecret());
 		editor.commit();
 	}
+	
+	/**
+	 * Writes the facebook token data to file to be read later
+	 */
+	public static void storeFacebookToken(String token, Context cont)
+	{
+		SharedPreferences.Editor editor = cont.getSharedPreferences("StatPump", 0).edit();
+		editor.putString("Facebook Token", token);
+		editor.commit();
+	}
 }

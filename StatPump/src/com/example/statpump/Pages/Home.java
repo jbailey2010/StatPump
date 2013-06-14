@@ -76,7 +76,7 @@ public class Home extends Activity {
 				TwitterWork.twitterInitial(cont);
 		    	return true;
 			case R.id.facebook: 
-				FacebookWork.startFacebook(cont);
+				FacebookWork.facebookInit(cont);
 				return true;
 			case R.id.switch_team:
 				Intent intent = new Intent(cont, HomeTeam.class);

@@ -35,4 +35,12 @@ public class ReadFromFile
 		SharedPreferences prefs = cont.getSharedPreferences("StatPump", 0); 
 		return prefs.getString("Token Secret", "Not set");
 	}
+
+	/**
+	 * Reads the fb token from file
+	 */
+	public static String ReadFBToken(Context cont) {
+		SharedPreferences prefs = cont.getSharedPreferences("StatPump", 0); 
+		return prefs.getString("Facebook Token", "Not set");
+	}
 }

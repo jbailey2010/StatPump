@@ -1,18 +1,3 @@
-/*
- * Copyright 2012 Ryuji Yamashita
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.example.statpump.ClassFiles;
 
@@ -31,9 +16,6 @@ import facebook4j.FacebookFactory;
 import facebook4j.auth.AccessToken;
 import facebook4j.conf.ConfigurationBuilder;
 
-/**
- * @author Ryuji Yamashita - roundrop at gmail.com
- */
 @TargetApi(3)
 public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
 
@@ -53,7 +35,6 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
           .setOAuthAppId("134586500079124")
           .setOAuthAppSecret("41c5573b70df438816a7c81d49fa3e75")
           .setOAuthPermissions("publish_stream");
-        System.out.println("In asynctask connecting");
         FacebookFactory ff = new FacebookFactory(cb.build());
         Facebook facebook = ff.getInstance();
         mOAuthWebView.setFacebook(facebook);
@@ -89,7 +70,13 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
     protected void onPostExecute(OAuthWebView result) {
         mOAuthWebView.end();
         System.out.println("Executed: " + mOAuthWebView.getFacebook().getOAuthAccessToken().getToken());
-        AccessToken access = mOAuthWebView.getFacebook().getOAuthAccessToken();
+        FacebookWork.startInterface(mOAuthWebView.getFacebook().getOAuthAccessToken());
+        /*AccessToken access = mOAuthWebView.getFacebook().getOAuthAccessToken();
+        Facebook facebook = mOAuthWebView.getFacebook();
+        AccessToken access = new AccessToken();
+        facebook.setOAuthAccessToken(access);
+        access.getExpires();     
+        */
     }
 
     private void waitForAuthorization() {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/facebook_choose_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="What would you like to do?"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/facebook_choose_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/facebook_choose_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:dropDownSelector="#0000FF"
+        android:background="@drawable/spinner_well" />
+
+    <Button
+        android:id="@+id/facebook_choose_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/facebook_choose_spinner"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/btn_blue"
+        style="@style/ButtonText"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/facebook_choose_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/facebook_choose_submit"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/btn_green"
+        style="@style/ButtonText"
+        android:text="Close" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/facebook_choose_cancel"
+        android:layout_below="@+id/facebook_choose_cancel"
+        android:layout_marginTop="16dp"
+        android:text=" "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

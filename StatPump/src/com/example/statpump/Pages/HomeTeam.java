@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.TwitterWork;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -26,6 +27,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
  *
  */
 public class HomeTeam extends Activity {
+	private static final String FacebookWork = null;
 	final Context cont = this;
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
@@ -65,7 +67,7 @@ public class HomeTeam extends Activity {
 				return true;
 			case R.id.twitter:
 		    	return true;
-			case R.id.facebook:
+			case R.id.facebook: 
 				return true;
 			case R.id.switch_game:
 				Intent intent = new Intent(cont, Home.class);
