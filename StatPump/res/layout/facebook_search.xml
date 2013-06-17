@@ -58,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/btn_green"
         style="@style/ButtonText"
-        android:text="Close" />
+        android:text="Cancel" />
 
     <TextView
         android:id="@+id/textView2"

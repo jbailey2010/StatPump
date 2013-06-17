@@ -34,7 +34,7 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
         cb.setDebugEnabled(true)
           .setOAuthAppId("134586500079124")
           .setOAuthAppSecret("41c5573b70df438816a7c81d49fa3e75")
-          .setOAuthPermissions("publish_stream");
+          .setOAuthPermissions("publish_stream,read_stream,publish_actions");
         FacebookFactory ff = new FacebookFactory(cb.build());
         Facebook facebook = ff.getInstance();
         mOAuthWebView.setFacebook(facebook);
@@ -70,13 +70,7 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
     protected void onPostExecute(OAuthWebView result) {
         mOAuthWebView.end();
         System.out.println("Executed: " + mOAuthWebView.getFacebook().getOAuthAccessToken().getToken());
-        FacebookWork.startInterface(mOAuthWebView.getFacebook().getOAuthAccessToken());
-        /*AccessToken access = mOAuthWebView.getFacebook().getOAuthAccessToken();
-        Facebook facebook = mOAuthWebView.getFacebook();
-        AccessToken access = new AccessToken();
-        facebook.setOAuthAccessToken(access);
-        access.getExpires();     
-        */
+        FacebookWork.startInterface(mOAuthWebView.getFacebook().getOAuthAccessToken(), mOAuthWebView.getFacebook());
     }
 
     private void waitForAuthorization() {

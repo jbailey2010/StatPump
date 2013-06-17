@@ -24,7 +24,9 @@ import com.example.statpump.InterfaceAugmentation.SwipeDismissListViewTouchListe
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
+import facebook4j.Permission;
 import facebook4j.Post;
+import facebook4j.PostUpdate;
 import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
 import facebook4j.conf.ConfigurationBuilder;
@@ -109,14 +111,14 @@ public class FacebookWork
 	 */
 	public static void keyWork(Context context, String key)
 	{
-		AccessToken access = new AccessToken(key);
 		ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
           .setOAuthAppId("134586500079124")
           .setOAuthAppSecret("41c5573b70df438816a7c81d49fa3e75")
-          .setOAuthPermissions("publish_stream");
+          .setOAuthPermissions("publish_stream,read_stream,publish_actions");
         FacebookFactory ff = new FacebookFactory(cb.build());
         facebook = ff.getInstance();
+		AccessToken access = new AccessToken(key);
         facebook.setOAuthAccessToken(access);
         if(access.getExpires() != null && access.getExpires() <= 10.0)
         {
@@ -124,7 +126,7 @@ public class FacebookWork
         }
         else
         {
-        	startInterface(facebook.getOAuthAccessToken());
+        	startInterface(facebook.getOAuthAccessToken(), facebook);
         }
 	}
 	
@@ -142,8 +144,9 @@ public class FacebookWork
 	 * Sets up the interface to see what the user wants to do
 	 * @param access
 	 */
-	public static void startInterface(final AccessToken access)
+	public static void startInterface(final AccessToken access, Facebook fb)
 	{
+		facebook = fb;
 		WriteToFile.storeFacebookToken(access.getToken(), cont);
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -160,28 +163,20 @@ public class FacebookWork
 				dialog.dismiss();
 			}
 	    });
-	    final Spinner options = (Spinner) dialog.findViewById(R.id.facebook_choose_spinner);
-	    List<String> spinnerList = new ArrayList<String>();
-	    spinnerList.add("Post a status update");
-	    spinnerList.add("Search public posts");
-	    ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(cont, 
-				android.R.layout.simple_spinner_dropdown_item, spinnerList);
-	    options.setAdapter(spinnerArrayAdapter);
-	    Button submit = (Button)dialog.findViewById(R.id.facebook_choose_submit);
-	    submit.setOnClickListener(new OnClickListener(){
+	    Button status = (Button)dialog.findViewById(R.id.facebook_choose_status);
+	    status.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				String selection = options.getSelectedItem().toString();
-				if(selection.equals("Post a status update"))
-				{
-					postStatus(access);
-					dialog.dismiss();
-				}
-				else if(selection.equals("Search public posts"))
-				{
-					searchPosts(access);
-					dialog.dismiss();
-				}
+				postStatus(access);
+				dialog.dismiss();
+			}
+	    });
+	    Button search = (Button)dialog.findViewById(R.id.facebook_choose_search);
+	    search.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				searchPosts(access);
+				dialog.dismiss();
 			}
 	    });
 	}
@@ -213,7 +208,7 @@ public class FacebookWork
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
-				startInterface(access);
+				startInterface(access, facebook);
 			}
 	    });
 	    Button submit = (Button)dialog.findViewById(R.id.facebook_status_submit);
@@ -228,7 +223,7 @@ public class FacebookWork
 					task.execute(cont, post, facebook);
 					Toast.makeText(cont, "Updated status to " + post, Toast.LENGTH_SHORT).show();
 					dialog.dismiss();
-					startInterface(access);
+					startInterface(access, facebook);
 				}
 			}
 	    });
@@ -239,7 +234,7 @@ public class FacebookWork
 	 * @author Jeff
 	 *
 	 */
-	public class FacebookPostStatus extends AsyncTask<Object, Void, Void> 
+	public class FacebookPostStatus extends AsyncTask<Object, Void, Integer> 
 	{
 		ProgressDialog pdia;
 		Activity act;
@@ -258,24 +253,37 @@ public class FacebookWork
 		}
 
 		@Override
-		protected void onPostExecute(Void result){
+		protected void onPostExecute(Integer result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
+		   if(result == 1)
+		   {
+			   startFacebook(cont);
+				Toast.makeText(cont, "Authorization expired, please wait...", Toast.LENGTH_SHORT).show();
+		   }
 		}
 		
 	    @Override
-	    protected Void doInBackground(Object... data) 
+	    protected Integer doInBackground(Object... data) 
 	    {
 	    	Context cont = (Context)data[0];
 	    	String query = (String)data[1];
 	    	Facebook facebook = (Facebook)data[2];
+	    	int result = 0;
 	    	try {
 				facebook.postStatusMessage(query);
 			} catch (FacebookException e) {
+				if(e.getErrorType().equals("OAuthException"))
+				{
+					result = 1;
+				}
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				else
+				{
+					e.printStackTrace();
+				}
 			}
-			return null;
+	    	return result;
 	    }
 	}
 	
@@ -306,7 +314,7 @@ public class FacebookWork
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
-				startInterface(access);
+				startInterface(access, facebook);
 			}
 	    });
 	    Button submit = (Button)dialog.findViewById(R.id.facebook_search_submit);
@@ -354,6 +362,11 @@ public class FacebookWork
 		protected void onPostExecute(ResponseList<Post> result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
+		   if(result == null)
+		   {
+			   startFacebook(cont);
+			   Toast.makeText(cont, "Authorization expired, please wait...", Toast.LENGTH_SHORT).show();
+		   }
 		   showResults(result, access);
 		}
 		
@@ -367,8 +380,15 @@ public class FacebookWork
 				ResponseList<Post> responses = facebook.searchPosts(query);
 				return responses;
 			} catch (FacebookException e) {
+				if(e.getErrorType().equals("OAuthException"))
+				{
+					return null;
+				}
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				else
+				{
+					e.printStackTrace();
+				}
 			}
 	    	return null;
 	    }
@@ -415,8 +435,11 @@ public class FacebookWork
 	    });
 	    for(Post post :responses)
 	    {
-	    	
 	    	results.add(post.getFrom().getName() + " (" + post.getCreatedTime() + "):\n\n" + post.getMessage());
+	    }
+	    if(responses.size() == 0)
+	    {
+	    	results.add("No results, try again?");
 	    }
 	    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(cont,
 	            android.R.layout.simple_list_item_1, results);
@@ -473,6 +496,9 @@ public class FacebookWork
 	    });
 	}
 	
+	/**
+	 * Handles the help pop up 
+	 */
 	public static void facebookSearchHelp()
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);

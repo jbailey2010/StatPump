@@ -36,7 +36,7 @@
         android:layout_below="@+id/twitterChooseSearch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="Cancel" />
+        android:text="Close" />
 
     <TextView
         android:id="@+id/twitterChooseHeader"
