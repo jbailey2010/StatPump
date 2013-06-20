@@ -52,7 +52,10 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
         try {
 			mOAuthWebView.getFacebook().postStatusMessage("Test");
 		} catch (FacebookException e) {
-			// TODO Auto-generated catch block
+			if(e.isCausedByNetworkIssue())
+			{
+				return null;
+			}
 			e.printStackTrace();
 		}
         return mOAuthWebView;
@@ -68,8 +71,11 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
  
     @Override
     protected void onPostExecute(OAuthWebView result) {
+    	if(result == null)
+    	{
+    		FacebookWork.failed();
+    	}
         mOAuthWebView.end();
-        System.out.println("Executed: " + mOAuthWebView.getFacebook().getOAuthAccessToken().getToken());
         FacebookWork.startInterface(mOAuthWebView.getFacebook().getOAuthAccessToken(), mOAuthWebView.getFacebook());
     }
 

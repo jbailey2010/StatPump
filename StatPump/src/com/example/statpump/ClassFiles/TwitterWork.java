@@ -273,7 +273,10 @@ public class TwitterWork
 		protected void onPostExecute(QueryResult result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   outputResults(result, act);
+		   if(result != null)
+		   {
+			   outputResults(result, act);
+		   }
 		}
 		
 	    @Override
@@ -289,6 +292,11 @@ public class TwitterWork
 				result = userTwitter.search(queryObj);
 		        return result;
 			} catch (TwitterException e) {
+				if(e.isCausedByNetworkIssue())
+				{
+					Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
+					return null;
+				}
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -438,7 +446,10 @@ public class TwitterWork
 		protected void onPostExecute(Integer result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   handleTweet((Context)act, result);
+		   if(result != null)
+		   {
+			   handleTweet((Context)act, result);
+		   }
 		}
 		
 	    @Override
@@ -453,7 +464,11 @@ public class TwitterWork
 				try {
 					userTwitter.updateStatus(input);
 				} catch (TwitterException e) {
-					// TODO Auto-generated catch block
+					if(e.isCausedByNetworkIssue())
+					{
+						Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
+						return null;
+					}
 					e.printStackTrace();
 				}
 				return 1;
@@ -492,7 +507,10 @@ public class TwitterWork
 		protected void onPostExecute(Twitter result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   handleURL(act, result);
+		   if(result != null)
+		   {
+			   handleURL(act, result);
+		   }
 		}
 		
 	    @Override
@@ -507,7 +525,11 @@ public class TwitterWork
 		        accessToken = null;
 		        validURL = requestToken.getAuthorizationURL();
 			} catch (TwitterException e) {
-				// TODO Auto-generated catch block
+				if(e.isCausedByNetworkIssue())
+				{
+					Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
+					return null;
+				}
 				e.printStackTrace();
 			}
 	        return twitter;

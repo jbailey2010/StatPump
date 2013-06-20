@@ -107,6 +107,14 @@ public class FacebookWork
 	}
 	
 	/**
+	 * A quick function to handle if there's no available internet in attempting to authenticate
+	 */
+	public static void failed()
+	{
+		Toast.makeText(cont, "No available internet connection", Toast.LENGTH_SHORT).show();
+	}
+	
+	/**
 	 * See if the key is usable yet
 	 */
 	public static void keyWork(Context context, String key)
@@ -256,11 +264,6 @@ public class FacebookWork
 		protected void onPostExecute(Integer result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   if(result == 1)
-		   {
-			   startFacebook(cont);
-				Toast.makeText(cont, "Authorization expired, please wait...", Toast.LENGTH_SHORT).show();
-		   }
 		}
 		
 	    @Override
@@ -273,9 +276,10 @@ public class FacebookWork
 	    	try {
 				facebook.postStatusMessage(query);
 			} catch (FacebookException e) {
-				if(e.getErrorType().equals("OAuthException"))
+				if(e.isCausedByNetworkIssue())
 				{
-					result = 1;
+					Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
+					return null;
 				}
 				// TODO Auto-generated catch block
 				else
@@ -362,12 +366,10 @@ public class FacebookWork
 		protected void onPostExecute(ResponseList<Post> result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   if(result == null)
+		   if(result != null)
 		   {
-			   startFacebook(cont);
-			   Toast.makeText(cont, "Authorization expired, please wait...", Toast.LENGTH_SHORT).show();
+			   showResults(result, access);
 		   }
-		   showResults(result, access);
 		}
 		
 	    @Override
@@ -380,8 +382,9 @@ public class FacebookWork
 				ResponseList<Post> responses = facebook.searchPosts(query);
 				return responses;
 			} catch (FacebookException e) {
-				if(e.getErrorType().equals("OAuthException"))
+				if(e.isCausedByNetworkIssue())
 				{
+					Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
 					return null;
 				}
 				// TODO Auto-generated catch block
