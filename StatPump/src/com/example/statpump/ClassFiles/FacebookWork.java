@@ -57,7 +57,7 @@ import android.widget.AdapterView.OnItemClickListener;
  * A library of all the facebook connectivity code
  * @author Jeff
  *
- */
+ */  
 public class FacebookWork 
 {
 	public static Facebook facebook;
