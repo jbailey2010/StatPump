@@ -9,6 +9,7 @@ import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.TwitterWork;
+import com.example.statpump.InterfaceAugmentation.ManageInput;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -42,6 +44,7 @@ public class HomeTeam extends Activity {
 	Button submit;
 	Button clear;
 	TextView headerText;
+	ImageView sportImg;
 	
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -104,6 +107,7 @@ public class HomeTeam extends Activity {
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
+		sportImg = (ImageView)findViewById(R.id.team_sport_image);
 		sportSpec.setVisibility(View.INVISIBLE);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
@@ -117,6 +121,11 @@ public class HomeTeam extends Activity {
 					sportSpec.setVisibility(View.VISIBLE);
 					headerText.setText("Select the Specific Type of the Sport Below");
 					sportStr = ((TextView)arg1).getText().toString();	
+					ManageInput.populateSpecSpinner(sportStr, sportSpec, cont, sportImg);
+				}
+				else
+				{
+					sportImg.setVisibility(View.INVISIBLE);
 				}
 			}
 

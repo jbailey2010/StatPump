@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ public class Home extends Activity {
 	Button submit;
 	Button clear;
 	TextView headerText;
+	ImageView sportImg;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -105,6 +107,7 @@ public class Home extends Activity {
 		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
 		submit = (Button)findViewById(R.id.game_submit);
 		clear = (Button)findViewById(R.id.game_clear);
+		sportImg = (ImageView)findViewById(R.id.game_sport_image);
 		headerText = (TextView)findViewById(R.id.game_title);
 		setUpInterface();
 		ManageInput.populateSpinner(sport, cont);
@@ -130,6 +133,11 @@ public class Home extends Activity {
 					sportSpec.setVisibility(View.VISIBLE);
 					sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Specific Type of the Sport Below");
+					ManageInput.populateSpecSpinner(sportStr, sportSpec, cont, sportImg);
+				}
+				else
+				{
+					sportImg.setVisibility(View.INVISIBLE);
 				}
 			}
 
