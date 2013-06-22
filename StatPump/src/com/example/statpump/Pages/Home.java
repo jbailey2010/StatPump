@@ -130,6 +130,7 @@ public class Home extends Activity {
 					int arg2, long arg3) {
 				if(!((TextView)arg1).getText().toString().equals("Select a Sport"))
 				{
+					sportImg.setVisibility(View.VISIBLE);
 					sportSpec.setVisibility(View.VISIBLE);
 					sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Specific Type of the Sport Below");

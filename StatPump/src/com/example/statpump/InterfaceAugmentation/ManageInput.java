@@ -72,7 +72,7 @@ public class ManageInput
 		}
 		else if(selection.equals("Australian Football"))
 		{
-			image.setImageResource(R.drawable.australian_football);
+			image.setImageResource(R.drawable.ausfootball);
 		}
 		else if(selection.equals("Baseball"))
 		{
