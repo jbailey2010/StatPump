@@ -8,7 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#DEDEDE" 
     tools:context=".Home" >
-
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/game_title"
+        android:layout_marginRight="-6dp"
+        android:src="@drawable/sp_bw_rotate" />
+	<ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/game_title" 
+        android:layout_marginLeft="-6dp"
+        android:src="@drawable/sp_bw_rotate2" />
     <LinearLayout
         android:id="@+id/list_game_parent"
         android:layout_width="fill_parent"
@@ -42,7 +58,7 @@
 
         <Spinner
             android:id="@+id/game_team2_name_spinner"
-            android:layout_width="100dp"
+            android:layout_width="125dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
@@ -51,7 +67,7 @@
 
     <Spinner
         android:id="@+id/game_team1_name_spinner"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/game_sport_spinner"
@@ -72,9 +88,10 @@
         android:id="@+id/game_sport_spinner"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/game_team1_name_spinner"
+        android:layout_alignRight="@+id/game_team1_name_spinner"
         android:layout_below="@+id/game_title"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:background="@drawable/spinner_well" />
 
     <Button
@@ -96,5 +113,15 @@
         android:layout_below="@+id/odds_view"
         android:background="@drawable/btn_blue"
         android:text="Set" />
+
+    <Spinner
+        android:id="@+id/game_sport_specific_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/game_team1_name_spinner"
+        android:layout_alignLeft="@+id/game_team2_name_spinner"
+        android:layout_alignRight="@+id/game_team2_name_spinner"
+        android:layout_alignTop="@+id/game_sport_spinner"
+        android:background="@drawable/spinner_well" />
 
 </RelativeLayout>

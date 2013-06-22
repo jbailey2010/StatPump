@@ -34,11 +34,14 @@ public class HomeTeam extends Activity {
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
 	Spinner sport;
+	Spinner sportSpec;
 	Spinner team1;
 	String sportStr;
+	String sportSpecStr;
 	String team1Str;
 	Button submit;
 	Button clear;
+	TextView headerText;
 	
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -96,9 +99,12 @@ public class HomeTeam extends Activity {
 	public void setUpInterface()
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
+		sportSpec = (Spinner)findViewById(R.id.team_sport_specific_spinner);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
+		headerText = (TextView)findViewById(R.id.team_title);
+		sportSpec.setVisibility(View.INVISIBLE);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
 		clear.setVisibility(View.INVISIBLE);
@@ -108,9 +114,26 @@ public class HomeTeam extends Activity {
 					int arg2, long arg3) {
 				if(!((TextView)arg1).getText().toString().equals("Select a Sport"))
 				{
+					sportSpec.setVisibility(View.VISIBLE);
+					headerText.setText("Select the Specific Type of the Sport Below");
+					sportStr = ((TextView)arg1).getText().toString();	
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+		sportSpec.setOnItemSelectedListener(new OnItemSelectedListener(){
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				if(!((TextView)arg1).getText().toString().equals("Select a Sport"))
+				{
+					headerText.setText("Select the Team Below");
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
-					sportStr = ((TextView)arg1).getText().toString();	
+					sportSpecStr = ((TextView)arg1).getText().toString();	
 				}
 			}
 
