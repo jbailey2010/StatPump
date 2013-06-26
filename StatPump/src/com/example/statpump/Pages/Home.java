@@ -140,6 +140,10 @@ public class Home extends Activity {
 				{
 					sportImg.setVisibility(View.INVISIBLE);
 					sportSpec.setVisibility(View.INVISIBLE);
+					team1.setVisibility(View.INVISIBLE);
+					team2.setVisibility(View.INVISIBLE);
+					submit.setVisibility(View.INVISIBLE); 
+					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
 				}
 			}
@@ -164,6 +168,8 @@ public class Home extends Activity {
 				{
 					clear.setVisibility(View.INVISIBLE);
 					team1.setVisibility(View.INVISIBLE);
+					team2.setVisibility(View.INVISIBLE);
+					submit.setVisibility(View.INVISIBLE); 
 					headerText.setText("Select the Specific Type of the Sport Below");
 				}
 			}
