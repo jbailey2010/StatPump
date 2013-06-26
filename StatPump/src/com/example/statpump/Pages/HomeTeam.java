@@ -126,7 +126,8 @@ public class HomeTeam extends Activity {
 				else
 				{
 					sportImg.setVisibility(View.INVISIBLE);
-				}
+					sportSpec.setVisibility(View.INVISIBLE);
+				} 
 			}
 
 			@Override

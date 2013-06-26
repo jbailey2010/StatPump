@@ -139,6 +139,7 @@ public class Home extends Activity {
 				else
 				{
 					sportImg.setVisibility(View.INVISIBLE);
+					sportSpec.setVisibility(View.INVISIBLE);
 				}
 			}
 
