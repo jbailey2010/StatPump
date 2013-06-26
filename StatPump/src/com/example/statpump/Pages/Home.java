@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -225,9 +226,20 @@ public class Home extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+		clear.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				sport.setSelection(0);
+				sportSpec.setVisibility(View.INVISIBLE);
+				team1.setVisibility(View.INVISIBLE);
+				team2.setVisibility(View.INVISIBLE);
+				headerText.setText("Select a Sport Below");
+				sportImg.setVisibility(View.INVISIBLE);
+			}
+		});
 		/*
 		 * TO BE DONE:
-		 * Clear button
+		 * Clear button augmented with functionality
 		 * Function that populates dropdowns
 		 * Submit button
 		 * Keep updating header
