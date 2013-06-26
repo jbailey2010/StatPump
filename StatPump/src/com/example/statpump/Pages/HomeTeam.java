@@ -135,6 +135,7 @@ public class HomeTeam extends Activity {
 					sportSpec.setVisibility(View.INVISIBLE);
 					team1.setVisibility(View.INVISIBLE);
 					submit.setVisibility(View.INVISIBLE);
+					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
 				} 
 			}
