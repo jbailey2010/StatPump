@@ -68,6 +68,7 @@ public class ManageInput
 		}
 		else if(selection.equals("American Football"))
 		{
+			System.out.println("Setting this");
 			image.setImageResource(R.drawable.football);
 		}
 		else if(selection.equals("Australian Football"))

@@ -53,7 +53,7 @@ public class HomeTeam extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_team);
-		setUpInterface();
+		initialSetUp();
 	} 
 
 	@Override
@@ -95,12 +95,7 @@ public class HomeTeam extends Activity {
 	public void onBackPressed() {
 	}
 	
-	/**
-	 * Sets up the spinners and the relavent listeners such that
-	 * when a relevant item is picked, it unhides stuff
-	 */
-	public void setUpInterface()
-	{
+	public void initialSetUp(){
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
 		sportSpec = (Spinner)findViewById(R.id.team_sport_specific_spinner);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
@@ -108,6 +103,16 @@ public class HomeTeam extends Activity {
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
 		sportImg = (ImageView)findViewById(R.id.team_sport_image);
+		setUpInterface();
+		ManageInput.populateSpinner(sport, cont);
+	}
+	
+	/**
+	 * Sets up the spinners and the relavent listeners such that
+	 * when a relevant item is picked, it unhides stuff
+	 */
+	public void setUpInterface()
+	{
 		sportSpec.setVisibility(View.INVISIBLE);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
@@ -118,6 +123,7 @@ public class HomeTeam extends Activity {
 					int arg2, long arg3) {
 				if(!((TextView)arg1).getText().toString().equals("Select a Sport"))
 				{
+					sportImg.setVisibility(View.VISIBLE);
 					sportSpec.setVisibility(View.VISIBLE);
 					headerText.setText("Select the Specific Type of the Sport Below");
 					sportStr = ((TextView)arg1).getText().toString();	
