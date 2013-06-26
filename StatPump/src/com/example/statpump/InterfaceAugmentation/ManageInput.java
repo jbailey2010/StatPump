@@ -144,6 +144,16 @@ public class ManageInput
 		else if(selection.equals("Tennis"))
 		{
 			image.setImageResource(R.drawable.tennis);
+			sports.add("ATP World Tour (Grand Slam)");
+			sports.add("ATP World Tour (Masters)");
+			sports.add("ATP World Tour (ATP500)");
+			sports.add("ATP World Tour (ATP250)");
+			sports.add("WTA Tour (Premier)");
+			sports.add("WTA Tour (International)");
+			sports.add("ATP Challenge Tour");
+			sports.add("Davis Cup");
+			sports.add("Fed Cup");
+			sports.add("Hopman Cup (Team Tournament)");
 		}
 		else if(selection.equals("Volleyball"))
 		{
