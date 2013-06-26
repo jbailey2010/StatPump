@@ -140,6 +140,7 @@ public class Home extends Activity {
 				{
 					sportImg.setVisibility(View.INVISIBLE);
 					sportSpec.setVisibility(View.INVISIBLE);
+					headerText.setText("Select a Sport Below");
 				}
 			}
 
@@ -152,10 +153,19 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				clear.setVisibility(View.VISIBLE);
-				team1.setVisibility(View.VISIBLE);
-				sportSpecStr = ((TextView)arg1).getText().toString();
-				headerText.setText("Select the first team below");
+				if(!((TextView)arg1).getText().toString().equals("Specific Types of the Sport"))
+				{
+					clear.setVisibility(View.VISIBLE);
+					team1.setVisibility(View.VISIBLE);
+					sportSpecStr = ((TextView)arg1).getText().toString();
+					headerText.setText("Select the first team below");
+				}
+				else
+				{
+					clear.setVisibility(View.INVISIBLE);
+					team1.setVisibility(View.INVISIBLE);
+					headerText.setText("Select the Specific Type of the Sport Below");
+				}
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {

@@ -63,6 +63,7 @@ public class ManageInput
 		sportSpecSpinner = spinner;
 		spinner.setAdapter(null);
 		List<String> sports = new ArrayList<String>();
+		sports.add("Specific Types of the Sport");
 		if(selection.equals("Soccer"))
 		{
 			image.setImageResource(R.drawable.soccer);
