@@ -21,6 +21,8 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -91,6 +93,9 @@ public class Home extends Activity {
 				return true;
 			case R.id.help:
 				HandleInput.helpPopUp(cont);
+				return true;
+			case R.id.set_statwell_game:
+				setStatWellDialog();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -248,5 +253,28 @@ public class Home extends Activity {
 		 * Submit button
 		 * Keep updating header
 		 */
+	}
+	
+	/**
+	 * Makes the dialog for statwell show up
+	 */
+	public void setStatWellDialog()
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.statwell_game);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+		dialog.show();
+		
+		Button close = (Button)dialog.findViewById(R.id.statwell_game_cancel);
+		close.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
 	}
 }

@@ -24,4 +24,8 @@
         android:id="@+id/help"  
         android:orderInCategory="100"
         android:title="Need Help?"/>
+	<item
+        android:id="@+id/set_statwell_game"  
+        android:orderInCategory="100"
+        android:title="Set StatWell Content"/>
 </menu>

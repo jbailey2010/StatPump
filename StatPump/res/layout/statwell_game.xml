@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="What type of information would you like in the StatWell?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" >
+
+        <RadioButton
+            android:id="@+id/statwell_venue_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Venue Information" />
+
+        <RadioButton
+            android:id="@+id/statwell_game_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Information" />
+
+        <RadioButton
+            android:id="@+id/statwell_game_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Statistics" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/statwell_game_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_blue"
+        style="@style/ButtonText"
+        android:text="Submit" />
+    
+    <Button
+        android:id="@+id/statwell_game_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_green"
+        style="@style/ButtonText"
+        android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statwell_game_cancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text=" "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

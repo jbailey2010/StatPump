@@ -14,11 +14,14 @@ import com.example.statpump.InterfaceAugmentation.ManageInput;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -87,6 +90,9 @@ public class HomeTeam extends Activity {
 				return true;
 			case R.id.help:
 				HandleInput.helpPopUp(cont);
+				return true;
+			case R.id.set_statwell_team:
+				setStatWellDialog();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -205,6 +211,29 @@ public class HomeTeam extends Activity {
 		 * Function that populates dropdowns
 		 * Submit button
 		 */
+	}
+	
+	/**
+	 * Sets the statwell dialog
+	 */
+	public void setStatWellDialog()
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.statwell_team);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+		dialog.show();
+		
+		Button close = (Button)dialog.findViewById(R.id.statwell_team_cancel);
+		close.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
 	}
 
 }
