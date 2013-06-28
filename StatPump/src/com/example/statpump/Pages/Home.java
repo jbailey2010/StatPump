@@ -8,6 +8,7 @@ import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
 import com.example.statpump.ClassFiles.FacebookWork;
+import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageInput;
 
@@ -73,7 +74,7 @@ public class Home extends Activity {
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) 
-	{  
+	{   
 		switch (item.getItemId()) 
 		{
 			case R.id.search_player:
@@ -87,6 +88,9 @@ public class Home extends Activity {
 			case R.id.switch_team:
 				Intent intent = new Intent(cont, HomeTeam.class);
 		        cont.startActivity(intent);	
+				return true;
+			case R.id.help:
+				HandleInput.helpPopUp(cont);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

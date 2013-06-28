@@ -8,6 +8,7 @@ import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
 import com.example.statpump.ClassFiles.FacebookWork;
+import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageInput;
 
@@ -83,6 +84,9 @@ public class HomeTeam extends Activity {
 			case R.id.switch_game:
 				Intent intent = new Intent(cont, Home.class);
 		        cont.startActivity(intent);	
+				return true;
+			case R.id.help:
+				HandleInput.helpPopUp(cont);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

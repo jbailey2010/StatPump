@@ -20,4 +20,8 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
         android:title="Switch to Team Lookup"/>
+	<item
+        android:id="@+id/help"  
+        android:orderInCategory="100"
+        android:title="Need Help?"/>
 </menu>

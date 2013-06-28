@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A library of functions to handle user input
@@ -53,6 +54,30 @@ public class HandleInput
 				dialog.dismiss();
 				Intent intent = new Intent(cont, HomeTeam.class);
 		        cont.startActivity(intent);					
+			}
+		});
+	}
+	
+	/**
+	 * Handles the help pop up
+	 * @param cont
+	 */
+	public static void helpPopUp(Context cont)
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.help_home);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+		dialog.show();
+		TextView cancel = (TextView)dialog.findViewById(R.id.help_close);
+		cancel.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				return;
 			}
 		});
 	}
