@@ -40,6 +40,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Game Statistics" />
+        
+         <RadioButton
+            android:id="@+id/statwell_game_talk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Conversation" />
     </RadioGroup>
 
     <Button
