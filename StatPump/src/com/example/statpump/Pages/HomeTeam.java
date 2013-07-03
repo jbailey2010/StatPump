@@ -10,7 +10,7 @@ import com.example.statpump.R.menu;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
-import com.example.statpump.InterfaceAugmentation.ManageInput;
+import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -41,10 +41,8 @@ public class HomeTeam extends Activity {
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
 	Spinner sport;
-	Spinner sportSpec;
 	Spinner team1;
 	String sportStr;
-	String sportSpecStr;
 	String team1Str;
 	Button submit;
 	Button clear;
@@ -108,14 +106,13 @@ public class HomeTeam extends Activity {
 	
 	public void initialSetUp(){
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
-		sportSpec = (Spinner)findViewById(R.id.team_sport_specific_spinner);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
 		sportImg = (ImageView)findViewById(R.id.team_sport_image);
 		setUpInterface();
-		ManageInput.populateSpinner(sport, cont);
+		ManageSportSelection.populateSpinner(sport, cont);
 	}
 	
 	/**
@@ -124,7 +121,6 @@ public class HomeTeam extends Activity {
 	 */
 	public void setUpInterface()
 	{
-		sportSpec.setVisibility(View.INVISIBLE);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
 		clear.setVisibility(View.INVISIBLE);
@@ -135,44 +131,20 @@ public class HomeTeam extends Activity {
 				if(!((TextView)arg1).getText().toString().equals("Select a Sport"))
 				{
 					sportImg.setVisibility(View.VISIBLE);
-					sportSpec.setVisibility(View.VISIBLE);
-					headerText.setText("Select the Specific Type of the Sport Below");
 					sportStr = ((TextView)arg1).getText().toString();	
-					ManageInput.populateSpecSpinner(sportStr, sportSpec, cont, sportImg);
+					headerText.setText("Select the Team Below");
+					clear.setVisibility(View.VISIBLE);
+					team1.setVisibility(View.VISIBLE);
+					ManageSportSelection.setSportImage(sportStr, cont, sportImg);
 				}
 				else
 				{
 					sportImg.setVisibility(View.INVISIBLE);
-					sportSpec.setVisibility(View.INVISIBLE);
 					team1.setVisibility(View.INVISIBLE);
 					submit.setVisibility(View.INVISIBLE);
 					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
 				} 
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}
-		});
-		sportSpec.setOnItemSelectedListener(new OnItemSelectedListener(){
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				if(!((TextView)arg1).getText().toString().equals("Specific Types of the Sport"))
-				{
-					headerText.setText("Select the Team Below");
-					clear.setVisibility(View.VISIBLE);
-					team1.setVisibility(View.VISIBLE);
-					sportSpecStr = ((TextView)arg1).getText().toString();	
-				}
-				else
-				{
-					headerText.setText("Select the Specific Type of the Sport Below");
-					clear.setVisibility(View.INVISIBLE);
-					submit.setVisibility(View.INVISIBLE);
-					team1.setVisibility(View.INVISIBLE);
-				}
 			}
 
 			@Override
@@ -199,7 +171,6 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onClick(View v) {
 				sport.setSelection(0);
-				sportSpec.setVisibility(View.INVISIBLE);
 				team1.setVisibility(View.INVISIBLE);
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);

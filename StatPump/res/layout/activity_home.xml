@@ -96,8 +96,7 @@
         android:id="@+id/game_sport_spinner"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/game_team1_name_spinner"
-        android:layout_alignRight="@+id/game_team1_name_spinner"
+        android:layout_centerHorizontal = "true"
         android:layout_below="@+id/game_title"
         android:layout_marginTop="20dp"
         android:background="@drawable/spinner_well" />
@@ -121,15 +120,5 @@
         android:layout_below="@+id/odds_view"
         android:background="@drawable/btn_blue"
         android:text="Set" />
-
-    <Spinner
-        android:id="@+id/game_sport_specific_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/game_team1_name_spinner"
-        android:layout_alignLeft="@+id/game_team2_name_spinner"
-        android:layout_alignRight="@+id/game_team2_name_spinner"
-        android:layout_alignTop="@+id/game_sport_spinner"
-        android:background="@drawable/spinner_well" />
 
 </RelativeLayout>

@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Stat Lookup: If you'd like to look up information about a team specifically, use the team lookup. If you'd like to look up information about a game, on the other hand, use the game lookup. There's easy navigation from one to the other in the dropdown menu. 
-From there, select a sport, and as you do so, the title at the top will dictate what to do next. Options will only appear if the previous one is set. Once you have set all of the options, hit submit.
+From there, select a sport, and as you do so, the title at the top will dictate what to do next. Options will only appear if the previous one is set. Generally speaking, the sport is listed as SPORT: LEAGUE (LOCATION) with sport, then location, in alphabetical order. Use that fact to help navigate. Once you have set all of the options, hit submit.
                 
 \n\nStatWell: The StatWell is where most of the information will appear. There's an option in the menu that will allow you to decide what type of information you'd like inside the StatWell, selecting from the given options.
                 
