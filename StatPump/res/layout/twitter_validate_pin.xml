@@ -46,6 +46,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
         android:ems="10"
+        android:inputType="number"
+        android:background="@drawable/spinner_well"
         android:hint="123456" >
 
         <requestFocus />

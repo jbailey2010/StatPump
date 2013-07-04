@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="51dp" 
-        android:background="#000000">
+        android:background="@drawable/menu_black">
         
         <Button
             android:id="@+id/search_back"
@@ -52,6 +52,7 @@
             android:gravity="center"
             android:text="Results"
             android:textStyle="bold"
+            style="@style/ButtonText"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
 
