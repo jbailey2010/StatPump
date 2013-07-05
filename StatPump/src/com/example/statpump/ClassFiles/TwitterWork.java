@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -39,8 +41,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TwoLineListItem;
 
 /**
  * Does the twitter-related work
@@ -312,22 +316,29 @@ public class TwitterWork
 	public static void outputResults(QueryResult queryResults, final Context cont)
 	{
 	    List<String> results = new ArrayList<String>(10000);
+	    final List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 	    List<Status> statuses = queryResults.getTweets();
 	    for(Status status: statuses)
 	    {
-	    	results.add(status.getUser().getName() + " (" + status.getCreatedAt() + "):\n\n" + status.getText() + "\n");
+	    	Map<String, String> datum = new HashMap<String, String>(2);
+	    	datum.put("header", status.getText());
+	    	datum.put("footer", "\n" + status.getUser().getName() + " (" + status.getCreatedAt() + ")");
+	    	data.add(datum);
 	    }
-	    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(cont,
-	            android.R.layout.simple_list_item_1, results);
+	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
+	    		android.R.layout.simple_list_item_2, 
+	    		new String[] {"header", "footer"}, 
+	    		new int[] {android.R.id.text1, 
+	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener(
+                new SwipeDismissListViewTouchListener( 
                         searchOutput,
                         new SwipeDismissListViewTouchListener.OnDismissCallback() {
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    adapter.remove(adapter.getItem(position));
+                                	data.remove(position);
                                 }
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(cont, "Hiding this tweet temporarily", Toast.LENGTH_SHORT).show();
@@ -339,7 +350,8 @@ public class TwitterWork
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				String tweet = ((TextView)arg1).getText().toString();
+				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
+				tweet += "\n\n" + ((TwoLineListItem)arg1).getText2().getText().toString();
 				tweetPopup(cont, tweet);
 			}
         });

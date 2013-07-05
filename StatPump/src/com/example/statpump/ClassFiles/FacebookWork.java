@@ -6,7 +6,9 @@ import java.net.URL;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 import twitter4j.Query;
@@ -49,9 +51,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TwoLineListItem;
 import android.widget.AdapterView.OnItemClickListener;
 /**
  * A library of all the facebook connectivity code
@@ -429,6 +433,7 @@ public class FacebookWork
 	    });
 	    ListView searchOutput= (ListView)dialog.findViewById(R.id.tweets_results);
 	    List<String> results = new ArrayList<String>(10000);
+	    
 	    Button help = (Button)dialog.findViewById(R.id.search_help);
 	    help.setOnClickListener(new OnClickListener(){
 			@Override
@@ -436,16 +441,19 @@ public class FacebookWork
 				facebookSearchHelp();
 			}
 	    });
-	    for(Post post :responses)
+	    final List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+	    for(Post post : responses)
 	    {
-	    	results.add(post.getFrom().getName() + " (" + post.getCreatedTime() + "):\n\n" + post.getMessage());
+	    	Map<String, String> datum = new HashMap<String, String>(2);
+	    	datum.put("header", post.getMessage());
+	    	datum.put("footer", "\n" + post.getFrom().getName() + " (" + post.getCreatedTime() + ")");
+	    	data.add(datum);
 	    }
-	    if(responses.size() == 0)
-	    {
-	    	results.add("No results, try again?");
-	    }
-	    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(cont,
-	            android.R.layout.simple_list_item_1, results);
+	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
+	    		android.R.layout.simple_list_item_2, 
+	    		new String[] {"header", "footer"}, 
+	    		new int[] {android.R.id.text1, 
+	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    SwipeDismissListViewTouchListener touchListener =
                 new SwipeDismissListViewTouchListener(
@@ -454,7 +462,7 @@ public class FacebookWork
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    adapter.remove(adapter.getItem(position));
+                                    data.remove(position);
                                 }
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(cont, "Hiding this post temporarily", Toast.LENGTH_SHORT).show();
@@ -466,7 +474,8 @@ public class FacebookWork
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				String post = ((TextView)arg1).getText().toString();
+				String post = ((TwoLineListItem)arg1).getText1().getText().toString();
+				post += "\n\n" + ((TwoLineListItem)arg1).getText2().getText().toString();
 				postPopup(cont, post);
 			}
         });
