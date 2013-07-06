@@ -11,10 +11,10 @@
         
         <Button
             android:id="@+id/search_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:textColor="#FFFFFF"
+            android:background="@drawable/menu_black"
             android:text="Back" />
         <View 
             android:id="@+id/back_view"
@@ -25,20 +25,20 @@
 
         <Button
             android:id="@+id/search_close"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:background="@drawable/menu_black"
             android:text="X"
             android:textColor="#FFFFFF" />
         <Button
             android:id="@+id/search_help"
-            style="?android:attr/buttonBarButtonStyle"
             android:textColor="#FFFFFF"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/menu_black"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/search_close_view"
             android:text=" ? " />
@@ -80,6 +80,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:divider="#A1A1A1"
+        android:background="#FFFFFF"
         android:dividerHeight="1dp"
         android:layout_width="fill_parent" >
     </ListView>

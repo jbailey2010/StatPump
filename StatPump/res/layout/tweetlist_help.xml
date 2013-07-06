@@ -35,7 +35,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="See a tweet that's not very relevant? You can easily hide it! This can be done by swiping left or right."
+        android:text="For API 3.0 and higher: See a tweet that's not very relevant? You can easily hide it! This can be done by swiping left or right."
         android:textAppearance="?android:attr/textAppearanceSmall" />
     
     <TextView

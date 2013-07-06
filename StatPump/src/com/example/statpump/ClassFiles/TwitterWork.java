@@ -331,21 +331,24 @@ public class TwitterWork
 	    		new int[] {android.R.id.text1, 
 	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
-	    SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener( 
-                        searchOutput,
-                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
-                            @Override
-                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                	data.remove(position);
-                                }
-                                adapter.notifyDataSetChanged();
-                                Toast.makeText(cont, "Hiding this tweet temporarily", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-        searchOutput.setOnTouchListener(touchListener);
-        searchOutput.setOnScrollListener(touchListener.makeScrollListener());
+	    if(android.os.Build.VERSION.SDK_INT > 10)
+	    {
+		    SwipeDismissListViewTouchListener touchListener =
+	                new SwipeDismissListViewTouchListener( 
+	                        searchOutput,
+	                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
+	                            @Override
+	                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+	                                for (int position : reverseSortedPositions) {
+	                                	data.remove(position);
+	                                }
+	                                adapter.notifyDataSetChanged();
+	                                Toast.makeText(cont, "Hiding this tweet temporarily", Toast.LENGTH_SHORT).show();
+	                            }
+	                        });
+	        searchOutput.setOnTouchListener(touchListener);
+	        searchOutput.setOnScrollListener(touchListener.makeScrollListener());
+	    }
         searchOutput.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
