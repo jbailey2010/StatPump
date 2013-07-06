@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/twitter4j-examples-3.0.3-6a11e90037f8c1aa7dc730692b10187a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/twitter4j-core-3.0.3-052137f036fdee24d23b3b1c59fcdd9e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/dropbox-android-sdk-1.5.4-32c826f374050fc438d6417b9e5f1ae5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/commons-logging-1.1.1-a6fc9b8268f242e283ae27b0da6e4e6c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/facebook4j-core-1.1.9-96a8677014439da584c7c1dc400294c1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/httpcore-4.0.1-2dca42f204a9373b97d9cdb3dc952e66.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/com.haarman.listviewanimations-1.9-7ecc150b2d64bab799d9e27b6f3218f0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/socialauth-4.0-d4b78cefd378efe4d79e5fdbc8d9c509.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/Facebook-f01738f857ba9b5266b831b559f6e613.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/android-support-v4-1b43d743c545a995676942798b773451.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/jsoup-1.7.2-b845e28f2eaccd0bc03dc0c840444b81.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/twitter4j-async-3.0.3-bab32167b61b31cf92fb36de17d19e00.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/htmlcleaner-2.4-d8bddb69f6f7e6a17a6bd52d29951060.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/httpmime-4.0.3-6f9a28311d46afa09d43e503050b489b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/twitter4j-stream-3.0.3-1930d16b5703fe38e496cbc8675408e6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/twitter4j-media-support-3.0.3-98e1c75f3981a93af6d299d1e03a0373.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/httpclient-4.0.3-e92b49ba55b1dad93a3d919bea16554b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/socialauth-android-2.0-f2e6276e46ccbf03023c649345d46aa6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/StatPump/bin/dexedLibs/json_simple-1.1-64d6fcb347238ffa65504f20626ab7f4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
