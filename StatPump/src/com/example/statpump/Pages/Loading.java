@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 /**
  * Establishes the connection to the server
  * @author Jeff
@@ -26,8 +29,27 @@ public class Loading extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loading);
+	}
+	
+	@Override
+	protected void onResume() {
+	    super.onResume();
+		TextView prompt = (TextView)findViewById(R.id.loading_prompt);
+		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 		//REMOVE THIS WHEN THE SERVER IS SET UP
-		dummyFn();
+		if(HandleInput.confirmInternet(cont))
+		{
+			dummyFn();
+			prompt.setText("Please wait, attempting to contact the server...");
+			prompt.setTextSize(14);
+			pb.setVisibility(View.VISIBLE);
+		}
+		else 
+		{
+			prompt.setText("No internet connection available.");
+			prompt.setTextSize(25);
+			pb.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	@Override
@@ -38,7 +60,7 @@ public class Loading extends Activity {
 	}
 	 
 	/**
-	 * REMOVE THIS LATER
+	 * Change this to something more relavent later (dummy call to api to test?)
 	 */
 	public void dummyFn()
 	{

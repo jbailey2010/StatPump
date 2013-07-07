@@ -1,7 +1,6 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import com.example.statpump.R;
@@ -42,6 +41,7 @@ public class Home extends Activity {
 	final Context cont = this;
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
+	public Menu menuObj;
 	Spinner sport;
 	Spinner team1;
 	Spinner team2;
@@ -66,9 +66,12 @@ public class Home extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
+		menuObj = menu;
 		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
 	}
+	
+	
 	
 	/**
 	 * Runs the on selection part of the menu
@@ -108,6 +111,57 @@ public class Home extends Activity {
 	public void onBackPressed() {
 	}
 	
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    sport = (Spinner)findViewById(R.id.team_sport_spinner);
+		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		submit = (Button)findViewById(R.id.team_submit);
+		clear = (Button)findViewById(R.id.team_clear);
+		headerText = (TextView)findViewById(R.id.team_title);
+		sportImg = (ImageView)findViewById(R.id.team_sport_image);
+		TextView prompt = (TextView)findViewById(R.id.team_title);
+		if(!HandleInput.confirmInternet(cont))
+		{
+			prompt.setText("No Internet Connection Available");
+			for(int i = 0; i < menuObj.size(); i++)
+			{
+				if(R.id.switch_game != menuObj.getItem(i).getItemId())
+				{
+					menuObj.getItem(i).setEnabled(false);
+				}
+			}
+		}
+		else
+		{
+			for(int i = 0; i < menuObj.size(); i++)
+			{
+				menuObj.getItem(i).setEnabled(true);
+			}
+			if(team1.isShown())
+			{
+				prompt.setText("Select the First Team Below");
+				if(!((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
+				{
+					prompt.setText("Select the Second Team Below");
+				}
+			}
+			if(team2.isShown())
+			{
+				prompt.setText("Select the Second Team Below");
+				if(!((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
+				{
+					prompt.setText("Hit Submit When You're Ready");
+				}
+			}
+			else if(!team1.isShown() && !team2.isShown())
+			{
+				prompt.setText("Select a Sport Below");
+			}
+		}
+	}
+	
 	public void initialSetUp()
 	{
 		sport = (Spinner)findViewById(R.id.game_sport_spinner);
@@ -141,7 +195,7 @@ public class Home extends Activity {
 					sportStr = ((TextView)arg1).getText().toString();	
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
-					headerText.setText("Select the first team below");
+					headerText.setText("Select the First Team Below");
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg);
 				}
 				else
@@ -198,7 +252,7 @@ public class Home extends Activity {
 					}
 					else
 					{
-						headerText.setText("Click Submit");
+						headerText.setText("Hit Submit When You're Ready");
 						submit.setVisibility(View.VISIBLE);
 					}
 				}
