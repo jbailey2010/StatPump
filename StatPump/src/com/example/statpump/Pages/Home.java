@@ -46,7 +46,7 @@ public class Home extends Activity {
 	final Context cont = this;
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
-	public Menu menuObj;
+	public Menu menuObj = null;
 	Spinner sport;
 	Spinner team1;
 	Spinner team2;
@@ -57,6 +57,7 @@ public class Home extends Activity {
 	Button clear;
 	TextView headerText; 
 	ImageView sportImg;
+	public boolean isFirst = true;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -66,13 +67,19 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		initialSetUp();		
+		if(menuObj != null)
+		{
+			checkInternet();
+			isFirst = false;
+		}
 	} 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		menuObj = menu;
 		getMenuInflater().inflate(R.menu.home, menu);
+		menuObj = menu;
+		checkInternet();
 		return true;
 	}
 	
@@ -119,50 +126,64 @@ public class Home extends Activity {
 	@Override
 	protected void onResume() {
 	    super.onResume();
-	    sport = (Spinner)findViewById(R.id.team_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+	    if(menuObj != null)
+		{
+		    checkInternet();
+		}
+	}
+	
+	public void checkInternet()
+	{
+		sport = (Spinner)findViewById(R.id.game_sport_spinner);
+		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
 		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
-		submit = (Button)findViewById(R.id.team_submit);
-		clear = (Button)findViewById(R.id.team_clear);
-		headerText = (TextView)findViewById(R.id.team_title);
-		sportImg = (ImageView)findViewById(R.id.team_sport_image);
-		TextView prompt = (TextView)findViewById(R.id.team_title);
+		submit = (Button)findViewById(R.id.game_submit);
+		clear = (Button)findViewById(R.id.game_clear);
+		headerText = (TextView)findViewById(R.id.game_title);
+		sportImg = (ImageView)findViewById(R.id.game_sport_image);
 		if(!HandleInput.confirmInternet(cont))
 		{
-			prompt.setText("No Internet Connection Available");
+			headerText.setText("No Internet Connection Available");
 			for(int i = 0; i < menuObj.size(); i++)
 			{
-				if(R.id.switch_game != menuObj.getItem(i).getItemId())
-				{
-					menuObj.getItem(i).setEnabled(false);
-				}
+				menuObj.getItem(i).setEnabled(false);
 			}
+			sport.setClickable(false);
+			team1.setClickable(false);
+			team2.setClickable(false);
+			submit.setClickable(false);
+			clear.setClickable(false);
 		}
 		else
 		{
+			sport.setClickable(true);
+			team1.setClickable(true);
+			team2.setClickable(true);
+			submit.setClickable(true);
+			clear.setClickable(true);
 			for(int i = 0; i < menuObj.size(); i++)
 			{
 				menuObj.getItem(i).setEnabled(true);
 			}
 			if(team1.isShown())
 			{
-				prompt.setText("Select the First Team Below");
+				headerText.setText("Select the First Team Below");
 				if(!((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
 				{
-					prompt.setText("Select the Second Team Below");
+					headerText.setText("Select the Second Team Below");
 				}
 			}
 			if(team2.isShown())
 			{
-				prompt.setText("Select the Second Team Below");
+				headerText.setText("Select the Second Team Below");
 				if(!((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
 				{
-					prompt.setText("Hit Submit When You're Ready");
+					headerText.setText("Hit Submit When You're Ready");
 				}
 			}
 			else if(!team1.isShown() && !team2.isShown())
 			{
-				prompt.setText("Select a Sport Below");
+				headerText.setText("Select a Sport Below");
 			}
 		}
 	}
@@ -179,13 +200,20 @@ public class Home extends Activity {
 		setUpInterface();
 		ManageSportSelection.populateSpinner(sport, cont);
 	}
-	
+	 
 	/**
 	 * Sets up the spinners and the relavent listeners such that
 	 * when a relevant item is picked, it unhides stuff
 	 */
 	public void setUpInterface()
 	{
+		sport = (Spinner)findViewById(R.id.game_sport_spinner);
+		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
+		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		submit = (Button)findViewById(R.id.game_submit);
+		clear = (Button)findViewById(R.id.game_clear);
+		sportImg = (ImageView)findViewById(R.id.game_sport_image);
+		headerText = (TextView)findViewById(R.id.game_title);
 		team1.setVisibility(View.INVISIBLE);
 		team2.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE); 

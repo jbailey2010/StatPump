@@ -40,7 +40,7 @@ public class HomeTeam extends Activity {
 	final Context cont = this;
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
-	public Menu menuObj;
+	public Menu menuObj = null;
 	Spinner sport;
 	Spinner team1;
 	String sportStr;
@@ -49,6 +49,7 @@ public class HomeTeam extends Activity {
 	Button clear;
 	TextView headerText;
 	ImageView sportImg;
+	public boolean isFirst;
 	
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -58,17 +59,23 @@ public class HomeTeam extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_team);
 		initialSetUp();
+		if(menuObj != null)
+		{
+			checkInternet();
+			isFirst = false;
+		}
 	} 
-
+ 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		menuObj = menu;
 		getMenuInflater().inflate(R.menu.home_team, menu);
+		checkInternet();
 		return true;
 	}
 	
-	/**
+	/** 
 	 * Runs the on selection part of the menu
 	 */
 	@Override
@@ -109,44 +116,57 @@ public class HomeTeam extends Activity {
 	@Override
 	protected void onResume() {
 	    super.onResume();
-	    sport = (Spinner)findViewById(R.id.team_sport_spinner);
+	    if(menuObj != null)
+	    {
+	    	checkInternet();
+	    }
+	    
+	}
+	
+	public void checkInternet()
+	{
+		sport = (Spinner)findViewById(R.id.team_sport_spinner);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
 		sportImg = (ImageView)findViewById(R.id.team_sport_image);
-		TextView prompt = (TextView)findViewById(R.id.team_title);
 		if(!HandleInput.confirmInternet(cont))
 		{
-			prompt.setText("No Internet Connection Available");
+			sport.setClickable(false); 
+			team1.setClickable(false);
+			submit.setClickable(false);
+			clear.setClickable(false);
+			headerText.setText("No Internet Connection Available");
 			for(int i = 0; i < menuObj.size(); i++)
 			{
-				if(R.id.switch_game != menuObj.getItem(i).getItemId())
-				{
-					menuObj.getItem(i).setEnabled(false);
-				}
+				menuObj.getItem(i).setEnabled(false);
 			}
 		}
 		else
 		{
+			sport.setClickable(true);
+			team1.setClickable(true);
+			submit.setClickable(true);
+			clear.setClickable(true);
 			for(int i = 0; i < menuObj.size(); i++)
 			{
 				menuObj.getItem(i).setEnabled(true);
 				if(team1.isShown())
 				{
-					prompt.setText("Hit Submit When You're Ready");
-					if(((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
+					headerText.setText("Hit Submit When You're Ready");
+					if((team1.getSelectedView()).equals("Select a Team"))
 					{
-						prompt.setText("Select The Team Below");
+						headerText.setText("Select The Team Below");
 					}
 				}
-				else if(!((TextView)sport.getSelectedItem()).getText().toString().equals("Select a Sport"))
+				else if(!(sport.getSelectedItem()).equals("Select a Sport"))
 				{
-					prompt.setText("Select the Team Below");
+					headerText.setText("Select the Team Below");
 				}
 				else
 				{
-					prompt.setText("Select a Sport Below");
+					headerText.setText("Select a Sport Below");
 				}
 			}
 		}
@@ -172,6 +192,12 @@ public class HomeTeam extends Activity {
 	 */
 	public void setUpInterface()
 	{
+		sport = (Spinner)findViewById(R.id.team_sport_spinner);
+		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		submit = (Button)findViewById(R.id.team_submit);
+		clear = (Button)findViewById(R.id.team_clear);
+		headerText = (TextView)findViewById(R.id.team_title);
+		sportImg = (ImageView)findViewById(R.id.team_sport_image);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
 		clear.setVisibility(View.INVISIBLE);
