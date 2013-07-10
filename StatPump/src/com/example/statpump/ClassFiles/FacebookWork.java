@@ -446,7 +446,7 @@ public class FacebookWork
 	    {
 	    	Map<String, String> datum = new HashMap<String, String>(2);
 	    	datum.put("header", post.getMessage());
-	    	datum.put("footer", "\n" + post.getFrom().getName() + " (" + post.getCreatedTime() + ")");
+	    	datum.put("footer", "\n" + post.getFrom().getName() + "\n" + post.getCreatedTime() + "");
 	    	data.add(datum);
 	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 

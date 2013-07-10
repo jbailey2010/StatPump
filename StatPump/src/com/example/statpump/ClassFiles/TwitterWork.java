@@ -319,10 +319,10 @@ public class TwitterWork
 	    final List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 	    List<Status> statuses = queryResults.getTweets();
 	    for(Status status: statuses)
-	    {
+	    {  
 	    	Map<String, String> datum = new HashMap<String, String>(2);
 	    	datum.put("header", status.getText());
-	    	datum.put("footer", "\n" + status.getUser().getName() + " (" + status.getCreatedAt() + ")");
+	    	datum.put("footer", "\n" + status.getUser().getName() + "\n" + status.getCreatedAt());
 	    	data.add(datum);
 	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
@@ -332,7 +332,7 @@ public class TwitterWork
 	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    if(android.os.Build.VERSION.SDK_INT > 10)
-	    {
+	    { 
 		    SwipeDismissListViewTouchListener touchListener =
 	                new SwipeDismissListViewTouchListener( 
 	                        searchOutput,

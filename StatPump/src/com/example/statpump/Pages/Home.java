@@ -3,6 +3,10 @@ package com.example.statpump.Pages;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -11,13 +15,14 @@ import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 
+
 import android.os.Bundle;
-import android.app.ActionBar;
+import android.app.ActionBar; 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
+import android.view.Menu; 
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -50,7 +55,7 @@ public class Home extends Activity {
 	String team2Str;
 	Button submit;
 	Button clear;
-	TextView headerText;
+	TextView headerText; 
 	ImageView sportImg;
 	
 	/**
@@ -61,7 +66,7 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		initialSetUp();		
-	}
+	} 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

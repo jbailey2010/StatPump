@@ -35,6 +35,8 @@ public class ManageSportSelection
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
 		
+		sports.add("American Football - NFL (United States)");
+		sports.add("American Football - NCAA Division 1 FBS (United States)");
 		sports.add("Australian Football - AFL (Australia)");
 		sports.add("Baseball - NPB (Japan)");
 		sports.add("Baseball - MLB (United States)");
@@ -44,8 +46,6 @@ public class ManageSportSelection
 		sports.add("Basketball - NCAA Division 1 (United States)");
 		sports.add("Basketball - Olympics (World)");
 		sports.add("Cricket - India Premier League (India)");
-		sports.add("Football - NFL (United States)");
-		sports.add("Football - NCAA Division 1 FBS (United States)");
 		sports.add("Golf - PGA Tour (World)");
 		sports.add("Golf - European Tour (World)");
 		sports.add("Golf - LPGA Tour (World)");

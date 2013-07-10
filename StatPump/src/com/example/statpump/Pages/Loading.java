@@ -1,12 +1,16 @@
 package com.example.statpump.Pages;
 
 
+import java.io.IOException;
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.HandleInput;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +33,16 @@ public class Loading extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loading);
+        /*StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy); 
+        try { 
+        	System.out.println("Calling");
+			APIInteraction.getXML("baseball/get_teams?id=79&type=season&detailed=yes");;
+		} catch (IOException e) { 
+			System.out.println("Failed");
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}*/
 	}
 	
 	@Override
