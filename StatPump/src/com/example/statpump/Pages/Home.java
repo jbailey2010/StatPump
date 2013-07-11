@@ -98,8 +98,10 @@ public class Home extends Activity {
 		{
 			case R.id.search_player:
 				if(sport != null && !sport.getSelectedItem().toString().equals("Select a Sport") && 
-					team1 != null && team1.isShown() && !team1.getSelectedItem().toString().equals("Select a Team")
-					&& team2 != null && team2.isShown() && !team2.getSelectedItem().toString().equals("Select a Team"))
+					team1 != null && team1.isShown() && team1.getAdapter() != null && team1.getAdapter().getCount() > 0 && 
+					!team1.getSelectedItem().toString().equals("Select a Team")
+					&& team2 != null && team2.isShown() && team2.getAdapter() != null && team2.getAdapter().getCount() > 0 && 
+					!team2.getSelectedItem().toString().equals("Select a Team"))
 				{
 					//Call function
 				}
