@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -14,6 +15,7 @@ import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
+
 
 
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 /**
  * Handles user lookup for game related stuff
  * @author Jeff
@@ -94,6 +97,16 @@ public class Home extends Activity {
 		switch (item.getItemId()) 
 		{
 			case R.id.search_player:
+				if(sport != null && !sport.getSelectedItem().toString().equals("Select a Sport") && 
+					team1 != null && team1.isShown() && !team1.getSelectedItem().toString().equals("Select a Team")
+					&& team2 != null && team2.isShown() && !team2.getSelectedItem().toString().equals("Select a Team"))
+				{
+					//Call function
+				}
+				else
+				{
+					Toast.makeText(cont, "Please fill out all of the information below", Toast.LENGTH_SHORT).show();
+				}
 				return true;
 			case R.id.twitter:
 				TwitterWork.twitterInitial(cont);

@@ -38,7 +38,6 @@ public class ManageSportSelection
 		sports.add("American Football - NFL (United States)");
 		sports.add("American Football - NCAA Division 1 FBS (United States)");
 		sports.add("Australian Football - AFL (Australia)");
-		sports.add("Baseball - NPB (Japan)");
 		sports.add("Baseball - MLB (United States)");
 		sports.add("Baseball - World Baseball Classic (World)");
 		sports.add("Basketball - NBA (United States)");
@@ -49,18 +48,12 @@ public class ManageSportSelection
 		sports.add("Golf - PGA Tour (World)");
 		sports.add("Golf - European Tour (World)");
 		sports.add("Golf - LPGA Tour (World)");
-		sports.add("Handball - EHF Champions League (Europe)");
 		sports.add("Handball - Olympics (World)");
-		sports.add("Handball - World Championship (World)");
 		sports.add("Hockey - NHL (United States)");
 		sports.add("Hockey - Olympics (World)");
-		sports.add("Hockey - World Championship (World)");
 		sports.add("Motorsports - FIA F1 World Championships (World)");
 		sports.add("Motorsports - NASCAR Sprint Cup Series (United States)");
-		sports.add("Motorsports - Deutsche Tourenwagen Masters (Germany)");
 		sports.add("Rugby - World Cup (World)");
-		sports.add("Rugby - Rugby League World Cup (World)");
-		sports.add("Soccer - Asian Cup (Asia)");
 		sports.add("Soccer - Premier League (England)");
 		sports.add("Soccer - UEFA Champions League (England)");
 		sports.add("Soccer - Primera Division (Spain)");
@@ -69,10 +62,8 @@ public class ManageSportSelection
 		sports.add("Tennis - ATP World Tour (World)");
 		sports.add("Tennis - WTA Tour (World)");
 		sports.add("Tennis - Davis Cup (World)");
-		sports.add("Volleyball - CEV European League (Europe)");
-		sports.add("Volleyball - Bundesliga (Germany)");
+		sports.add("Volleyball - World Championship (Europe)");
 		sports.add("Volleyball - Olympics (World)");
-		sports.add("Volleyball - World Cup (World)");
 		
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, 

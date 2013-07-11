@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 /**
  * Handles the user lookup for team specific stuff
@@ -84,6 +85,15 @@ public class HomeTeam extends Activity {
 		switch (item.getItemId()) 
 		{
 			case R.id.search_player: 
+				if(sport != null && !sport.getSelectedItem().toString().equals("Select a Sport") && 
+						team1 != null && !team1.isShown() && team1.getSelectedItem().toString().equals("Select a Team"))
+				{
+					//Call function
+				}
+				else
+				{
+					Toast.makeText(cont, "Please fill out all of the information below", Toast.LENGTH_SHORT).show();
+				}
 				return true;
 			case R.id.twitter:
 				TwitterWork.twitterInitial(cont);
