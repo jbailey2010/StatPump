@@ -431,7 +431,14 @@ public class FacebookWork
 				dialog.dismiss();
 			}
 	    });
-	    ListView searchOutput= (ListView)dialog.findViewById(R.id.tweets_results);
+	    final ListView searchOutput= (ListView)dialog.findViewById(R.id.tweets_results);
+	    TextView resultHeader = (TextView)dialog.findViewById(R.id.results_header);
+	    resultHeader.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				searchOutput.smoothScrollToPosition(0);
+			}
+	    });
 	    List<String> results = new ArrayList<String>(10000);
 	    
 	    Button help = (Button)dialog.findViewById(R.id.search_help);

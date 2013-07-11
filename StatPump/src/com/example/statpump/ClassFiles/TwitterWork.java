@@ -223,6 +223,13 @@ public class TwitterWork
 			}
 	    });
 	    searchOutput = (ListView)searchOutputDialog.findViewById(R.id.tweets_results);
+	    TextView header = (TextView)searchOutputDialog.findViewById(R.id.results_header);
+	    header.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				searchOutput.smoothScrollToPosition(0);
+			}
+	    });
 	    TwitterWork obj = new TwitterWork();
 	    TwitterSearchResults task = obj.new TwitterSearchResults((Activity)cont);
 	    task.execute(cont, query, userTwitter, searchOutputDialog);
