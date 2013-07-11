@@ -64,7 +64,7 @@ public class ManageSportSelection
 		sports.add("Soccer - Premier League (England)");
 		sports.add("Soccer - UEFA Champions League (England)");
 		sports.add("Soccer - Primera Division (Spain)");
-		sports.add("Soccer - MLS (United States)");
+		sports.add("Soccer - MLS (United States)"); 
 		sports.add("Soccer - World Cup (World)");
 		sports.add("Tennis - ATP World Tour (World)");
 		sports.add("Tennis - WTA Tour (World)");
