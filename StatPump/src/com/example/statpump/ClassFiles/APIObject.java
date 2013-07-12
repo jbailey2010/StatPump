@@ -9,6 +9,8 @@ public class APIObject
 	public String sport;
 	public String team1;
 	public String team2;
+	public String urlBase = "http://api.globalsportsmedia.com/";
+	public String urlValidate = "&authkey=865c0c0b4ab0e063e5caa3387c1a8741&username=statp";
 	
 	public APIObject()
 	{

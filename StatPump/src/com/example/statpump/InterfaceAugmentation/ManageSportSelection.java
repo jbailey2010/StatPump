@@ -34,10 +34,6 @@ public class ManageSportSelection
 		context = cont;
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
-		/*After that, 'tier 2' is the ones I still think would be good, 
-		 * including the WBC, Olympics Basketball, Indian Premier League, LPGA golf, Olympic Hockey, Both Motorsports, 
-		 * the Rugby world cup, the WTA Tour, and volleyball championships.
-Finally, 'tier 3', the ones I still think could be deleted, AFL, WNBA, The Davis Cup, and olympic handball. */
 		sports.add("American Football - NFL (United States)");
 		sports.add("American Football - NCAA Division 1 FBS (United States)");
 		sports.add("Baseball - MLB (United States)");

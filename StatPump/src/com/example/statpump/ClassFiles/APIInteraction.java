@@ -9,13 +9,10 @@ import org.jsoup.select.Elements;
 
 public class APIInteraction 
 {
-	static //FIX THIS LATER
-	String baseURL = "http://api.globalsportsmedia.com/";
-	static String auth = "&authkey=865c0c0b4ab0e063e5caa3387c1a8741&username=statp";
-	public static void getXML(String url) throws IOException
+	public static Document getXML(String url, APIObject queryObj) throws IOException
 	{
-		Document doc = Jsoup.connect(baseURL + url + auth).timeout(0).get();
-		System.out.println(doc.toString());
+		Document doc = Jsoup.connect(queryObj.urlBase + url + queryObj.urlValidate).timeout(0).get();
+		return doc;
 	}
 	
 	/**
