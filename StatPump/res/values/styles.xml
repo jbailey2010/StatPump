@@ -14,6 +14,7 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
@@ -23,6 +24,10 @@
     
     <style name="RoundCornersFull" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@drawable/round_corners_background</item>
+    </style>
+    
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#555555</item>
     </style>
 
 </resources>

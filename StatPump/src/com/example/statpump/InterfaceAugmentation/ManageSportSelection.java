@@ -34,36 +34,34 @@ public class ManageSportSelection
 		context = cont;
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
-		
+		/*After that, 'tier 2' is the ones I still think would be good, 
+		 * including the WBC, Olympics Basketball, Indian Premier League, LPGA golf, Olympic Hockey, Both Motorsports, 
+		 * the Rugby world cup, the WTA Tour, and volleyball championships.
+Finally, 'tier 3', the ones I still think could be deleted, AFL, WNBA, The Davis Cup, and olympic handball. */
 		sports.add("American Football - NFL (United States)");
 		sports.add("American Football - NCAA Division 1 FBS (United States)");
-		sports.add("Australian Football - AFL (Australia)");
 		sports.add("Baseball - MLB (United States)");
-		sports.add("Baseball - World Baseball Classic (World)");
+		//sports.add("Baseball - World Baseball Classic (World)");
 		sports.add("Basketball - NBA (United States)");
-		sports.add("Basketball - WNBA (United States)");
 		sports.add("Basketball - NCAA Division 1 (United States)");
-		sports.add("Basketball - Olympics (World)");
-		sports.add("Cricket - India Premier League (India)");
+		//sports.add("Basketball - Olympics (World)");
+		//sports.add("Cricket - India Premier League (India)");
 		sports.add("Golf - PGA Tour (World)");
-		sports.add("Golf - European Tour (World)");
-		sports.add("Golf - LPGA Tour (World)");
-		sports.add("Handball - Olympics (World)");
+		//sports.add("Golf - LPGA Tour (World)");
 		sports.add("Hockey - NHL (United States)");
-		sports.add("Hockey - Olympics (World)");
-		sports.add("Motorsports - FIA F1 World Championships (World)");
-		sports.add("Motorsports - NASCAR Sprint Cup Series (United States)");
-		sports.add("Rugby - World Cup (World)");
+		//sports.add("Hockey - Olympics (World)");
+		//sports.add("Motorsports - FIA F1 World Championships (World)");
+		//sports.add("Motorsports - NASCAR Sprint Cup Series (United States)");
+		//sports.add("Rugby - World Cup (World)");
 		sports.add("Soccer - Premier League (England)");
 		sports.add("Soccer - UEFA Champions League (England)");
 		sports.add("Soccer - Primera Division (Spain)");
 		sports.add("Soccer - MLS (United States)"); 
 		sports.add("Soccer - World Cup (World)");
 		sports.add("Tennis - ATP World Tour (World)");
-		sports.add("Tennis - WTA Tour (World)");
-		sports.add("Tennis - Davis Cup (World)");
-		sports.add("Volleyball - World Championship (Europe)");
-		sports.add("Volleyball - Olympics (World)");
+		//sports.add("Tennis - WTA Tour (World)");
+		//sports.add("Volleyball - World Championship (Europe)");
+		//sports.add("Volleyball - Olympics (World)");
 		
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, 
