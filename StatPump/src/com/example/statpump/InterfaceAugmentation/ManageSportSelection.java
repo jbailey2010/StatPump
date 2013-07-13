@@ -42,7 +42,7 @@ public class ManageSportSelection
 		sports.add("Basketball - NCAA Division 1 (United States)");
 		//sports.add("Basketball - Olympics (World)");
 		//sports.add("Cricket - India Premier League (India)");
-		sports.add("Golf - PGA Tour (World)");
+		//sports.add("Golf - PGA Tour (World)");
 		//sports.add("Golf - LPGA Tour (World)");
 		sports.add("Hockey - NHL (United States)");
 		//sports.add("Hockey - Olympics (World)");
@@ -53,8 +53,8 @@ public class ManageSportSelection
 		sports.add("Soccer - UEFA Champions League (England)");
 		sports.add("Soccer - Primera Division (Spain)");
 		sports.add("Soccer - MLS (United States)"); 
-		sports.add("Soccer - World Cup (World)");
-		sports.add("Tennis - ATP World Tour (World)");
+		//sports.add("Soccer - World Cup (World)");
+		//sports.add("Tennis - ATP World Tour (World)");
 		//sports.add("Tennis - WTA Tour (World)");
 		//sports.add("Volleyball - World Championship (Europe)");
 		//sports.add("Volleyball - Olympics (World)");
