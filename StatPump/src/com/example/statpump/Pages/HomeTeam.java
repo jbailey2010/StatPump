@@ -174,7 +174,6 @@ public class HomeTeam extends Activity {
 					if((team1.getSelectedView()).equals("Select a Team"))
 					{
 						headerText.setText("Select The Team Below");
-						ManageSportSelection.populateTeam1(team1, cont, obj);
 					}
 				}
 				else if(!(sport.getSelectedItem()).equals("Select a Sport"))
@@ -231,7 +230,6 @@ public class HomeTeam extends Activity {
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
-					ManageSportSelection.populateTeam1(team1, cont, obj);
 				}
 				else
 				{
@@ -267,6 +265,7 @@ public class HomeTeam extends Activity {
 		clear.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				obj.clearObject();
 				sport.setSelection(0);
 				team1.setVisibility(View.INVISIBLE);
 				headerText.setText("Select a Sport Below");

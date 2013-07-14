@@ -3,7 +3,10 @@ package com.example.statpump.ClassFiles;
 import java.io.IOException;
 
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.htmlcleaner.XPatherException;
@@ -30,6 +33,7 @@ public class APIInteraction
 	 */
 	public static Document getXML(String url, APIObject queryObj) throws IOException
 	{
+		System.out.println(queryObj.urlBase + url + queryObj.urlValidate);
 		Document doc = Jsoup.connect(queryObj.urlBase + url + queryObj.urlValidate).timeout(0).get();
 		return Jsoup.parse(doc.toString(), "", Parser.xmlParser());
 	}
@@ -51,6 +55,24 @@ public class APIInteraction
         }
         return result.toString();
 	}
+	
+	/**
+	 * Parses the xml if it matches a condition
+	 */
+	public static String parseXML2Conditions(Document doc, String params, String attr, String condAttr, String cond, 
+			String secAttr, String secCond)
+	{
+		StringBuilder result = new StringBuilder(5000);
+		Elements links = doc.select(params);
+        for (Element element : links) 
+        {
+        	if(element.attr(condAttr).equals(cond) && !element.attr(secAttr).equals(secCond))
+        	{
+        		result.append(element.attr(attr)+"\n");
+        	}
+        }
+		return result.toString();
+	}
 
 	/**
 	 * Calls the season id asynctask
@@ -60,6 +82,7 @@ public class APIInteraction
 	{
 		APIInteraction holder = new APIInteraction();
 		ParseSeasonID task = holder.new ParseSeasonID(obj);
+		System.out.println("Executing season task");
 		task.execute();
 	}
 
@@ -83,8 +106,8 @@ public class APIInteraction
 	
 			@Override
 			protected void onPostExecute(String result){
-			   super.onPostExecute(result);
 			   obj.setSeasonId(result);
+			   super.onPostExecute(result);
 			}
 			
 		    @Override
@@ -93,12 +116,14 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetSeasonUrl(), obj);
 					String dataSet = parseXML(doc, "season", "season_id");
-					return dataSet.split("\n")[dataSet.split("\n").length - 1];
+					String result = dataSet.split("\n")[dataSet.split("\n").length-1];
+					obj.yearID = Integer.parseInt(result);
+					return result;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					System.out.println("BUG");
 					e.printStackTrace();
 				} 
-				return null;
+				return null; 
 		    }
 	  }
 	
@@ -107,6 +132,7 @@ public class APIInteraction
 		APIInteraction holder = new APIInteraction();
 		ParseTeamID task = holder.new ParseTeamID(obj, act);
 		task.execute(obj);
+
 	}
 	
 	/**
@@ -150,10 +176,20 @@ public class APIInteraction
 					String dataSet = parseXML(doc, "team", "team_id");
 					String secSet = parseXML(doc, "team", "official_name");
 					String[] idSet = dataSet.split("\n");
+					System.out.println("ID set size "  + idSet.length);
 					String[] teamSet = secSet.split("\n");
+					System.out.println("Team set size " + teamSet.length);
+					List<String> teams = Arrays.asList(teamSet);
+					Map<String, Integer> inter = new HashMap<String, Integer>();
 					for(int i = 0; i < idSet.length; i++)
 					{
-						obj.teamIDMap.put(teamSet[i], Integer.parseInt(idSet[i]));
+						inter.put(teamSet[i], Integer.parseInt(idSet[i]));
+					}
+					Collections.sort(teams, String.CASE_INSENSITIVE_ORDER);
+					obj.teamSet1 = teams;
+					for(int i = 0; i < idSet.length; i++)
+					{
+						obj.teamIDMap.put(teams.get(i), inter.get(teams.get(i)));
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

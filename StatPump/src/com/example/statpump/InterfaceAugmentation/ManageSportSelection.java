@@ -127,10 +127,4 @@ public class ManageSportSelection
 		obj.sportSelected(sportStr, (Activity) cont);
 	}
 
-	/**
-	 * Populates the team 1 spinner
-	 */
-	public static void populateTeam1(Spinner team1, Context cont, APIObject obj) {
-
-	}
 }

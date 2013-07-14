@@ -191,7 +191,6 @@ public class Home extends Activity {
 			if(team1.isShown())
 			{
 				headerText.setText("Select the First Team Below");
-				ManageSportSelection.populateTeam1(team1, cont, obj);
 				if(!((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
 				{
 					headerText.setText("Select the Second Team Below");
@@ -255,9 +254,9 @@ public class Home extends Activity {
 					sportStr = ((TextView)arg1).getText().toString();	
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
+					team2.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
-					ManageSportSelection.populateTeam1(team1, cont, obj);
 				}
 				else
 				{
@@ -325,6 +324,7 @@ public class Home extends Activity {
 		clear.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				obj.clearObject();
 				sport.setSelection(0);
 				team1.setVisibility(View.INVISIBLE);
 				team2.setVisibility(View.INVISIBLE);

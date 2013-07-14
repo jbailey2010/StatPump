@@ -24,6 +24,7 @@ public class APIObject
 	//Maps sport to sport id
 	public Map<String, Integer> sportIDMap = new HashMap<String, Integer>();
 	public Map<String, Integer> teamIDMap = new HashMap<String, Integer>();
+	public List<String> teamSet1 = new ArrayList<String>();
 	public String sport;
 	public String sportURL;
 	public int sportID;
@@ -61,6 +62,23 @@ public class APIObject
 	}
 	
 	/**
+	 * Clears all stored data
+	 */
+	public void clearObject()
+	{
+		this.teamIDMap.clear();
+		this.sport = null;
+		this.sportURL = null;
+		this.sportID = 0;
+		this.team1 = null;
+		this.team1ID=0;
+		this.team2 = null;
+		this.team2ID = 0;
+		this.yearID=0;
+		this.teamSet1 = null;
+	}
+	
+	/**
 	 * Sets the interface objects
 	 */
 	public void setUpObject(Spinner sport, Spinner team1, Spinner team2)
@@ -81,9 +99,9 @@ public class APIObject
 		this.sport = sport;
 		this.sportURL = sportURL;
 		this.sportID = this.sportIDMap.get(this.sport);
+		System.out.println("New sport is "+ this.sport + ", " + this.sportURL + ", " + this.sportID);
 		APIInteraction.getSeasonId(this);
 		this.teamIDMap.clear();
-		System.out.println("Calling get teams");
 		APIInteraction.getTeams(this, cont);
 	}
 	
@@ -102,6 +120,7 @@ public class APIObject
 	public String formGetTeamUrl()
 	{
 		return this.sportURL + "/get_teams?id=" + this.yearID + "&type=season&detailed=yes";
+		//return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
 	}
 	
 	/**
@@ -109,6 +128,7 @@ public class APIObject
 	 */
 	public void setSeasonId(String id)
 	{
+		System.out.println("Setting id as " + id);
 		this.yearID = Integer.parseInt(id);
 	}
 
@@ -117,13 +137,9 @@ public class APIObject
 	 */
 	public void setTeamSet(APIObject result) {
 		this.teamIDMap = result.teamIDMap;
-		for(String team : this.teamIDMap.keySet())
-		{
-			System.out.println(team);
-		}
 		List<String>teams = new ArrayList<String>();
 		teams.add("Select a Team");
-		for(String team : this.teamIDMap.keySet())
+		for(String team : this.teamSet1)
 		{
 			teams.add(team);
 		}
