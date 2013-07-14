@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.statpump.R;
+import com.example.statpump.ClassFiles.APIObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,7 +20,6 @@ public class ManageSportSelection
 {
 	static Context context;
 	static Spinner sportSpinner;
-	static Spinner sportSpecSpinner;
 	static ImageView sportLogo;
 	static String selectedSport;
 	static String selectedSportSpec;
@@ -35,7 +36,7 @@ public class ManageSportSelection
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
 		sports.add("American Football - NFL (United States)");
-		sports.add("American Football - NCAA Division 1 FBS (United States)");
+		sports.add("American Football - NCAA Division 1 (United States)");
 		sports.add("Baseball - MLB (United States)");
 		//sports.add("Baseball - World Baseball Classic (World)");
 		sports.add("Basketball - NBA (United States)");
@@ -69,7 +70,8 @@ public class ManageSportSelection
 	 * Sets the image given setting of spinner
 	 */
 	public static void setSportImage(String sportStr, Context cont,
-			ImageView image) {
+			ImageView image, APIObject obj) 
+	{
 		if(sportStr.contains("Australian Football"))
 		{
 			image.setImageResource(R.drawable.ausfootball);
@@ -122,5 +124,13 @@ public class ManageSportSelection
 		{
 			image.setImageResource(R.drawable.volleyball);
 		}
+		obj.sportSelected(sportStr, (Activity) cont);
+	}
+
+	/**
+	 * Populates the team 1 spinner
+	 */
+	public static void populateTeam1(Spinner team1, Context cont, APIObject obj) {
+
 	}
 }

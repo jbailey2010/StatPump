@@ -52,7 +52,6 @@ public class Loading extends Activity {
 	    super.onResume();
 		prompt = (TextView)findViewById(R.id.loading_prompt);
 		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
-		//REMOVE THIS WHEN THE SERVER IS SET UP
 		if(HandleInput.confirmInternet(cont))
 		{
 			prompt.setText("Please wait, attempting to contact the server...");
@@ -82,23 +81,26 @@ public class Loading extends Activity {
 	 */
 	public void dummyFn()
 	{
-		APIObject dummy = new APIObject();
+		APIObject dummy = new APIObject(cont);
 		Loading obj = new Loading();
 		ImageView image = (ImageView)findViewById(R.id.logo_loading);
-		DummyQuery task = obj.new DummyQuery(prompt, image, cont);
+		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
+		DummyQuery task = obj.new DummyQuery(prompt, image, cont, pb);
 		task.execute(dummy, cont);
 	} 
 	
 	/**
 	 * After the async task, decides if the query was successful
+	 * @param p 
 	 * @param flag
 	 */
-	public void decideNetwork(boolean result, TextView text, ImageView logo, final Context cont)
+	public void decideNetwork(boolean result, TextView text, ImageView logo, final Context cont, ProgressBar p)
 	{
 		if(result)
 		{
 			text.setText("Connection established, please touch the logo.");
 			text.setTextSize(25);
+			p.setVisibility(View.INVISIBLE);
 			logo.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
@@ -123,12 +125,14 @@ public class Loading extends Activity {
 	{
 	    TextView pr;
 	    ImageView img;
+	    ProgressBar p;
 	    Context con;
-	    public DummyQuery(TextView view, ImageView image, Context cont)
+	    public DummyQuery(TextView view, ImageView image, Context cont, ProgressBar pb)
 	    {
 	    	pr = view;
 	    	img = image;
 	    	con = cont;
+	    	p = pb;
 	    }
 		@Override
 		protected void onPreExecute(){ 
@@ -139,7 +143,7 @@ public class Loading extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result){
 		   super.onPostExecute(result);
-		   decideNetwork(result, pr, img, con);
+		   decideNetwork(result, pr, img, con, p);
 		}
 		
 	    @Override

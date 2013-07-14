@@ -8,13 +8,16 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
+
 
 
 
@@ -61,6 +64,7 @@ public class Home extends Activity {
 	TextView headerText; 
 	ImageView sportImg;
 	public boolean isFirst = true;
+	APIObject obj = new APIObject(this);
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -147,11 +151,15 @@ public class Home extends Activity {
 		}
 	}
 	
+	/**
+	 * Sees if there's internet. Adjusts interface as such
+	 */
 	public void checkInternet()
 	{
 		sport = (Spinner)findViewById(R.id.game_sport_spinner);
 		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
 		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		obj.setUpObject(sport, team1, team2);
 		submit = (Button)findViewById(R.id.game_submit);
 		clear = (Button)findViewById(R.id.game_clear);
 		headerText = (TextView)findViewById(R.id.game_title);
@@ -183,6 +191,7 @@ public class Home extends Activity {
 			if(team1.isShown())
 			{
 				headerText.setText("Select the First Team Below");
+				ManageSportSelection.populateTeam1(team1, cont, obj);
 				if(!((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
 				{
 					headerText.setText("Select the Second Team Below");
@@ -203,6 +212,9 @@ public class Home extends Activity {
 		}
 	}
 	
+	/**
+	 * Sets the variables and populates the first spinner
+	 */
 	public void initialSetUp()
 	{
 		sport = (Spinner)findViewById(R.id.game_sport_spinner);
@@ -244,7 +256,8 @@ public class Home extends Activity {
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					headerText.setText("Select the First Team Below");
-					ManageSportSelection.setSportImage(sportStr, cont, sportImg);
+					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
+					ManageSportSelection.populateTeam1(team1, cont, obj);
 				}
 				else
 				{
@@ -269,7 +282,7 @@ public class Home extends Activity {
 				{
 					team2.setVisibility(View.VISIBLE);
 					team1Str = ((TextView)arg1).getText().toString();
-					if(((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
+					if(team2.getSelectedView() == null || ((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
 					{
 						headerText.setText("Select the Second Team Below");
 					}

@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
@@ -51,6 +52,7 @@ public class HomeTeam extends Activity {
 	TextView headerText;
 	ImageView sportImg;
 	public boolean isFirst;
+	APIObject obj = new APIObject(this);
 	
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -134,6 +136,9 @@ public class HomeTeam extends Activity {
 	    
 	}
 	
+	/**
+	 * Sees if there's internet, adjusts if there is
+	 */
 	public void checkInternet()
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
@@ -169,6 +174,7 @@ public class HomeTeam extends Activity {
 					if((team1.getSelectedView()).equals("Select a Team"))
 					{
 						headerText.setText("Select The Team Below");
+						ManageSportSelection.populateTeam1(team1, cont, obj);
 					}
 				}
 				else if(!(sport.getSelectedItem()).equals("Select a Sport"))
@@ -205,6 +211,7 @@ public class HomeTeam extends Activity {
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		obj.setUpObject(sport, team1, null);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
@@ -223,7 +230,8 @@ public class HomeTeam extends Activity {
 					headerText.setText("Select the Team Below");
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
-					ManageSportSelection.setSportImage(sportStr, cont, sportImg);
+					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
+					ManageSportSelection.populateTeam1(team1, cont, obj);
 				}
 				else
 				{
