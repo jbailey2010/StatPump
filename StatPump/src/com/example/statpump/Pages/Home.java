@@ -248,7 +248,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				if(!((TextView)arg1).getText().toString().equals("Select a Sport")  && sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
+				if(arg1 != null && !((TextView)arg1).getText().toString().equals("Select a Sport")  && sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
 					sportStr = ((TextView)arg1).getText().toString();	
@@ -277,7 +277,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				if(!((TextView)arg1).getText().toString().equals("Select a Team"))
+				if(arg1 != null && !((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
 					team2.setVisibility(View.VISIBLE);
 					team1Str = ((TextView)arg1).getText().toString();
