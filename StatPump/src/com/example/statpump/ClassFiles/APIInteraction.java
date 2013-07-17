@@ -3,6 +3,7 @@ package com.example.statpump.ClassFiles;
 import java.io.IOException;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -57,21 +58,20 @@ public class APIInteraction
 	}
 	
 	/**
-	 * Parses the xml if it matches a condition
+	 * Returns the opponents of a team
 	 */
-	public static String parseXML2Conditions(Document doc, String params, String attr, String condAttr, String cond, 
-			String secAttr, String secCond)
+	public static List<String> parseXMLOpp(Document doc, String params, String name)
 	{
-		StringBuilder result = new StringBuilder(5000);
-		Elements links = doc.select(params);
+        Elements links = doc.select(params);
+        List<String> teams = new ArrayList<String>();
         for (Element element : links) 
         {
-        	if(element.attr(condAttr).equals(cond) && !element.attr(secAttr).equals(secCond))
+        	if(!teams.contains(element.attr("team_b_name")))
         	{
-        		result.append(element.attr(attr)+"\n");
+        		teams.add(element.attr("team_b_name"));
         	}
         }
-		return result.toString();
+        return teams;
 	}
 
 	/**
@@ -116,8 +116,12 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetSeasonUrl(), obj);
 					String dataSet = parseXML(doc, "season", "season_id");
+					String start = parseXML(doc, "season", "start_date");
+					String end = parseXML(doc, "season", "end_date");
 					String result = dataSet.split("\n")[dataSet.split("\n").length-1];
 					obj.yearID = Integer.parseInt(result);
+					obj.yearStart = start.split("\n")[start.split("\n").length-1];
+					obj.yearEnd = end.split("\n")[end.split("\n").length-1];
 					return result;
 				} catch (IOException e) {
 					System.out.println("BUG");
@@ -127,12 +131,16 @@ public class APIInteraction
 		    }
 	  }
 	
+	/**
+	 * Calls the get teams asynctask
+	 * @param obj
+	 * @param act
+	 */
 	public static void getTeams(APIObject obj, Activity act)
 	{
 		APIInteraction holder = new APIInteraction();
 		ParseTeamID task = holder.new ParseTeamID(obj, act);
 		task.execute(obj);
-
 	}
 	
 	/**
@@ -173,8 +181,8 @@ public class APIInteraction
 		    	APIObject obj = (APIObject)data[0];
 		    	try {
 					Document doc = getXML(obj.formGetTeamUrl(), obj);
-					String dataSet = parseXML(doc, "team", "team_id");
-					String secSet = parseXML(doc, "team", "official_name");
+					String dataSet = parseXML(doc, "ranking", "team_id");
+					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] idSet = dataSet.split("\n");
 					System.out.println("ID set size "  + idSet.length);
 					String[] teamSet = secSet.split("\n");
@@ -191,6 +199,58 @@ public class APIInteraction
 					{
 						obj.teamIDMap.put(teams.get(i), inter.get(teams.get(i)));
 					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				return obj;
+		    }
+	  }
+	
+	public static void getOpponents(APIObject obj, Activity act)
+	{
+		APIInteraction holder = new APIInteraction();
+		ParseOpponentID task = holder.new ParseOpponentID(obj, act);
+		task.execute(obj);
+	}
+	
+	public class ParseOpponentID extends AsyncTask<Object, Void, APIObject> 
+	{
+			APIObject obj;
+			Activity a;
+			ProgressDialog pda;
+		    public ParseOpponentID(APIObject object, Activity act) 
+		    {
+		        obj = object;
+		        a = act;
+		        pda = new ProgressDialog(act);
+		        pda.setCancelable(false);
+		        pda.setMessage("Please wait, fetching the opponents...");
+		        pda.show();
+		    }
+		    
+			@Override
+			protected void onPreExecute(){ 
+			   super.onPreExecute();  
+			}
+	
+			@Override
+			protected void onPostExecute(APIObject result){
+			   super.onPostExecute(result);
+			   pda.dismiss();
+			   obj.setOpponents(result);
+			}
+			 
+		    @Override
+		    protected APIObject doInBackground(Object... data) 
+		    {
+		    	APIObject obj = (APIObject)data[0];
+		    	try {
+					Document doc = getXML(obj.formGetMatchUrl(), obj);
+					List<String> dataSet = parseXMLOpp(doc, "match", obj.team1);
+					System.out.println("Opponent set size " + dataSet.size());
+					Collections.sort(dataSet, String.CASE_INSENSITIVE_ORDER);
+					obj.opponents = dataSet;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -292,6 +292,7 @@ public class Home extends Activity {
 						headerText.setText("Click Submit");
 						submit.setVisibility(View.VISIBLE);
 					}
+					obj.getOpponentsInit(team1Str, (Activity)cont);
 				}
 				
 			}
@@ -308,6 +309,8 @@ public class Home extends Activity {
 				{
 					submit.setVisibility(View.VISIBLE);
 					team2Str = ((TextView)arg1).getText().toString();
+					obj.team2 = team2Str;
+					obj.team2ID = obj.teamIDMap.get(obj.team2);
 					if(((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
 					{
 						headerText.setText("Select the Second Team Below");

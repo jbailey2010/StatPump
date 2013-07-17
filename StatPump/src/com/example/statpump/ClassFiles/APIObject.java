@@ -24,6 +24,7 @@ public class APIObject
 	//Maps sport to sport id
 	public Map<String, Integer> sportIDMap = new HashMap<String, Integer>();
 	public Map<String, Integer> teamIDMap = new HashMap<String, Integer>();
+	public List<String> opponents = new ArrayList<String>();
 	public List<String> teamSet1 = new ArrayList<String>();
 	public String sport;
 	public String sportURL;
@@ -35,6 +36,8 @@ public class APIObject
 	public int team2ID;
 	//Year ID for later queries
 	public int yearID;
+	public String yearStart;
+	public String yearEnd;
 	//The constant part of the url for the query
 	public String urlBase = "http://api.globalsportsmedia.com/";
 	public String urlValidate = "&authkey=865c0c0b4ab0e063e5caa3387c1a8741&username=statp";
@@ -119,8 +122,16 @@ public class APIObject
 	 */
 	public String formGetTeamUrl()
 	{
-		return this.sportURL + "/get_teams?id=" + this.yearID + "&type=season&detailed=yes";
-		//return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
+		return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
+	}
+	
+	/**
+	 * forms the get match URL
+	 * @return
+	 */
+	public String formGetMatchUrl()
+	{
+		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.yearStart + "&end_date=" + this.yearEnd;
 	}
 	
 	/**
@@ -147,5 +158,35 @@ public class APIObject
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.context, 
 				android.R.layout.simple_spinner_dropdown_item, teams);
 		this.team1Spinner.setAdapter(spinnerArrayAdapter);
+	}
+	
+	/**
+	 * Sets the opponents to the second spinner
+	 * @param result
+	 */
+	public void setOpponents(APIObject result)
+	{
+		this.opponents = result.opponents;
+		List<String>teams = new ArrayList<String>();
+		teams.add("Select a Team");
+		for(String team : this.opponents)
+		{
+			teams.add(team);
+		}
+		//Setting the adapter
+		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.context, 
+				android.R.layout.simple_spinner_dropdown_item, teams);
+		System.out.println(spinnerArrayAdapter.getCount());
+		this.team2Spinner.setAdapter(spinnerArrayAdapter);
+	} 
+	
+	/**
+	 * Calls the function that will spawn the asynctask
+	 */
+	public void getOpponentsInit(String team1, Activity act)
+	{
+		this.team1 = team1;
+		this.team1ID = this.teamIDMap.get(this.team1);
+		APIInteraction.getOpponents(this, act);
 	}
 }
