@@ -222,7 +222,9 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				if(arg1 != null && !((TextView)arg1).getText().toString().equals("Select a Sport") && sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
+				if(arg1 != null && ((TextView)arg1).getText() != null &&
+						!((TextView)arg1).getText().toString().equals("Select a Sport") && 
+						sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
 					sportStr = ((TextView)arg1).getText().toString();	
