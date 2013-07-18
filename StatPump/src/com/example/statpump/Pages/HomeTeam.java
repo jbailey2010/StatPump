@@ -269,12 +269,6 @@ public class HomeTeam extends Activity {
 				sportImg.setVisibility(View.INVISIBLE);
 			}
 		});
-		/*
-		 * TO BE DONE:
-		 * Clear button augmented once there's functionality
-		 * Function that populates dropdowns
-		 * Submit button
-		 */
 	}
 	
 	/**
@@ -303,6 +297,14 @@ public class HomeTeam extends Activity {
 			dialog.setCancelable(false);
 		}
 		
+		Button submit = (Button)dialog.findViewById(R.id.statwell_team_submit);
+		submit.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				//MORE HERE
+				dialog.dismiss();
+			}
+		});
 	}
 
 }

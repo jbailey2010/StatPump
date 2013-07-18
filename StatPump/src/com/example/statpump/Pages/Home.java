@@ -310,6 +310,8 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				isSubmit = true;
+				obj.team2 = (((TextView)team2.getSelectedView()).getText().toString());
+				obj.team2ID = obj.teamIDMap.get(obj.team2);
 				setStatWellDialog(true);
 			}
 		});
@@ -324,13 +326,6 @@ public class Home extends Activity {
 				sportImg.setVisibility(View.INVISIBLE);
 			}
 		});
-		/*
-		 * TO BE DONE:
-		 * Clear button augmented with functionality
-		 * Function that populates dropdowns
-		 * Submit button
-		 * Keep updating header
-		 */
 	}
 	
 	/**
@@ -360,5 +355,14 @@ public class Home extends Activity {
 			dialog.setCancelable(false);
 			close.setVisibility(View.GONE);
 		}
+		
+		Button submit = (Button)dialog.findViewById(R.id.statwell_game_submit);
+		submit.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				//MORE HERE LATER
+				dialog.dismiss();
+			}
+		});
 	}
 }

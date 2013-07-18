@@ -180,7 +180,6 @@ public class APIObject
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.context, 
 				android.R.layout.simple_spinner_dropdown_item, teams);
-		System.out.println(spinnerArrayAdapter.getCount());
 		this.team2Spinner.setAdapter(spinnerArrayAdapter);
 	} 
 	
