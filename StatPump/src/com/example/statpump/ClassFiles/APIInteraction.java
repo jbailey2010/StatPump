@@ -68,12 +68,10 @@ public class APIInteraction
         {
         	if(!teams.contains(element.attr("team_a_name")) && element.attr("team_b_name").equals(name))
         	{
-        		System.out.println("1: " + element.attr("team_b_name") + ", " + element.attr("team_a_name"));
         		teams.add(element.attr("team_a_name"));
       		}
         	else if(element.attr("team_a_name").equals(name) && !teams.contains(element.attr("team_b_name")))
         	{
-        		System.out.println("2: " + element.attr("team_b_name") + ", " + element.attr("team_a_name"));
         		teams.add(element.attr("team_b_name"));
         	}
         }
