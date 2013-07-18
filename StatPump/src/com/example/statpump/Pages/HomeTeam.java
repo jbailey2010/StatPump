@@ -111,7 +111,7 @@ public class HomeTeam extends Activity {
 			case R.id.set_statwell_team:
 				if(isSubmit)
 				{
-					setStatWellDialog();
+					setStatWellDialog(false);
 				}
 				else
 				{
@@ -274,6 +274,7 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onClick(View v) {
 				isSubmit = true;
+				setStatWellDialog(true);
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
@@ -297,7 +298,7 @@ public class HomeTeam extends Activity {
 	/**
 	 * Sets the statwell dialog
 	 */
-	public void setStatWellDialog()
+	public void setStatWellDialog(boolean cancel)
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -307,7 +308,6 @@ public class HomeTeam extends Activity {
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
 	    dialog.getWindow().setAttributes(lp);
 		dialog.show();
-		
 		Button close = (Button)dialog.findViewById(R.id.statwell_team_cancel);
 		close.setOnClickListener(new OnClickListener(){
 			@Override
@@ -315,6 +315,12 @@ public class HomeTeam extends Activity {
 				dialog.dismiss();
 			}
 		});
+		if(cancel)
+		{
+			close.setVisibility(View.GONE);
+			dialog.setCancelable(false);
+		}
+		
 	}
 
 }

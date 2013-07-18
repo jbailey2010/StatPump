@@ -125,7 +125,7 @@ public class Home extends Activity {
 			case R.id.set_statwell_game:
 				if(isSubmit)
 				{
-					setStatWellDialog();
+					setStatWellDialog(false);
 				}
 				else
 				{
@@ -335,6 +335,7 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				isSubmit = true;
+				setStatWellDialog(true);
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
@@ -360,7 +361,7 @@ public class Home extends Activity {
 	/**
 	 * Makes the dialog for statwell show up
 	 */
-	public void setStatWellDialog()
+	public void setStatWellDialog(boolean cancel)
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -378,5 +379,11 @@ public class Home extends Activity {
 				dialog.dismiss();
 			}
 		});
+		
+		if(cancel)
+		{
+			dialog.setCancelable(false);
+			close.setVisibility(View.GONE);
+		}
 	}
 }
