@@ -241,6 +241,7 @@ public class Home extends Activity {
 					sportStr = ((TextView)arg1).getText().toString();	
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
+					team1.setSelection(0);
 					team2.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);

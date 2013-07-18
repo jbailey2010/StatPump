@@ -218,6 +218,7 @@ public class HomeTeam extends Activity {
 					headerText.setText("Select the Team Below");
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
+					team1.setSelection(0);
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
 				else

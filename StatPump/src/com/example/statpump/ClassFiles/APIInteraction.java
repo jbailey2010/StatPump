@@ -72,7 +72,7 @@ public class APIInteraction
         		{
         			teams.add(element.attr("team_a_name"));
         		}
-        		else
+        		else if(!teams.contains(element.attr("team_b_name")))
         		{
         			teams.add(element.attr("team_b_name"));
         		}
