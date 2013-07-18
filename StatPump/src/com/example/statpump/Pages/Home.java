@@ -123,7 +123,14 @@ public class Home extends Activity {
 				HandleInput.helpPopUp(cont);
 				return true;
 			case R.id.set_statwell_game:
-				setStatWellDialog();
+				if(isSubmit)
+				{
+					setStatWellDialog();
+				}
+				else
+				{
+					Toast.makeText(cont, "You must hit submit before setting the content", Toast.LENGTH_SHORT).show();
+				}
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
