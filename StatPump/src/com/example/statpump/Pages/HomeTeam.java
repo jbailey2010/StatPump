@@ -303,6 +303,7 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE
+				HandleInput.checkFavorite(obj, cont);
 				dialog.dismiss();
 			}
 		});

@@ -96,4 +96,9 @@ public class HandleInput
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
+
+	public static void checkFavorite(APIObject obj, Context cont) {
+		// TODO Auto-generated method stub
+		
+	}
 }

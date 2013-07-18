@@ -362,6 +362,7 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE LATER
+				HandleInput.checkFavorite(obj, cont);
 				dialog.dismiss();
 			}
 		});
