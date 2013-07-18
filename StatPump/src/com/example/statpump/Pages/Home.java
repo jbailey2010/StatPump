@@ -63,7 +63,7 @@ public class Home extends Activity {
 	Button clear;
 	TextView headerText; 
 	ImageView sportImg;
-	public boolean isFirst = true;
+	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
 	
 	/**
@@ -77,7 +77,6 @@ public class Home extends Activity {
 		if(menuObj != null)
 		{
 			checkInternet();
-			isFirst = false;
 		}
 	} 
 
@@ -101,11 +100,7 @@ public class Home extends Activity {
 		switch (item.getItemId()) 
 		{
 			case R.id.search_player:
-				if(sport != null && !sport.getSelectedItem().toString().equals("Select a Sport") && 
-					team1 != null && team1.isShown() && team1.getAdapter() != null && team1.getAdapter().getCount() > 0 && 
-					!team1.getSelectedItem().toString().equals("Select a Team")
-					&& team2 != null && team2.isShown() && team2.getAdapter() != null && team2.getAdapter().getCount() > 0 && 
-					!team2.getSelectedItem().toString().equals("Select a Team"))
+				if(isSubmit)
 				{
 					//Call function
 				}
@@ -248,6 +243,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				isSubmit = false;
 				if(arg1 != null && ((TextView)arg1).getText() != null && 
 						!((TextView)arg1).getText().toString().equals("Select a Sport")  && sport.getAdapter() != null
 						&& sport.getAdapter().getCount() > 0)
@@ -279,6 +275,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				isSubmit = false;
 				if(arg1 != null && !((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
 					team2.setVisibility(View.VISIBLE);
@@ -305,6 +302,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				isSubmit = false;
 				if(!((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
 					submit.setVisibility(View.VISIBLE);
@@ -324,6 +322,12 @@ public class Home extends Activity {
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+		submit.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				isSubmit = true;
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
