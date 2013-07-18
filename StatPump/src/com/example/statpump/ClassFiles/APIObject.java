@@ -79,6 +79,10 @@ public class APIObject
 		this.team2ID = 0;
 		this.yearID=0;
 		this.teamSet1 = null;
+		this.opponents = null;
+		this.yearID = 0;
+		this.yearStart = "";
+		this.yearEnd = "";
 	}
 	
 	/**

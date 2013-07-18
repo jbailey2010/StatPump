@@ -68,7 +68,14 @@ public class APIInteraction
         {
         	if(!teams.contains(element.attr("team_b_name")))
         	{
-        		teams.add(element.attr("team_b_name"));
+        		if(element.attr("team_b_name").equals(name))
+        		{
+        			teams.add(element.attr("team_a_name"));
+        		}
+        		else
+        		{
+        			teams.add(element.attr("team_b_name"));
+        		}
         	}
         }
         return teams;

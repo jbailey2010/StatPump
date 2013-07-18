@@ -190,26 +190,8 @@ public class Home extends Activity {
 			{
 				menuObj.getItem(i).setEnabled(true);
 			}
-			if(team1.isShown())
-			{
-				headerText.setText("Select the First Team Below");
-				if(!((TextView)team1.getSelectedView()).getText().toString().equals("Select a Team"))
-				{
-					headerText.setText("Select the Second Team Below");
-				}
-			}
-			if(team2.isShown())
-			{
-				headerText.setText("Select the Second Team Below");
-				if(!((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
-				{
-					headerText.setText("Hit Submit When You're Ready");
-				}
-			}
-			else if(!team1.isShown() && !team2.isShown())
-			{
-				headerText.setText("Select a Sport Below");
-			}
+			headerText.setText("Select a Sport Below");
+			sport.setSelection(0);
 		}
 	}
 	
@@ -217,7 +199,7 @@ public class Home extends Activity {
 	 * Sets the variables and populates the first spinner
 	 */
 	public void initialSetUp()
-	{
+	{ 
 		sport = (Spinner)findViewById(R.id.game_sport_spinner);
 		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
 		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
@@ -287,15 +269,8 @@ public class Home extends Activity {
 				{
 					team2.setVisibility(View.VISIBLE);
 					team1Str = ((TextView)arg1).getText().toString();
-					if(team2.getSelectedView() == null || ((TextView)team2.getSelectedView()).getText().toString().equals("Select a Team"))
-					{
-						headerText.setText("Select the Second Team Below");
-					}
-					else
-					{
-						headerText.setText("Click Submit");
-						submit.setVisibility(View.VISIBLE);
-					}
+					headerText.setText("Select the Second Team Below");
+					team2.setSelection(0);
 					obj.getOpponentsInit(team1Str, (Activity)cont);
 				}
 				

@@ -48,16 +48,6 @@
             android:text="Game Conversation" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/statwell_game_cancel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text=" "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
         android:id="@+id/statwell_game_submit"
         style="@style/ButtonText"

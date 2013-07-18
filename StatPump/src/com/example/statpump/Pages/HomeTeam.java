@@ -169,26 +169,8 @@ public class HomeTeam extends Activity {
 			team1.setClickable(true);
 			submit.setClickable(true);
 			clear.setClickable(true);
-			for(int i = 0; i < menuObj.size(); i++)
-			{
-				menuObj.getItem(i).setEnabled(true);
-				if(team1.isShown())
-				{
-					headerText.setText("Hit Submit When You're Ready");
-					if((team1.getSelectedView()).equals("Select a Team"))
-					{
-						headerText.setText("Select The Team Below");
-					}
-				}
-				else if(!(sport.getSelectedItem()).equals("Select a Sport"))
-				{
-					headerText.setText("Select the Team Below");
-				}
-				else
-				{
-					headerText.setText("Select a Sport Below");
-				}
-			}
+			headerText.setText("Select a Sport Below");
+			sport.setSelection(0);
 		}
 	}
 	

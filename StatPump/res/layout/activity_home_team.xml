@@ -66,8 +66,6 @@
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-"
-
     <Spinner
         android:id="@+id/team_name_spinner"
         android:layout_width="250dp"
@@ -89,7 +87,7 @@
     <Button
         android:id="@+id/team_clear"
         style="@style/ButtonText"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/team_submit"
         android:layout_alignBottom="@+id/team_submit"
@@ -100,12 +98,12 @@
     <Button
         android:id="@+id/team_submit"
         style="@style/ButtonText"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/list_team_parent"
         android:layout_below="@+id/team_name_spinner"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_blue"
-        android:text="Set" />
+        android:text="Submit" />
 
 </RelativeLayout>
