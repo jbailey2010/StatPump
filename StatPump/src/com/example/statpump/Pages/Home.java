@@ -243,6 +243,7 @@ public class Home extends Activity {
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
 					team2.setVisibility(View.INVISIBLE);
+					submit.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
@@ -313,6 +314,7 @@ public class Home extends Activity {
 				isSubmit = true;
 				obj.team2 = (((TextView)team2.getSelectedView()).getText().toString());
 				obj.team2ID = obj.teamIDMap.get(obj.team2);
+				headerText.setText(obj.team1 + " vs. " + obj.team2);
 				setStatWellDialog(true);
 			}
 		});

@@ -37,7 +37,7 @@
         android:layout_marginTop="26dp"
         android:background="@drawable/btn_blue"
         style="@style/ButtonText"
-        android:text="submit" />
+        android:text="Submit" />
 
     <Button
         android:id="@+id/facebook_status_back"

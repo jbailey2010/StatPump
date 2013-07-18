@@ -1,6 +1,8 @@
 package com.example.statpump.ClassFiles;
 
 import com.example.statpump.R;
+import com.example.statpump.FileIO.ReadFromFile;
+import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.Pages.Home;
 import com.example.statpump.Pages.HomeTeam;
 
@@ -14,7 +16,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
@@ -97,8 +101,38 @@ public class HandleInput
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
-	public static void checkFavorite(APIObject obj, Context cont) {
-		// TODO Auto-generated method stub
-		
+	public static void checkFavorite(final APIObject obj, final Context cont) {
+		String favorite = ReadFromFile.readFavoriteTeam(obj, cont);
+		if(!favorite.equals("Not set"))
+		{
+			obj.favoriteTeam = favorite;
+			return;
+		}
+		else
+		{
+			final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.favorite_team_popup);
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		    lp.copyFrom(dialog.getWindow().getAttributes());
+		    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+		    dialog.getWindow().setAttributes(lp);
+			dialog.show();
+			final Spinner favoriteSpinner = (Spinner)dialog.findViewById(R.id.team_choices);
+			ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(cont, 
+					android.R.layout.simple_spinner_dropdown_item, obj.teamSet1);
+			favoriteSpinner.setAdapter(spinnerArrayAdapter);
+			Button submit = (Button)dialog.findViewById(R.id.favorite_team_submit);
+			dialog.setCancelable(false);
+			submit.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					dialog.dismiss();
+					String fav = ((TextView)favoriteSpinner.getSelectedView()).getText().toString();
+					obj.favoriteTeam = fav;
+					WriteToFile.writeFavoriteTeam(obj, cont);
+				}
+			});
+		}
 	}
 }

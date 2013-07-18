@@ -2,8 +2,9 @@ package com.example.statpump.FileIO;
 
 import java.util.List;
 
-import twitter4j.auth.AccessToken;
+import com.example.statpump.ClassFiles.APIObject;
 
+import twitter4j.auth.AccessToken;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -41,6 +42,15 @@ public class WriteToFile
 	{
 		SharedPreferences.Editor editor = cont.getSharedPreferences("StatPump", 0).edit();
 		editor.putString("Facebook Token", token);
+		editor.commit();
+	}
+
+	/**
+	 * Writes favorite team to file
+	 */
+	public static void writeFavoriteTeam(APIObject obj, Context cont) {
+		SharedPreferences.Editor editor = cont.getSharedPreferences("StatPump", 0).edit();
+		editor.putString("Favorite " + obj.sport, obj.favoriteTeam);
 		editor.commit();
 	}
 }

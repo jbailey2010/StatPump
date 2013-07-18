@@ -1,5 +1,7 @@
 package com.example.statpump.FileIO;
 
+import com.example.statpump.ClassFiles.APIObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 /**
@@ -42,5 +44,13 @@ public class ReadFromFile
 	public static String ReadFBToken(Context cont) {
 		SharedPreferences prefs = cont.getSharedPreferences("StatPump", 0); 
 		return prefs.getString("Facebook Token", "Not set");
+	}
+
+	/**
+	 * Reads the favorite team for a sport from file
+	 */
+	public static String readFavoriteTeam(APIObject obj, Context cont) {
+		SharedPreferences prefs = cont.getSharedPreferences("StatPump", 0); 
+		return prefs.getString("Favorite " + obj.sport, "Not set");
 	}
 }

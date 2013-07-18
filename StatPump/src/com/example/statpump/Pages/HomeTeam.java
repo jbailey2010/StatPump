@@ -219,6 +219,7 @@ public class HomeTeam extends Activity {
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
+					submit.setVisibility(View.INVISIBLE);
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
 				else
@@ -246,6 +247,8 @@ public class HomeTeam extends Activity {
 					headerText.setText("Hit Submit When You're Ready");
 					submit.setVisibility(View.VISIBLE);
 					team1Str = ((TextView)arg1).getText().toString();
+					obj.team1 = team1Str;
+					obj.team1ID = obj.teamIDMap.get(obj.team1);
 				}
 				
 			}
@@ -257,6 +260,7 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onClick(View v) {
 				isSubmit = true;
+				headerText.setText(obj.team1);
 				setStatWellDialog(true);
 			}
 		});
