@@ -391,6 +391,7 @@ public class Home extends Activity {
 				{
 					obj.statwellSetting = "Venue Information";
 				}
+				sw.removeAllViews();
 				HandleInput.checkFavorite(obj, cont);
 				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();

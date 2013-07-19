@@ -331,6 +331,7 @@ public class HomeTeam extends Activity {
 				{
 					obj.statwellSetting = "Team Statistics";
 				}
+				sw.removeAllViews();
 				HandleInput.checkFavorite(obj, cont);
 				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();
