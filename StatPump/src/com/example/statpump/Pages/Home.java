@@ -69,6 +69,7 @@ public class Home extends Activity {
 	Button clear;
 	TextView headerText; 
 	ImageView sportImg;
+	LinearLayout sw;
 	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
 	
@@ -213,6 +214,7 @@ public class Home extends Activity {
 		clear = (Button)findViewById(R.id.game_clear);
 		sportImg = (ImageView)findViewById(R.id.game_sport_image);
 		headerText = (TextView)findViewById(R.id.game_title);
+		sw = (LinearLayout)findViewById(R.id.statwell);
 		setUpInterface();
 		ManageSportSelection.populateSpinner(sport, cont);
 	}
@@ -239,6 +241,7 @@ public class Home extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				isSubmit = false;
+				sw.removeAllViews();
 				if(arg1 != null && ((TextView)arg1).getText() != null && 
 						!((TextView)arg1).getText().toString().equals("Select a Sport")  && sport.getAdapter() != null
 						&& sport.getAdapter().getCount() > 0)
@@ -272,6 +275,7 @@ public class Home extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				sw.removeAllViews();
 				isSubmit = false;
 				if(arg1 != null && !((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
@@ -293,6 +297,7 @@ public class Home extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				isSubmit = false;
+				sw.removeAllViews();
 				if(!((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
 					submit.setVisibility(View.VISIBLE);
@@ -317,6 +322,7 @@ public class Home extends Activity {
 		submit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
+				sw.removeAllViews();
 				isSubmit = true;
 				obj.team2 = (((TextView)team2.getSelectedView()).getText().toString());
 				obj.team2ID = obj.teamIDMap.get(obj.team2);
@@ -327,6 +333,7 @@ public class Home extends Activity {
 		clear.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				obj.clearObject();
 				sport.setSelection(0);
 				team1.setVisibility(View.INVISIBLE);

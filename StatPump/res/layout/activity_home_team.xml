@@ -37,7 +37,7 @@
         android:src="@drawable/sp_bw_rotate2" />
 
     <LinearLayout
-        android:id="@+id/list_team_parent"
+        android:id="@+id/statwell"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
@@ -48,12 +48,6 @@
         android:layout_marginTop="230dp" 
         android:orientation="vertical"
         android:background="@drawable/view_well" >
-        
-	   <ListView
-	        android:id="@+id/list_team"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent" >
-	    </ListView>
 	    
     </LinearLayout>
     <TextView
@@ -91,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/team_submit"
         android:layout_alignBottom="@+id/team_submit"
-        android:layout_alignLeft="@+id/list_team_parent"
+        android:layout_alignLeft="@+id/statwell"
         android:background="@drawable/btn_green"
         android:text="Clear" />
 
@@ -100,7 +94,7 @@
         style="@style/ButtonText"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/list_team_parent"
+        android:layout_alignRight="@+id/statwell"
         android:layout_below="@+id/team_name_spinner"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_blue"

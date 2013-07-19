@@ -27,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -53,6 +54,7 @@ public class HomeTeam extends Activity {
 	Button clear;
 	TextView headerText;
 	ImageView sportImg;
+	LinearLayout sw;
 	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
 	
@@ -197,6 +199,7 @@ public class HomeTeam extends Activity {
 	public void setUpInterface()
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
+		sw = (LinearLayout)findViewById(R.id.statwell);
 		team1 = (Spinner)findViewById(R.id.team_name_spinner);
 		obj.setUpObject(sport, team1, null);
 		submit = (Button)findViewById(R.id.team_submit);
@@ -211,6 +214,7 @@ public class HomeTeam extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				isSubmit = false;
+				sw.removeAllViews();
 				if(arg1 != null && ((TextView)arg1).getText() != null &&
 						!((TextView)arg1).getText().toString().equals("Select a Sport") && 
 						sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
@@ -244,6 +248,7 @@ public class HomeTeam extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				isSubmit = false;
+				sw.removeAllViews();
 				if(!((TextView)arg1).getText().toString().equals("Select a Team"))
 				{
 					headerText.setText("Hit Submit When You're Ready");
@@ -264,11 +269,13 @@ public class HomeTeam extends Activity {
 				isSubmit = true;
 				headerText.setText(obj.team1);
 				setStatWellDialog(true);
+				sw.removeAllViews();
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				obj.clearObject();
 				sport.setSelection(0);
 				team1.setVisibility(View.INVISIBLE);
