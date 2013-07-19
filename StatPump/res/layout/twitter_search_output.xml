@@ -75,7 +75,7 @@
 
     </RelativeLayout>
 
-    <ListView
+    <com.example.statpump.InterfaceAugmentation.BounceListView
         android:id="@+id/tweets_results"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -83,6 +83,6 @@
         android:background="#FFFFFF"
         android:dividerHeight="1dp"
         android:layout_width="fill_parent" >
-    </ListView>
+    </com.example.statpump.InterfaceAugmentation.BounceListView>
 
 </LinearLayout>
