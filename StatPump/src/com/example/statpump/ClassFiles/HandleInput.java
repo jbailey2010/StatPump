@@ -101,6 +101,9 @@ public class HandleInput
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
+	/**
+	 * Handles the favorite team dialog
+	 */
 	public static void checkFavorite(final APIObject obj, final Context cont) {
 		String favorite = ReadFromFile.readFavoriteTeam(obj, cont);
 		if(!favorite.equals("Not set"))

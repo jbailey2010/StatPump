@@ -9,6 +9,8 @@ import java.util.List;
 
 
 
+
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -20,6 +22,9 @@ import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 
 
 
+
+
+import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
 import android.os.Bundle;
 import android.app.ActionBar; 
@@ -40,6 +45,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -344,7 +350,9 @@ public class Home extends Activity {
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
 	    dialog.getWindow().setAttributes(lp);
 		dialog.show();
-		
+		final RadioButton gameInfo = (RadioButton)dialog.findViewById(R.id.statwell_game_info);//.statwell_player_info);
+		final RadioButton gameStats = (RadioButton)dialog.findViewById(R.id.statwell_game_stats);//.statwell_team_info);
+		final RadioButton venueInfo = (RadioButton)dialog.findViewById(R.id.statwell_venue_info);//.statwell_team_stats);
 		Button close = (Button)dialog.findViewById(R.id.statwell_game_cancel);
 		close.setOnClickListener(new OnClickListener(){
 			@Override
@@ -364,7 +372,20 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE LATER
+				if(gameInfo.isChecked())
+				{
+					obj.statwellSetting = "Game Information";
+				}
+				else if(gameStats.isChecked())
+				{
+					obj.statwellSetting = "Game Statistics";
+				}
+				else if(venueInfo.isChecked())
+				{
+					obj.statwellSetting = "Venue Information";
+				}
 				HandleInput.checkFavorite(obj, cont);
+				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();
 			}
 		});

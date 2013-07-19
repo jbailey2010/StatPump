@@ -65,7 +65,7 @@ public class APIInteraction
         Elements links = doc.select(params);
         List<String> teams = new ArrayList<String>();
         for (Element element : links) 
-        {
+        { 
         	if(!teams.contains(element.attr("team_a_name")) && element.attr("team_b_name").equals(name))
         	{
         		teams.add(element.attr("team_a_name"));
@@ -86,7 +86,6 @@ public class APIInteraction
 	{
 		APIInteraction holder = new APIInteraction();
 		ParseSeasonID task = holder.new ParseSeasonID(obj);
-		System.out.println("Executing season task");
 		task.execute();
 	}
 

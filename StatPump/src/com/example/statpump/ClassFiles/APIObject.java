@@ -40,6 +40,7 @@ public class APIObject
 	public String yearEnd;
 	//Other data
 	public String favoriteTeam;
+	public String statwellSetting;
 	//The constant part of the url for the query
 	public String urlBase = "http://api.globalsportsmedia.com/";
 	public String urlValidate = "&authkey=865c0c0b4ab0e063e5caa3387c1a8741&username=statp";
@@ -86,6 +87,7 @@ public class APIObject
 		this.yearStart = "";
 		this.yearEnd = "";
 		this.favoriteTeam = "";
+		this.statwellSetting = "";
 	}
 	
 	/**
@@ -139,6 +141,14 @@ public class APIObject
 	public String formGetMatchUrl()
 	{
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.yearStart + "&end_date=" + this.yearEnd;
+	}
+	
+	/**
+	 * Forms the get team info url
+	 */
+	public String formGetTeamInfoUrl()
+	{
+		return this.sportURL + "/get_teams?id=" + this.team1ID + "&type=team&detailed=yes";
 	}
 	
 	/**

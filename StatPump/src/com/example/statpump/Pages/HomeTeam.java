@@ -11,6 +11,7 @@ import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
+import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -27,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -289,6 +291,9 @@ public class HomeTeam extends Activity {
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
 	    dialog.getWindow().setAttributes(lp);
 		dialog.show();
+		final RadioButton playerInfo = (RadioButton)dialog.findViewById(R.id.statwell_player_info);
+		final RadioButton teamInfo = (RadioButton)dialog.findViewById(R.id.statwell_team_info);
+		final RadioButton teamStats = (RadioButton)dialog.findViewById(R.id.statwell_team_stats);
 		Button close = (Button)dialog.findViewById(R.id.statwell_team_cancel);
 		close.setOnClickListener(new OnClickListener(){
 			@Override
@@ -307,7 +312,20 @@ public class HomeTeam extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE
+				if(playerInfo.isChecked())
+				{
+					obj.statwellSetting = "Player Information";
+				}
+				else if(teamInfo.isChecked())
+				{
+					obj.statwellSetting = "Team Information";
+				}
+				else if(teamStats.isChecked())
+				{
+					obj.statwellSetting = "Team Statistics";
+				}
 				HandleInput.checkFavorite(obj, cont);
+				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();
 			}
 		});
