@@ -231,6 +231,12 @@ public class APIObject
 		APIInteraction.getOpponents(this, act);
 	}
 
+	/**
+	 * Works the matchups, if there's 1 no dialog, if multiple the user picks
+	 * @param result
+	 * @param act
+	 * @param o
+	 */
 	public void handleMatchups(final List<String> result, final Activity act, final APIObject o) 
 	{
 		

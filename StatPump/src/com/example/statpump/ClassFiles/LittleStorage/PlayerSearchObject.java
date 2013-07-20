@@ -29,6 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TwoLineListItem;
 /**
@@ -141,7 +142,7 @@ public class PlayerSearchObject
 		    }
 	  }
 
-	public void searchInit(APIObject obj, Context cont, final PlayerSearchObject o) 
+	public void searchInit(APIObject obj, Context cont, final PlayerSearchObject o, final LinearLayout sw) 
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -193,6 +194,8 @@ public class PlayerSearchObject
 				o.playerNumber = Integer.parseInt(nameNumSet[1]);
 				o.playerTeam = ptSet[1];
 				o.playerPos = ptSet[0];
+				sw.removeAllViews();
+				//CALL POPULATE STATWELL HERE WITH THE DATA
 				dialog.dismiss();
 			}
 		});

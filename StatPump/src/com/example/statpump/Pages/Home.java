@@ -115,7 +115,7 @@ public class Home extends Activity {
 			case R.id.search_player:
 				if(isSubmit)
 				{
-					po.searchInit(obj, cont, po);
+					po.searchInit(obj, cont, po, sw);
 				}
 				else
 				{
