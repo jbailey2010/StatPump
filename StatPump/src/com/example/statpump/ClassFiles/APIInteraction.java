@@ -57,6 +57,9 @@ public class APIInteraction
         return result.toString();
 	}
 	
+	/**
+	 * Gets all of the matchups of a team
+	 */
 	public static List<String> parseXMLSetOpponents(Document doc, String params, APIObject obj)
 	{
         Elements links = doc.select(params);
@@ -294,6 +297,11 @@ public class APIInteraction
 		    }
 	  }
 	
+	/**
+	 * Spawns the asynctask that gets the dates
+	 * @param obj
+	 * @param act
+	 */
 	public static void getOpponentDates(APIObject obj, Activity act)
 	{
 		APIInteraction holder = new APIInteraction();
@@ -301,6 +309,11 @@ public class APIInteraction
 		task.execute(obj);
 	}
 	
+	/**
+	 * Parses for dates of matchups
+	 * @author Jeff
+	 *
+	 */
 	public class ParseOpponentDates extends AsyncTask<Object, Void, List<String>> 
 	{
 			APIObject obj;

@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -328,7 +329,6 @@ public class Home extends Activity {
 				isSubmit = true;
 				obj.team2 = (((TextView)team2.getSelectedView()).getText().toString());
 				obj.team2ID = obj.teamIDMap.get(obj.team2);
-				headerText.setText(obj.team1 + " vs. " + obj.team2);
 				APIInteraction.getOpponentDates(obj, (Activity) cont);
 				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
@@ -384,6 +384,7 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE LATER
+				System.out.println(obj.matchHome + " - " + obj.matchDate + ", " + obj.matchID);
 				if(gameInfo.isChecked())
 				{
 					obj.statwellSetting = "Game Information";
@@ -398,6 +399,7 @@ public class Home extends Activity {
 				}
 				sw.removeAllViews();
 				StatWellUsage.statWellInit(obj, cont);
+				headerText.setText(obj.matchHome + " - " + obj.matchDate);
 				dialog.dismiss();
 			}
 		});
