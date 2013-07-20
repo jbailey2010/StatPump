@@ -57,6 +57,28 @@ public class APIInteraction
         return result.toString();
 	}
 	
+	public static List<String> parseXMLSetOpponents(Document doc, String params, APIObject obj)
+	{
+        Elements links = doc.select(params);
+        List<String> result = new ArrayList<String>();
+        for (Element element : links) 
+        {
+        	if((element.attr("team_a_name").equals(obj.team1) && element.attr("team_b_name").equals(obj.team2))
+        			|| (element.attr("team_a_name").equals(obj.team2) && element.attr("team_b_name").equals(obj.team1)))
+        	{
+        		String date = element.attr("date_utc");
+        		String id = element.attr("match_id");
+        		String home = obj.team1 + " at " + obj.team2;
+        		if(element.attr("team_a_name").equals(obj.team1))
+        		{
+        			home = obj.team2 + " at " + obj.team1;
+        		}
+        		result.add(date + "%%%" + id + "%%%" + home);
+        	}
+        }
+        return result;
+	}
+	
 	/**
 	 * Returns the opponents of a team
 	 */
@@ -210,6 +232,11 @@ public class APIInteraction
 		    }
 	  }
 	
+	/**
+	 * Spawns the get opponent asynctask
+	 * @param obj
+	 * @param act
+	 */
 	public static void getOpponents(APIObject obj, Activity act)
 	{
 		APIInteraction holder = new APIInteraction();
@@ -217,6 +244,11 @@ public class APIInteraction
 		task.execute(obj);
 	}
 	
+	/**
+	 * Gets the opponents
+	 * @author Jeff
+	 *
+	 */
 	public class ParseOpponentID extends AsyncTask<Object, Void, APIObject> 
 	{
 			APIObject obj;
@@ -259,6 +291,58 @@ public class APIInteraction
 					e.printStackTrace();
 				} 
 				return obj;
+		    }
+	  }
+	
+	public static void getOpponentDates(APIObject obj, Activity act)
+	{
+		APIInteraction holder = new APIInteraction();
+		ParseOpponentDates task = holder.new ParseOpponentDates(obj, act);
+		task.execute(obj);
+	}
+	
+	public class ParseOpponentDates extends AsyncTask<Object, Void, List<String>> 
+	{
+			APIObject obj;
+			Activity a;
+			ProgressDialog pda;
+		    public ParseOpponentDates(APIObject object, Activity act) 
+		    {
+		        obj = object;
+		        a = act;
+		        pda = new ProgressDialog(act);
+		        pda.setCancelable(false);
+		        pda.setMessage("Please wait, fetching the matches...");
+		        pda.show();
+		    }
+		    
+			@Override
+			protected void onPreExecute(){ 
+			   super.onPreExecute();  
+			}
+	
+			@Override
+			protected void onPostExecute(List<String> result){
+			   super.onPostExecute(result);
+			   pda.dismiss();
+			   obj.handleMatchups(result, a, obj);
+			   //obj.setOpponents(result);
+			}
+			 
+		    @Override
+		    protected List<String> doInBackground(Object... data) 
+		    {
+		    	APIObject obj = (APIObject)data[0];
+		    	try {
+					Document doc = getXML(obj.formGetMatchUrl(), obj);
+					List<String> dataSet = parseXMLSetOpponents(doc, "match", obj);
+					System.out.println("Matchup size: " + dataSet.size());
+					return dataSet;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				return null;
 		    }
 	  }
 }

@@ -268,6 +268,7 @@ public class HomeTeam extends Activity {
 			public void onClick(View v) {
 				isSubmit = true;
 				headerText.setText(obj.team1);
+				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
 				sw.removeAllViews();
 			}
@@ -332,7 +333,6 @@ public class HomeTeam extends Activity {
 					obj.statwellSetting = "Team Statistics";
 				}
 				sw.removeAllViews();
-				HandleInput.checkFavorite(obj, cont);
 				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();
 			}

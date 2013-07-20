@@ -5,10 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.statpump.R;
+import com.example.statpump.InterfaceAugmentation.StatWellUsage;
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TwoLineListItem;
 /**
  * Nothing fancy, stores all of the api interaction data
  * @author Jeff
@@ -34,6 +45,9 @@ public class APIObject
 	public int team1ID;
 	public String team2;
 	public int team2ID;
+	public String matchDate;
+	public String matchHome;
+	public int matchID;
 	//Year ID for later queries
 	public int yearID;
 	public String yearStart;
@@ -88,6 +102,9 @@ public class APIObject
 		this.yearEnd = "";
 		this.favoriteTeam = "";
 		this.statwellSetting = "";
+		this.matchDate = "";
+		this.matchHome="";
+		this.matchID = 0;
 	}
 	
 	/**
@@ -204,5 +221,64 @@ public class APIObject
 		this.team1 = team1;
 		this.team1ID = this.teamIDMap.get(this.team1);
 		APIInteraction.getOpponents(this, act);
+	}
+
+	public void handleMatchups(final List<String> result, final Activity act, final APIObject o) 
+	{
+		
+		if(result.size() == 1)
+		{
+			String total = result.get(0);
+			String[] set = total.split("%%%");
+    		this.matchDate = set[0];
+    		this.matchID = Integer.parseInt(set[1]);
+    		this.matchHome = set[2];
+		}
+		else
+		{
+			final Dialog dialog = new Dialog(act, R.style.RoundCornersFull);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.match_date_selection);
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		    lp.copyFrom(dialog.getWindow().getAttributes());
+		    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+		    dialog.getWindow().setAttributes(lp);
+		    dialog.setCancelable(false);
+			dialog.show();
+			final Spinner dates = (Spinner)dialog.findViewById(R.id.date_spinner);
+			List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+			for (String date : result) {
+			    Map<String, String> datum = new HashMap<String, String>(2);
+			    String[] set = date.split("%%%");
+			    datum.put("title", set[2]);
+			    datum.put("date", set[0]);
+			    data.add(datum);
+			}
+			SimpleAdapter adapter = new SimpleAdapter(act, data,
+			                                          android.R.layout.simple_list_item_2,
+			                                          new String[] {"title", "date"},
+			                                          new int[] {android.R.id.text1,
+			                                                     android.R.id.text2});
+			dates.setAdapter(adapter);
+			Button submit = (Button)dialog.findViewById(R.id.match_date_selection_submit);
+			submit.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					HashMap<String, String> data = (HashMap<String, String>) dates.getSelectedItem();
+					o.matchHome = data.get("title");
+					o.matchDate = data.get("date");
+					for(String results : result)
+					{ 
+						if(results.contains(o.matchHome) && results.contains(o.matchDate))
+						{
+							String[] set = results.split("%%%");
+							o.matchID = Integer.parseInt(set[1]);
+							break;
+						}
+					}
+					dialog.dismiss();
+				}
+			});
+		}
 	}
 }

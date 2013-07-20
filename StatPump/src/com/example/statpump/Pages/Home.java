@@ -11,9 +11,11 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
+import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
@@ -327,7 +329,10 @@ public class Home extends Activity {
 				obj.team2 = (((TextView)team2.getSelectedView()).getText().toString());
 				obj.team2ID = obj.teamIDMap.get(obj.team2);
 				headerText.setText(obj.team1 + " vs. " + obj.team2);
+				APIInteraction.getOpponentDates(obj, (Activity) cont);
+				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
+				
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
@@ -392,7 +397,6 @@ public class Home extends Activity {
 					obj.statwellSetting = "Venue Information";
 				}
 				sw.removeAllViews();
-				HandleInput.checkFavorite(obj, cont);
 				StatWellUsage.statWellInit(obj, cont);
 				dialog.dismiss();
 			}
