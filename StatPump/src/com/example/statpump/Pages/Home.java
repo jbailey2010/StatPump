@@ -13,6 +13,7 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -21,6 +22,7 @@ import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
+import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 
 
@@ -75,6 +77,7 @@ public class Home extends Activity {
 	LinearLayout sw;
 	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
+	PlayerSearchObject po;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -112,7 +115,7 @@ public class Home extends Activity {
 			case R.id.search_player:
 				if(isSubmit)
 				{
-					//Call function
+					po.searchInit(obj, cont, po);
 				}
 				else
 				{
@@ -332,7 +335,7 @@ public class Home extends Activity {
 				APIInteraction.getOpponentDates(obj, (Activity) cont);
 				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
-				
+				po = new PlayerSearchObject(cont, obj);
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){

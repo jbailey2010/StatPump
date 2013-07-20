@@ -10,6 +10,7 @@ import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
+import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
@@ -57,6 +58,7 @@ public class HomeTeam extends Activity {
 	LinearLayout sw;
 	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
+	PlayerSearchObject po;
 	
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -92,7 +94,7 @@ public class HomeTeam extends Activity {
 			case R.id.search_player: 
 				if(isSubmit)
 				{
-					//Call function
+					po.searchInit(obj, cont, po);
 				}
 				else
 				{
@@ -271,6 +273,7 @@ public class HomeTeam extends Activity {
 				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
 				sw.removeAllViews();
+				po = new PlayerSearchObject(cont, obj);
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){

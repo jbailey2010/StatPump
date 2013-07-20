@@ -169,6 +169,14 @@ public class APIObject
 	}
 	
 	/**
+	 *Forms the get squads url given a team id
+	 */
+	public String formGetSquadUrl(int team1id2)
+	{
+		return this.sportURL + "/get_Squads?id=" + team1id2 + "&type=team&statistics=yes&active=yes";
+	}
+	
+	/**
 	 * Sets the year ID after the asynctask ends
 	 */
 	public void setSeasonId(String id)
