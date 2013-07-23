@@ -58,15 +58,14 @@
         android:background="@drawable/btn_blue"
         android:text="Submit" />
 
-
     <Button
         android:id="@+id/statwell_team_cancel"
         style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
+        android:layout_below="@+id/statwell_team_submit"
+        android:layout_marginTop="18dp"
         android:background="@drawable/btn_green"
         android:text="Cancel" />
 

@@ -338,7 +338,7 @@ public class TwitterWork
 	    		new int[] {android.R.id.text1, 
 	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
-	    if(android.os.Build.VERSION.SDK_INT > 10)
+	    if(android.os.Build.VERSION.SDK_INT > 11)
 	    { 
 		    SwipeDismissListViewTouchListener touchListener =
 	                new SwipeDismissListViewTouchListener( 
