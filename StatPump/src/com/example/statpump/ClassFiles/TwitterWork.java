@@ -338,6 +338,8 @@ public class TwitterWork
 	    		new int[] {android.R.id.text1, 
 	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
+	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));
+	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_green));
 	    if(android.os.Build.VERSION.SDK_INT > 11)
 	    { 
 		    SwipeDismissListViewTouchListener touchListener =
@@ -486,11 +488,6 @@ public class TwitterWork
 				try {
 					userTwitter.updateStatus(input);
 				} catch (TwitterException e) {
-					if(e.isCausedByNetworkIssue())
-					{
-						Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
-						return null;
-					}
 					e.printStackTrace();
 				}
 				return 1;
@@ -533,6 +530,10 @@ public class TwitterWork
 		   {
 			   handleURL(act, result);
 		   }
+		   else
+		   {
+			   Toast.makeText(act, "Please kill the app and re-open it to re-attempt to connect to twitter", Toast.LENGTH_LONG).show();
+		   }
 		}
 		
 	    @Override
@@ -540,18 +541,18 @@ public class TwitterWork
 	    {
 	    	final Context cont = (Context)data[0];
 	    	Twitter twitter = TwitterFactory.getSingleton();
-	        twitter.setOAuthConsumer("De64oQ246ojYaGQfVb1rw",
-	        		"xVpbhUMjPceJDD6pTU2qpjX4qvbBFi1eBW7vr3pg3YI");
+	    	try{
+		        twitter.setOAuthConsumer("De64oQ246ojYaGQfVb1rw",
+		        		"xVpbhUMjPceJDD6pTU2qpjX4qvbBFi1eBW7vr3pg3YI");
+	    	} catch(IllegalStateException ise)
+				{
+		    		return null;
+				}
 	        try {
 				requestToken = twitter.getOAuthRequestToken();
 		        accessToken = null;
 		        validURL = requestToken.getAuthorizationURL();
 			} catch (TwitterException e) {
-				if(e.isCausedByNetworkIssue())
-				{
-					Toast.makeText(act, "No available internet connection", Toast.LENGTH_SHORT).show();
-					return null;
-				}
 				e.printStackTrace();
 			}
 	        return twitter;
@@ -568,6 +569,7 @@ public class TwitterWork
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.twitter_login);
+        dialog.setCancelable(false);
 		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 	    lp.copyFrom(dialog.getWindow().getAttributes());
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
@@ -608,6 +610,7 @@ public class TwitterWork
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
 	    dialog.getWindow().setAttributes(lp);
 	    dialog.show();	
+	    dialog.setCancelable(false);
 	    final EditText input = (EditText)dialog.findViewById(R.id.twitter_pin_field);
 	    Button submit = (Button)dialog.findViewById(R.id.twitter_pin_go);
 	    submit.setOnClickListener(new OnClickListener(){
@@ -678,7 +681,14 @@ public class TwitterWork
 		protected void onPostExecute(AccessToken result){
 		   super.onPostExecute(result);
 		   pdia.dismiss();
-		   handleAccessToken(act, result);
+		   if(result != null)
+		   {
+			   handleAccessToken(act, result);
+		   }
+		   else
+		   {
+			   Toast.makeText(act, "Invalid pin.", Toast.LENGTH_SHORT).show();
+		   }
 		}
 		
 	    @Override

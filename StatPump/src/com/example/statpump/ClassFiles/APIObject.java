@@ -48,6 +48,8 @@ public class APIObject
 	public String matchDate;
 	public String matchHome;
 	public int matchID;
+	//Venue data
+	public int venueID;
 	//Year ID for later queries
 	public int yearID;
 	public String yearStart;
@@ -182,6 +184,10 @@ public class APIObject
 	public void setSeasonId(String id)
 	{
 		System.out.println("Setting id as " + id);
+		if(id == null)
+		{
+			return;
+		}
 		this.yearID = Integer.parseInt(id);
 	}
 
