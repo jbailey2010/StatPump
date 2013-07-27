@@ -62,6 +62,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="www.cincinnatibengals.com"
+         android:textColor="#191970"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -72,6 +73,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="contactus@bengals.com"
+         android:textColor="#191970"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -92,6 +94,7 @@
         android:layout_below="@+id/sw_team_info_founded"
         android:layout_marginTop="20dp"
         android:text="0-0-0"
+        android:textColor="#53933f"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -101,6 +104,8 @@
         android:layout_below="@+id/sw_team_info_record"
         android:layout_centerHorizontal="true"
         android:text="3rd Place"
+                android:textColor="#191970"
+     
         android:textAppearance="?android:attr/textAppearanceSmall" />
 </RelativeLayout>
         

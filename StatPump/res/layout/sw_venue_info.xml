@@ -63,7 +63,7 @@
                 android:layout_below="@+id/sw_venue_info_capacity"
                 android:layout_centerHorizontal="true"
                 android:text="Field Type: _____"
-                android:textColor="#444444"
+                android:textColor="#006600"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -74,6 +74,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="Architects: ______"
+                 android:textColor="#191970"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -93,7 +94,7 @@
                 android:layout_below="@+id/sw_venue_architects"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:textColor="#666666"
+                 android:textColor="#191970"
                 android:text="Coordinates"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -115,7 +116,7 @@
                 android:layout_below="@+id/sw_venue_info_hometeam"
                 android:text="Capacity: xxxxx"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#444444" />
+                android:textColor="#006600" />
         
     </RelativeLayout>
     
