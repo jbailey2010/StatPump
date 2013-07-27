@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+		<RelativeLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+
+            <TextView
+		        android:id="@+id/sw_venue_info_header"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="14dp"
+		        android:text="Paul Brown Stadium"
+		        android:textStyle="bold"
+		        android:textColor="#191970"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+		        android:id="@+id/sw_venue_info_founded"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/sw_venue_info_header"
+		        android:textColor="#53933f"
+		        android:layout_centerHorizontal="true"
+		        android:text="Founded: 1990"
+		        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/sw_venue_info_hometeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/sw_venue_info_founded"
+                android:layout_marginTop="25dp"
+                android:text="Home of the Bengals"
+                android:textColor="#0000aa"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/sw_venue_info_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_info_capacity"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="97dp"
+                android:text="address line1\naddress line2\naddress line3"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/sw_venue_fieldtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_info_capacity"
+                android:layout_centerHorizontal="true"
+                android:text="Field Type: _____"
+                android:textColor="#444444"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/sw_venue_architects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_info_address"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Architects: ______"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/sw_venue_url"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/sw_venue_fieldtype"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="27dp"
+                android:text="URL: "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/sw_venue_coordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_architects"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textColor="#666666"
+                android:text="Coordinates"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/sw_venue_previousnames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#53933f"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/sw_venue_info_founded"
+                android:text="Previous Names:"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/sw_venue_info_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/sw_venue_info_hometeam"
+                android:text="Capacity: xxxxx"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#444444" />
+        
+    </RelativeLayout>
+    
+
+</ScrollView>

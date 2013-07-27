@@ -163,6 +163,33 @@ public class APIObject
 	}
 	
 	/**
+	 * Forms the get match URL (specific match)
+	 * @return
+	 */
+	public String formGetSpecMatchUrl()
+	{
+		return this.sportURL + "/get_matches?id=" + this.matchID + "&type=match&detailed=yes";
+	}
+	
+	/**
+	 * Forms the get venue url
+	 * @return
+	 */
+	public String formGetVenueUrl()
+	{
+		int idStr = -1;
+		for(String name : this.teamIDMap.keySet())
+		{
+			String team = this.matchHome.split(" at ")[1];
+			if(name.equals(team))
+			{
+				idStr = this.teamIDMap.get(name);
+			}
+		}
+		return this.sportURL + "/get_venues?id=" + idStr + "&type=team&detailed=yes";
+	}
+	
+	/**
 	 * Forms the get team info url
 	 */
 	public String formGetTeamInfoUrl()
@@ -175,7 +202,7 @@ public class APIObject
 	 */
 	public String formGetSquadUrl(int team1id2)
 	{
-		return this.sportURL + "/get_Squads?id=" + team1id2 + "&type=team&statistics=yes&active=yes";
+		return this.sportURL + "/get_Squads?id=" + team1id2 + "&type=team&detailed=yes&statistics=yes&active=yes";
 	}
 	
 	/**
@@ -219,7 +246,10 @@ public class APIObject
 		teams.add("Select a Team");
 		for(String team : this.opponents)
 		{
-			teams.add(team);
+			if(this.teamIDMap.containsKey(team))
+			{
+				teams.add(team);
+			}
 		}
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.context, 

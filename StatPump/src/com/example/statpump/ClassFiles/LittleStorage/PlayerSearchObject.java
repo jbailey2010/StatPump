@@ -67,11 +67,28 @@ public class PlayerSearchObject
         List<String> teams = new ArrayList<String>();
         for (Element element : links) 
         { 
-        	String number = element.attr("shirtno");
+        	String number = "";
+        	if(element.hasAttr("shirtno"))
+        	{
+        		number = element.attr("shirtno");
+        	}
+        	if(element.hasAttr("shirtnumber"))
+        	{
+        		number = element.attr("shirtnumber");
+        	}
         	Element parent = element.parent();
         	int id = Integer.parseInt(parent.attr("person_id"));
         	String position = parent.attr("position");
-        	String name = parent.attr("firstname") + " " + parent.attr("lastname");
+        	String name = "";
+        	if(parent.hasAttr("firstname"))
+        	{
+        		name = parent.attr("firstname") + " " + parent.attr("lastname");
+        	}
+        	if(parent.hasAttr("first_name"))
+        	{
+        		name = parent.attr("first_name") + " " + parent.attr("last_name");
+        				
+        	}
         	playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
         }
         return playerData;

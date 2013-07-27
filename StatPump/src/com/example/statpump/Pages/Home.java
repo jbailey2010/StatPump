@@ -402,7 +402,7 @@ public class Home extends Activity {
 				}
 				sw.removeAllViews();
 				StatWellUsage.statWellInit(obj, cont);
-				headerText.setText(obj.matchHome + " - " + obj.matchDate);
+				headerText.setText(obj.matchHome + " - " + obj.matchDate);				
 				dialog.dismiss();
 			}
 		});

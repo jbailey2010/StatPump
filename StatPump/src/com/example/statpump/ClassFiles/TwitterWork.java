@@ -339,7 +339,7 @@ public class TwitterWork
 	    			android.R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));
-	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_green));
+	    searchOutput.setOverscrollFooter(cont.getResources().getDrawable(R.drawable.overscroll_green));
 	    if(android.os.Build.VERSION.SDK_INT > 11)
 	    { 
 		    SwipeDismissListViewTouchListener touchListener =
