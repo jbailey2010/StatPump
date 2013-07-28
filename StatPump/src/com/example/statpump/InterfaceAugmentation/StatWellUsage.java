@@ -70,15 +70,39 @@ public class StatWellUsage
 	public static void playerInfo(APIObject obj, Context cont, PlayerSearchObject po)
 	{
 		listViewPlayers(obj, cont, po);
+		/*playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
+		 * String sub = set[0];
+			    if(!set[3].equals(null) && !set[3].equals(" "))
+			    {
+			    	sub += ", #" + set[3];
+			    }
+			    datum.put("title", sub);
+			    datum.put("date", set[1] + " - " +  set[2]);
+		 */
 		//HANDLE ONCLICK STUFF HERE
 	}
 	
 	public static void playerStats(APIObject obj, Context cont, PlayerSearchObject po)
 	{
 		listViewPlayers(obj, cont, po);
+		/*playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
+		 * String sub = set[0];
+			    if(!set[3].equals(null) && !set[3].equals(" "))
+			    {
+			    	sub += ", #" + set[3];
+			    }
+			    datum.put("title", sub);
+			    datum.put("date", set[1] + " - " +  set[2]);
+		 */
 		//HANDLE ONCLICK STUFF HERE
 	}
 	
+	/**
+	 * Sets the listview up with players, sorted by numbers OR alphabetically
+	 * @param obj
+	 * @param cont
+	 * @param po
+	 */
 	public static void listViewPlayers(APIObject obj, Context cont, PlayerSearchObject po)
 	{
 		LinearLayout layout = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
