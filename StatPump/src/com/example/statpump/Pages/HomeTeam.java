@@ -333,10 +333,10 @@ public class HomeTeam extends Activity {
 				}
 				else if(teamStats.isChecked())
 				{
-					obj.statwellSetting = "Team Statistics";
+					obj.statwellSetting = "Player Statistics";
 				}
 				sw.removeAllViews();
-				StatWellUsage.statWellInit(obj, cont);
+				StatWellUsage.statWellInit(obj, cont, po);
 				dialog.dismiss();
 			}
 		});

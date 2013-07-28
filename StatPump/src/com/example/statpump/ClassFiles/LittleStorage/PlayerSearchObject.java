@@ -39,7 +39,7 @@ import android.widget.TwoLineListItem;
  */
 public class PlayerSearchObject 
 {
-	Map<String, Integer> players = new HashMap<String, Integer>();
+	public Map<String, Integer> players = new HashMap<String, Integer>();
 	public int playerID;
 	public String playerTeam;
 	public String playerName;
@@ -64,7 +64,6 @@ public class PlayerSearchObject
 	public Map<String, Integer> parseXMLSquads(Document doc, Map<String, Integer> playerData, String team1)
 	{
         Elements links = doc.select("statistics");
-        List<String> teams = new ArrayList<String>();
         for (Element element : links) 
         { 
         	String number = "";
@@ -76,6 +75,7 @@ public class PlayerSearchObject
         	{
         		number = element.attr("shirtnumber");
         	}
+        	System.out.println("Setting number to..." + number);
         	Element parent = element.parent();
         	int id = Integer.parseInt(parent.attr("person_id"));
         	String position = parent.attr("position");
@@ -89,8 +89,31 @@ public class PlayerSearchObject
         		name = parent.attr("first_name") + " " + parent.attr("last_name");
         				
         	}
+        	System.out.println("Putting " + number + ", for" + name);
         	playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
         }
+		if(playerData.size() == 0)
+		{
+			System.out.println("Size was zero.");
+			Elements linksSet = doc.select("person");
+			for(Element element : linksSet)
+			{
+				String number = " ";
+				int id = Integer.parseInt(element.attr("person_id"));
+	        	String position = element.attr("position");
+	        	String name = "";
+	        	if(element.hasAttr("firstname"))
+	        	{
+	        		name = element.attr("firstname") + " " + element.attr("lastname");
+	        	}
+	        	if(element.hasAttr("first_name"))
+	        	{
+	        		name = element.attr("first_name") + " " + element.attr("last_name");
+	        				
+	        	}
+	        	playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
+			}
+		}
         return playerData;
 	}
 	
@@ -183,7 +206,12 @@ public class PlayerSearchObject
 			//playerData.put(name + "//" + position + "//" + number, id)
 		    Map<String, String> datum = new HashMap<String, String>(2);
 		    String[] set = date.split("//");
-		    datum.put("title", set[0] + ", #" + set[3]);
+		    String sub = set[0];
+		    if(!set[3].equals(null) && !set[3].equals(" "))
+		    {
+		    	sub += ", #" + set[3];
+		    }
+		    datum.put("title", sub);
 		    datum.put("date", set[1] + " - " +  set[2]);
 		    data.add(datum);
 		}

@@ -47,4 +47,13 @@
         style="@style/ButtonText"
         android:text="Cancel" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="Note: some sports don't have numbers"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>

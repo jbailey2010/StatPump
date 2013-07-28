@@ -401,7 +401,7 @@ public class Home extends Activity {
 					obj.statwellSetting = "Venue Information";
 				}
 				sw.removeAllViews();
-				StatWellUsage.statWellInit(obj, cont);
+				StatWellUsage.statWellInit(obj, cont, po);
 				headerText.setText(obj.matchHome + " - " + obj.matchDate);				
 				dialog.dismiss();
 			}

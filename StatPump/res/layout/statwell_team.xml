@@ -39,12 +39,8 @@
             android:id="@+id/statwell_team_stats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Team Statistics" />
-        <!-- <RadioButton
-            android:id="@+id/statwell_team_talk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team Conversation" />-->
+            android:text="Player Statistics" />
+         
     </RadioGroup>
 
     <Button
