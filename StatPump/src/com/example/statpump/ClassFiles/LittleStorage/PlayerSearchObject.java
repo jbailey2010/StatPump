@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.APIInteraction.ParseOpponentDates;
 
 import android.app.Activity;
@@ -66,19 +67,25 @@ public class PlayerSearchObject
         Elements links = doc.select("statistics");
         for (Element element : links) 
         { 
-        	String number = "";
-        	if(element.hasAttr("shirtno"))
+        	String number = "Number not listed";
+        	System.out.println(element.attr("shirtno") + ", " + element.attr("shirtnumber"));
+        	if(element.hasAttr("shirtno") && HandleInput.isInteger(element.attr("shirtno")))
         	{
         		number = element.attr("shirtno");
+        		System.out.println("Setting shirtno to " + number);
         	}
-        	if(element.hasAttr("shirtnumber"))
+        	if(element.hasAttr("shirtnumber") && HandleInput.isInteger(element.attr("shirtnumber")))
         	{
         		number = element.attr("shirtnumber");
+        		System.out.println("Setting shirtnumber to " + number);
         	}
-        	System.out.println("Setting number to..." + number);
         	Element parent = element.parent();
         	int id = Integer.parseInt(parent.attr("person_id"));
         	String position = parent.attr("position");
+        	if(position == null || position.length() < 3)
+        	{
+        		position = "Position not listed";
+        	}
         	String name = "";
         	if(parent.hasAttr("firstname"))
         	{
@@ -87,9 +94,9 @@ public class PlayerSearchObject
         	if(parent.hasAttr("first_name"))
         	{
         		name = parent.attr("first_name") + " " + parent.attr("last_name");
+        		System.out.println("Full_name is " + name);
         				
         	}
-        	System.out.println("Putting " + number + ", for" + name);
         	playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
         }
 		if(playerData.size() == 0)
@@ -98,7 +105,7 @@ public class PlayerSearchObject
 			Elements linksSet = doc.select("person");
 			for(Element element : linksSet)
 			{
-				String number = " ";
+				String number = "Number not listed";
 				int id = Integer.parseInt(element.attr("person_id"));
 	        	String position = element.attr("position");
 	        	String name = "";
@@ -207,7 +214,7 @@ public class PlayerSearchObject
 		    Map<String, String> datum = new HashMap<String, String>(2);
 		    String[] set = date.split("//");
 		    String sub = set[0];
-		    if(!set[3].equals(null) && !set[3].equals(" "))
+		    if(!set[3].equals(null) && !set[3].equals("Number not listed"))
 		    {
 		    	sub += ", #" + set[3];
 		    }

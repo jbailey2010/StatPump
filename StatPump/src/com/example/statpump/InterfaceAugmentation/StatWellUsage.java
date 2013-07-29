@@ -112,7 +112,8 @@ public class StatWellUsage
 		int counter = 0;
 		for(String key : po.players.keySet())
 		{
-			if(key.split("//")[3].equals(" "))
+			System.out.println(key);
+			if(key.contains("Number not listed"))
 			{
 				counter++;
 			}
@@ -129,10 +130,12 @@ public class StatWellUsage
 						@Override
 						public int compare(String a, String b) 
 						{
-							int num1 = Integer.parseInt(a.split("//")[3]);
-							int num2 = Integer.parseInt(b.split("//")[3]);
-							if(!a.split("//")[3].equals(" ") && !b.split("//")[3].equals(" "))
+
+							if(!a.split("//")[3].equals(" ") && !a.split("//")[3].equals("Number not listed") && 
+									!b.split("//")[3].equals("Number not listed"))
 							{
+								int num1 = Integer.parseInt(a.split("//")[3]);
+								int num2 = Integer.parseInt(b.split("//")[3]);
 								if (num1 > num2)
 							    {
 							        return 1;
@@ -178,7 +181,7 @@ public class StatWellUsage
 				Map<String, String> datum = new HashMap<String, String>(2);
 			    String[] set = date.split("//");
 			    String sub = set[0];
-			    if(!set[3].equals(null) && !set[3].equals(" "))
+			    if(!set[3].equals(null) && !set[3].equals("Number not listed"))
 			    {
 			    	sub += ", #" + set[3];
 			    }

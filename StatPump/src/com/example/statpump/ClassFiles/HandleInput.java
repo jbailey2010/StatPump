@@ -138,4 +138,18 @@ public class HandleInput
 			});
 		}
 	}
+	
+	/**
+	 * Makes sure a string is valid
+	 * @param s
+	 * @return
+	 */
+	public static boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    }
+	    return true;
+	}
 }
