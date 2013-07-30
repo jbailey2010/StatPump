@@ -68,16 +68,13 @@ public class PlayerSearchObject
         for (Element element : links) 
         { 
         	String number = "Number not listed";
-        	System.out.println(element.attr("shirtno") + ", " + element.attr("shirtnumber"));
         	if(element.hasAttr("shirtno") && HandleInput.isInteger(element.attr("shirtno")))
         	{
         		number = element.attr("shirtno");
-        		System.out.println("Setting shirtno to " + number);
         	}
         	if(element.hasAttr("shirtnumber") && HandleInput.isInteger(element.attr("shirtnumber")))
         	{
         		number = element.attr("shirtnumber");
-        		System.out.println("Setting shirtnumber to " + number);
         	}
         	Element parent = element.parent();
         	int id = Integer.parseInt(parent.attr("person_id"));
@@ -93,9 +90,7 @@ public class PlayerSearchObject
         	}
         	if(parent.hasAttr("first_name"))
         	{
-        		name = parent.attr("first_name") + " " + parent.attr("last_name");
-        		System.out.println("Full_name is " + name);
-        				
+        		name = parent.attr("first_name") + " " + parent.attr("last_name");        				
         	}
         	playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
         }

@@ -208,11 +208,12 @@ public class APIInteraction
 		    {
 		    	APIObject obj = (APIObject)data[0];
 		    	try {
+		    		long time = System.nanoTime();
 					Document doc = getXML(obj.formGetTeamUrl(), obj);
 					String dataSet = parseXML(doc, "ranking", "team_id");
-					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] idSet = dataSet.split("\n");
 					System.out.println("ID set size "  + idSet.length);
+					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] teamSet = secSet.split("\n");
 					System.out.println("Team set size " + teamSet.length);
 					List<String> teams = Arrays.asList(teamSet);

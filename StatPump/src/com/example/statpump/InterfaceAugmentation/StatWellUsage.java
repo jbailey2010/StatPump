@@ -14,12 +14,17 @@ import org.apache.http.client.protocol.ClientContext;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TwoLineListItem;
 
 import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.ClassFiles.LittleStorage.TeamInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.VenueInfoObject;
@@ -31,7 +36,7 @@ import com.example.statpump.ClassFiles.LittleStorage.VenueInfoObject;
 public class StatWellUsage 
 {
 	public static BounceListView playerList;
-	
+	static LinearLayout sw;
 	/**
 	 * Distributes work based on statwell selection
 	 * @param obj
@@ -67,24 +72,37 @@ public class StatWellUsage
 		}
 	}
 	
-	public static void playerInfo(APIObject obj, Context cont, PlayerSearchObject po)
+	public static void playerInfo(final APIObject obj, final Context cont, final PlayerSearchObject po)
 	{
-		listViewPlayers(obj, cont, po);
-		/*playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
-		 * String sub = set[0];
-			    if(!set[3].equals(null) && !set[3].equals(" "))
-			    {
-			    	sub += ", #" + set[3];
-			    }
-			    datum.put("title", sub);
-			    datum.put("date", set[1] + " - " +  set[2]);
-		 */
-		//HANDLE ONCLICK STUFF HERE
+		View res = listViewPlayers(obj, cont, po);
+		final PlayerInfoObject pio = new PlayerInfoObject();
+		pio.number = "Number not listed";
+		BounceListView lv = (BounceListView)res.findViewById(R.id.player_list);
+		lv.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				sw.removeAllViews();
+				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
+				pio.name = tweet.split(", ")[0];
+				if(tweet.split(", ").length > 1)
+				{
+					pio.number = tweet.split(", ")[1].replace("#", "");
+				}
+				String teamPos = ((TwoLineListItem)arg1).getText2().getText().toString();
+				pio.pos = teamPos.split(" - ")[0];
+				pio.team = teamPos.split(" - ")[1];
+				System.out.println(pio.name + "//" + pio.pos + "//" + pio.team + "//" + pio.number);
+				pio.playerID = po.players.get(pio.name + "//" + pio.pos + "//" + pio.team + "//" + pio.number);
+				pio.spawnMoreInfo(obj, cont, po);
+			}
+		});
 	}
 	
 	public static void playerStats(APIObject obj, Context cont, PlayerSearchObject po)
 	{
-		listViewPlayers(obj, cont, po);
+		View res = listViewPlayers(obj, cont, po);
+		BounceListView lv = (BounceListView)res.findViewById(R.id.player_list);
 		/*playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
 		 * String sub = set[0];
 			    if(!set[3].equals(null) && !set[3].equals(" "))
@@ -103,18 +121,18 @@ public class StatWellUsage
 	 * @param cont
 	 * @param po
 	 */
-	public static void listViewPlayers(APIObject obj, Context cont, PlayerSearchObject po)
+	public static View listViewPlayers(APIObject obj, Context cont, PlayerSearchObject po)
 	{
-		LinearLayout layout = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
-		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.player_list, layout, false);
+		sw = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
+		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.player_list, sw, false);
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		boolean isNumbers = true;
 		int counter = 0;
 		for(String key : po.players.keySet())
 		{
-			System.out.println(key);
 			if(key.contains("Number not listed"))
 			{
+				System.out.println("HERE: "+key);
 				counter++;
 			}
 			if(counter > 3)
@@ -200,7 +218,8 @@ public class StatWellUsage
 		playerList = listview;
 		listview.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));
 		listview.setOverscrollFooter(cont.getResources().getDrawable(R.drawable.overscroll_green));
-		layout.addView(res);
+		sw.addView(res);
+		return res;
 	}
 	
 	/**

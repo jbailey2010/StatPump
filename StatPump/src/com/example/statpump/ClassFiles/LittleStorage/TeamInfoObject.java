@@ -68,7 +68,7 @@ public class TeamInfoObject
 	}
 	
 	/**
-	 * 
+	 * Fills the content of team info
 	 */
 	public void teamInfoFill(TeamInfoObject result, final Activity cont) 
 	{

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+   		android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/sw_back_arrow"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/back_arrow" />
+
+    <TextView
+        android:id="@+id/sw_playerinfo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_back_arrow"
+        android:layout_centerHorizontal="true"
+        android:text="Name here"
+        android:textColor="#191970"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/sw_playerinfo_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sw_playerinfo_name"
+        android:layout_marginTop="55dp"
+        android:text="Team"
+        android:layout_marginLeft="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#53933f" />
+
+    <TextView
+        android:id="@+id/sw_playerinfo_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sw_playerinfo_team"
+        android:layout_alignBottom="@+id/sw_playerinfo_team"
+        android:layout_alignParentRight="true"
+        android:text="Position"
+        android:layout_marginRight="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#53933f" />
+
+    <TextView
+        android:id="@+id/sw_playerinfo_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sw_playerinfo_gender"
+        android:text="Height"
+        android:textColor="#555555"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+     <TextView
+        android:id="@+id/sw_playerinfo_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sw_playerinfo_height"
+        android:text="Weight"
+        android:textColor="#555555"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+     <TextView
+         android:id="@+id/sw_playerinfo_gender"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/sw_playerinfo_pos"
+         android:layout_marginTop="134dp"
+         android:text="Gender"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         android:textColor="#555555" />
+
+     <TextView
+         android:id="@+id/sw_playerinfo_hometown"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/sw_playerinfo_pos"
+         android:layout_marginTop="36dp"
+         android:text="Home town"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <TextView
+         android:id="@+id/sw_playerinfo_number"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/sw_playerinfo_name"
+         android:layout_centerHorizontal="true"
+         android:text="Number"
+         android:textColor="#53933f"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
+</ScrollView>
