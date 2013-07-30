@@ -26,6 +26,7 @@ import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
+import com.example.statpump.ClassFiles.LittleStorage.PlayerStatsObject;
 import com.example.statpump.ClassFiles.LittleStorage.TeamInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.VenueInfoObject;
 /**
@@ -92,27 +93,36 @@ public class StatWellUsage
 				String teamPos = ((TwoLineListItem)arg1).getText2().getText().toString();
 				pio.pos = teamPos.split(" - ")[0];
 				pio.team = teamPos.split(" - ")[1];
-				System.out.println(pio.name + "//" + pio.pos + "//" + pio.team + "//" + pio.number);
 				pio.playerID = po.players.get(pio.name + "//" + pio.pos + "//" + pio.team + "//" + pio.number);
-				pio.spawnMoreInfo(obj, cont, po);
+				pio.spawnMoreInfo(obj, cont, po, true);
 			}
 		});
 	}
 	
-	public static void playerStats(APIObject obj, Context cont, PlayerSearchObject po)
+	public static void playerStats(final APIObject obj, final Context cont, final PlayerSearchObject po)
 	{
+		final PlayerStatsObject o = new PlayerStatsObject();
 		View res = listViewPlayers(obj, cont, po);
 		BounceListView lv = (BounceListView)res.findViewById(R.id.player_list);
-		/*playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
-		 * String sub = set[0];
-			    if(!set[3].equals(null) && !set[3].equals(" "))
-			    {
-			    	sub += ", #" + set[3];
-			    }
-			    datum.put("title", sub);
-			    datum.put("date", set[1] + " - " +  set[2]);
-		 */
-		//HANDLE ONCLICK STUFF HERE
+		lv.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				sw.removeAllViews();
+				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
+				String name = tweet.split(", ")[0];
+				String number = "Number not listed";
+				if(tweet.split(", ").length > 1)
+				{
+					number = tweet.split(", ")[1].replace("#", "");
+				}
+				String teamPos = ((TwoLineListItem)arg1).getText2().getText().toString();
+				String pos = teamPos.split(" - ")[0];
+				String team = teamPos.split(" - ")[1];
+				int playerID = po.players.get(name + "//" + pos + "//" + team + "//" + number);
+				o.spawnAsync(playerID, cont, obj, po, true, name, team, pos, number);
+			}
+		});
 	}
 	
 	/**
@@ -132,7 +142,6 @@ public class StatWellUsage
 		{
 			if(key.contains("Number not listed"))
 			{
-				System.out.println("HERE: "+key);
 				counter++;
 			}
 			if(counter > 3)

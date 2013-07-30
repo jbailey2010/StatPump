@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/sw_back_arrow"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/back_arrow" />
+    
+    <TextView
+        android:id="@+id/sw_playerstats_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_back_arrow"
+        android:layout_centerHorizontal="true"
+        android:text="Name here"
+        android:textColor="#191970"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/sw_playerstats_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sw_playerstats_name"
+        android:layout_marginTop="55dp"
+        android:text="Team"
+        android:layout_marginLeft="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#53933f" />
+
+    <TextView
+        android:id="@+id/sw_playerstats_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sw_playerstats_team"
+        android:layout_alignBottom="@+id/sw_playerstats_team"
+        android:layout_alignParentRight="true"
+        android:text="Position"
+        android:layout_marginRight="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#53933f" />
+    
+    <TextView
+         android:id="@+id/sw_playerstats_number"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/sw_playerstats_name"
+         android:layout_centerHorizontal="true"
+         android:text="Number"
+         android:textColor="#53933f"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/sw_playerstats_statslist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sw_playerstats_team"
+        android:layout_below="@+id/sw_playerstats_team"
+        android:layout_marginTop="71dp"
+        android:text="Stats start here"
+        android:textSize="24sp" />
+
+</RelativeLayout>
+</ScrollView>

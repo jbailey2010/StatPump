@@ -151,6 +151,11 @@ public class PlayerInfoObject
 		    }
 	  }
 
+	/**
+	 * Fills out the info stuff
+	 * @param result
+	 * @param a
+	 */
 	public void teamInfoFill(PlayerInfoObject result, final Activity a) {
 		final LinearLayout layout = (LinearLayout)a.findViewById(R.id.statwell);
 		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_info, layout, false);

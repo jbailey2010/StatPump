@@ -206,6 +206,16 @@ public class APIObject
 	}
 	
 	/**
+	 * Forms the get team stats url
+	 * @param teamID
+	 * @return
+	 */
+	public String formGetTeamStatsUrl(int teamID)
+	{
+		return this.sportURL + "/get_player_statistics?id=" + this.yearID + "&type=season&team_id=" + teamID;
+	}
+	
+	/**
 	 * Sets the year ID after the asynctask ends
 	 */
 	public void setSeasonId(String id)
