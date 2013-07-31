@@ -309,6 +309,7 @@ public class PlayerSearchObject
 	 */
 	public void finishSearch(Context a, PlayerStatsObject result, APIObject obj) {
 		final LinearLayout layout = (LinearLayout)((Activity) a).findViewById(R.id.statwell);
+		layout.removeAllViews();
 		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_info, layout, false);
 		TextView nameView = (TextView)res.findViewById(R.id.sw_playerinfo_name);
 		nameView.setText(piObj.name);

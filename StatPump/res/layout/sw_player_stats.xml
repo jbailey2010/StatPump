@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <RelativeLayout 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/sw_back_arrow"
@@ -12,16 +12,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/back_arrow" />
-    
-    <TextView
-        android:id="@+id/sw_playerstats_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sw_back_arrow"
-        android:layout_centerHorizontal="true"
-        android:text="Name here"
-        android:textColor="#191970"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/sw_playerstats_team"
@@ -66,6 +56,16 @@
         android:layout_marginTop="71dp"
         android:text="Stats start here"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/sw_playerstats_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sw_back_arrow"
+        android:text="Name here"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#191970" />
 
 </RelativeLayout>
 </ScrollView>
