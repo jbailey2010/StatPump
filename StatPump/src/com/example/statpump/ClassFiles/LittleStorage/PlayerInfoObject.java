@@ -32,7 +32,6 @@ public class PlayerInfoObject
 	public String number;
 	public int playerID;
 	public String hometown;
-	public String gender;
 	public String height;
 	public String weight;
 	public APIObject ao;
@@ -55,7 +54,7 @@ public class PlayerInfoObject
 	public void spawnMoreInfo(APIObject obj, Context cont, PlayerSearchObject po, boolean flag) {
 		ao = obj;
 		pso = po;
-		ParsePlayerInfo task = this.new ParsePlayerInfo(obj, cont, this, flag);
+		ParsePlayerInfo task = this.new ParsePlayerInfo(obj, cont, this, flag, po);
 		task.execute(obj, this);
 	}
 	
@@ -73,7 +72,6 @@ public class PlayerInfoObject
 			int iterID = Integer.parseInt(element.attr("person_id"));
 			if(iterID == this.playerID)
 			{
-				this.gender = element.attr("gender");
 				this.hometown = "Hometown:\n" + element.attr("place_of_birth") + "\n" + element.attr("country_of_birth");
 				double heightCM = Double.parseDouble(element.attr("height"));
 				this.height = heightCM + " centimeters\n";
@@ -103,13 +101,15 @@ public class PlayerInfoObject
 			Context a;
 			ProgressDialog pda;
 			PlayerInfoObject o;
+			PlayerSearchObject po;
 			boolean setContent;
-		    public ParsePlayerInfo(APIObject object, Context cont, PlayerInfoObject tio, boolean flag) 
+		    public ParsePlayerInfo(APIObject object, Context cont, PlayerInfoObject tio, boolean flag, PlayerSearchObject p) 
 		    {
 		    	setContent = flag;
 		        obj = object;
 		        a = cont;
 		        o = tio;
+		        po = p;
 		        pda = new ProgressDialog(cont);
 		        pda.setCancelable(false);
 		        pda.setMessage("Please wait, fetching the information...");
@@ -125,13 +125,15 @@ public class PlayerInfoObject
 			protected void onPostExecute(PlayerInfoObject result){
 			   super.onPostExecute(result);
 			   pda.dismiss();
+			   System.out.println(result.number);
 			   if(setContent)
 			   {
 				   o.teamInfoFill(result, (Activity) a);
 			   }
 			   else
 			   {
-				   //CALL FUNCTION TO SPAWN PLAYER STATS HERE!
+				   System.out.println(result.number);
+				   po.getStats(result, a, obj);
 			   }
 			}
 			 
@@ -143,6 +145,7 @@ public class PlayerInfoObject
 		    	try {
 					Document doc = APIInteraction.getXML(obj.formGetSquadUrl(obj.teamIDMap.get(obj.team1)), obj);
 					o=o.parseXML(obj, doc);
+					System.out.println(o.number);
 					return o;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -179,8 +182,6 @@ public class PlayerInfoObject
 		height.setText(result.height);
 		TextView weight = (TextView)res.findViewById(R.id.sw_playerinfo_weight);
 		weight.setText(result.weight);
-		TextView gender = (TextView)res.findViewById(R.id.sw_playerinfo_gender);
-		gender.setText(result.gender);
 		TextView homeTown = (TextView)res.findViewById(R.id.sw_playerinfo_hometown);
 		homeTown.setText(result.hometown);
 		TextView stats = (TextView)res.findViewById(R.id.sw_playerinfo_statslist);

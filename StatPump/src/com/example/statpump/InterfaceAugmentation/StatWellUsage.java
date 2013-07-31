@@ -73,6 +73,12 @@ public class StatWellUsage
 		}
 	}
 	
+	/**
+	 * Gets the player info onclick
+	 * @param obj
+	 * @param cont
+	 * @param po
+	 */
 	public static void playerInfo(final APIObject obj, final Context cont, final PlayerSearchObject po)
 	{
 		View res = listViewPlayers(obj, cont, po);
@@ -99,6 +105,12 @@ public class StatWellUsage
 		});
 	}
 	
+	/**
+	 * Gets the player stats onclick
+	 * @param obj
+	 * @param cont
+	 * @param po
+	 */
 	public static void playerStats(final APIObject obj, final Context cont, final PlayerSearchObject po)
 	{
 		final PlayerStatsObject o = new PlayerStatsObject();

@@ -40,7 +40,7 @@ public class PlayerStatsObject
 	{
 		ao = obj;
 		p = po;
-		ParsePlayerStats task = this.new ParsePlayerStats(obj, cont, this, flag, name, team, pos, num);
+		ParsePlayerStats task = this.new ParsePlayerStats(obj, cont, this, flag, name, team, pos, num, po);
 		task.execute(obj, this, playerID);
 	}
 	
@@ -125,7 +125,9 @@ public class PlayerStatsObject
 			String t;
 			String p;
 			String number;
-		    public ParsePlayerStats(APIObject object, Context cont, PlayerStatsObject tio, boolean flag, String name, String team, String pos, String num) 
+			PlayerSearchObject psObj;
+		    public ParsePlayerStats(APIObject object, Context cont, PlayerStatsObject tio, boolean flag, String name, String team, String pos, String num, 
+		    		PlayerSearchObject pso) 
 		    {
 		        obj = object;
 		        a = cont;
@@ -139,6 +141,7 @@ public class PlayerStatsObject
 		        pda.setCancelable(false);
 		        pda.setMessage("Please wait, fetching the information...");
 		        pda.show();
+		        psObj = pso;
 		    }
 		    
 			@Override
@@ -156,7 +159,7 @@ public class PlayerStatsObject
 			   }
 			   else
 			   {
-				   //CALL FUNCTION TO SPAWN PLAYER STATS HERE!
+				   psObj.finishSearch(a, result, obj);
 			   }
 			}
 			 

@@ -15,23 +15,30 @@ import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.APIInteraction.ParseOpponentDates;
+import com.example.statpump.ClassFiles.LittleStorage.PlayerStatsObject.ParsePlayerStats;
+import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.TwoLineListItem;
 /**
  * Gets the squads and handles the search
@@ -40,13 +47,17 @@ import android.widget.TwoLineListItem;
  */
 public class PlayerSearchObject 
 {
+	public PlayerInfoObject piObj;
 	public Map<String, Integer> players = new HashMap<String, Integer>();
 	public int playerID;
 	public String playerTeam;
 	public String playerName;
 	public int playerNumber;
 	public String playerPos;
-	
+	public Context context;
+	public SimpleAdapter adapter;
+	public AutoCompleteTextView textView;
+	public static List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 	/**
 	 * Spawns the asynctask that gets the squads
 	 * @param cont
@@ -54,6 +65,7 @@ public class PlayerSearchObject
 	 */
 	public PlayerSearchObject(Context cont, APIObject obj)
 	{
+		context = cont;
 		ParseSquads task = this.new ParseSquads(obj, cont, this);
 		task.execute(obj, this);
 	}
@@ -184,7 +196,7 @@ public class PlayerSearchObject
 		    }
 	  }
 
-	public void searchInit(APIObject obj, Context cont, final PlayerSearchObject o, final LinearLayout sw) 
+	public void searchInit(final APIObject obj, final Context cont, final PlayerSearchObject o, final LinearLayout sw) 
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -202,7 +214,7 @@ public class PlayerSearchObject
 			}
 		});
 		final AutoCompleteTextView input = (AutoCompleteTextView)dialog.findViewById(R.id.player_search_input);
-		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		data = new ArrayList<Map<String, String>>();
 		
 		for (String date : this.players.keySet()) {
 			//playerData.put(name + "//" + position + "//" + number, id)
@@ -217,7 +229,7 @@ public class PlayerSearchObject
 		    datum.put("date", set[1] + " - " +  set[2]);
 		    data.add(datum);
 		}
-		SimpleAdapter adapter = new SimpleAdapter(cont, data,
+		adapter = new SimpleAdapter(cont, data,
 		                                          android.R.layout.simple_list_item_2,
 		                                          new String[] {"title", "date"},
 		                                          new int[] {android.R.id.text1,
@@ -229,22 +241,105 @@ public class PlayerSearchObject
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				//playerData.put(name + "//" + position + "//" + team1 + "//" + number, id);
 				input.setText("");
 				String nameNum = ((TwoLineListItem)arg1).getText1().getText().toString();
 				String[]nameNumSet = nameNum.split(", ");
 				String key = nameNumSet[0] + "//";
 				String positionTeam = ((TwoLineListItem)arg1).getText2().getText().toString();
 				String[]ptSet = positionTeam.split(" - ");
-				key += ptSet[0] + "//" + ptSet[1] + "//" + nameNumSet[1];
+				key += ptSet[0] + "//" + ptSet[1] + "//";
+				if(nameNumSet.length == 1)
+				{
+					key += "Number not listed";
+				}
+				else
+				{
+					key += nameNumSet[1].substring(1, nameNumSet[1].length());
+					o.playerNumber = Integer.parseInt(nameNumSet[1].substring(1, nameNumSet[1].length()));
+				}
+				System.out.println(key);
 				o.playerID = o.players.get(key);
-				o.playerName = nameNumSet[0];
-				o.playerNumber = Integer.parseInt(nameNumSet[1]);
+				o.playerName = nameNumSet[0]; 
 				o.playerTeam = ptSet[1];
 				o.playerPos = ptSet[0];
 				sw.removeAllViews();
-				//CALL POPULATE STATWELL HERE WITH THE DATA
+				o.getPlayerInfo(obj, cont, o, sw);
 				dialog.dismiss();
 			}
 		});
+	} 
+	
+	
+	/**
+	 * Having gotten the data, it gets the playe rinfo
+	 * @param obj
+	 * @param cont
+	 * @param o
+	 * @param sw
+	 */
+	public void getPlayerInfo(APIObject obj, Context cont, final PlayerSearchObject o, final LinearLayout sw)
+	{
+		final PlayerInfoObject pio = new PlayerInfoObject();
+		pio.name = o.playerName;
+		pio.number = String.valueOf(o.playerNumber);
+		pio.team = o.playerTeam;
+		pio.pos = o.playerPos;
+		pio.playerID = o.playerID;
+		pio.spawnMoreInfo(obj, cont, o, false);
+	}
+
+	/**
+	 * The player info is gotten, now it gets the stats
+	 * @param result
+	 * @param a
+	 * @param obj
+	 */
+	public void getStats(PlayerInfoObject result, Context a, APIObject obj) {
+		piObj = result;
+		final PlayerStatsObject pso = new PlayerStatsObject();
+		pso.spawnAsync(playerID, a, obj, this, false, piObj.name, piObj.number, piObj.team, piObj.number);
+	}
+
+	/**
+	 * Sets the search output
+	 * @param a
+	 * @param result
+	 * @param obj
+	 */
+	public void finishSearch(Context a, PlayerStatsObject result, APIObject obj) {
+		final LinearLayout layout = (LinearLayout)((Activity) a).findViewById(R.id.statwell);
+		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_info, layout, false);
+		TextView nameView = (TextView)res.findViewById(R.id.sw_playerinfo_name);
+		nameView.setText(piObj.name);
+		TextView number = (TextView)res.findViewById(R.id.sw_playerinfo_number);
+		if(this.playerNumber > 0)
+		{
+			number.setText("#" + this.playerNumber);
+		}
+		else
+		{
+			number.setText("Number not listed");
+		}
+		TextView team = (TextView)res.findViewById(R.id.sw_playerinfo_team);
+		team.setText(piObj.team);
+		TextView pos = (TextView)res.findViewById(R.id.sw_playerinfo_pos);
+		pos.setText(piObj.pos);
+		TextView height = (TextView)res.findViewById(R.id.sw_playerinfo_height);
+		height.setText(piObj.height);
+		TextView weight = (TextView)res.findViewById(R.id.sw_playerinfo_weight);
+		weight.setText(piObj.weight);
+		TextView homeTown = (TextView)res.findViewById(R.id.sw_playerinfo_hometown);
+		homeTown.setText(piObj.hometown);
+		TextView stats = (TextView)res.findViewById(R.id.sw_playerinfo_statslist);
+		StringBuilder statsList = new StringBuilder(1000);
+		for(String stat : result.stats)
+		{
+			statsList.append(stat + "\n\n");
+		}
+		stats.setText(statsList.toString());
+		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);
+		back.setVisibility(View.GONE);
+		layout.addView(res);
 	}
 }
