@@ -21,6 +21,7 @@
         android:layout_below="@+id/sw_playerstats_name"
         android:layout_marginTop="55dp"
         android:text="Team"
+        android:textStyle="bold"
         android:layout_marginLeft="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#53933f" />
@@ -33,6 +34,7 @@
         android:layout_alignBottom="@+id/sw_playerstats_team"
         android:layout_alignParentRight="true"
         android:text="Position"
+        android:textStyle="bold"
         android:layout_marginRight="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#53933f" />
@@ -45,6 +47,7 @@
          android:layout_centerHorizontal="true"
          android:text="Number"
          android:textColor="#53933f"
+         android:textStyle="bold"
          android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -55,6 +58,7 @@
         android:layout_below="@+id/sw_playerstats_team"
         android:layout_marginTop="71dp"
         android:text="Stats start here"
+        android:textStyle="bold"
         android:textSize="24sp" />
 
     <TextView
@@ -64,6 +68,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/sw_back_arrow"
         android:text="Name here"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#191970" />
 

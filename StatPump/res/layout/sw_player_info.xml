@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sw_back_arrow"
+        android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:text="Name here"
         android:textColor="#191970"
@@ -34,6 +35,7 @@
         android:layout_marginTop="55dp"
         android:text="Team"
         android:layout_marginLeft="20dp"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#53933f" />
 
@@ -44,6 +46,7 @@
         android:layout_alignBottom="@+id/sw_playerinfo_team"
         android:layout_alignParentRight="true"
         android:text="Position"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingRight="30dp"
         android:textColor="#53933f" />
@@ -56,6 +59,7 @@
          android:layout_centerHorizontal="true"
          android:text="Number"
          android:textColor="#53933f"
+         android:textStyle="bold"
          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
@@ -66,6 +70,7 @@
           android:layout_alignBottom="@+id/sw_playerinfo_weight"
           android:layout_alignLeft="@+id/sw_playerinfo_pos"
           android:text="Height"
+          android:textStyle="bold"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:textColor="#555555" />
 
@@ -77,6 +82,7 @@
           android:layout_centerHorizontal="true"
           android:layout_marginTop="74dp"
           android:text="Home town"
+          android:textStyle="bold"
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
@@ -87,6 +93,7 @@
           android:layout_below="@+id/sw_playerinfo_hometown"
           android:layout_marginTop="43dp"
           android:text="Stats start here"
+          android:textStyle="bold"
           android:textSize="24sp" />
 
       <TextView
@@ -97,6 +104,7 @@
           android:layout_below="@+id/sw_playerinfo_team"
           android:layout_marginTop="21dp"
           android:text="Weight"
+          android:textStyle="bold"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:textColor="#555555" />
 

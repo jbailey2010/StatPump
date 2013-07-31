@@ -33,6 +33,7 @@
 		        android:textColor="#53933f"
 		        android:layout_centerHorizontal="true"
 		        android:text="Founded: 1990"
+		        android:textStyle="bold"
 		        android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -44,6 +45,7 @@
                 android:layout_marginTop="25dp"
                 android:text="Home of the Bengals"
                 android:textColor="#0000aa"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -53,6 +55,7 @@
                 android:layout_below="@+id/sw_venue_info_capacity"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="97dp"
+                android:textStyle="bold"
                 android:text="address line1\naddress line2\naddress line3"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -64,6 +67,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="Field Type: _____"
                 android:textColor="#006600"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -75,6 +79,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Architects: ______"
                  android:textColor="#191970"
+                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -85,6 +90,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="27dp"
                 android:text="URL: "
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -96,6 +102,7 @@
                 android:layout_marginTop="20dp"
                  android:textColor="#191970"
                 android:text="Coordinates"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -106,6 +113,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/sw_venue_info_founded"
                 android:text="Previous Names:"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -115,6 +123,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/sw_venue_info_hometeam"
                 android:text="Capacity: xxxxx"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#006600" />
         
