@@ -2,9 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+
     <RelativeLayout
         android:layout_width="wrap_content"
-   		android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/sw_back_arrow"
@@ -101,5 +102,19 @@
          android:textColor="#53933f"
          android:textAppearance="?android:attr/textAppearanceMedium" />
 
+      <TextView
+          android:id="@+id/sw_playerinfo_statslist"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="20dp"
+          android:layout_below="@+id/sw_playerinfo_weight"
+          android:text="Stats start here"
+          android:textSize="24sp" />
+
 </RelativeLayout>
+
+   
+
 </ScrollView>

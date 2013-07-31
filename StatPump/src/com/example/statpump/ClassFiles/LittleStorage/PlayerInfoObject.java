@@ -183,6 +183,8 @@ public class PlayerInfoObject
 		gender.setText(result.gender);
 		TextView homeTown = (TextView)res.findViewById(R.id.sw_playerinfo_hometown);
 		homeTown.setText(result.hometown);
+		TextView stats = (TextView)res.findViewById(R.id.sw_playerinfo_statslist);
+		stats.setVisibility(View.GONE);
 		layout.addView(res);
 		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);
 		back.setOnClickListener(new OnClickListener(){
