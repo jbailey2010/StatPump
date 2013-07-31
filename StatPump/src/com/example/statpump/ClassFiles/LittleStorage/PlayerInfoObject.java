@@ -106,6 +106,7 @@ public class PlayerInfoObject
 			boolean setContent;
 		    public ParsePlayerInfo(APIObject object, Context cont, PlayerInfoObject tio, boolean flag) 
 		    {
+		    	setContent = flag;
 		        obj = object;
 		        a = cont;
 		        o = tio;

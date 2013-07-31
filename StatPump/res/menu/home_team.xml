@@ -9,13 +9,13 @@
         android:id="@+id/twitter"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
-        android:title="Twitter"/>
+        android:title="twitter"/>
    <item
         android:id="@+id/facebook"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText" 
-        android:title="Facebook"/>
-   <item
+        android:showAsAction="ifRoom|withText"
+        android:title="Facebook" />
+   <item 
         android:id="@+id/switch_game"  
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 

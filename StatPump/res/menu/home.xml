@@ -10,7 +10,7 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
         android:title="Twitter"/>
-   <item
+   <item 
         android:id="@+id/facebook"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
@@ -24,7 +24,7 @@
         android:id="@+id/help"  
         android:orderInCategory="100"
         android:title="Need Help?"/>
-	<item
+	<item 
         android:id="@+id/set_statwell_game"  
         android:orderInCategory="100"
         android:title="Set StatWell Content"/>

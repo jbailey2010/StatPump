@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/sw_venue_info_founded"
+                android:layout_below="@+id/sw_venue_previousnames"
                 android:layout_marginTop="25dp"
                 android:text="Home of the Bengals"
                 android:textColor="#0000aa"
