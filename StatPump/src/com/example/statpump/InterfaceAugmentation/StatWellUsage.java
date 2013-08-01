@@ -24,6 +24,7 @@ import android.widget.TwoLineListItem;
 
 import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.LittleStorage.GameInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerStatsObject;
@@ -71,8 +72,12 @@ public class StatWellUsage
 		{
 			playerInfo(obj, cont, po);
 		}
+		if(obj.statwellSetting.equals("Game Information"))
+		{
+			gameInfo(obj, cont, po);
+		}
 	}
-	
+
 	/**
 	 * Gets the player info onclick
 	 * @param obj
@@ -243,6 +248,12 @@ public class StatWellUsage
 		return res;
 	}
 	
+	public static void gameInfo(APIObject obj, Context cont, PlayerSearchObject po) 
+	{
+		GameInfoObject gio = new GameInfoObject();
+		gio.createVenueInfo(obj, cont, po);
+	}
+	
 	/**
 	 * Gets the venue information data set up
 	 * @param obj
@@ -250,7 +261,7 @@ public class StatWellUsage
 	 */
 	public static void venueInfo(APIObject obj, Context cont)
 	{
-		VenueInfoObject vio = new VenueInfoObject(obj, cont);
+		VenueInfoObject vio = new VenueInfoObject(obj, cont, true);
 	}
 	
 	/**
@@ -260,6 +271,6 @@ public class StatWellUsage
 	 */
 	public static void teamInfo(APIObject obj, Context cont)
 	{
-		TeamInfoObject tio = new TeamInfoObject(obj, cont);
+		TeamInfoObject tio = new TeamInfoObject(obj, cont, obj.team1, 1);
 	}
 }

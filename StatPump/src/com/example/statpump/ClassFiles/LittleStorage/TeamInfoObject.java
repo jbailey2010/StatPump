@@ -48,23 +48,25 @@ public class TeamInfoObject
 	public String record;
 	public String place;
 	public String group;
+	public String referees;
 	public APIObject obj;
 	
-	public TeamInfoObject(APIObject o, Context cont)
+	public TeamInfoObject(APIObject o, Context cont, String team1, int flag)
 	{
-		spawnAsync(o, cont);
+		spawnAsync(o, cont, team1, flag);
 	}
 	
 	/**
 	 * Spawns the async task to get team info
 	 * @param ao
 	 * @param cont
+	 * @param team1 
 	 */
-	public void spawnAsync(APIObject ao, Context cont)
+	public void spawnAsync(APIObject ao, Context cont, String team1, int flag)
 	{
 		obj = ao;
-		ParseTeamInfo task = this.new ParseTeamInfo(obj, cont, this);
-		task.execute(obj, this);
+		ParseTeamInfo task = this.new ParseTeamInfo(obj, cont, this, flag);
+		task.execute(obj, this, team1);
 	}
 	
 	/**
@@ -233,12 +235,12 @@ public class TeamInfoObject
 	/**
 	 * Gets the record information
 	 */
-	public static TeamInfoObject parseXMLRecord(Document doc, TeamInfoObject obj, APIObject ao)
+	public static TeamInfoObject parseXMLRecord(Document doc, TeamInfoObject obj, APIObject ao, String team)
 	{
         Elements links = doc.select("ranking");
         for (Element element : links) 
         {
-        	if(element.attr("club_name").equals(ao.team1))
+        	if(element.attr("club_name").equals(team))
         	{
         		obj.record = element.attr("matches_won") + " - " + element.attr("matches_lost") + " - " + element.attr("matches_draw");
         		if(obj.record == null || obj.record.equals("---") || obj.record.equals(" - - "))
@@ -272,8 +274,10 @@ public class TeamInfoObject
 			Context a;
 			ProgressDialog pda;
 			TeamInfoObject o;
-		    public ParseTeamInfo(APIObject object, Context cont, TeamInfoObject tio) 
+			int indiv;
+		    public ParseTeamInfo(APIObject object, Context cont, TeamInfoObject tio, int flag) 
 		    {
+		    	indiv = flag;
 		        obj = object;
 		        a = cont;
 		        o = tio;
@@ -292,7 +296,18 @@ public class TeamInfoObject
 			protected void onPostExecute(TeamInfoObject result){
 			   super.onPostExecute(result);
 			   pda.dismiss();
-			   o.teamInfoFill(result, (Activity) a);
+			   if(indiv == 1)
+			   {
+				   o.teamInfoFill(result, (Activity) a);
+			   }
+			   else if(indiv == 2)
+			   {
+				   GameInfoObject.getTeamInfo2(result, obj, a);
+			   }
+			   else
+			   {
+				   GameInfoObject.setDisplay(result, obj, a);
+			   }
 			}
 			 
 		    @Override
@@ -300,11 +315,26 @@ public class TeamInfoObject
 		    {
 		    	APIObject obj = (APIObject)data[0];
 		    	TeamInfoObject tio = (TeamInfoObject)data[1];
+		    	String team1 = (String)data[2];
 		    	try {
-					Document doc = APIInteraction.getXML(obj.formGetTeamInfoUrl(), obj);
+					Document doc = APIInteraction.getXML(obj.formGetTeamInfoUrl(obj.teamIDMap.get(team1)), obj);
 					o = parseXML(doc, tio);
 					Document doc2 = APIInteraction.getXML(obj.formGetTeamUrl(), obj);
-					o = parseXMLRecord(doc2, tio, obj);
+					o = parseXMLRecord(doc2, tio, obj, team1);
+					if(indiv == 3)
+					{
+						Document docRefs = APIInteraction.getXML(obj.formGetRefsUrl(obj.matchID), obj);
+						Elements elem = docRefs.select("person");
+						StringBuilder refs = new StringBuilder(10000);
+						for(Element iter : elem)
+						{
+							refs.append(iter.attr("name") + ", ");
+						}
+						if(refs.toString().length() > 2)
+						{
+							o.referees = refs.toString().substring(0, refs.toString().length()-2);
+						}
+					}
 					return o;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

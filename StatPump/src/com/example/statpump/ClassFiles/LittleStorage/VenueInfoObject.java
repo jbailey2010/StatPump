@@ -44,19 +44,20 @@ public class VenueInfoObject
 	 * @param obj
 	 * @param cont
 	 */
-	public VenueInfoObject(APIObject obj, Context cont) 
+	public VenueInfoObject(APIObject obj, Context cont, boolean indivFlag) 
 	{
-		spawnVenueAsync(obj, cont);
+		spawnVenueAsync(obj, cont, indivFlag);
 	}
 
 	/**
 	 * Spawns the asynctask that gets the venue info
 	 * @param obj
 	 * @param cont
+	 * @param indivFlag 
 	 */
-	public void spawnVenueAsync(APIObject obj, Context cont) 
+	public void spawnVenueAsync(APIObject obj, Context cont, boolean indivFlag) 
 	{
-		ParseVenueInfo task = this.new ParseVenueInfo(obj, cont, this);
+		ParseVenueInfo task = this.new ParseVenueInfo(obj, cont, this, indivFlag);
 		task.execute(obj, this);
 	}
 	
@@ -105,8 +106,10 @@ public class VenueInfoObject
 			Context a;
 			ProgressDialog pda;
 			VenueInfoObject o;
-		    public ParseVenueInfo(APIObject object, Context cont, VenueInfoObject venueInfoObject) 
+			boolean flag;
+		    public ParseVenueInfo(APIObject object, Context cont, VenueInfoObject venueInfoObject, boolean indivFlag) 
 		    {
+		    	flag = indivFlag;
 		        obj = object;
 		        a = cont;
 		        o = venueInfoObject;
@@ -125,7 +128,14 @@ public class VenueInfoObject
 			protected void onPostExecute(VenueInfoObject result){
 			   super.onPostExecute(result);
 			   pda.dismiss();
-			   setVenueInfo(result, obj, (Activity) a);
+			   if(flag)
+			   {
+				   setVenueInfo(result, obj, (Activity) a);
+			   }
+			   else
+			   {
+				   GameInfoObject.getTeamInfo1(result, obj, a);
+			   }
 			}
 			 
 		    @Override

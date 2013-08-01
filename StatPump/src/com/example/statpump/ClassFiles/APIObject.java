@@ -192,9 +192,19 @@ public class APIObject
 	/**
 	 * Forms the get team info url
 	 */
-	public String formGetTeamInfoUrl()
+	public String formGetTeamInfoUrl(int teamID)
 	{
-		return this.sportURL + "/get_teams?id=" + this.team1ID + "&type=team&detailed=yes";
+		return this.sportURL + "/get_teams?id=" + teamID + "&type=team&detailed=yes";
+	}
+	
+	/**
+	 * Forms the get referees query
+	 * @param matchID
+	 * @return
+	 */
+	public String formGetRefsUrl(int matchID)
+	{
+		return this.sportURL + "/get_referees?type=match&id=" + matchID;
 	}
 	
 	/**
