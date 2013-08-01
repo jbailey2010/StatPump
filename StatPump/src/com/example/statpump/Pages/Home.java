@@ -387,23 +387,30 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				//MORE HERE LATER
-				System.out.println(obj.matchHome + " - " + obj.matchDate + ", " + obj.matchID);
-				if(gameInfo.isChecked())
+				if(obj.matchID > 0 && po.players.size() > 0)
 				{
-					obj.statwellSetting = "Game Information";
+					System.out.println(obj.matchHome + " - " + obj.matchDate + ", " + obj.matchID);
+					if(gameInfo.isChecked())
+					{
+						obj.statwellSetting = "Game Information";
+					}
+					else if(gameStats.isChecked())
+					{
+						obj.statwellSetting = "Game Statistics";
+					}
+					else if(venueInfo.isChecked())
+					{
+						obj.statwellSetting = "Venue Information";
+					}
+					sw.removeAllViews();
+					StatWellUsage.statWellInit(obj, cont, po);
+					headerText.setText(obj.matchHome + " - " + obj.matchDate);				
+					dialog.dismiss();
 				}
-				else if(gameStats.isChecked())
+				else
 				{
-					obj.statwellSetting = "Game Statistics";
+					Toast.makeText(cont, "Please wait a moment...", Toast.LENGTH_SHORT).show();
 				}
-				else if(venueInfo.isChecked())
-				{
-					obj.statwellSetting = "Venue Information";
-				}
-				sw.removeAllViews();
-				StatWellUsage.statWellInit(obj, cont, po);
-				headerText.setText(obj.matchHome + " - " + obj.matchDate);				
-				dialog.dismiss();
 			}
 		});
 	}

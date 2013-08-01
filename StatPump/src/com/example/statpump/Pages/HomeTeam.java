@@ -322,22 +322,28 @@ public class HomeTeam extends Activity {
 		submit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				//MORE HERE
-				if(playerInfo.isChecked())
+				if(po.players.size() > 0)
 				{
-					obj.statwellSetting = "Player Information";
+					if(playerInfo.isChecked())
+					{
+						obj.statwellSetting = "Player Information";
+					}
+					else if(teamInfo.isChecked())
+					{
+						obj.statwellSetting = "Team Information";
+					}
+					else if(teamStats.isChecked())
+					{
+						obj.statwellSetting = "Player Statistics";
+					}
+					sw.removeAllViews();
+					StatWellUsage.statWellInit(obj, cont, po);
+					dialog.dismiss();
 				}
-				else if(teamInfo.isChecked())
+				else
 				{
-					obj.statwellSetting = "Team Information";
+					Toast.makeText(cont, "Please wait a moment...", Toast.LENGTH_SHORT).show();
 				}
-				else if(teamStats.isChecked())
-				{
-					obj.statwellSetting = "Player Statistics";
-				}
-				sw.removeAllViews();
-				StatWellUsage.statWellInit(obj, cont, po);
-				dialog.dismiss();
 			}
 		});
 	}
