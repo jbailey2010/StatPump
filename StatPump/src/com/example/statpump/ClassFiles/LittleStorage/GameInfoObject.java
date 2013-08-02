@@ -20,7 +20,7 @@ public class GameInfoObject
 	 * @param obj
 	 * @param cont
 	 * @param po
-	 */
+	 */ 
 	public void createVenueInfo(APIObject obj, Context cont, PlayerSearchObject po)
 	{
 		vio = new VenueInfoObject(obj, cont, false);
@@ -64,6 +64,15 @@ public class GameInfoObject
 		header.setText(obj.matchHome);
 		TextView date = (TextView)res.findViewById(R.id.game_info_date);
 		date.setText(obj.matchDate);
+		TextView outcome = (TextView)res.findViewById(R.id.game_info_outcome);
+		if(result.isPlayed)
+		{
+			outcome.setText(result.winner + ", " + result.score);
+		}
+		else
+		{
+			outcome.setVisibility(View.GONE);
+		}
 		TextView refs = (TextView)res.findViewById(R.id.game_info_refs);
 		if(tio2.referees != null && tio2.referees.length() > 2)
 		{

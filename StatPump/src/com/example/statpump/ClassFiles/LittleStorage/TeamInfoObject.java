@@ -48,6 +48,9 @@ public class TeamInfoObject
 	public String record;
 	public String place;
 	public String group;
+	public String winner;
+	public String score;
+	public boolean isPlayed;
 	public String referees;
 	public APIObject obj;
 	
@@ -76,7 +79,6 @@ public class TeamInfoObject
 	{
 		LinearLayout layout = (LinearLayout)cont.findViewById(R.id.statwell);
 		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.sw_team_info, layout, false);
-		
 		TextView header = (TextView)res.findViewById(R.id.sw_team_info_header);
 		if(this.officialName == null || this.officialName.length() < 2)
 		{
@@ -333,6 +335,25 @@ public class TeamInfoObject
 						if(refs.toString().length() > 2)
 						{
 							o.referees = refs.toString().substring(0, refs.toString().length()-2);
+						}
+						Document docWinner = APIInteraction.getXML(obj.formGetMatchInfoDoneUrl(obj.matchID), obj);
+						Elements links = docWinner.select("match");
+						for(Element iter : links)
+						{
+							if(iter.attr("status").equals("Played"))
+							{
+								o.isPlayed = true;
+								if(iter.attr("winner").equals("team_A"))
+								{
+									o.winner = "Winner: " + iter.attr("team_a_name");
+									o.score = iter.attr("fs_A") + " - " + iter.attr("fs_B");
+								}
+								else
+								{
+									o.winner = "Winner: " + iter.attr("team_b_name");
+									o.score = iter.attr("fs_B") + " - " + iter.attr("fs_A");
+								}
+							}
 						}
 					}
 					return o;
