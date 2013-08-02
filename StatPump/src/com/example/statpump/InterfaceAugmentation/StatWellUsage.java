@@ -25,6 +25,7 @@ import android.widget.TwoLineListItem;
 import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.LittleStorage.GameInfoObject;
+import com.example.statpump.ClassFiles.LittleStorage.GameStatsObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerStatsObject;
@@ -76,6 +77,15 @@ public class StatWellUsage
 		{
 			gameInfo(obj, cont, po);
 		}
+		if(obj.statwellSetting.equals("Game Statistics"))
+		{
+			gameStats(obj, cont, po);
+		}
+	}
+
+	public static void gameStats(APIObject obj, Context cont, PlayerSearchObject po) 
+	{
+		GameStatsObject gso = new GameStatsObject(obj.matchDate, obj.matchHome, obj.matchID, obj, po, cont);
 	}
 
 	/**

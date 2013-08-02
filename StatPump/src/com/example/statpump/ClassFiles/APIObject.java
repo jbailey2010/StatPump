@@ -60,7 +60,9 @@ public class APIObject
 	//The constant part of the url for the query
 	public String urlBase = "http://api.globalsportsmedia.com/";
 	public String urlValidate = "&authkey=865c0c0b4ab0e063e5caa3387c1a8741&username=statp";
-	
+	//Sets up the stat objects
+	public Map<String, String> fixes = new HashMap<String, String>();
+	public List<String> ignore = new ArrayList<String>();
 	/** 
 	 * Maps the sports to ids...etc. Basic set up stuff.
 	 */
@@ -81,6 +83,91 @@ public class APIObject
 		sportIDMap.put("Soccer - UEFA Champions League", 10);
 		sportIDMap.put("Soccer - Primera Division", 7);
 		sportIDMap.put("Soccer - MLS", 33);
+		
+		//Baseball stuff
+		fixes.put("baseball/batting_at_bats", "At Bats");
+		fixes.put("baseball/batting_runs", "Runs");
+		fixes.put("baseball/batting_hits", "Hits");
+		fixes.put("baseball/batting_runs_batted_in", "RBIs");
+		fixes.put("baseball/batting_runs_battled_in", "RBIs");
+		fixes.put("baseball/batting_left_on_base", "Batters Stranded");
+		fixes.put("baseball/pitching_wins", "Wins");
+		fixes.put("baseball/pitching_losses", "Losses");
+		fixes.put("baseball/pitching_innings_pitcher", "Innings Pitched");
+		fixes.put("baseball/pitching_hits_allowed", "Hits Allowed");
+		fixes.put("baseball/pitching_base_on_balls", "Walks");
+		fixes.put("baseball/pitching_strikeouts", "Strikeouts");
+		fixes.put("baseball/pitching_home_runs_allowed", "HR Allowed");
+		fixes.put("baseball/pitching_saves", "Saves");
+		fixes.put("baseball/pitching_earned_runs", "Earned Runs");
+		ignore.add("baseball/pitching_appearances");
+		fixes.put("baseball/batting_average", "Batting Average");
+		fixes.put("baseball/pitching_era", "ERA");
+		ignore.add("baseball/batting_games");
+		fixes.put("baseball/Doubles", "Double");
+		fixes.put("baseball/Home Runs", "Home Run");
+		
+		//Football
+		fixes.put("american_football/offense_passing_yards", "Passing Yards");
+		fixes.put("american_football/defense_tackles", "Tackles");
+		fixes.put("american_football/rushing_yards", "Rushing Yards");
+		fixes.put("american_football/receiving_yards", "Receiving Yards");
+		fixes.put("american_football/defense_interceptions", "Interceptions");
+		fixes.put("american_football/fumbles", "Fumbles");
+		fixes.put("american_football/punting_yards", "Punting Yards");
+		fixes.put("american_football/return_yards", "Return Yards");
+		fixes.put("american_football/offense_passing_touchdowns", "Passing Touchdowns");
+		fixes.put("american_football/rushing_touchdowns", "Rushing Touchdowns");
+		fixes.put("american_football/receiving_touchdowns", "Receiving Touchdowns");
+		fixes.put("american_football/defense_sacks", "Sacks");
+		fixes.put("american_football/defense_forced_fumbles", "Forced Fumbles");
+		fixes.put("american_football/punting_total_punts", "Total Punts");
+		fixes.put("american_football/kicking_points", "Total Points From Kicking");
+		fixes.put("american_football/punting_longest_punt", "Longest Punt");
+		fixes.put("american_football/receiving_longest_reception", "Longest Catch");
+		fixes.put("american_football/kicking_longest_kick", "Longest Kick");
+		fixes.put("american_football/rushing_longest_run", "Longest Run");
+		
+		//Basketball
+		fixes.put("basketball/minutes", "Minutes");
+		fixes.put("basketball/points", "Points Per Game");
+		fixes.put("basketball/assists", "Assists Per Game");
+		fixes.put("basketball/rebounds", "Rebounds Per Game");
+		fixes.put("basketball/turnovers", "Turnovers Per Game");
+		fixes.put("basketball/steals", "Steals Per Game");
+		fixes.put("basketball/blocks", "Blocks Per Game");
+		fixes.put("basketball/fouls", "Fouls Per Game");
+		fixes.put("basketball/blocks_received", "Blocks Received Per Game");
+		fixes.put("basketball/defense_rebounds", "Defensive Rebounds Per Game");
+		fixes.put("basketball/offense_rebounds", "Offensive Rebounds Per Game");
+		fixes.put("basketball/field_goals_shooting", "Field Goal Shooting Percentage");
+		fixes.put("basketball/two_point_shooting", "Two Point Shooting Percentage");
+		fixes.put("basketball/three_point_shooting", "Three Point Shooting Percentage");
+		fixes.put("basketball/free_throw_shooting", "Free Throw Shooting Percentage");
+		
+		//Soccer
+		fixes.put("soccer/yellow_cards", "Yellow Cards");
+		fixes.put("soccer/red_cards", "Red Cards");
+		fixes.put("soccer/goals", "Goals");
+		fixes.put("soccer/assists", "Assists");
+		
+		//Hockey
+		fixes.put("hockey/assists", "Assists");
+		fixes.put("hockey/points", "Points");
+		fixes.put("hockey/goals", "Goals");
+		fixes.put("hockey/plus_minus", "Plus/Minus");
+		fixes.put("hockey/penalties", "Penalties");
+		fixes.put("hockey/faceoff_percentage", "Faceoff Percentage");
+		fixes.put("hockey/goalkeeper_saves_percentage", "Saves Percentage");
+		fixes.put("hockey/power_play_goals", "Power Play Goals");
+		fixes.put("hockey/short_handed_goals", "Short Handed Goals");
+		fixes.put("hockey/time_on_ice", "Time On Ice");
+		fixes.put("hockey/shutouts", "Shutouts");
+		fixes.put("hockey/goalkeeper_appearances", "Goalkeeper Appearances");
+		fixes.put("hockey/goalkeeper_wins", "Goalkeeper Wins");
+		fixes.put("hockey/goalkeeper_losses", "Goalkeeper Losses");
+		fixes.put("hockey/shots_on_goal_percentage", "Percentage Of Shots On Goal");
+		fixes.put("hockey/time_on_ice_game", "Time On Ice Per Game");
 	}
 	
 	/**
@@ -195,6 +282,16 @@ public class APIObject
 	public String formGetTeamInfoUrl(int teamID)
 	{
 		return this.sportURL + "/get_teams?id=" + teamID + "&type=team&detailed=yes";
+	}
+	
+	/**
+	 * Forms the get match info url (for statistics)
+	 * @param matchID
+	 * @return
+	 */
+	public String formGetMatchInfoDoneUrl(int matchID)
+	{
+		return this.sportURL + "/get_matches?id=" + matchID + "&type=match&detailed=yes&statistics=yes";
 	}
 	
 	/**

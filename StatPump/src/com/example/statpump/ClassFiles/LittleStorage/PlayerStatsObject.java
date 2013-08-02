@@ -42,7 +42,7 @@ public class PlayerStatsObject
 		p = po;
 		ParsePlayerStats task = this.new ParsePlayerStats(obj, cont, this, flag, name, team, pos, num, po);
 		task.execute(obj, this, playerID);
-	}
+	} 
 	
 	public List<String> parseXML(Document doc, int playerID)
 	{
@@ -52,16 +52,19 @@ public class PlayerStatsObject
 		{
 			if(Integer.parseInt(elem.attr("person_id")) == playerID)
 			{
-				String parent = elem.parent().tagName().replaceAll("_", " ");
-				parent = capitalize(parent, null);
-				String[] statSet = parent.split(" ");
-				StringBuilder statStr = new StringBuilder(100);
-				for(int i = 1; i < statSet.length; i++)
+				String parent = elem.parent().tagName();
+				if(!ao.ignore.contains(ao.sportURL + "/" + parent))
 				{
-					statStr.append(statSet[i] + " ");
+					String val = elem.attr("value");
+					if(ao.fixes.containsKey(ao.sportURL + "/" + parent))
+					{
+						stats.add(val + " " + ao.fixes.get(ao.sportURL + "/" + parent));
+					}
+					else
+					{
+						System.out.println("DID NOT FIND " + parent);
+					}
 				}
-				String val = elem.attr("value");
-				stats.add(val + " " + statStr.toString());
 			}
 		}
 		if(stats.size() == 0)
