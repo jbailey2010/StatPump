@@ -405,6 +405,67 @@ public class GameStatsObject
 		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
 		System.out.println(g.teamAStats);
 		System.out.println(g.teamBStats);
+		Elements goals = doc.select("goals goal");
+		for(Element goal : goals)
+		{
+			for(Element event : goal.children())
+			{
+				if(event.attr("team_id").equals(String.valueOf(g.teamAID)))
+				{
+					if(g.teamAIndivStats.containsKey(event.attr("person")))
+					{
+						String set = g.teamAIndivStats.get(event.attr("person")) + "\n";
+						set += event.attr("name");
+						if(event.attr("minute").length() > 1)
+						{
+							set += " in minute " + event.attr("minute");
+						}
+						g.teamAIndivStats.put(event.attr("person"), set);
+					}
+					else
+					{
+						String set = event.attr("person") + " Game Statistics:" + "\n";
+						set += event.attr("name");
+						if(event.attr("minute").length() > 1)
+						{
+							set += " in minute " + event.attr("minute");
+						}
+						g.teamAIndivStats.put(event.attr("person"), set);
+					}
+				}
+				if(event.attr("team_id").equals(String.valueOf(g.teamBID)))
+				{
+					if(g.teamBIndivStats.containsKey(event.attr("person")))
+					{
+						String set = g.teamBIndivStats.get(event.attr("person")) + "\n";
+						set += event.attr("name");
+						if(event.attr("minute").length() > 1)
+						{
+							set += " in minute " + event.attr("minute");
+						}
+						g.teamBIndivStats.put(event.attr("person"), set);
+					}
+					else
+					{
+						String set = event.attr("person") + " Game Statistics:" + "\n";
+						set += event.attr("name");
+						if(event.attr("minute").length() > 1)
+						{
+							set += " in minute " + event.attr("minute");
+						}
+						g.teamBIndivStats.put(event.attr("person"), set);
+					}
+				}
+			}
+		}
+		if(g.teamAIndivStats.size() == 0)
+		{
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
+		if(g.teamBIndivStats.size() == 0)
+		{
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
 	}
 
 	/**
