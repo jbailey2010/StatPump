@@ -364,6 +364,87 @@ public class GameStatsObject
 		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
 		System.out.println(g.teamAStats);
 		System.out.println(g.teamBStats);
+		Elements stats = doc.select("matchstatistics statistics");
+		for(Element stat : stats)
+		{
+			String name = stat.parent().attr("name");
+			StringBuilder statsStr = new StringBuilder(1000);
+			statsStr.append(name + " Statistics:\n");
+			//Goalie
+			if(stat.hasAttr("gk_goals_against"))
+			{
+				if(stat.attr("gk_goals_against").length() > 0)
+				{
+					statsStr.append(stat.attr("gk_goals_against") + " goals allowed on " + stat.attr("gk_shots_against") + " shots, with " + 
+							stat.attr("gk_saves") + " saves\n");
+				}
+				if(stat.attr("gk_pp_saves").length() > 0)
+				{
+					statsStr.append(stat.attr("gk_pp_saves") + " PP saves on " + stat.attr("gk_pp_shots_against") + " PP shots\n");
+				}
+				if(stat.attr("gk_sh_saves").length() > 0)
+				{
+					statsStr.append(stat.attr("gk_sh_saves") + " SH saves on " + stat.attr("gk_sh_shots_against") + " SH shots\n");
+				}
+				if(stat.attr("gk_assists").length() > 0 && !stat.attr("gk_assists").equals("0"))
+				{
+					statsStr.append(stat.attr("gk_assists") + " assists\n");
+				}
+				if(stat.attr("gk_goals").length() > 0 && !stat.attr("gk_goals").equals("0"))
+				{
+					statsStr.append(stat.attr("gk_goals ") + " goals\n");
+				}
+				if(stat.attr("gk_points").length() > 0 && !stat.attr("gk_points").equals("0"))
+				{
+					statsStr.append(stat.attr("gk_points") + " points\n");
+				}
+				if(stat.attr("gk_minutes").length() > 0)
+				{
+					statsStr.append(stat.attr("gk_minutes") + ":" + stat.attr("gk_seconds") + " played\n");
+				}
+			}
+			else //Non-goalie
+			{
+				if(stat.attr("goals").length() > 0)
+				{
+					statsStr.append(stat.attr("goals") + " goals scored\n"+ stat.attr("shots_on_goal") + " shots on goal\n" + 
+					stat.attr("assists") + " assists\n" + stat.attr("faceoffs_won") + " faceoffs won\n" + stat.attr("plus_minus") + " plus/minus\n" + 
+					stat.attr("penalties") + " penalties\n" + stat.attr("points") + " points\n");
+				}
+				if(stat.attr("sh_minutes").length() > 0)
+				{
+					statsStr.append(stat.attr("sh_minutes") + ":" + stat.attr("sh_seconds") + " time on ice shorthanded\n");
+				}
+				if(stat.attr("ev_minutes").length() > 0)
+				{
+					statsStr.append(stat.attr("ev_minutes") + ":" + stat.attr("ev_seconds") + " time on ice with even strength\n");
+				}
+				if(stat.attr("pp_minutes").length() > 0 && !stat.attr("pp_minutes").equals("0"))
+				{
+					statsStr.append(stat.attr("pp_minutes") + " minutes on ice while in a power play\n");
+				}
+				if(stat.attr("minutes").length() > 0)
+				{
+					statsStr.append(stat.attr("minutes") + ":" + stat.attr("seconds") + " played\n");
+				}
+			}
+			if(stat.parent().attr("team_id").equals(g.teamAID))
+			{
+				g.teamAIndivStats.put(name, statsStr.toString());
+			}
+			if(stat.parent().attr("team_id").equals(g.teamBID))
+			{
+				g.teamBIndivStats.put(name, statsStr.toString());
+			}
+		}
+		if(g.teamAIndivStats.size() == 0)
+		{
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
+		if(g.teamBIndivStats.size() == 0)
+		{
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
 	}
 	
 	/**
