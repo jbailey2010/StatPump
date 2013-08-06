@@ -1,6 +1,8 @@
 package com.example.statpump.ClassFiles.LittleStorage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,7 +35,16 @@ public class GameStatsObject
 	public String venueName;
 	public String teamAName;
 	public String teamBName;
-	
+	public int teamAID;
+	public int teamBID;
+	public String teamAStats;
+	public String teamBStats;
+	//NOT SET BELOW
+	public String teamALineup;
+	public String teamBLineup;
+	public Map<String, String> teamAIndivStats = new HashMap<String, String>();
+	public Map<String, String> teamBIndivStats = new HashMap<String, String>();
+	//NOT SET ABOVE
 	public String winner;
 	public String score;
 	
@@ -88,9 +99,9 @@ public class GameStatsObject
 			}
 			System.out.println(g.isPlayed);
 			g.teamAName = elem.attr("team_a_name");
-			System.out.println(g.apiObj.teamIDMap.get(teamAName));
+			g.teamAID = (g.apiObj.teamIDMap.get(teamAName));
 			g.teamBName = elem.attr("team_b_name");
-			System.out.println(g.apiObj.teamIDMap.get(teamBName));
+			g.teamBID = (g.apiObj.teamIDMap.get(teamBName));
 			if(g.isPlayed)
 			{
 				if(elem.attr("winner").equals("team_A"))
@@ -121,23 +132,238 @@ public class GameStatsObject
 			}
 			System.out.println(g.attendance);
 		}
+		Elements lineup = doc.select("lineups event");
+		StringBuilder lineupA = new StringBuilder(1000);
+		StringBuilder lineupB = new StringBuilder(1000);
+		lineupA.append(g.teamAName + " Appearing Players:\n");
+		lineupB.append(g.teamBName + " Appearing Players:\n");
+		for(Element player : lineup)
+		{
+			if(player.attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				if(player.attr("person").length() > 0)
+				{
+					lineupA.append(player.attr("person"));
+					if(player.attr("shirtnumber").length() > 0)
+					{
+						lineupA.append(" #" + player.attr("shirtnumber"));
+					}
+					lineupA.append("\n");
+				}
+			}
+			if(player.attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				if(player.attr("person").length() > 0)
+				{
+					lineupB.append(player.attr("person"));
+					if(player.attr("shirtnumber").length() > 0)
+					{
+						lineupB.append(" #" + player.attr("shirtnumber"));
+					}
+					lineupB.append("\n");
+				}
+			}
+		}
+		lineup = doc.select("lineups_bench event");
+		for(Element player : lineup)
+		{
+			if(player.attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				if(player.attr("person").length() > 0)
+				{
+					lineupA.append(player.attr("person"));
+					if(player.attr("shirtnumber").length() > 0)
+					{
+						lineupA.append(" #" + player.attr("shirtnumber"));
+					}
+					lineupA.append("\n");
+				}
+			}
+			if(player.attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				if(player.attr("person").length() > 0)
+				{
+					lineupB.append(player.attr("person"));
+					if(player.attr("shirtnumber").length() > 0)
+					{
+						lineupB.append(" #" + player.attr("shirtnumber"));
+					}
+					lineupB.append("\n");
+				}
+			}
+		}
+		if(lineupA.toString().equals(g.teamAName + " Appearing Players:\n")) 
+		{ 
+			lineupA.append("No lineup listed");
+		}
+		if(lineupB.toString().equals(g.teamBName + " Appearing Players:\n"))
+		{
+			lineupB.append("No lineup listed");
+		}
+		g.teamALineup = lineupA.toString();
+		g.teamBLineup = lineupB.toString();
+		System.out.println(g.teamALineup);
+		System.out.println(g.teamBLineup);
 		if(g.apiObj.sportURL.contains("baseball"))
 		{
+			System.out.println("Calling baseball");
 			g.baseballIndiv(g, doc);
 		}
-		else if(g.apiObj.sportURL.contains("american_football"))
+		else if(g.apiObj.sportURL.contains("americanfootball"))
 		{
+			System.out.println("Calling football");
 			g.footballIndiv(g, doc);
 		}
 		else if(g.apiObj.sportURL.contains("basketball"))
 		{
+			System.out.println("Calling basketball");
 			g.basketballIndiv(g, doc);
 		}
 		else if(g.apiObj.sportURL.contains("soccer"))
 		{
+			System.out.println("Calling soccer");
 			g.soccerIndiv(g, doc);
 		}
+		else if(g.apiObj.sportURL.contains("hockey"))
+		{
+			System.out.println("Calling hockey");
+			g.hockeyIndiv(g, doc);
+		}
 		return g;
+	}
+	
+	/**
+	 * Handles the hockey individual parsing
+	 * @param g
+	 * @param doc
+	 */
+	private void hockeyIndiv(GameStatsObject g, Document doc)
+	{
+		StringBuilder teamAStats = new StringBuilder(100);
+		StringBuilder teamBStats = new StringBuilder(100);
+		teamAStats.append(g.teamAName + " Team Stats:\n");
+		teamBStats.append(g.teamBName + " Team Stats:\n");
+		Elements teamElems = doc.select("team");
+		for(Element iter : teamElems)
+		{
+			Element teamElem = iter.child(0);
+			if(iter.attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				if(teamElem.attr("team_BKS").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_BKS") + " blocked shots\n");
+				}
+				if(teamElem.attr("team_FOwins").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_FOwins") + " face-off wins\n");
+				}
+				if(teamElem.attr("team_GVA").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_GVA") + " giveaways\n");
+				}
+				if(teamElem.attr("team_Hits").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_Hits") + " hits\n");
+				}
+				if(teamElem.attr("team_PIM").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_PIM") + " penalties in minutes\n");
+				}
+				if(teamElem.attr("team_PP_attempts").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_PP_attempts") + " power play attempts\n");
+				}
+				if(teamElem.attr("team_PP_goals").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_PP_goals") + " power play goals\n");
+				}
+				if(teamElem.attr("team_SOG_p1").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_SOG_p1") + " shots on goal in period 1\n");
+				}
+				if(teamElem.attr("team_SOG_p2").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_SOG_p2") + " shots on goal in period 2\n");
+				}
+				if(teamElem.attr("team_SOG_p3").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_SOG_p3") + " shots on goal in period 3\n");
+				}
+				if(teamElem.attr("team_SOG_tot").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_SOG_tot") + " total shots on goal\n");
+				}
+				if(teamElem.attr("team_TKA").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_TKA") + " takeaways\n");
+				}
+			}
+			if(iter.attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				if(teamElem.attr("team_BKS").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_BKS") + " blocked shots\n");
+				}
+				if(teamElem.attr("team_FOwins").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_FOwins") + " face-off wins\n");
+				}
+				if(teamElem.attr("team_GVA").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_GVA") + " giveaways\n");
+				}
+				if(teamElem.attr("team_Hits").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_Hits") + " hits\n");
+				}
+				if(teamElem.attr("team_PIM").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_PIM") + " penalties in minutes\n");
+				}
+				if(teamElem.attr("team_PP_attempts").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_PP_attempts") + " power play attempts\n");
+				}
+				if(teamElem.attr("team_PP_goals").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_PP_goals") + " power play goals\n");
+				}
+				if(teamElem.attr("team_SOG_p1").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_SOG_p1") + " shots on goal in period 1\n");
+				}
+				if(teamElem.attr("team_SOG_p2").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_SOG_p2") + " shots on goal in period 2\n");
+				}
+				if(teamElem.attr("team_SOG_p3").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_SOG_p3") + " shots on goal in period 3\n");
+				}
+				if(teamElem.attr("team_SOG_tot").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_SOG_tot") + " total shots on goal\n");
+				}
+				if(teamElem.attr("team_TKA").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_TKA") + " takeaways\n");
+				}
+			}
+		}
+		if(teamAStats.toString().equals(g.teamAName + " Team Stats:\n"))
+		{
+			teamAStats.append("No team stats available\n");
+		}
+		if(teamBStats.toString().equals(g.teamBName + " Team Stats:\n"))
+		{
+			teamBStats.append("No team stats available\n");
+		}
+		g.teamAStats = teamAStats.toString();
+		g.teamBStats = teamBStats.toString();
+		g.teamAStats = g.teamAStats.replaceAll("\\.00", "");
+		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
+		System.out.println(g.teamAStats);
+		System.out.println(g.teamBStats);
 	}
 	
 	/**
@@ -146,8 +372,39 @@ public class GameStatsObject
 	 * @param doc
 	 */
 	private void soccerIndiv(GameStatsObject g, Document doc) {
-		// TODO Auto-generated method stub
-		
+		StringBuilder teamAStats = new StringBuilder(100);
+		StringBuilder teamBStats = new StringBuilder(100);
+		teamAStats.append(g.teamAName + " Team Stats:\n");
+		teamBStats.append(g.teamBName + " Team Stats:\n");
+		Elements teamElems = doc.select("bookings");
+		for(Element iter : teamElems)
+		{
+			for(Element child : iter.children())
+			{
+				if(child.attr("team_id").equals(String.valueOf(g.teamAID)))
+				{
+					teamAStats.append(child.attr("name") + " given to " + child.attr("person") + "\n");
+				}
+				if(child.attr("team_id").equals(String.valueOf(g.teamBID)))
+				{
+					teamBStats.append(child.attr("name") + " given to " + child.attr("person") + "\n");
+				}
+			}
+		}
+		if(teamAStats.toString().equals(g.teamAName + " Team Stats:\n"))
+		{
+			teamAStats.append("No team stats available\n");
+		}
+		if(teamBStats.toString().equals(g.teamBName + " Team Stats:\n"))
+		{
+			teamBStats.append("No team stats available\n");
+		}
+		g.teamAStats = teamAStats.toString();
+		g.teamBStats = teamBStats.toString();
+		g.teamAStats = g.teamAStats.replaceAll("\\.00", "");
+		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
+		System.out.println(g.teamAStats);
+		System.out.println(g.teamBStats);
 	}
 
 	/**
@@ -156,8 +413,59 @@ public class GameStatsObject
 	 * @param doc
 	 */
 	private void basketballIndiv(GameStatsObject g, Document doc) {
-		// TODO Auto-generated method stub
-		
+		StringBuilder teamAStats = new StringBuilder(100);
+		StringBuilder teamBStats = new StringBuilder(100);
+		teamAStats.append(g.teamAName + " Team Stats:\n");
+		teamBStats.append(g.teamBName + " Team Stats:\n");
+		Elements teamElems = doc.select("team");
+		for(Element iter : teamElems)
+		{
+			Element teamElem = iter.child(0);
+			if(iter.attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				if(teamElem.attr("team_fastbk_pts").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_fastbk_pts") + " fastbreak points\n");
+				}
+				if(teamElem.attr("team_ptsinpt").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_ptsinpt") + " points in paint\n");
+				}
+				if(teamElem.attr("team_second_chncpts").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_second_chncpts") + " second chance points\n");
+				}
+			}
+			if(iter.attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				if(teamElem.attr("team_fastbk_pts").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_fastbk_pts") + " fastbreak points\n");
+				}
+				if(teamElem.attr("team_ptsinpt").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_ptsinpt") + " points in paint\n");
+				}
+				if(teamElem.attr("team_second_chncpts").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_second_chncpts") + " second chance points\n");
+				}
+			}
+		}
+		if(teamAStats.toString().equals(g.teamAName + " Team Stats:\n"))
+		{
+			teamAStats.append("No team stats available\n");
+		}
+		if(teamBStats.toString().equals(g.teamBName + " Team Stats:\n"))
+		{
+			teamBStats.append("No team stats available\n");
+		}
+		g.teamAStats = teamAStats.toString();
+		g.teamBStats = teamBStats.toString();
+		g.teamAStats = g.teamAStats.replaceAll("\\.00", "");
+		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
+		System.out.println(g.teamAStats);
+		System.out.println(g.teamBStats);
 	}
 
 	/**
@@ -166,8 +474,99 @@ public class GameStatsObject
 	 * @param doc
 	 */
 	private void footballIndiv(GameStatsObject g, Document doc) {
-		// TODO Auto-generated method stub
-		
+		StringBuilder teamAStats = new StringBuilder(100);
+		StringBuilder teamBStats = new StringBuilder(100);
+		teamAStats.append(g.teamAName + " Team Stats:\n");
+		teamBStats.append(g.teamBName + " Team Stats:\n");
+		Elements teamElems = doc.select("team");
+		for(Element iter : teamElems)
+		{
+			Element teamElem = iter.child(0);
+			if(iter.attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				if(teamElem.attr("gtge_att").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("gtge_made") + "/" + teamElem.attr("gtge_att") + " in goal to go situations\n");
+				}
+				if(teamElem.attr("redzone_att").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("redzone_made") + "/" + teamElem.attr("redzone_att") + " in the red zone\n");
+				}
+				if(teamElem.attr("team_3dwn_conv_a").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_3dwn_conv_c") + "/" + teamElem.attr("team_3dwn_conv_a") + " on third down\n");
+				}
+				if(teamElem.attr("team_4dwn_conv_a").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_4dwn_conv_c")+ "/"+ teamElem.attr("team_4dwn_conv_a") + " on fourth down\n");
+				}
+				if(teamElem.attr("team_oyds").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_oplays") + " offensive plays for " + teamElem.attr("team_oyds") + " yards\n");
+				}
+				if(teamElem.attr("team_pass_yds").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_pass_comp") + "/" + teamElem.attr("team_pass_att") + " on passing plays for " + teamElem.attr("team_pass_yds") + " yards\n");
+				}
+				if(teamElem.attr("team_rush_yds").length() > 0)
+				{
+					teamAStats.append(teamElem.attr("team_rush_att") + " rushes for " + teamElem.attr("team_rush_yds") + " yards\n");
+				}
+				if(teamElem.attr("time_ofposs").length() > 0)
+				{
+					teamAStats.append("Time of possession: " + teamElem.attr("time_ofposs").replace(".", ":") + "\n");
+				}
+			}
+			if(iter.attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				if(teamElem.attr("gtge_att").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("gtge_made") + "/" + teamElem.attr("gtge_att") + " in goal to go situations\n");
+				}
+				if(teamElem.attr("redzone_att").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("redzone_made") + "/" + teamElem.attr("redzone_att") + " in the red zone\n");
+				}
+				if(teamElem.attr("team_3dwn_conv_a").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_3dwn_conv_c") + "/" + teamElem.attr("team_3dwn_conv_a") + " on third down\n");
+				}
+				if(teamElem.attr("team_4dwn_conv_a").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_4dwn_conv_c")+ "/"+ teamElem.attr("team_4dwn_conv_a") + " on fourth down\n");
+				}
+				if(teamElem.attr("team_oyds").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_oplays") + " offensive plays for " + teamElem.attr("team_oyds") + " yards\n");
+				}
+				if(teamElem.attr("team_pass_yds").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_pass_comp") + "/" + teamElem.attr("team_pass_att") + " on passing plays for " + teamElem.attr("team_pass_yds") + " yards\n");
+				}
+				if(teamElem.attr("team_rush_yds").length() > 0)
+				{
+					teamBStats.append(teamElem.attr("team_rush_att") + " rushes for " + teamElem.attr("team_rush_yds") + " yards\n");
+				}
+				if(teamElem.attr("time_ofposs").length() > 0)
+				{
+					teamBStats.append("Time of possession: " + teamElem.attr("time_ofposs").replace(".", ":") + "\n");
+				}
+			}
+		}
+		if(teamAStats.toString().equals(g.teamAName + " Team Stats:\n"))
+		{
+			teamAStats.append("No team stats available\n");
+		}
+		if(teamBStats.toString().equals(g.teamBName + " Team Stats:\n"))
+		{
+			teamBStats.append("No team stats available\n");
+		}
+		g.teamAStats = teamAStats.toString();
+		g.teamBStats = teamBStats.toString();
+		g.teamAStats = g.teamAStats.replaceAll("\\.00", "");
+		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
+		System.out.println(g.teamAStats);
+		System.out.println(g.teamBStats);
 	}
 
 	/**
@@ -176,8 +575,77 @@ public class GameStatsObject
 	 * @param doc
 	 */
 	private void baseballIndiv(GameStatsObject g, Document doc) {
-		// TODO Auto-generated method stub
-		
+		StringBuilder teamAStats = new StringBuilder(100);
+		StringBuilder teamBStats = new StringBuilder(100);
+		teamAStats.append(g.teamAName + " Team Stats:\n");
+		teamBStats.append(g.teamBName + " Team Stats:\n");
+		Elements teamElems = doc.select("team");
+		for(Element iter : teamElems)
+		{
+			for(Element teamElem : iter.children())
+			{
+				if(iter.attr("team_id").equals(String.valueOf(g.teamAID)))
+				{
+					if(teamElem.attr("bat_RISP_att").length() > 0)
+					{
+						teamAStats.append(teamElem.attr("bat_RISP_att") + " at-bats with RISP\n");
+					}
+					if(teamElem.attr("bat_RISP_comp").length() > 0)
+					{
+						teamAStats.append(teamElem.attr("bat_RISP_comp") + " hits with RISP\n");
+					}
+					if(teamElem.attr("bat_team_LOB").length() > 0)
+					{
+						teamAStats.append(teamElem.attr("bat_team_LOB") + " batters left on base\n");
+					}
+					if(teamElem.attr("errors").length() > 0)
+					{
+						teamAStats.append(teamElem.attr("errors") + " team errors\n");
+					}
+					if(teamElem.attr("hits").length() > 0)
+					{
+						teamAStats.append(teamElem.attr("hits") + " team hits\n");
+					}
+				}
+				if(iter.attr("team_id").equals(String.valueOf(g.teamBID)))
+				{
+					if(teamElem.attr("bat_RISP_att").length() > 0)
+					{
+						teamBStats.append(teamElem.attr("bat_RISP_att") + " at-bats with RISP\n");
+					}
+					if(teamElem.attr("bat_RISP_comp").length() > 0)
+					{
+						teamBStats.append(teamElem.attr("bat_RISP_comp") + " hits with RISP\n");
+					}
+					if(teamElem.attr("bat_team_LOB").length() > 0)
+					{
+						teamBStats.append(teamElem.attr("bat_team_LOB") + " batters left on base\n");
+					}
+					if(teamElem.attr("errors").length() > 0)
+					{
+						teamBStats.append(teamElem.attr("errors") + " team errors\n");
+					}
+					if(teamElem.attr("hits").length() > 0)
+					{
+						teamBStats.append(teamElem.attr("hits") + " team hits\n");
+					}
+				}
+			}
+		}
+		if(teamAStats.toString().equals(g.teamAName + " Team Stats:\n"))
+		{
+			teamAStats.append("No team stats available\n");
+		}
+		if(teamBStats.toString().equals(g.teamBName + " Team Stats:\n"))
+		{
+			teamBStats.append("No team stats available\n");
+		}
+		g.teamAStats = teamAStats.toString();
+		g.teamBStats = teamBStats.toString();
+		g.teamAStats = g.teamAStats.replaceAll("\\.00", "");
+		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
+		System.out.println(g.teamAStats);
+		System.out.println(g.teamBStats);
 	}
 
 	/**

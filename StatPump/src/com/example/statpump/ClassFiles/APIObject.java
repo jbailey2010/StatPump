@@ -255,6 +255,10 @@ public class APIObject
 	 */
 	public String formGetSpecMatchUrl()
 	{
+		if(!this.sportURL.contains("soccer"))
+		{
+			return this.sportURL + "/get_matches?id=" + this.matchID + "&type=match&detailed=yes&statistics=yes";
+		}
 		return this.sportURL + "/get_matches?id=" + this.matchID + "&type=match&detailed=yes";
 	}
 	
