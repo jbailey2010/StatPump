@@ -1,6 +1,8 @@
 package com.example.statpump.ClassFiles.LittleStorage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +14,17 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject.ParsePlayerInfo;
@@ -23,32 +35,34 @@ import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject.ParsePlaye
  */
 public class GameStatsObject 
 {
-	public String matchDate;
 	public String matchHome;
+	public String matchDate;
+	public String winner;
+	public String score;
+	public String venueName;
+	public int attendance = 0;
+	
+	public String teamAName;
+	public String teamBName;
+	public String teamAStats;
+	public String teamBStats;
+	public String teamALineup;
+	public String teamBLineup;
+	public Map<String, String> teamAIndivStats = new HashMap<String, String>();
+	public Map<String, String> teamBIndivStats = new HashMap<String, String>();
+	public boolean isPlayed = true;
+	public boolean isHiddenA = false;
+	public boolean isHiddenB = false;
+
+	
 	public int matchId;
 	public APIObject apiObj;
 	public PlayerSearchObject psObj;
 	public Context cont;
 	public String matchURL;
-	public boolean isPlayed = true;
-	public int attendance = 0;
-	public String venueName;
-	public String teamAName;
-	public String teamBName;
 	public int teamAID;
 	public int teamBID;
-	public String teamAStats;
-	public String teamBStats;
-	//NOT SET BELOW
-	public String teamALineup;
-	public String teamBLineup;
-	public Map<String, String> teamAIndivStats = new HashMap<String, String>();
-	public Map<String, String> teamBIndivStats = new HashMap<String, String>();
-	//NOT SET ABOVE
-	public String winner;
-	public String score;
-	
-	
+		
 	/**
 	 * Sets the basic, given data
 	 * @param date
@@ -97,7 +111,6 @@ public class GameStatsObject
 			{
 				g.isPlayed = false;
 			}
-			System.out.println(g.isPlayed);
 			g.teamAName = elem.attr("team_a_name");
 			g.teamAID = (g.apiObj.teamIDMap.get(teamAName));
 			g.teamBName = elem.attr("team_b_name");
@@ -128,7 +141,12 @@ public class GameStatsObject
 			links = doc.select("attendance");
 			for(Element elem : links)
 			{
+				try{
 				g.attendance = Integer.parseInt(elem.attr("value"));
+				} catch(NumberFormatException e)
+				{
+					g.attendance = -1;
+				}
 			}
 			System.out.println(g.attendance);
 		}
@@ -608,6 +626,67 @@ public class GameStatsObject
 		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
 		System.out.println(g.teamAStats);
 		System.out.println(g.teamBStats);
+		Elements players = doc.select("matchstatistics statistics");
+		for(Element player : players)
+		{
+			String name = player.parent().attr("name");
+			StringBuilder stats = new StringBuilder(1000);
+			stats.append(name + " Statistics:\n");
+			if(player.attr("seconds").length() > 0 && player.attr("minutes").length() > 0 && !(player.attr("seconds").equals("0") && player.attr("minutes").equals("0")))
+			{
+				stats.append(player.attr("minutes") + ":" + player.attr("seconds") + " time played\n");
+			}
+			if(player.attr("three_points_tries").length() > 0 && !(player.attr("three_points_tries").equals("0")))
+			{
+				stats.append(player.attr("three_points_in") + "/" + player.attr("three_points_tries") + " from 3 point range\n");
+			}
+			if(player.attr("two_points_tries").length() > 0 && !(player.attr("two_points_tries").equals("0")))
+			{
+				stats.append(player.attr("two_points_in") + "/" + player.attr("two_points_tries") + " from 2 point shots\n");
+			}
+			if(!player.attr("free_throws_tries").equals("0"))
+			{
+				stats.append(player.attr("free_throws_in") + "/" + player.attr("free_throws_tries") + " on free throw attempts\n");
+			}
+			if(!player.attr("field_goals_attempts").equals("0"))
+			{
+				stats.append(player.attr("field_goals_made") + "/" + player.attr("field_goals_attempts") + " on field goals total\n");
+			}
+			stats.append(player.attr("turnover") + " turnovers, " + player.attr("assists") + " assists\n" + player.attr("blocks") + " blocks");
+			if(!player.attr("steals").equals("0"))
+			{
+				stats.append(", " + player.attr("steals") + " steals");
+			}
+			stats.append("\n");
+			if(!player.attr("total_rebounds").equals("0"))
+			{
+				stats.append(player.attr("total_rebounds") + " rebounds, " + player.attr("defense_rebounds") + " defensive, " + player.attr("offense_rebounds") + " offensive\n");
+			}
+			if(!player.attr("plus_minus").equals("0"))
+			{
+				stats.append(player.attr("plus_minus") + " plus/minus\n");
+			}
+			if(!player.attr("personal_fouls").equals("0"))
+			{
+				stats.append(player.attr("personal_fouls") + " fouls\n");
+			}
+			if(player.parent().attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				g.teamAIndivStats.put(name, stats.toString());
+			}
+			if(player.parent().attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				g.teamBIndivStats.put(name, stats.toString());
+			}
+		}
+		if(g.teamAIndivStats.size() == 0)
+		{
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
+		if(g.teamBIndivStats.size() == 0)
+		{
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
 	}
 
 	/**
@@ -709,6 +788,81 @@ public class GameStatsObject
 		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
 		System.out.println(g.teamAStats);
 		System.out.println(g.teamBStats);
+		Elements statsList = doc.select("matchstatistics statistics");
+		for(Element stats : statsList)
+		{
+			String name = stats.parent().attr("name");
+			StringBuilder str = new StringBuilder(1000);
+			str.append(name + " Statistics:\n");
+			//Running data
+			if(stats.hasAttr("rush_att"))
+			{
+				str.append(stats.attr("rush_att") + " carries for " + stats.attr("rush_yds") + " yards and " + stats.attr("rush_td") + " TDs\n");
+			}
+			//Receiving data
+			if(stats.hasAttr("rec"))
+			{
+				str.append(stats.attr("rec") + " catches for " + stats.attr("rec_yds") + " yards and " + stats.attr("rec_td") + " TDs\n");
+			}
+			//Passing data
+			if(stats.hasAttr("att_pass"))
+			{
+				str.append(stats.attr("c_pass") + "/" + stats.attr("att_pass") + " for " + stats.attr("pass_yds") + " yards and " + stats.attr("pass_td") + " TDs\n");
+				str.append(stats.attr("pass_int") + " interception(s), " + stats.attr("fum") + " fumble(s)\n");
+			}
+			//Punting data
+			if(stats.hasAttr("punt_tot"))
+			{
+				str.append(stats.attr("punt_tot") + " punts for an average of " + stats.attr("punt_avg") + " yards, with a long of " + stats.attr("punt_lg") + " yards\n");
+			}
+			//Kicking data
+			if(stats.hasAttr("kick_xp"))
+			{
+				str.append(stats.attr("kick_fgt") + "/" + stats.attr("kick_fg") + " on field goals\n"
+						+ stats.attr("kick_xp") + "/" + stats.attr("kick_xpt") + " on extra points\n");
+			}
+			//Defensive data
+			if(stats.hasAttr("sacks"))
+			{
+				str.append(stats.attr("tot") + " tackle(s)\n");
+				if(!stats.attr("sacks").equals("0"))
+				{
+					str.append(stats.attr("sacks") + " sack(s)\n");
+				}
+				if(!stats.attr("def_td").equals("0"))
+				{
+					str.append(stats.attr("def_td") + " touchdown(s)");
+				}
+				if(!stats.attr("int").equals("0"))
+				{
+					str.append(stats.attr("int") + " interception(s)\n");
+				}
+				if(!stats.attr("def_ff").equals("0"))
+				{
+					str.append(stats.attr("def_ff") + " forced fumble(s)\n");
+				}
+			}
+			if(str.toString().equals(name + " Statistics:\n"))
+			{
+				str.append(name + " made an appearance, but made no statistical impact\n");
+			}
+			if(stats.parent().attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				g.teamAIndivStats.put(name,  str.toString());
+			}
+			if(stats.parent().attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				g.teamBIndivStats.put(name,  str.toString());
+			}
+		}
+		if(g.teamAIndivStats.size() == 0)
+		{
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
+		if(g.teamBIndivStats.size() == 0)
+		{
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
 	}
 
 	/**
@@ -788,6 +942,102 @@ public class GameStatsObject
 		g.teamBStats = g.teamBStats.replaceAll("\\.00", "");
 		System.out.println(g.teamAStats);
 		System.out.println(g.teamBStats);
+		Elements statsList = doc.select("matchstatistics statistics");
+		for(Element stats : statsList)
+		{
+			String name = stats.parent().attr("name");
+			StringBuilder str = new StringBuilder(1000);
+			str.append(name + " Statistics:\n");
+			if(stats.hasAttr("tot_pitch") || stats.hasAttr("pitch_totpitch"))
+			{
+				if(stats.hasAttr("er"))
+				{
+					str.append("ERA: " + stats.attr("era") + "\n");
+				}
+				if(stats.hasAttr("bb_pit"))
+				{
+					str.append(stats.attr("bb_pit") + " walked batters, " + 
+							stats.attr("so_pit") + " Ks\n");
+				}
+				if(stats.hasAttr("er"))
+				{
+					str.append(stats.attr("er") + " earned runs on " + stats.attr("h_pit") 
+							+ " hits");
+					if(!stats.attr("hr").equals("0"))
+					{
+						str.append(", " + stats.attr("hr") + " of which were HR(s)");
+					}
+					str.append("\n");
+				}
+				if(stats.hasAttr("pitch_totpitch"))
+				{
+					str.append(stats.attr("pitch_totpitch") + " pitches (" + stats.attr("pitch_totstrikes") + " of which were strikes) thrown to a total of " + 
+							stats.attr("pitch_batfaced") + " batters over " + stats.attr("ip") + " innings\n");
+				}
+				if(!stats.attr("pitch_loss").equals("0"))
+				{
+					str.append("Got the loss\n");
+				}
+				else if(!stats.attr("pitch_save").equals("0"))
+				{
+					str.append("Got the save\n");
+				}
+				else if(!stats.attr("pitch_won").equals("0"))
+				{
+					str.append("Got the win\n");
+				}
+			}
+			if(stats.attr("ab").length() > 0 && stats.hasAttr("avg"))
+			{
+				if(!stats.attr("ab").equals("0"))
+				{
+					str.append(stats.attr("h")+ "/" + stats.attr("ab") + " on the day\n");
+				} 
+				if(stats.hasAttr("doubles"))
+				{
+					str.append(stats.attr("doubles") + " doubles, ");
+					str.append(stats.attr("triples") + " triples, ");
+					str.append(stats.attr("hrs") + " home run(s)\n");
+				}
+				if(stats.hasAttr("r") && stats.hasAttr("rbi"))
+				{
+					str.append(stats.attr("r") + " runs, " + stats.attr("rbi") + " RBIs\n");
+				}
+				if(stats.hasAttr("so") && stats.hasAttr("bb"))
+				{
+					str.append(stats.attr("bb") + " walks, " + stats.attr("so") + " Ks\n");
+				}
+				if(stats.hasAttr("avg"))
+				{
+					str.append("Hitting " + stats.attr("avg"));
+					if(!stats.attr("obp").equals("0") && !stats.attr("slg").equals("0"))
+					{
+						str.append(", OBP: " + stats.attr("obp") + ", Slugging: " + stats.attr("slg"));
+					}
+					str.append("\n");
+				} 
+				if(stats.hasAttr("assists") && !stats.attr("assists").equals("0"))
+				{
+					str.append(stats.attr("assists") + " assist(s)\n");
+				}
+			}
+			if(stats.parent().attr("team_id").equals(String.valueOf(g.teamAID)))
+			{
+				g.teamAIndivStats.put(name, str.toString());
+			}
+			if(stats.parent().attr("team_id").equals(String.valueOf(g.teamBID)))
+			{
+				g.teamBIndivStats.put(name,  str.toString());
+			}
+		}
+		if(g.teamAIndivStats.size() == 0)
+		{
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
+		if(g.teamBIndivStats.size() == 0)
+		{
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+		}
 	}
 
 	/**
@@ -825,7 +1075,7 @@ public class GameStatsObject
 			protected void onPostExecute(GameStatsObject result){
 			   super.onPostExecute(result);
 			   pda.dismiss();
-			   //Call some fn here...
+			   setContentView(gsObj);
 			}    
 			 
 		    @Override
@@ -843,4 +1093,167 @@ public class GameStatsObject
 				return null;
 		    }
 	  }
+	
+	/**
+	 * Sets all the stats of the view
+	 * @param gsObj
+	 */
+	public void setContentView(final GameStatsObject gsObj)
+	{ 
+		LinearLayout layout = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
+		layout.removeAllViews();
+		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.sw_game_stats, layout, false);
+		TextView header = (TextView)res.findViewById(R.id.game_stats_header);
+		header.setText(gsObj.matchHome);
+		TextView date = (TextView)res.findViewById(R.id.game_stats_date);
+		date.setText(gsObj.matchDate);
+		TextView venue = (TextView)res.findViewById(R.id.game_stats_venuename);
+		venue.setText(gsObj.venueName);
+		
+		TextView teamA = (TextView)res.findViewById(R.id.game_stats_teamAName);
+		TextView teamB = (TextView)res.findViewById(R.id.game_stats_teamBName);
+		TextView outcome = (TextView)res.findViewById(R.id.game_stats_outcome);
+		TextView attendance = (TextView)res.findViewById(R.id.game_stats_attendance);
+		TextView teamAStats = (TextView)res.findViewById(R.id.game_stats_teamAStats);
+		TextView teamBStats = (TextView)res.findViewById(R.id.game_stats_teamBStats);
+		TextView teamALineup = (TextView)res.findViewById(R.id.game_stats_teamALineup);
+		TextView teamBLineup = (TextView)res.findViewById(R.id.game_stats_teamBLineup);
+		final ListView teamAIndiv = (ListView)res.findViewById(R.id.game_stats_teamAIndiv);
+		final ListView teamBIndiv = (ListView)res.findViewById(R.id.game_stats_teamBIndiv);
+		final Button teamAToggle = (Button)res.findViewById(R.id.game_stats_toggleStatsA);
+		final Button teamBToggle = (Button)res.findViewById(R.id.game_stats_toggleStatsB);
+		
+		if(gsObj.isPlayed)
+		{
+			final ArrayList<String> list = new ArrayList<String>();
+		    for(String name : gsObj.teamAIndivStats.keySet())
+		    {
+		    	list.add(gsObj.teamAIndivStats.get(name));
+		    }
+		    final ArrayList<String> listB = new ArrayList<String>();
+		    for(String name : gsObj.teamBIndivStats.keySet())
+		    {
+		    	listB.add(gsObj.teamBIndivStats.get(name));
+		    }
+		    Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+		    Collections.sort(listB, String.CASE_INSENSITIVE_ORDER);
+		    final ArrayAdapter<String> adapterA = new ArrayAdapter<String>(gsObj.cont,
+		            android.R.layout.simple_list_item_1, list);
+		    teamAIndiv.setAdapter(adapterA);
+		    final ArrayAdapter<String> adapterB = new ArrayAdapter<String>(gsObj.cont,
+		            android.R.layout.simple_list_item_1, listB);
+		    teamBIndiv.setAdapter(adapterB);
+		    teamAIndiv.setOnTouchListener(new ListView.OnTouchListener() {
+	            @Override
+	            public boolean onTouch(View v, MotionEvent event) {
+	            	int action = event.getAction();
+	                switch (action) {
+	                case MotionEvent.ACTION_DOWN:
+	                    // Disallow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(true);
+	                    break;
+
+	                case MotionEvent.ACTION_UP:
+	                    // Allow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(false);
+	                    break;
+	                }
+
+	                // Handle ListView touch events.
+	                v.onTouchEvent(event);
+	                return true;
+	            }
+	        });
+		    teamBIndiv.setOnTouchListener(new ListView.OnTouchListener() {
+	            @Override
+	            public boolean onTouch(View v, MotionEvent event) {
+	            	int action = event.getAction();
+	                switch (action) {
+	                case MotionEvent.ACTION_DOWN:
+	                    // Disallow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(true);
+	                    break;
+
+	                case MotionEvent.ACTION_UP:
+	                    // Allow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(false);
+	                    break;
+	                }
+
+	                // Handle ListView touch events.
+	                v.onTouchEvent(event);
+	                return true;
+	            }
+	        });
+			outcome.setText(gsObj.winner + " won " + gsObj.score);
+			if(gsObj.attendance > 0)
+			{
+				attendance.setText("Attendance: " + gsObj.attendance);
+			}
+			else
+			{
+				attendance.setVisibility(View.GONE);
+			}
+			teamAIndiv.setVisibility(View.GONE);
+			teamBIndiv.setVisibility(View.GONE);
+			teamAStats.setText(gsObj.teamAStats);
+			teamBStats.setText(gsObj.teamBStats);
+			teamB.setText(gsObj.teamBName);
+			teamA.setText(gsObj.teamAName);
+			teamALineup.setText(gsObj.teamALineup);
+			teamBLineup.setText(gsObj.teamBLineup);
+			teamAToggle.setText("Show Individual Statistics");
+			teamBToggle.setText("Show Individual Statistics");
+			teamAToggle.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					if(gsObj.isHiddenA)
+					{
+						teamAToggle.setText("Hide Individual Statistics");
+						teamAIndiv.setVisibility(View.VISIBLE);
+						gsObj.isHiddenA = false;
+					}
+					else
+					{
+						teamAToggle.setText("Show Individual Statistics");
+						teamAIndiv.setVisibility(View.GONE);
+						gsObj.isHiddenA = true;
+					}
+				}
+			});
+			teamBToggle.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					if(gsObj.isHiddenB)
+					{
+						teamBToggle.setText("Hide Individual Statistics");
+						teamBIndiv.setVisibility(View.VISIBLE);
+						gsObj.isHiddenB = false;
+					}
+					else
+					{
+						teamBToggle.setText("Show Individual Statistics");
+						teamBIndiv.setVisibility(View.GONE);
+						gsObj.isHiddenB = true;
+					}
+				}
+			});
+		}
+		else
+		{
+			outcome.setText("This game has not yet been played");
+			attendance.setVisibility(View.GONE);
+			teamAStats.setVisibility(View.GONE);
+			teamBStats.setVisibility(View.GONE);
+			teamA.setVisibility(View.GONE);
+			teamB.setVisibility(View.GONE);
+			teamALineup.setVisibility(View.GONE);
+			teamBLineup.setVisibility(View.GONE);
+			teamAIndiv.setVisibility(View.GONE);
+			teamBIndiv.setVisibility(View.GONE);
+			teamAToggle.setVisibility(View.GONE);
+			teamBToggle.setVisibility(View.GONE);
+		} 
+		layout.addView(res);
+	}
 }

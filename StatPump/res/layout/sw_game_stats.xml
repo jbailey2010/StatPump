@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/game_stats_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="Team X vs. Team Y"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#191970"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/game_stats_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_header"
+            android:layout_centerHorizontal="true"
+            android:text="Date"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/game_stats_venuename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_date"
+            android:layout_centerHorizontal="true"
+            android:text="Venue Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#006600"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/game_stats_outcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_venuename"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="X won, 1 - 0"
+            android:textColor="#53933f"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/game_stats_attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_outcome"
+            android:layout_centerHorizontal="true"
+            android:text="Attendance"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/game_stats_teamAName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_attendance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:text="Team X"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#191970"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/game_stats_teamAStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/game_stats_teamALineup"
+            android:layout_marginTop="18dp"
+            android:text="Team X Stats"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/game_stats_teamALineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/game_stats_teamAStats"
+            android:layout_below="@+id/game_stats_teamAName"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/game_stats_teamBLineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_teamBName"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="18dp"
+            android:text="Medium Text"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/game_stats_teamBStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/game_stats_teamBLineup"
+            android:layout_below="@+id/game_stats_teamBLineup"
+            android:layout_marginTop="18dp"
+            android:text="Team Y Stats"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/game_stats_toggleStatsA"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_stats_teamAName"
+            android:background="@drawable/overscroll_blue"
+            android:textSize="13sp"
+            android:layout_height="30dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/game_stats_toggleStatsB"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_stats_teamBName"
+            android:background="@drawable/overscroll_blue"
+            android:text="Button"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/game_stats_teamAIndiv"
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:background="#CCCCCC"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/game_stats_teamAStats"
+            android:layout_marginTop="14dp" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/game_stats_teamBName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_stats_teamAIndiv"
+            android:text="Team Y"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#53933f"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/game_stats_teamBIndiv"
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:layout_alignParentLeft="true"
+            android:background="#CCCCCC"
+            android:layout_below="@+id/game_stats_teamBStats"
+            android:layout_marginTop="17dp" >
+        </ListView>
+
+    </RelativeLayout>
+</ScrollView>
