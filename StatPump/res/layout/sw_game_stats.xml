@@ -146,7 +146,7 @@
             android:id="@+id/game_stats_teamAIndiv"
             android:layout_width="match_parent"
             android:layout_height="500px"
-            android:background="#CCCCCC"
+            android:background="#EEEEEE"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/game_stats_teamAStats"
             android:layout_marginTop="14dp" >
@@ -170,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="500px"
             android:layout_alignParentLeft="true"
-            android:background="#CCCCCC"
+            android:background="#EEEEEE"
             android:layout_below="@+id/game_stats_teamBStats"
             android:layout_marginTop="17dp" >
         </ListView>
