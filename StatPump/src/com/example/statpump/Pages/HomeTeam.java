@@ -12,7 +12,13 @@ import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
+import com.example.statpump.InterfaceAugmentation.MyActionBarListener;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
+import com.socialize.ActionBarUtils;
+import com.socialize.Socialize;
+import com.socialize.entity.Entity;
+import com.socialize.ui.actionbar.ActionBarOptions;
+import com.socialize.ui.actionbar.ActionBarView;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -59,7 +65,8 @@ public class HomeTeam extends Activity {
 	public boolean isSubmit = false;
 	APIObject obj = new APIObject(this);
 	PlayerSearchObject po;
-	
+	ActionBarView view;
+	MyActionBarListener listener;
 	/**
 	 * Sets up the layout, initial loading...etc.
 	 */
@@ -67,6 +74,19 @@ public class HomeTeam extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_team);
+		Socialize.onCreate(this, savedInstanceState);
+		// Your entity key. May be passed as a Bundle parameter to your activity
+		String entityKey = "http://www.statpump.com/hometeamlookup";
+		
+		// Create an entity object including a name
+		// The Entity object is Serializable, so you could also store the whole object in the Intent
+		Entity entity = Entity.newInstance(entityKey, "Team Lookup Home");
+		listener = new MyActionBarListener();
+		// Wrap your existing view with the action bar.
+		// your_layout refers to the resource ID of your current layout.
+		View actView = ActionBarUtils.showActionBar(this, R.layout.activity_home_team, entity, null, listener);
+		// Now set the view for your activity to be the wrapped view.
+		setContentView(actView);		
 		initialSetUp();
 		if(menuObj != null)
 		{
@@ -139,11 +159,23 @@ public class HomeTeam extends Activity {
 	@Override
 	protected void onResume() {
 	    super.onResume();
-	    if(menuObj != null)
-	    {
-	    	checkInternet();
-	    }
-	    
+	    Socialize.onResume(this);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		
+		// Call Socialize in onPause
+		Socialize.onPause(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		// Call Socialize in onDestroy before the activity is destroyed
+		Socialize.onDestroy(this);
+		
+		super.onDestroy();
 	}
 	
 	/**
@@ -317,7 +349,14 @@ public class HomeTeam extends Activity {
 			close.setVisibility(View.GONE);
 			dialog.setCancelable(false);
 		}
-		
+		String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str;
+		Entity entity = Entity.newInstance(entityKey, team1Str);
+		view = listener.getActionBarView();
+
+		if (view != null) {
+			view.setEntity(entity);
+			view.refresh();
+		}	
 		Button submit = (Button)dialog.findViewById(R.id.statwell_team_submit);
 		submit.setOnClickListener(new OnClickListener(){
 			@Override
