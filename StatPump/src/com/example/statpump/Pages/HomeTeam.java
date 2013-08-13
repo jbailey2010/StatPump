@@ -149,13 +149,6 @@ public class HomeTeam extends Activity {
 		}
 	}
 	
-	/**
-	 * Don't allow user to go back to server connecting
-	 */
-	@Override
-	public void onBackPressed() {
-	}
-	
 	@Override
 	protected void onResume() {
 	    super.onResume();

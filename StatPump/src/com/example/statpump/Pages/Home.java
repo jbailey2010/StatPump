@@ -175,12 +175,6 @@ public class Home extends Activity {
 		}
 	}
 	
-	/**
-	 * Block back button pressing so the user can't go back to server connecting
-	 */
-	@Override
-	public void onBackPressed() {
-	}
 	
 	@Override
 	protected void onResume() {
