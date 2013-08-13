@@ -5,7 +5,9 @@ import com.example.statpump.FileIO.ReadFromFile;
 import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.Pages.Home;
 import com.example.statpump.Pages.HomeTeam;
+import com.example.statpump.Pages.Loading;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +68,7 @@ public class HandleInput
 		tour.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				dialog.dismiss();
 				takeTour(cont);
 			}
 		});
@@ -75,9 +78,34 @@ public class HandleInput
 	 * Handles the 'tour'
 	 * @param cont
 	 */
-	public static void takeTour(Context cont)
+	public static void takeTour(final Context cont)
 	{
-		
+		((Activity) cont).setContentView(R.layout.activity_home);
+		final Dialog dialog = new Dialog(cont, R.style.RoundCorners);
+		dialog.setCancelable(false);
+		dialog.setContentView(R.layout.tour_game);
+		dialog.show();
+		Button continueButton = (Button)dialog.findViewById(R.id.tour_continue);
+		continueButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				((Activity) cont).setContentView(R.layout.activity_home_team);
+				final Dialog dialog = new Dialog(cont, R.style.RoundCorners);
+				dialog.setCancelable(false);
+				dialog.setContentView(R.layout.tour_team);
+				dialog.show();
+				Button finish = (Button)dialog.findViewById(R.id.tour_finish);
+				finish.setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+						Intent intent = new Intent(cont, Loading.class);
+				        cont.startActivity(intent);	
+					}
+				});
+			}
+		});
 	}
 	
 	/**

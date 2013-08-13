@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+	
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="40dp"
+	        android:text="This is the game lookup. To find a game, there are three dropdowns. The first selects the sport, the second the first team, the third the second team (the options for which are the opponents of the first team sorted alphabetically). Each one will only appear as the previous is filled, and the text at the top serves as a prompt."
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/textView1"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="20dp"
+	        android:text="Once you hit submit, it will prompt you for what type of information you'd like to see in the statwell. This can also be set from the menu."
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/textView2"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="26dp"
+	        android:text="Also accessible from the menu is a player search, a twitter button through which you can search public tweets and/or post a tweet, a facebook button with similar functionality, a help button, and a button to switch to team lookup."
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	    <TextView
+	        android:id="@+id/textView4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/textView3"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="25dp"
+	        android:text="At the bottom is a comment thread (not visible here). Before selecting a game, it's a general thread. After selecting a game (hitting submit), it opens a thread unique to that game. This will remain until the season recycles."
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	    <Button
+	        android:id="@+id/tour_continue"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/textView4"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="20dp"
+	        android:background="@drawable/btn_blue"
+	        style="@style/ButtonText"
+	        android:text="Continue" />
+
+	</RelativeLayout>
+</ScrollView>
+
+
