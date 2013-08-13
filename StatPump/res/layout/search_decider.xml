@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/team_search"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text=" "
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -30,9 +30,9 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="What context would you like stats relative to?"
+        android:text="What would you like to see?"
         android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/team_search"
@@ -46,16 +46,35 @@
         android:background="@drawable/btn_blue"
         android:text="Team" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/decider_header"
+        android:layout_centerHorizontal="true"
+        android:text="Select Game to lookup stats relative to a game, Team for stats relative to a team, or if it's your first time using the app, select Tour to take a tour"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <Button
         android:id="@+id/game_search"
         style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/decider_header"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="48dp"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="44dp"
         android:background="@drawable/btn_blue"
         android:text="Game" />
+
+    <Button
+        android:id="@+id/take_tour"
+        android:background="@drawable/btn_green"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/team_search"
+        android:layout_centerHorizontal="true"
+        android:text="Tour" />
 
 </RelativeLayout>

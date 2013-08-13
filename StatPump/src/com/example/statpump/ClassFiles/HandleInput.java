@@ -35,7 +35,7 @@ public class HandleInput
 	 */ 
 	public static void chooseTeamOrGame(final Context cont)
 	{
-		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		final Dialog dialog = new Dialog(cont, R.style.RoundCorners);
 		dialog.setCancelable(false);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.search_decider);
@@ -46,6 +46,7 @@ public class HandleInput
 		dialog.show();
 		Button game = (Button)dialog.findViewById(R.id.game_search);
 		Button team = (Button)dialog.findViewById(R.id.team_search);
+		Button tour = (Button)dialog.findViewById(R.id.take_tour);
 		game.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -62,6 +63,21 @@ public class HandleInput
 		        cont.startActivity(intent);					
 			}
 		});
+		tour.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				takeTour(cont);
+			}
+		});
+	}
+	
+	/**
+	 * Handles the 'tour'
+	 * @param cont
+	 */
+	public static void takeTour(Context cont)
+	{
+		
 	}
 	
 	/**
