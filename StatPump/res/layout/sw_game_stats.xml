@@ -93,7 +93,7 @@
             android:layout_below="@+id/game_stats_teamAName"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:textSize="15sp" />
 
         <TextView
@@ -125,7 +125,7 @@
             android:layout_below="@+id/game_stats_teamAName"
             android:background="@drawable/overscroll_blue"
             android:textSize="13sp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:text="Button" />
