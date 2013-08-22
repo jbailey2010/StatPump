@@ -110,7 +110,7 @@ public class Loading extends Activity {
 		}
 		else
 		{
-			text.setText("Unable to connect to the server. Please reset the app and try again.");
+			text.setText("Unable to connect to the server. If you're certain you have an internet connection (REQUIRED), please reset the app and try again.");
 			text.setTextSize(25);
 			isValid = false;
 		}
