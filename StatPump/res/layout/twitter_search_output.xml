@@ -20,6 +20,8 @@
             android:id="@+id/back_view"
             android:layout_height="fill_parent"
 		    android:layout_width="2dp"
+		    android:layout_marginTop="4dp"
+		    android:layout_marginBottom="4dp"
             android:layout_toRightOf="@+id/search_back"
 		    android:background="#0000FF"/>
 
@@ -59,6 +61,8 @@
         <View
             android:id="@+id/search_close_view"
             android:layout_width="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:layout_height="fill_parent"
             android:layout_alignLeft="@+id/search_close"
             android:layout_alignParentTop="true"
@@ -66,6 +70,8 @@
         <View
             android:id="@+id/search_help_view"
             android:layout_width="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:layout_height="fill_parent"
             android:layout_alignLeft="@+id/search_help"
             android:layout_alignParentTop="true"

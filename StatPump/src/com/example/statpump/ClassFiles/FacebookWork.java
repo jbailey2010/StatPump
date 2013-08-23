@@ -23,6 +23,7 @@ import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.InterfaceAugmentation.SwipeDismissListViewTouchListener;
 
 
+
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
@@ -40,10 +41,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.URLUtil;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -498,7 +504,7 @@ public class FacebookWork
 	 * @param cont
 	 * @param post
 	 */
-	public static void postPopup(Context cont, String post)
+	public static void postPopup(final Context cont, String post)
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -509,7 +515,25 @@ public class FacebookWork
 	    dialog.getWindow().setAttributes(lp);
 	    dialog.show();
 	    TextView tweetView = (TextView)dialog.findViewById(R.id.tweet_field);
-	    tweetView.setText(post);
+	    String[] words = post.split(" ");
+		SpannableString ss = new SpannableString(post);
+		for(final String word : words)
+		{
+			if(URLUtil.isValidUrl(word))
+			{
+				ClickableSpan clickableSpan = new ClickableSpan() {
+		            @Override
+		            public void onClick(View textView) {
+		            	Intent i = new Intent(Intent.ACTION_VIEW);
+		            	i.setData(Uri.parse(word));
+		            	cont.startActivity(i);
+		            }
+		        };
+		        ss.setSpan(clickableSpan, post.indexOf(word), post.indexOf(word) + word.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+		}
+	    tweetView.setText(ss);
+	    tweetView.setMovementMethod(LinkMovementMethod.getInstance());
 	    Button close = (Button)dialog.findViewById(R.id.tweet_popup_close);
 	    close.setOnClickListener(new OnClickListener(){
 			@Override

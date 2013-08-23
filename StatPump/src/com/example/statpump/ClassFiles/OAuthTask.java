@@ -49,15 +49,6 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
             System.out.println("Access Token is null!!!!!!!!");
             return mOAuthWebView;
         }
-        try {
-			mOAuthWebView.getFacebook().postStatusMessage("Test");
-		} catch (FacebookException e) {
-			if(e.isCausedByNetworkIssue())
-			{
-				return null;
-			}
-			e.printStackTrace();
-		}
         return mOAuthWebView;
     }
 

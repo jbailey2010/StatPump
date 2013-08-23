@@ -31,10 +31,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.URLUtil;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -332,6 +337,13 @@ public class TwitterWork
 	    	datum.put("footer", "\n" + status.getUser().getName() + "\n" + status.getCreatedAt());
 	    	data.add(datum);
 	    }
+	    if(statuses.size() == 0)
+	    {
+	    	Map<String, String> datum = new HashMap<String, String>(2);
+	    	datum.put("header", "No search results");
+	    	datum.put("footer", "Please try a different query");
+	    	data.add(datum);
+	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
 	    		android.R.layout.simple_list_item_2, 
 	    		new String[] {"header", "footer"}, 
@@ -372,7 +384,7 @@ public class TwitterWork
 	/**
 	 * Handles the tweet pop up
 	 */
-	public static void tweetPopup(Context cont, String tweet)
+	public static void tweetPopup(final Context cont, String tweet)
 	{
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -381,9 +393,27 @@ public class TwitterWork
 	    lp.copyFrom(dialog.getWindow().getAttributes());
 	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
 	    dialog.getWindow().setAttributes(lp);
-	    dialog.show();
 	    TextView tweetView = (TextView)dialog.findViewById(R.id.tweet_field);
-	    tweetView.setText(tweet);
+	    String[] words = tweet.split(" ");
+		SpannableString ss = new SpannableString(tweet);
+		for(int i = 0; i < words.length; i++)
+		{
+			final String word = words[i];
+			if(URLUtil.isValidUrl(word))
+			{
+				ClickableSpan clickableSpan = new ClickableSpan() {
+		            @Override
+		            public void onClick(View textView) {
+		            	Intent i = new Intent(Intent.ACTION_VIEW);
+		            	i.setData(Uri.parse(word));
+		            	cont.startActivity(i);
+		            }
+		        };
+		        ss.setSpan(clickableSpan, tweet.indexOf(word), tweet.indexOf(word) + word.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+		}
+	    tweetView.setText(ss);
+	    tweetView.setMovementMethod(LinkMovementMethod.getInstance());
 	    Button close = (Button)dialog.findViewById(R.id.tweet_popup_close);
 	    close.setOnClickListener(new OnClickListener(){
 			@Override
@@ -392,6 +422,7 @@ public class TwitterWork
 				return;
 			}
 	    });
+	    dialog.show();
 	}
 	
 	/**
