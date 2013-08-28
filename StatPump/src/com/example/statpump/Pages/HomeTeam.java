@@ -88,6 +88,14 @@ public class HomeTeam extends Activity {
 		// Now set the view for your activity to be the wrapped view.
 		setContentView(actView);		
 		initialSetUp();
+		View v = findViewById(android.R.id.home);
+		v.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(cont, Loading.class);
+		        cont.startActivity(intent);		
+			}
+		});
 		if(menuObj != null)
 		{
 			checkInternet();

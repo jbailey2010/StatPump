@@ -18,6 +18,7 @@ import java.util.List;
 
 
 
+
 import com.example.statpump.R;
 import com.example.statpump.R.layout;
 import com.example.statpump.R.menu;
@@ -112,6 +113,15 @@ public class Home extends Activity {
 		setContentView(actView);		
 			
 		initialSetUp();		
+
+		View v = findViewById(android.R.id.home);
+		v.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(cont, Loading.class);
+		        cont.startActivity(intent);		
+			}
+		});
 		if(menuObj != null)
 		{
 			checkInternet();

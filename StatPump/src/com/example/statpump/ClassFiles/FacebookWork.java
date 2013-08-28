@@ -463,10 +463,10 @@ public class FacebookWork
 	    	data.add(datum);
 	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
-	    		android.R.layout.simple_list_item_2, 
+	    		R.layout.web_listview_item, 
 	    		new String[] {"header", "footer"}, 
-	    		new int[] {android.R.id.text1, 
-	    			android.R.id.text2});
+	    		new int[] {R.id.text1, 
+	    			R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));
 	    searchOutput.setOverscrollFooter(cont.getResources().getDrawable(R.drawable.overscroll_green));
@@ -488,61 +488,8 @@ public class FacebookWork
 	        searchOutput.setOnTouchListener(touchListener);
 	        searchOutput.setOnScrollListener(touchListener.makeScrollListener());
 	    }
-        searchOutput.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				String post = ((TwoLineListItem)arg1).getText1().getText().toString();
-				post += "\n\n" + ((TwoLineListItem)arg1).getText2().getText().toString();
-				postPopup(cont, post);
-			}
-        });
 	}
 	
-	/**
-	 * Makes the post popup show
-	 * @param cont
-	 * @param post
-	 */
-	public static void postPopup(final Context cont, String post)
-	{
-		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.tweet_popup);
-		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-	    lp.copyFrom(dialog.getWindow().getAttributes());
-	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
-	    dialog.getWindow().setAttributes(lp);
-	    dialog.show();
-	    TextView tweetView = (TextView)dialog.findViewById(R.id.tweet_field);
-	    String[] words = post.split(" ");
-		SpannableString ss = new SpannableString(post);
-		for(final String word : words)
-		{
-			if(URLUtil.isValidUrl(word))
-			{
-				ClickableSpan clickableSpan = new ClickableSpan() {
-		            @Override
-		            public void onClick(View textView) {
-		            	Intent i = new Intent(Intent.ACTION_VIEW);
-		            	i.setData(Uri.parse(word));
-		            	cont.startActivity(i);
-		            }
-		        };
-		        ss.setSpan(clickableSpan, post.indexOf(word), post.indexOf(word) + word.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-		}
-	    tweetView.setText(ss);
-	    tweetView.setMovementMethod(LinkMovementMethod.getInstance());
-	    Button close = (Button)dialog.findViewById(R.id.tweet_popup_close);
-	    close.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				dialog.dismiss();
-				return;
-			}
-	    });
-	}
 	
 	/**
 	 * Handles the help pop up 

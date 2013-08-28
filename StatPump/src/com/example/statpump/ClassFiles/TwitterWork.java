@@ -345,10 +345,10 @@ public class TwitterWork
 	    	data.add(datum);
 	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
-	    		android.R.layout.simple_list_item_2, 
+	    		R.layout.web_listview_item, 
 	    		new String[] {"header", "footer"}, 
-	    		new int[] {android.R.id.text1, 
-	    			android.R.id.text2});
+	    		new int[] {R.id.text1, 
+	    			R.id.text2});
 	    searchOutput.setAdapter(adapter);
 	    searchOutput.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));
 	    searchOutput.setOverscrollFooter(cont.getResources().getDrawable(R.drawable.overscroll_green));
@@ -370,60 +370,8 @@ public class TwitterWork
 	        searchOutput.setOnTouchListener(touchListener);
 	        searchOutput.setOnScrollListener(touchListener.makeScrollListener());
 	    }
-        searchOutput.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
-				tweet += "\n\n" + ((TwoLineListItem)arg1).getText2().getText().toString();
-				tweetPopup(cont, tweet);
-			}
-        });
 	}
 	
-	/**
-	 * Handles the tweet pop up
-	 */
-	public static void tweetPopup(final Context cont, String tweet)
-	{
-		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.tweet_popup);
-		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-	    lp.copyFrom(dialog.getWindow().getAttributes());
-	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
-	    dialog.getWindow().setAttributes(lp);
-	    TextView tweetView = (TextView)dialog.findViewById(R.id.tweet_field);
-	    String[] words = tweet.split(" ");
-		SpannableString ss = new SpannableString(tweet);
-		for(int i = 0; i < words.length; i++)
-		{
-			final String word = words[i];
-			if(URLUtil.isValidUrl(word))
-			{
-				ClickableSpan clickableSpan = new ClickableSpan() {
-		            @Override
-		            public void onClick(View textView) {
-		            	Intent i = new Intent(Intent.ACTION_VIEW);
-		            	i.setData(Uri.parse(word));
-		            	cont.startActivity(i);
-		            }
-		        };
-		        ss.setSpan(clickableSpan, tweet.indexOf(word), tweet.indexOf(word) + word.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-		}
-	    tweetView.setText(ss);
-	    tweetView.setMovementMethod(LinkMovementMethod.getInstance());
-	    Button close = (Button)dialog.findViewById(R.id.tweet_popup_close);
-	    close.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				dialog.dismiss();
-				return;
-			}
-	    });
-	    dialog.show();
-	}
 	
 	/**
 	 * Handles user tweeting and the interface
