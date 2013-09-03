@@ -56,12 +56,17 @@ public class PlayerStatsObject
 				if(!ao.ignore.contains(ao.sportURL + "/" + parent))
 				{
 					String val = elem.attr("value");
+					if(val.contains(".00"))
+					{
+						val = val.replace(".00", "");
+					}
 					if(ao.fixes.containsKey(ao.sportURL + "/" + parent))
 					{
 						stats.add(val + " " + ao.fixes.get(ao.sportURL + "/" + parent));
 					}
 					else
 					{
+						System.out.println(ao.sportURL);
 						System.out.println("DID NOT FIND " + parent);
 					}
 				}

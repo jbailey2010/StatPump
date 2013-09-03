@@ -23,7 +23,7 @@ public class ManageSportSelection
 	static ImageView sportLogo;
 	static String selectedSport;
 	static String selectedSportSpec;
-	
+	 
 	/**
 	 * Populates the sport spinner
 	 * @param spinner
@@ -40,7 +40,7 @@ public class ManageSportSelection
 		sports.add("Baseball - MLB (United States)");
 		//sports.add("Baseball - World Baseball Classic (World)");
 		sports.add("Basketball - NBA (United States)");
-		sports.add("Basketball - NCAA Division 1 (United States)");
+		//sports.add("Basketball - NCAA Division 1 (United States)");
 		//sports.add("Basketball - Olympics (World)");
 		//sports.add("Cricket - India Premier League (India)");
 		//sports.add("Golf - PGA Tour (World)");
@@ -51,9 +51,9 @@ public class ManageSportSelection
 		//sports.add("Motorsports - NASCAR Sprint Cup Series (United States)");
 		//sports.add("Rugby - World Cup (World)");
 		sports.add("Soccer - Premier League (England)");
-		sports.add("Soccer - UEFA Champions League (England)");
-		sports.add("Soccer - Primera Division (Spain)");
-		sports.add("Soccer - MLS (United States)"); 
+		//sports.add("Soccer - UEFA Champions League (England)");
+		//sports.add("Soccer - Primera Division (Spain)");
+		//sports.add("Soccer - MLS (United States)"); 
 		//sports.add("Soccer - World Cup (World)");
 		//sports.add("Tennis - ATP World Tour (World)");
 		//sports.add("Tennis - WTA Tour (World)");

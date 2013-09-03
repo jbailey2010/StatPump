@@ -182,7 +182,7 @@ public class VenueInfoObject
 		TextView homeTeam = (TextView)res.findViewById(R.id.sw_venue_info_hometeam);
 		if(obj.homeTeam != null && obj.homeTeam.length() > 3)
 		{
-			homeTeam.setText("Home of the " + obj.homeTeam);
+			homeTeam.setText("Home of " + obj.homeTeam);
 		}
 		else
 		{

@@ -77,12 +77,12 @@ public class APIObject
 		sportIDMap.put("American Football - NCAA Division 1", 5);
 		sportIDMap.put("Baseball - MLB", 1);
 		sportIDMap.put("Basketball - NBA", 13);
-		sportIDMap.put("Basketball - NCAA Division 1", 43);
+		//sportIDMap.put("Basketball - NCAA Division 1", 43);
 		sportIDMap.put("Hockey - NHL", 383);
 		sportIDMap.put("Soccer - Premier League", 8);
-		sportIDMap.put("Soccer - UEFA Champions League", 10);
-		sportIDMap.put("Soccer - Primera Division", 7);
-		sportIDMap.put("Soccer - MLS", 33);
+		//sportIDMap.put("Soccer - UEFA Champions League", 10);
+		//sportIDMap.put("Soccer - Primera Division", 7);
+		//sportIDMap.put("Soccer - MLS", 33);
 		
 		//Baseball stuff
 		fixes.put("baseball/batting_at_bats", "At Bats");
@@ -127,6 +127,25 @@ public class APIObject
 		fixes.put("american_football/receiving_longest_reception", "Longest Catch");
 		fixes.put("american_football/kicking_longest_kick", "Longest Kick");
 		fixes.put("american_football/rushing_longest_run", "Longest Run");
+		fixes.put("americanfootball/offense_passing_yards", "Passing Yards");
+		fixes.put("americanfootball/defense_tackles", "Tackles");
+		fixes.put("americanfootball/rushing_yards", "Rushing Yards");
+		fixes.put("americanfootball/receiving_yards", "Receiving Yards");
+		fixes.put("americanfootball/defense_interceptions", "Interceptions");
+		fixes.put("americanfootball/fumbles", "Fumbles");
+		fixes.put("americanfootball/punting_yards", "Punting Yards");
+		fixes.put("americanfootball/return_yards", "Return Yards");
+		fixes.put("americanfootball/offense_passing_touchdowns", "Passing Touchdowns");
+		fixes.put("americanfootball/rushing_touchdowns", "Rushing Touchdowns");
+		fixes.put("americanfootball/receiving_touchdowns", "Receiving Touchdowns");
+		fixes.put("americanfootball/defense_sacks", "Sacks");
+		fixes.put("americanfootball/defense_forced_fumbles", "Forced Fumbles");
+		fixes.put("americanfootball/punting_total_punts", "Total Punts");
+		fixes.put("americanfootball/kicking_points", "Total Points From Kicking");
+		fixes.put("americanfootball/punting_longest_punt", "Longest Punt");
+		fixes.put("americanfootball/receiving_longest_reception", "Longest Catch");
+		fixes.put("americanfootball/kicking_longest_kick", "Longest Kick");
+		fixes.put("americanfootball/rushing_longest_run", "Longest Run");
 		
 		//Basketball
 		fixes.put("basketball/minutes", "Minutes");
