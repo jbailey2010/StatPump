@@ -1,6 +1,8 @@
 package com.example.statpump.ClassFiles.LittleStorage;
 
 import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,14 +19,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.APIInteraction.ParseTeamID;
 
 /**
@@ -53,7 +59,7 @@ public class TeamInfoObject
 	public boolean isPlayed;
 	public String referees;
 	public APIObject obj;
-	
+	public List<String> schedule = new ArrayList<String>();
 	public TeamInfoObject(APIObject o, Context cont, String team1, int flag)
 	{
 		spawnAsync(o, cont, team1, flag);
@@ -205,6 +211,57 @@ public class TeamInfoObject
 		{
 			place.setVisibility(View.GONE);
 		}
+		ListView schedule = (ListView)res.findViewById(R.id.game_info_schedule);
+		if(this.schedule.size() > 1)
+		{
+			final List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+			for(String match : this.schedule)
+			{
+		    	Map<String, String> datum = new HashMap<String, String>(2);
+				String[] matchData = match.split("////");
+				datum.put("main", matchData[0] + " (" + matchData[1] + ")");
+				if(matchData.length == 3)
+				{
+					datum.put("sub", matchData[2]);
+				}
+				else
+				{
+					datum.put("sub", "");
+				}
+				data.add(datum);
+			}
+		    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
+		    		android.R.layout.simple_list_item_2, 
+		    		new String[] {"main", "sub"}, 
+		    		new int[] {android.R.id.text1, 
+		    			android.R.id.text2});
+		    schedule.setAdapter(adapter);
+			schedule.setOnTouchListener(new ListView.OnTouchListener() {
+	            @Override
+	            public boolean onTouch(View v, MotionEvent event) {
+	            	int action = event.getAction();
+	                switch (action) {
+	                case MotionEvent.ACTION_DOWN:
+	                    // Disallow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(true);
+	                    break;
+
+	                case MotionEvent.ACTION_UP:
+	                    // Allow ScrollView to intercept touch events.
+	                    v.getParent().requestDisallowInterceptTouchEvent(false);
+	                    break;
+	                }
+
+	                // Handle ListView touch events.
+	                v.onTouchEvent(event);
+	                return true;
+	            }
+	        });
+		}
+		else
+		{
+			schedule.setVisibility(View.GONE);
+		}
 		layout.addView(res);
 	}
 
@@ -232,6 +289,34 @@ public class TeamInfoObject
             obj.founded = element.attr("founded");
         }
         return obj;
+	}
+	
+	/**
+	 * Parses the schedule information
+	 */
+	public static TeamInfoObject parseSchedule(Document doc, TeamInfoObject obj, String team1)
+	{
+		Elements links = doc.select("match");
+		for(Element element : links)
+		{
+			StringBuilder game = new StringBuilder(100);
+			game.append(element.attr("team_B_name") + " at " + element.attr("team_A_name"));
+			game.append("////" + element.attr("date_utc"));
+			if(HandleInput.isInteger(element.attr("fs_A")))
+			{
+				game.append("////");
+				if(element.attr("team_A_name").equals(team1))
+				{
+					game.append(element.attr("fs_A") + " - " + element.attr("fs_B"));
+				}
+				else
+				{
+					game.append(element.attr("fs_B") + " - " + element.attr("fs_A"));
+				}
+			}
+			obj.schedule.add(game.toString());
+		}
+		return obj;
 	}
 	
 	/**
@@ -323,6 +408,11 @@ public class TeamInfoObject
 					o = parseXML(doc, tio);
 					Document doc2 = APIInteraction.getXML(obj.formGetTeamUrl(), obj);
 					o = parseXMLRecord(doc2, tio, obj, team1);
+					if(indiv == 1)
+					{
+						Document doc3 = APIInteraction.getXML(obj.formGetMatchUrl(), obj);
+						o = parseSchedule(doc3, tio, team1);
+					}
 					if(indiv == 3)
 					{
 						Document docRefs = APIInteraction.getXML(obj.formGetRefsUrl(obj.matchID), obj);

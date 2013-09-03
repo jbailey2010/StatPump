@@ -8,7 +8,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
-<RelativeLayout 
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -81,39 +82,50 @@
          android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/sw_team_info_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sw_team_info_founded"
+    <ListView
+        android:id="@+id/game_info_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:layout_below="@+id/sw_team_info_email"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:layout_marginTop="74dp"
-        android:text="address line1\naddress line2\naddress line3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/sw_team_info_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/sw_team_info_founded"
-        android:layout_marginTop="20dp"
-        android:text="0-0-0"
-        android:textStyle="bold"
-        android:textColor="#53933f"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:background="@drawable/spinner_well" >
+    </ListView>
 
     <TextView
         android:id="@+id/sw_team_info_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sw_team_info_record"
+        android:layout_below="@+id/sw_team_info_founded"
         android:layout_centerHorizontal="true"
         android:text="3rd Place"
-                android:textColor="#191970"
-     android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#191970"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sw_team_info_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_team_info_place"
+        android:layout_centerHorizontal="true"
+        android:text="0-0-0"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#53933f"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sw_team_info_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_team_info_record"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="address line1\naddress line2\naddress line3"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
 </RelativeLayout>
         
     </ScrollView>
