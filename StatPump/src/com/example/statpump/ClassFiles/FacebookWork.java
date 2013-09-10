@@ -17,7 +17,7 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-import com.example.statpump.R;
+import com.statpump.statpump.R;
 import com.example.statpump.FileIO.ReadFromFile;
 import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.InterfaceAugmentation.SwipeDismissListViewTouchListener;

@@ -3,6 +3,7 @@ package com.example.statpump.Pages;
 
 import java.io.IOException;
 
+
 import org.jsoup.nodes.Document;
 
 import twitter4j.Query;
@@ -10,13 +11,14 @@ import twitter4j.QueryResult;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-import com.example.statpump.R;
-import com.example.statpump.R.layout;
-import com.example.statpump.R.menu;
+import com.statpump.statpump.R;
+import com.statpump.statpump.R.layout;
+import com.statpump.statpump.R.menu;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.HandleInput;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -99,6 +101,19 @@ public class Loading extends Activity {
 		if(result)
 		{
 			text.setText("Connection established, please touch the logo.");
+			TextView info = (TextView)((Loading)cont).findViewById(R.id.credit_view);
+			info.setVisibility(View.VISIBLE);
+			info.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					String url = "http://cavetechwebsolutions.com/";
+					Uri uriUrl = Uri.parse(url);
+			        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+			        ((Loading)cont).startActivity(launchBrowser);
+				}
+				
+			});
 			text.setTextSize(25);
 			p.setVisibility(View.INVISIBLE);
 			logo.setOnClickListener(new OnClickListener(){

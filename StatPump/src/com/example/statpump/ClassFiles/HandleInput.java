@@ -1,6 +1,6 @@
 package com.example.statpump.ClassFiles;
 
-import com.example.statpump.R;
+import com.statpump.statpump.R;
 import com.example.statpump.FileIO.ReadFromFile;
 import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.Pages.Home;

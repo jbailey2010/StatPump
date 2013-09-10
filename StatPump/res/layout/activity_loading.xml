@@ -25,39 +25,52 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/sp_full" />
-
-        <TextView
-            android:id="@+id/sub_header_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/logo_loading"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="15dp"
-            android:text="Information Systems"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#191970"
-            android:textSize="20sp"
-            android:textStyle="italic|bold" />
         
 	    <ProgressBar
 	        android:id="@+id/progressBar1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/sub_header_loading"
-	        android:layout_marginTop="15dp"
-	        android:paddingBottom="10dp"
+	        android:layout_marginTop="30dp"
 	        android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
 
+	    <TextView
+	        android:id="@+id/sub_header_loading"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBottom="@+id/logo_loading"
+	        android:layout_centerHorizontal="true"
+	        android:paddingBottom="15dp"
+	        android:text="Information Systems"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textColor="#191970"
+	        android:textSize="20sp"
+	        android:textStyle="italic|bold" />
+
+	    <TextView
+	        android:id="@+id/credit_view"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/progressBar1"
+	        android:layout_centerHorizontal="true"
+	        android:textStyle="bold"
+	        android:visibility="invisible"
+	        android:text="Developed and maintained by Cavetech Web Solutions"
+	        android:textColor="#191970"
+	        android:paddingBottom="10dp"
+	        android:textSize="14sp" />
+
+    </RelativeLayout>
+ 
     <TextView
         android:id="@+id/loading_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
-        android:text="Please wait, attempting to contact the server..."
+        android:layout_alignParentBottom="true"
         android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="Please wait, attempting to contact the server..."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

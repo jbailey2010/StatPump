@@ -21,6 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
         android:background="@drawable/spinner_well"
+        android:dropDownHeight="100dp"
         android:ems="10" >
 
         <requestFocus />

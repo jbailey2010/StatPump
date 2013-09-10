@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TwoLineListItem;
 
-import com.example.statpump.R;
+import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.LittleStorage.GameInfoObject;
 import com.example.statpump.ClassFiles.LittleStorage.GameStatsObject;

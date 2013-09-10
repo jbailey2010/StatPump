@@ -1,11 +1,12 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import com.example.statpump.R;
-import com.example.statpump.R.layout;
-import com.example.statpump.R.menu;
+import com.statpump.statpump.R;
+import com.statpump.statpump.R.layout;
+import com.statpump.statpump.R.menu;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;

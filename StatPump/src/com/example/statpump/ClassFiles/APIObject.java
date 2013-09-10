@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.statpump.R;
+import com.statpump.statpump.R;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
 import android.app.Activity;

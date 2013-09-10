@@ -18,7 +18,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
-import com.example.statpump.R;
+import com.statpump.statpump.R;
 import com.example.statpump.FileIO.ReadFromFile;
 import com.example.statpump.FileIO.WriteToFile;
 import com.example.statpump.InterfaceAugmentation.SwipeDismissListViewTouchListener;
