@@ -92,13 +92,19 @@ public class TwitterWork
 	{
 		if(userToken == null)
 		{
-			String token = ReadFromFile.readToken(cont);
-			String tokenSecret = ReadFromFile.readTokenSecret(cont);
-			userToken = new AccessToken(token, tokenSecret);
-			userTwitter = TwitterFactory.getSingleton();
-			userTwitter.setOAuthConsumer("De64oQ246ojYaGQfVb1rw",
-	        		"xVpbhUMjPceJDD6pTU2qpjX4qvbBFi1eBW7vr3pg3YI");
-			userTwitter.setOAuthAccessToken(userToken);
+			try{
+				String token = ReadFromFile.readToken(cont);
+				String tokenSecret = ReadFromFile.readTokenSecret(cont);
+				userToken = new AccessToken(token, tokenSecret);
+				userTwitter = TwitterFactory.getSingleton();
+				userTwitter.setOAuthConsumer("De64oQ246ojYaGQfVb1rw",
+		        		"xVpbhUMjPceJDD6pTU2qpjX4qvbBFi1eBW7vr3pg3YI");
+				userTwitter.setOAuthAccessToken(userToken);
+			}catch(IllegalStateException e)
+			{
+				Toast.makeText(cont, "Error, please try again. If the problem persists, please restart the app.", Toast.LENGTH_SHORT).show();
+				return;
+			}
 		}
 		twitterChoose(cont);
 	}
