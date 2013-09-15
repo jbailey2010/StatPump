@@ -1,7 +1,6 @@
 package com.example.statpump.ClassFiles.LittleStorage;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -112,6 +111,27 @@ public class TeamInfoObject
 		{
 			email.setText(this.email);
 		}
+		email.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+            	int action = event.getAction();
+                switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    // Disallow ScrollView to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    // Allow ScrollView to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                    break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        }); 
 		email.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View arg0) {
@@ -131,7 +151,27 @@ public class TeamInfoObject
 		{
 			url.setText(this.url);
 		}
-		
+		url.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+            	int action = event.getAction();
+                switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    // Disallow ScrollView to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    // Allow ScrollView to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                    break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
 		url.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View arg0) {

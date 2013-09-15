@@ -457,11 +457,11 @@ public class GameStatsObject
 		}
 		if(g.teamAIndivStats.size() == 0)
 		{
-			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+			g.teamAIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, is currently in progress, or the stats aren't available. If it's not the latter, stats will be available soon after the game.");
 		}
 		if(g.teamBIndivStats.size() == 0)
 		{
-			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, or the stats aren't available");
+			g.teamBIndivStats.put("No stats available", "No stats available for this game. Either it hasn't been played yet, is currently in progress, or the stats aren't available. If it's not the latter, stats will be available soon after the game.");
 		}
 	}
 	
@@ -1283,7 +1283,7 @@ public class GameStatsObject
 		}
 		else
 		{
-			outcome.setText("This game has not yet been played");
+			outcome.setText("No stats available for this game. Either it hasn't been played yet, is currently in progress, or the stats aren't available. If it's not the latter, stats will be available soon after the game.");
 			attendance.setVisibility(View.GONE);
 			teamAStats.setVisibility(View.GONE);
 			teamBStats.setVisibility(View.GONE);

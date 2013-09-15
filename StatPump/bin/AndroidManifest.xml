@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.statpump.statpump"
-    android:versionCode="5"
-    android:versionName="1.0.2" >
+    android:versionCode="7"
+    android:versionName="1.0.4" >
    
     <uses-sdk 
         android:minSdkVersion="10"
@@ -20,12 +20,18 @@
         android:logo="@drawable/sp_full"
         android:theme="@style/AppTheme" >
         <!-- Activities Required by Socialize -->
-        <activity android:name="com.socialize.ui.comment.CommentActivity" android:configChanges="orientation|keyboardHidden|screenSize"/>
-        <activity android:name="com.socialize.ui.action.ActionDetailActivity"/>
-        <activity android:name="com.socialize.ui.profile.ProfileActivity"/>
-        <activity android:name="com.socialize.auth.facebook.FacebookActivity"/>
-        <activity android:name="com.socialize.ui.SocializeLaunchActivity" android:noHistory="true"/>
-        <activity android:name="com.facebook.LoginActivity"/>
+        <activity android:name="com.socialize.ui.comment.CommentActivity" android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label=""/>
+        <activity android:name="com.socialize.ui.action.ActionDetailActivity"
+            android:label=""/>/>
+        <activity android:name="com.socialize.ui.profile.ProfileActivity"
+            android:label=""/>/>
+        <activity android:name="com.socialize.auth.facebook.FacebookActivity"
+            android:label=""/>/>
+        <activity android:name="com.socialize.ui.SocializeLaunchActivity" android:noHistory="true"
+            android:label=""/>/>
+        <activity android:name="com.facebook.LoginActivity"
+            android:label=""/>/>
         <activity
             android:name="com.example.statpump.Pages.Loading"
             android:label="StatPump"

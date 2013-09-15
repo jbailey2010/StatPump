@@ -19,6 +19,8 @@ package com.example.statpump.ClassFiles;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.example.statpump.ClassFiles.OAuthTask.InternalWebViewClient;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.webkit.WebSettings;
@@ -65,8 +67,11 @@ public class OAuthWebView extends WebView {
     public void start(Callback callback) {
     	System.out.println("In start of oauthwebview");
         mCallback = callback;
-        try {
-            new OAuthTask().execute(this, new URL("http://facebook4j.org/"));
+        try { 
+        	OAuthTask task = new OAuthTask();
+            this.setWebViewClient(task.new InternalWebViewClient());
+
+            task.execute(this, new URL("http://facebook4j.org/"));
         } catch (MalformedURLException ignore) {}
     }
 

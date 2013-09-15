@@ -61,10 +61,10 @@
     <TextView
         android:id="@+id/sw_team_info_url"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/sw_team_info_fax"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:padding="10dp"
         android:text="www.cincinnatibengals.com"
          android:textColor="#191970"
          android:textStyle="bold"
@@ -73,9 +73,10 @@
     <TextView
         android:id="@+id/sw_team_info_email"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/sw_team_info_url"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:text="contactus@bengals.com"
          android:textColor="#191970"
@@ -86,11 +87,12 @@
         android:id="@+id/game_info_schedule"
         android:layout_width="match_parent"
         android:layout_height="500px"
-        android:layout_below="@+id/sw_team_info_email"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/spinner_well" >
+
     </ListView>
 
     <TextView
@@ -125,6 +127,15 @@
         android:text="address line1\naddress line2\naddress line3"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/game_info_schedule"
+        android:layout_below="@+id/sw_team_info_email"
+        android:text="Score Format: Team Selected - Opponent"
+        android:textSize="14sp" />
 
 </RelativeLayout>
         

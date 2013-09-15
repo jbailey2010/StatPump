@@ -86,29 +86,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
-            android:id="@+id/game_stats_teamALineup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamAStats"
-            android:layout_below="@+id/game_stats_teamAName"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_marginTop="40dp"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/game_stats_teamBLineup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/game_stats_teamBName"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="18dp"
-            android:text="Medium Text"
-            android:textSize="15sp"
-            android:layout_marginTop="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
             android:id="@+id/game_stats_teamBStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,20 +97,20 @@
 
         <Button
             android:id="@+id/game_stats_toggleStatsA"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/game_stats_teamAName"
             android:background="@drawable/overscroll_blue"
             android:textSize="13sp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:text="Button" />
 
         <Button
             android:id="@+id/game_stats_toggleStatsB"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/game_stats_teamBName"
             android:background="@drawable/overscroll_blue"
@@ -147,10 +124,10 @@
             android:layout_width="match_parent"
             android:layout_height="500px"
             android:background="@drawable/spinner_well"
-          	android:layout_marginLeft="3dp"
+          	android:layout_marginLeft="12dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="3dp"
+            android:layout_marginRight="12dp"
             android:layout_below="@+id/game_stats_teamAStats"
             android:layout_marginTop="14dp" >
         </ListView>
@@ -173,13 +150,33 @@
             android:layout_width="match_parent"
             android:layout_height="500px"
             android:background="@drawable/spinner_well"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="12dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="3dp"
+            android:layout_marginRight="12dp"
             android:layout_below="@+id/game_stats_teamBStats"
             android:layout_marginTop="17dp" >
         </ListView>
+
+        <TextView
+            android:id="@+id/game_stats_teamALineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/game_stats_teamAStats"
+            android:layout_below="@+id/game_stats_toggleStatsA"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/game_stats_teamBLineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_stats_toggleStatsB"
+            android:layout_toLeftOf="@+id/game_stats_venuename"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 </ScrollView>

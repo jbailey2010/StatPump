@@ -85,10 +85,10 @@
             <TextView
                 android:id="@+id/sw_venue_url"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/sw_venue_fieldtype"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="27dp"
+                android:padding="15dp"
                 android:text="URL: "
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />

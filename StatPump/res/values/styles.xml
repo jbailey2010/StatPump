@@ -18,7 +18,6 @@
         <item name="android:textAppearance">@style/MyTextAppearance</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
     <style name="RoundCorners" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@drawable/round_corners</item>
     </style>

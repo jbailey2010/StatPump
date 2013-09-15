@@ -101,7 +101,7 @@ public class Loading extends Activity {
 		if(result)
 		{
 			text.setText("Connection established, please touch the logo.");
-			TextView info = (TextView)((Loading)cont).findViewById(R.id.credit_view);
+			/*TextView info = (TextView)((Loading)cont).findViewById(R.id.credit_view);
 			info.setVisibility(View.VISIBLE);
 			info.setOnClickListener(new OnClickListener(){
 
@@ -113,7 +113,7 @@ public class Loading extends Activity {
 			        ((Loading)cont).startActivity(launchBrowser);
 				}
 				
-			});
+			});*/
 			text.setTextSize(25);
 			p.setVisibility(View.INVISIBLE);
 			logo.setOnClickListener(new OnClickListener(){

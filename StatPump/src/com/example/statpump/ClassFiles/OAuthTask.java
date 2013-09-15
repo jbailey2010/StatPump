@@ -1,4 +1,3 @@
-
 package com.example.statpump.ClassFiles;
 
 import java.net.URL;
@@ -29,7 +28,6 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
         mOAuthWebView = (OAuthWebView) params[0];
         mCallbackURL = (URL) params[1];
 
-        mOAuthWebView.setWebViewClient(new InternalWebViewClient());
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
           .setOAuthAppId("134586500079124")
@@ -88,7 +86,7 @@ public class OAuthTask extends AsyncTask<Object, Void, OAuthWebView> {
 
 
 
-    private class InternalWebViewClient extends WebViewClient {
+    public class InternalWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
