@@ -56,7 +56,25 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="97dp"
                 android:textStyle="bold"
-                android:text="address line1\naddress line2\naddress line3"
+                android:text="address line1"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+             <TextView
+                android:id="@+id/sw_venue_info_address2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_info_address"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="address line2"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+              <TextView
+                android:id="@+id/sw_venue_info_address3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sw_venue_info_address2"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="address line3"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -68,18 +86,6 @@
                 android:text="Field Type: _____"
                 android:textColor="#006600"
                 android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/sw_venue_architects"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/sw_venue_info_address"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:text="Architects: ______"
-                 android:textColor="#191970"
-                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -126,6 +132,18 @@
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#006600" />
+
+            <TextView
+                android:id="@+id/sw_venue_architects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/sw_venue_info_address3"
+                android:layout_below="@+id/sw_venue_info_address3"
+                android:text="Architects: ______"
+                android:layout_marginTop="15dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#191970"
+                android:textStyle="bold" />
         
     </RelativeLayout>
     

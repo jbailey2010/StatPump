@@ -72,11 +72,7 @@ public class ManageSportSelection
 	public static void setSportImage(String sportStr, Context cont,
 			ImageView image, APIObject obj) 
 	{
-		if(sportStr.contains("Australian Football"))
-		{
-			image.setImageResource(R.drawable.ausfootball);
-		}
-		else if(sportStr.contains("Baseball"))
+		if(sportStr.contains("Baseball"))
 		{
 			image.setImageResource(R.drawable.baseball);
 		}
@@ -84,45 +80,17 @@ public class ManageSportSelection
 		{
 			image.setImageResource(R.drawable.basketball);
 		}
-		else if(sportStr.contains("Cricket"))
-		{
-			image.setImageResource(R.drawable.cricket);
-		}
 		else if(sportStr.contains("Football"))
 		{ 
 			image.setImageResource(R.drawable.football);
-		}
-		else if(sportStr.contains("Golf"))
-		{
-			image.setImageResource(R.drawable.golf);
-		}
-		else if(sportStr.contains("Handball"))
-		{
-			image.setImageResource(R.drawable.handball);
 		}
 		else if(sportStr.contains("Hockey"))
 		{
 			image.setImageResource(R.drawable.hockey);
 		}
-		else if(sportStr.contains("Motorsports"))
-		{
-			image.setImageResource(R.drawable.car);
-		}
-		else if(sportStr.contains("Rugby"))
-		{
-			image.setImageResource(R.drawable.rugby);
-		}
 		else if(sportStr.contains("Soccer"))
 		{
 			image.setImageResource(R.drawable.soccer);
-		}
-		else if(sportStr.contains("Tennis"))
-		{
-			image.setImageResource(R.drawable.tennis);
-		}
-		else if(sportStr.contains("Volleyball"))
-		{
-			image.setImageResource(R.drawable.volleyball);
 		}
 		obj.sportSelected(sportStr, (Activity) cont);
 	}

@@ -39,7 +39,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="230dp" 
+        android:layout_marginTop="205dp" 
         android:orientation="vertical"
         android:background="@drawable/view_well" >
 	    
@@ -70,18 +70,8 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal = "true"
         android:layout_below="@+id/game_title"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/spinner_well" />
-
-    <Button
-        android:id="@+id/game_clear"
-        style="@style/ButtonText"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/statwell"
-        android:layout_below="@+id/odds_view"
-        android:background="@drawable/btn_green"
-        android:text="Clear" />
 
     <Button
         android:id="@+id/game_submit"
@@ -100,7 +90,7 @@
         android:layout_height="35dp"
         android:layout_alignLeft="@+id/game_clear"
         android:layout_below="@+id/game_sport_spinner"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/spinner_well" />
 
     <Spinner
@@ -110,5 +100,15 @@
         android:layout_above="@+id/odds_view"
         android:layout_alignRight="@+id/game_submit"
         android:background="@drawable/spinner_well" />
+
+    <Button
+        android:id="@+id/game_clear"
+        style="@style/ButtonText"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_alignLeft="@+id/statwell"
+        android:background="@drawable/btn_green"
+        android:text="Clear" />
 
 </RelativeLayout>

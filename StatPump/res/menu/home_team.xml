@@ -4,7 +4,7 @@
         android:id="@+id/search_player"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
-        android:title="Player Search"/>
+        android:icon="@drawable/search"/> 
     <item
         android:id="@+id/twitter"
         android:orderInCategory="100"
@@ -24,7 +24,7 @@
         android:id="@+id/help"  
         android:orderInCategory="100"
         android:title="Need Help?"/>
-   <item
+   <item 
         android:id="@+id/set_statwell_team"  
         android:orderInCategory="100"
         android:title="Set StatWell Content"/>

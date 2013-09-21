@@ -75,17 +75,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/game_stats_teamAStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/game_stats_teamALineup"
-            android:layout_marginTop="18dp"
-            android:text="Team X Stats"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
             android:id="@+id/game_stats_teamBStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -159,24 +148,52 @@
         </ListView>
 
         <TextView
-            android:id="@+id/game_stats_teamALineup"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamAStats"
-            android:layout_below="@+id/game_stats_toggleStatsA"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="15sp" />
+            android:layout_below="@+id/game_stats_toggleStatsB"
+            android:layout_centerHorizontal="true"
+            android:text="Individual stats will be below"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/game_stats_teamBLineup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/game_stats_toggleStatsB"
-            android:layout_toLeftOf="@+id/game_stats_venuename"
+            android:layout_alignLeft="@+id/game_stats_teamAStats"
+            android:layout_below="@+id/textView1"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_stats_toggleStatsA"
+            android:text="Individual stats will be below"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/game_stats_teamALineup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/game_stats_teamAIndiv"
+            android:layout_below="@+id/textView2"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/game_stats_teamAStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/game_stats_teamALineup"
+            android:layout_below="@+id/game_stats_teamALineup"
+            android:layout_marginTop="16dp"
+            android:text="Team X Stats"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
 </ScrollView>

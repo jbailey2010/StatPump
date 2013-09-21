@@ -248,13 +248,33 @@ public class VenueInfoObject
 			}
 		});
 		TextView address = (TextView)res.findViewById(R.id.sw_venue_info_address);
+		TextView address2 = (TextView)res.findViewById(R.id.sw_venue_info_address2);
+		TextView address3 = (TextView)res.findViewById(R.id.sw_venue_info_address3);
 		if(obj.address != null && obj.address.length() > 3)
 		{
-			address.setText(obj.address);
+			String[] addressSet = obj.address.split("\n");
+			address.setText(addressSet[0]);
+			if(addressSet.length == 2)
+			{
+				address2.setText(addressSet[1]);
+				address3.setVisibility(View.GONE);
+			}
+			else if(addressSet.length == 3)
+			{
+				address2.setText(addressSet[1]);
+				address3.setText(addressSet[2]);
+			}
+			else
+			{
+				address2.setVisibility(View.GONE);
+				address3.setVisibility(View.GONE);
+			}
 		}
 		else
 		{
 			address.setVisibility(View.GONE);
+			address2.setVisibility(View.GONE);
+			address3.setVisibility(View.GONE);
 		}
 		TextView architects = (TextView)res.findViewById(R.id.sw_venue_architects);
 		if(obj.architects != null && obj.architects.length() > 3)

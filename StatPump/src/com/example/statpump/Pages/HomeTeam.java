@@ -211,6 +211,10 @@ public class HomeTeam extends Activity {
 			clear.setClickable(true);
 			headerText.setText("Select a Sport Below");
 			sport.setSelection(0);
+			for(int i = 0; i < menuObj.size(); i++)
+			{
+				menuObj.getItem(i).setEnabled(true);
+			}
 		}
 	}
 	
