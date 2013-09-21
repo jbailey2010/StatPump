@@ -77,4 +77,14 @@
         android:layout_centerHorizontal="true"
         android:text="Tour" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="Note: StatPump gets data from a third party source and makes to claim as to the accuracy of that data"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>
