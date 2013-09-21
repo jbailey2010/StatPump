@@ -93,7 +93,7 @@ public class APIObject
 		fixes.put("baseball/batting_left_on_base", "Batters Stranded");
 		fixes.put("baseball/pitching_wins", "Wins");
 		fixes.put("baseball/pitching_losses", "Losses");
-		fixes.put("baseball/pitching_innings_pitcher", "Innings Pitched");
+		fixes.put("baseball/pitching_innings_pitcher", "IP");
 		fixes.put("baseball/pitching_hits_allowed", "Hits Allowed");
 		fixes.put("baseball/pitching_base_on_balls", "Walks");
 		fixes.put("baseball/pitching_strikeouts", "Strikeouts");
@@ -101,7 +101,7 @@ public class APIObject
 		fixes.put("baseball/pitching_saves", "Saves");
 		fixes.put("baseball/pitching_earned_runs", "Earned Runs");
 		ignore.add("baseball/pitching_appearances");
-		fixes.put("baseball/batting_average", "Batting Average");
+		fixes.put("baseball/batting_average", "Batting Avg");
 		fixes.put("baseball/pitching_era", "ERA");
 		ignore.add("baseball/batting_games");
 		fixes.put("baseball/Doubles", "Double");
@@ -135,9 +135,9 @@ public class APIObject
 		fixes.put("americanfootball/fumbles", "Fumbles");
 		fixes.put("americanfootball/punting_yards", "Punting Yards");
 		fixes.put("americanfootball/return_yards", "Return Yards");
-		fixes.put("americanfootball/offense_passing_touchdowns", "Passing Touchdowns");
-		fixes.put("americanfootball/rushing_touchdowns", "Rushing Touchdowns");
-		fixes.put("americanfootball/receiving_touchdowns", "Receiving Touchdowns");
+		fixes.put("americanfootball/offense_passing_touchdowns", "Passing TDs");
+		fixes.put("americanfootball/rushing_touchdowns", "Rushing TDs");
+		fixes.put("americanfootball/receiving_touchdowns", "Receiving TDs");
 		fixes.put("americanfootball/defense_sacks", "Sacks");
 		fixes.put("americanfootball/defense_forced_fumbles", "Forced Fumbles");
 		fixes.put("americanfootball/punting_total_punts", "Total Punts");

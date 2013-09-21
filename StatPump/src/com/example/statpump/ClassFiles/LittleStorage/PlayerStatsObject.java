@@ -215,7 +215,17 @@ public class PlayerStatsObject
 		StringBuilder statsList = new StringBuilder(1000);
 		for(String stat : this.stats)
 		{
-			statsList.append(stat + "\n\n");
+			String[] statSet = stat.split(" ");
+			StringBuilder statBuilder = new StringBuilder(100);
+			for(int i = 1; i < statSet.length; i++)
+			{
+				statBuilder.append(statSet[i] + " ");
+			}
+			String statStr = statBuilder.toString();
+			statStr = statStr.substring(0, statStr.length() - 1);
+			statStr = statStr + ": ";
+			statStr = statStr + statSet[0];
+			statsList.append(statStr + "\n");
 		}
 		stats.setText(statsList.toString());
 		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);

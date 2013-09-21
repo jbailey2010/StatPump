@@ -121,7 +121,7 @@
           android:layout_height="wrap_content"
           android:layout_alignLeft="@+id/sw_playerinfo_weight"
           android:layout_below="@+id/sw_playerinfo_hometown3"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="40dp"
           android:text="Stats start here"
           android:textSize="24sp"
           android:textStyle="bold" />

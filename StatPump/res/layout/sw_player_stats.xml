@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sw_playerstats_team"
         android:layout_below="@+id/sw_playerstats_team"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="80dp"
         android:text="Stats start here"
         android:textStyle="bold"
         android:textSize="24sp" />
@@ -71,6 +71,8 @@
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#191970" />
+
+ 
 
 </RelativeLayout>
 </ScrollView>

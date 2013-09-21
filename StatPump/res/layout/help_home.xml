@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -42,20 +42,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/relativeLayout1" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stat Lookup: If you&apos;d like to look up information about a team specifically, use the team lookup. If you&apos;d like to look up information about a game, on the other hand, use the game lookup. \nThere&apos;s easy navigation from one to the other in the dropdown menu. \nFrom there, select a sport, and as you do so, the title at the top will dictate what to do next.\nNote: some teams may not be available (Non-FBS college football teams, Canadian baseball team in spring training...etc.). \n\nOptions will only appear if the previous one is set. Generally speaking, the sport is listed as SPORT: LEAGUE (LOCATION) with sport, then location, in alphabetical order. Use that fact to help navigate. \n\nOnce you have set all of the options, hit submit.\n\nStatWell: The StatWell is where most of the information will appear. There&apos;s an option in the menu that will allow you to decide what type of information you&apos;d like inside the StatWell, selecting from the given options. The content is somewhat interactive -- for example, press and hold a URL to open it up in a web page, and email to send one to that target.\n\nPlayer Search: Once the full set of options are set and you have successfully looked up data for a team/game, the player search option also becomes available.\n\nTwitter/Facebook: See something interesting, and feel like sharing? There&apos;s Twitter and Facebook integration. Once you click the menu option for facebook, you log in (if it&apos;s your first time using it), and then you can post a status.Twitter works similarly, except instead of a status you send a tweet. \nAdditionally, if you feel like seeing what public perception of a player/team is, through Facebook, there&apos;s an option to search public posts, and through Twitter public tweets.\n\nAdditional Help: Finally, if you see a ? anywhere, if you click that, a pop up will appear giving you more information."
+                android:text="Stat Lookup:\nAfter selecting a lookup context, the title at the top will dictate what to do next. Options will only appear if the previous one is set. Once you have set all of the options, hit submit. This will activate the player search.\n\n\nStatWell:\nThe StatWell is where information will appear. Set the content from the menu or by pressing submit. The content is interactive -- press and hold on a URL to open it...etc.\n\n\nTwitter/Facebook:\nOnce you click the menu option for facebook, you can post a status, and with Twitter a tweet. Additionally, if you feel like seeing what public perception of a player/team is, you can search public posts through each."
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>
