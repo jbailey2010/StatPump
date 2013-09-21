@@ -331,7 +331,12 @@ public class PlayerSearchObject
 		TextView weight = (TextView)res.findViewById(R.id.sw_playerinfo_weight);
 		weight.setText(piObj.weight);
 		TextView homeTown = (TextView)res.findViewById(R.id.sw_playerinfo_hometown);
-		homeTown.setText(piObj.hometown);
+		String[] homeTownSet = piObj.hometown.split("\n");
+		homeTown.setText(homeTownSet[0]);
+		TextView homeCountry = (TextView)res.findViewById(R.id.sw_playerinfo_hometown2);
+		TextView home = (TextView)res.findViewById(R.id.sw_playerinfo_hometown3);
+		homeCountry.setText(homeTownSet[1]);
+		home.setText(homeTownSet[2]);
 		TextView stats = (TextView)res.findViewById(R.id.sw_playerinfo_statslist);
 		StringBuilder statsList = new StringBuilder(1000);
 		for(String stat : result.stats)

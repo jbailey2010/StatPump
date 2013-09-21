@@ -170,8 +170,34 @@ public class GameInfoObject
 		capacity.setText("Holds " + vio.capacity + " people");
 		TextView type = (TextView)res.findViewById(R.id.game_info_fieldtype);
 		type.setText("Field type is " + vio.fieldType);
+		String[] addrSet = vio.address.split("\n");
 		TextView addr = (TextView)res.findViewById(R.id.game_info_address);
-		addr.setText(vio.address);
+		TextView addr2 = (TextView)res.findViewById(R.id.game_info_address2);
+		TextView addr3 = (TextView)res.findViewById(R.id.game_info_address3);
+		if(addrSet.length == 0)
+		{
+			addr.setVisibility(View.GONE);
+			addr2.setVisibility(View.GONE);
+			addr3.setVisibility(View.GONE);
+		}
+		else if(addrSet.length == 1)
+		{
+			addr.setText(addrSet[0]);
+			addr2.setVisibility(View.GONE);
+			addr3.setVisibility(View.GONE);
+		}
+		else if(addrSet.length == 2)
+		{
+			addr.setText(addrSet[0]);
+			addr2.setText(addrSet[1]);;
+			addr3.setVisibility(View.GONE);
+		}
+		else if(addrSet.length == 3)
+		{
+			addr.setText(addrSet[0]);
+			addr2.setText(addrSet[1]);;
+			addr3.setText(addrSet[2]);
+		}
 		layout.addView(res);
 		
 	}

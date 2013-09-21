@@ -84,17 +84,24 @@
           android:text="Home town"
           android:textStyle="bold"
           android:textAppearance="?android:attr/textAppearanceMedium" />
-
       <TextView
-          android:id="@+id/sw_playerinfo_statslist"
+          android:id="@+id/sw_playerinfo_hometown2"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/sw_playerinfo_team"
           android:layout_below="@+id/sw_playerinfo_hometown"
-          android:layout_marginTop="43dp"
-          android:text="Stats start here"
+          android:layout_centerHorizontal="true"
+          android:text="Home town"
           android:textStyle="bold"
-          android:textSize="24sp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+      <TextView
+          android:id="@+id/sw_playerinfo_hometown3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/sw_playerinfo_hometown2"
+          android:layout_centerHorizontal="true"
+          android:text="Home town"
+          android:textStyle="bold"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/sw_playerinfo_weight"
@@ -107,6 +114,17 @@
           android:textStyle="bold"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:textColor="#555555" />
+
+      <TextView
+          android:id="@+id/sw_playerinfo_statslist"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/sw_playerinfo_weight"
+          android:layout_below="@+id/sw_playerinfo_hometown3"
+          android:layout_marginTop="20dp"
+          android:text="Stats start here"
+          android:textSize="24sp"
+          android:textStyle="bold" />
 
 </RelativeLayout>
 

@@ -200,28 +200,39 @@ public class TeamInfoObject
 			phone.setText("Phone: " + this.phone);
 		}
 		TextView address = (TextView)res.findViewById(R.id.sw_team_info_address);
-		String addr = "";
+		TextView address2 = (TextView) res.findViewById(R.id.sw_team_info_address2);
+		TextView address3 = (TextView) res.findViewById(R.id.sw_team_info_address3);
 		if(this.address != null && this.address.length() > 2)
 		{
-			addr = this.address + "\n";
-		}
-		if(this.city != null && this.city.length() > 2)
-		{
-			addr += this.city;
-		}
-		if(this.zip == null || this.zip.length() < 2)
-		{
-			addr += "\n";
+			address.setText(this.address);
 		}
 		else
 		{
-			addr += ", " + this.zip + "\n";
+			address.setVisibility(View.GONE);
+		}
+		if(this.city != null && this.city.length() > 2)
+		{
+			if(this.zip == null || this.zip.length() < 2)
+			{
+				address2.setText(this.city);
+			}
+			else
+			{
+				address2.setText(this.city + ", " + this.zip);
+			}
+		}
+		else
+		{
+			address2.setVisibility(View.GONE);
 		}
 		if(this.country != null && this.country.length() > 2)
 		{
-			addr += this.country;
+			address3.setText(this.country);
 		}
-		address.setText(addr);
+		else
+		{
+			address3.setVisibility(View.GONE);
+		}
 		TextView record = (TextView)res.findViewById(R.id.sw_team_info_record);
 		if(this.record != null && this.record.length() > 2)
 		{

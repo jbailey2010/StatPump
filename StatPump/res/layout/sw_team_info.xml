@@ -26,17 +26,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/sw_team_info_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sw_team_info_address"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:textStyle="bold"
-        android:text="Phone: xxx-xxx-xxxx"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
         android:id="@+id/sw_team_info_fax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +113,25 @@
         android:layout_below="@+id/sw_team_info_record"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="address line1\naddress line2\naddress line3"
+        android:text="address line1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/sw_team_info_address2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_team_info_address"
+        android:layout_centerHorizontal="true"
+        android:text="address line2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/sw_team_info_address3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_team_info_address2"
+        android:layout_centerHorizontal="true"
+        android:text="address line3"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
 
@@ -136,6 +143,17 @@
         android:layout_below="@+id/sw_team_info_email"
         android:text="Score Format: Team Selected - Opponent"
         android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/sw_team_info_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sw_team_info_address3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Phone: xxx-xxx-xxxx"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold" />
 
 </RelativeLayout>
         

@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/game_info_team1record"
             android:layout_alignParentRight="true"
-            android:paddingRight="20dp"
+            android:paddingRight="30dp"
             android:text="Team Y"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -77,8 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/game_info_team2record"
             android:layout_below="@+id/game_info_team2record"
-            android:text="2 in Y"
-            android:maxWidth="150dp"
+            android:text="Ranked 4 in AFC East"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#666666"
             android:textStyle="bold" />
@@ -115,6 +114,24 @@
             android:layout_below="@+id/game_info_fieldtype"
             android:text="Address"
             android:layout_marginTop="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/game_info_address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_info_address"
+            android:text="Address"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/game_info_address3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/game_info_address2"
+            android:text="Address"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
