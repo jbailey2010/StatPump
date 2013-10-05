@@ -72,6 +72,7 @@ import android.widget.Toast;
  */
 public class Home extends Activity {
 	final Context cont = this;
+	static Context c;
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
 	public Menu menuObj = null;
@@ -97,6 +98,7 @@ public class Home extends Activity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		c = cont;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		Socialize.onCreate(this, savedInstanceState);
@@ -115,14 +117,21 @@ public class Home extends Activity {
 			
 		initialSetUp();		
 
-		View v = findViewById(android.R.id.home);
-		v.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(cont, Loading.class);
-		        cont.startActivity(intent);		
-			}
-		});
+		View v = ((Activity) c).findViewById(android.R.id.home);
+		if(v != null)
+		{
+			v.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(cont, Loading.class);
+			        cont.startActivity(intent);		
+				}
+			});
+		}
+		else
+		{
+			Toast.makeText(cont, "An error occurred. Please use the menu option to navigate.", Toast.LENGTH_SHORT).show();
+		}
 		if(menuObj != null)
 		{
 			checkInternet();

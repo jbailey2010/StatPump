@@ -216,6 +216,7 @@ public class APIInteraction
 					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] teamSet = secSet.split("\n");
 					System.out.println("Team set size " + teamSet.length);
+					obj.roundID = Integer.valueOf(parseXML(doc, "round", "round_id").split("\n")[0]);
 					List<String> teams = Arrays.asList(teamSet);
 					Map<String, Integer> inter = new HashMap<String, Integer>();
 					for(int i = 0; i < idSet.length; i++)

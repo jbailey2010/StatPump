@@ -56,8 +56,11 @@ public class Loading extends Activity {
 		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 		if(HandleInput.confirmInternet(cont))
 		{
-			prompt.setText("Please wait, attempting to contact the server...");
-			prompt.setTextSize(15);
+			if(prompt != null)
+			{
+				prompt.setText("Please wait, attempting to contact the server...");
+				prompt.setTextSize(15);
+			}
 			pb.setVisibility(View.VISIBLE);
 			dummyFn();
 

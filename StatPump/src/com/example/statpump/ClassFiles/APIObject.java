@@ -52,6 +52,7 @@ public class APIObject
 	public int venueID;
 	//Year ID for later queries
 	public int yearID;
+	public int roundID;
 	public String yearStart;
 	public String yearEnd;
 	//Other data
@@ -342,7 +343,7 @@ public class APIObject
 	 */
 	public String formGetTeamStatsUrl(int teamID)
 	{
-		return this.sportURL + "/get_player_statistics?id=" + this.yearID + "&type=season&team_id=" + teamID;
+		return this.sportURL + "/get_player_statistics?id=" + this.roundID + "&type=round&team_id=" + teamID;
 	}
 	
 	/**
