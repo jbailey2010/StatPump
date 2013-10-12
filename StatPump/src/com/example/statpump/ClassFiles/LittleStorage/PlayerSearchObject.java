@@ -223,7 +223,7 @@ public class PlayerSearchObject
 		    String sub = set[0];
 		    if(!set[3].equals(null) && !set[3].equals("Number not listed"))
 		    {
-		    	sub += ", #" + set[3];
+		    	sub += ", " + set[3];
 		    }
 		    datum.put("title", sub);
 		    datum.put("date", set[1] + " - " +  set[2]);

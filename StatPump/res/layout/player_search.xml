@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Enter the player's name (first last) or number (#XX) below"
+        android:text="Enter the player's name (first last) or number (XX) below"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <AutoCompleteTextView

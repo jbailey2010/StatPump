@@ -137,7 +137,7 @@
                 android:id="@+id/sw_venue_architects"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/sw_venue_info_address3"
+                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/sw_venue_info_address3"
                 android:text="Architects: ______"
                 android:layout_marginTop="15dp"
