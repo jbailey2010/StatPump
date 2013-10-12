@@ -67,7 +67,7 @@ public class HomeTeam extends Activity {
 	APIObject obj = new APIObject(this);
 	PlayerSearchObject po;
 	ActionBarView view;
-	MyActionBarListener listener;
+	//MyActionBarListener listener;
 	/**
 	 * Sets up the layout, initial loading...etc.
 	 */
@@ -76,7 +76,7 @@ public class HomeTeam extends Activity {
 		c = cont;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_team);
-		Socialize.onCreate(this, savedInstanceState);
+		/*Socialize.onCreate(this, savedInstanceState);
 		// Your entity key. May be passed as a Bundle parameter to your activity
 		String entityKey = "http://www.statpump.com/hometeamlookup";
 		
@@ -88,7 +88,7 @@ public class HomeTeam extends Activity {
 		// your_layout refers to the resource ID of your current layout.
 		View actView = ActionBarUtils.showActionBar(this, R.layout.activity_home_team, entity, null, listener);
 		// Now set the view for your activity to be the wrapped view.
-		setContentView(actView);		
+		setContentView(actView);	*/	
 		initialSetUp();
 		View v = ((Activity) c).findViewById(android.R.id.home);
 		if(v != null)
@@ -363,14 +363,14 @@ public class HomeTeam extends Activity {
 			close.setVisibility(View.GONE);
 			dialog.setCancelable(false);
 		}
-		String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str;
+		/*String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str;
 		Entity entity = Entity.newInstance(entityKey, team1Str);
 		view = listener.getActionBarView();
 
 		if (view != null) {
 			view.setEntity(entity);
 			view.refresh();
-		}	
+		}	*/
 		Button submit = (Button)dialog.findViewById(R.id.statwell_team_submit);
 		submit.setOnClickListener(new OnClickListener(){
 			@Override

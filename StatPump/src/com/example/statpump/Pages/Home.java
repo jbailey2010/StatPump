@@ -91,7 +91,7 @@ public class Home extends Activity {
 	APIObject obj = new APIObject(this);
 	PlayerSearchObject po;
 	ActionBarView view;
-	MyActionBarListener listener;
+	//MyActionBarListener listener;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -101,19 +101,19 @@ public class Home extends Activity {
 		c = cont;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		Socialize.onCreate(this, savedInstanceState);
+		//Socialize.onCreate(this, savedInstanceState);
 		// Your entity key. May be passed as a Bundle parameter to your activity
-		String entityKey = "http://www.statpump.com/homegamelookup";
+		//String entityKey = "http://www.statpump.com/homegamelookup";
 		
 		// Create an entity object including a name
 		// The Entity object is Serializable, so you could also store the whole object in the Intent
-		Entity entity = Entity.newInstance(entityKey, "Game Lookup Home");
-		listener = new MyActionBarListener();
+		//Entity entity = Entity.newInstance(entityKey, "Game Lookup Home");
+		//listener = new MyActionBarListener();
 		// Wrap your existing view with the action bar.
 		// your_layout refers to the resource ID of your current layout.
-		View actView = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, null, listener);
+		//View actView = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, null, listener);
 		// Now set the view for your activity to be the wrapped view.
-		setContentView(actView);		
+		//setContentView(actView);		
 			
 		initialSetUp();		
 
@@ -456,15 +456,14 @@ public class Home extends Activity {
 					StatWellUsage.statWellInit(obj, cont, po);
 					headerText.setText(obj.matchHome + " - " + obj.matchDate);	
 					
-					String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str + "_vs_" + team2Str + "on" + obj.matchDate;
-					System.out.println(entityKey);
+					/*String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str + "_vs_" + team2Str + "on" + obj.matchDate;
 					Entity entity = Entity.newInstance(entityKey, obj.matchDate + ": " + obj.matchHome);
 					view = listener.getActionBarView();
-
+					
 					if (view != null) {
 						view.setEntity(entity);
 						view.refresh();
-					}	
+					}	*/
 					dialog.dismiss();
 				}
 				else
