@@ -26,6 +26,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -271,6 +272,7 @@ public class HomeTeam extends Activity {
 					sportImg.setVisibility(View.VISIBLE);
 					sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Team Below");
+					headerText.setTextColor(Color.parseColor("#ffffff"));
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
@@ -329,6 +331,7 @@ public class HomeTeam extends Activity {
 				sw.removeAllViews();
 				obj.clearObject();
 				sport.setSelection(0);
+				headerText.setTextColor(Color.parseColor("#000000"));
 				team1.setVisibility(View.INVISIBLE);
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);

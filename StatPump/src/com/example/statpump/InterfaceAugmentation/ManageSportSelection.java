@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.Spinner;
 /**
  * Handles some user input in the interface
@@ -59,7 +60,7 @@ public class ManageSportSelection
 		//sports.add("Tennis - WTA Tour (World)");
 		//sports.add("Volleyball - World Championship (Europe)");
 		//sports.add("Volleyball - Olympics (World)");
-		
+		 
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, 
 				android.R.layout.simple_spinner_dropdown_item, sports);
@@ -74,23 +75,28 @@ public class ManageSportSelection
 	{
 		if(sportStr.contains("Baseball"))
 		{
-			image.setImageResource(R.drawable.baseball);
+			image.setImageResource(R.drawable.mlb);
+			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Basketball"))
 		{
-			image.setImageResource(R.drawable.basketball);
+			image.setImageResource(R.drawable.nba);
+			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Football"))
 		{ 
-			image.setImageResource(R.drawable.football);
+			image.setImageResource(R.drawable.nfl);
+			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Hockey"))
 		{
-			image.setImageResource(R.drawable.hockey);
+			image.setImageResource(R.drawable.nhl);
+			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Soccer"))
 		{
-			image.setImageResource(R.drawable.soccer);
+			image.setImageResource(R.drawable.futbol);
+			image.setScaleType(ScaleType.FIT_XY);
 		}
 		obj.sportSelected(sportStr, (Activity) cont);
 	}

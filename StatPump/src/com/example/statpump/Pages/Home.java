@@ -20,6 +20,7 @@ import java.util.List;
 
 
 
+
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
@@ -49,6 +50,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu; 
 import android.view.MenuItem;
 import android.view.View;
@@ -312,6 +314,7 @@ public class Home extends Activity {
 					team2.setVisibility(View.INVISIBLE);
 					submit.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
+					headerText.setTextColor(Color.parseColor("#ffffff"));
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
 				else
@@ -398,6 +401,7 @@ public class Home extends Activity {
 				sport.setSelection(0);
 				team1.setVisibility(View.INVISIBLE);
 				team2.setVisibility(View.INVISIBLE);
+				headerText.setTextColor(Color.parseColor("#000000"));
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);
 			}
