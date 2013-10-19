@@ -13,6 +13,7 @@ import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 import com.example.statpump.InterfaceAugmentation.MyActionBarListener;
+import com.example.statpump.InterfaceAugmentation.NDSpinner;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 import com.socialize.ActionBarUtils;
 import com.socialize.Socialize;
@@ -55,7 +56,7 @@ public class HomeTeam extends Activity {
 	public List<String> teamList = new ArrayList<String>();
 	public Menu menuObj = null;
 	Spinner sport;
-	Spinner team1;
+	NDSpinner team1;
 	String sportStr;
 	String team1Str;
 	Button submit;
@@ -194,7 +195,7 @@ public class HomeTeam extends Activity {
 	public void checkInternet()
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		team1 = (NDSpinner)findViewById(R.id.team_name_spinner);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
@@ -231,7 +232,7 @@ public class HomeTeam extends Activity {
 	 */
 	public void initialSetUp(){
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		team1 = (NDSpinner)findViewById(R.id.team_name_spinner);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
@@ -248,7 +249,7 @@ public class HomeTeam extends Activity {
 	{
 		sport = (Spinner)findViewById(R.id.team_sport_spinner);
 		sw = (LinearLayout)findViewById(R.id.statwell);
-		team1 = (Spinner)findViewById(R.id.team_name_spinner);
+		team1 = (NDSpinner)findViewById(R.id.team_name_spinner);
 		obj.setUpObject(sport, team1, null);
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);

@@ -1,8 +1,8 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
-
 import java.util.List;
+
 
 
 
@@ -36,6 +36,7 @@ import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
 
 
 import com.example.statpump.InterfaceAugmentation.MyActionBarListener;
+import com.example.statpump.InterfaceAugmentation.NDSpinner;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 import com.socialize.ActionBarUtils;
 import com.socialize.Socialize;
@@ -76,9 +77,9 @@ public class Home extends Activity {
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> teamList = new ArrayList<String>();
 	public Menu menuObj = null;
-	Spinner sport;
-	Spinner team1;
-	Spinner team2;
+	NDSpinner sport;
+	NDSpinner team1;
+	NDSpinner team2;
 	String sportStr;
 	String team1Str;
 	String team2Str;
@@ -222,9 +223,9 @@ public class Home extends Activity {
 	 */
 	public void checkInternet()
 	{
-		sport = (Spinner)findViewById(R.id.game_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
-		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		sport = (NDSpinner)findViewById(R.id.game_sport_spinner);
+		team1 = (NDSpinner)findViewById(R.id.game_team1_name_spinner);
+		team2 = (NDSpinner)findViewById(R.id.game_team2_name_spinner);
 		obj.setUpObject(sport, team1, team2);
 		submit = (Button)findViewById(R.id.game_submit);
 		clear = (Button)findViewById(R.id.game_clear);
@@ -264,9 +265,9 @@ public class Home extends Activity {
 	 */
 	public void initialSetUp()
 	{ 
-		sport = (Spinner)findViewById(R.id.game_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
-		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		sport = (NDSpinner)findViewById(R.id.game_sport_spinner);
+		team1 = (NDSpinner)findViewById(R.id.game_team1_name_spinner);
+		team2 = (NDSpinner)findViewById(R.id.game_team2_name_spinner);
 		submit = (Button)findViewById(R.id.game_submit);
 		clear = (Button)findViewById(R.id.game_clear);
 		sportImg = (ImageView)findViewById(R.id.game_sport_image);
@@ -282,9 +283,9 @@ public class Home extends Activity {
 	 */
 	public void setUpInterface()
 	{
-		sport = (Spinner)findViewById(R.id.game_sport_spinner);
-		team1 = (Spinner)findViewById(R.id.game_team1_name_spinner);
-		team2 = (Spinner)findViewById(R.id.game_team2_name_spinner);
+		sport = (NDSpinner)findViewById(R.id.game_sport_spinner);
+		team1 = (NDSpinner)findViewById(R.id.game_team1_name_spinner);
+		team2 = (NDSpinner)findViewById(R.id.game_team2_name_spinner);
 		submit = (Button)findViewById(R.id.game_submit);
 		clear = (Button)findViewById(R.id.game_clear);
 		sportImg = (ImageView)findViewById(R.id.game_sport_image);
