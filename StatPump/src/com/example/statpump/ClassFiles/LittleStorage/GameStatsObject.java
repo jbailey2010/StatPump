@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
@@ -1122,8 +1123,8 @@ public class GameStatsObject
 		TextView teamBInfo = (TextView)res.findViewById(R.id.textView2);
 		final ListView teamAIndiv = (ListView)res.findViewById(R.id.game_stats_teamAIndiv);
 		final ListView teamBIndiv = (ListView)res.findViewById(R.id.game_stats_teamBIndiv);
-		final Button teamAToggle = (Button)res.findViewById(R.id.game_stats_toggleStatsA);
-		final Button teamBToggle = (Button)res.findViewById(R.id.game_stats_toggleStatsB);
+		final ToggleButton teamAToggle = (ToggleButton)res.findViewById(R.id.game_stats_toggleStatsA);
+		final ToggleButton teamBToggle = (ToggleButton)res.findViewById(R.id.game_stats_toggleStatsB);
 		
 		if(gsObj.isPlayed)
 		{
@@ -1251,7 +1252,7 @@ public class GameStatsObject
 			teamAToggle.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					if(gsObj.isHiddenA)
+					if(teamAToggle.isChecked())
 					{
 						teamAToggle.setText("Hide Individual Statistics");
 						teamAIndiv.setVisibility(View.VISIBLE);
@@ -1268,7 +1269,7 @@ public class GameStatsObject
 			teamBToggle.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					if(gsObj.isHiddenB)
+					if(teamBToggle.isChecked())
 					{
 						teamBToggle.setText("Hide Individual Statistics");
 						teamBIndiv.setVisibility(View.VISIBLE);

@@ -84,27 +84,25 @@
             android:text="Team Y Stats"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/game_stats_toggleStatsA"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/game_stats_teamAName"
-            android:background="@drawable/overscroll_blue"
             android:textSize="13sp"
-            android:layout_height="50dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:text="Button" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/game_stats_toggleStatsB"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/game_stats_teamBName"
-            android:background="@drawable/overscroll_blue"
             android:text="Button"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="13sp"
             android:textStyle="bold" />
 
