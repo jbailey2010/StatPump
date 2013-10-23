@@ -265,12 +265,12 @@ public class HomeTeam extends Activity {
 					int arg2, long arg3) {
 				isSubmit = false;
 				sw.removeAllViews();
-				if(arg1 != null && ((TextView)arg1).getText() != null &&
-						!((TextView)arg1).getText().toString().equals("Select a Sport") && 
+				if(arg1 != null && arg2 > 0 && 
 						sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
-					sportStr = ((TextView)arg1).getText().toString();	
+					sportStr = ManageSportSelection.getSportSelection(arg2);
+					//sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
 					clear.setVisibility(View.VISIBLE);

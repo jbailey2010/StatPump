@@ -43,7 +43,7 @@
         android:layout_centerHorizontal = "true"
         android:layout_below="@+id/game_title"
         android:layout_marginTop="15dp"
-        android:background="@drawable/spinner_well" />
+        android:background="@drawable/spinner_sharp" />
 
     <com.example.statpump.InterfaceAugmentation.NDSpinner
         android:id="@+id/game_team1_name_spinner"

@@ -54,7 +54,7 @@
         android:layout_below="@+id/team_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="@drawable/spinner_well" />
+        android:background="@drawable/spinner_sharp" />
 
     <Button
         android:id="@+id/team_clear"

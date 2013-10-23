@@ -1,15 +1,22 @@
 package com.example.statpump.InterfaceAugmentation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 import android.widget.Spinner;
 /**
@@ -24,7 +31,41 @@ public class ManageSportSelection
 	static ImageView sportLogo;
 	static String selectedSport;
 	static String selectedSportSpec;
-	 
+	public static Integer[] iconSet = {R.drawable.ssdd, R.drawable.nfldd, R.drawable.ncaadd,
+			R.drawable.mlbdd, R.drawable.nbadd, R.drawable.nhldd, 
+			R.drawable.soccerdd};
+
+	
+	public static String getSportSelection(int index)
+	{
+		System.out.println(index);
+		if(index == 1)
+		{
+			return "American Football - NFL (United States)";
+		}
+		if(index == 2)
+		{
+			return "American Football - NCAA Division 1 (United States)";
+		}
+		if(index == 3)
+		{
+			return "Baseball - MLB (United States)";
+		}
+		if(index == 4)
+		{
+			return "Basketball - NCAA Division 1 (United States)";
+		}
+		if(index == 5)
+		{
+			return "Hockey - NHL (United States)";
+		}
+		if(index == 6)
+		{
+			return "Soccer - Premier League (England)";
+		}
+		return "Something else...:(";
+	}
+	
 	/**
 	 * Populates the sport spinner
 	 * @param spinner
@@ -34,6 +75,19 @@ public class ManageSportSelection
 	{
 		sportSpinner = spinner;
 		context = cont;
+		List<Map<String, Integer>> data = new ArrayList<Map<String, Integer>>();
+		for(Integer icon : iconSet)
+		{
+			Map<String, Integer> datum = new HashMap<String, Integer>();
+			datum.put("icon", icon);
+			data.add(datum);
+		}
+		SimpleAdapter adapter = new SimpleAdapter(cont, data,
+                R.layout.image_dropdown,
+                new String[] {"icon"},
+                new int[] {R.id.sport_icon});
+		sportSpinner.setAdapter(adapter);
+		/*
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
 		sports.add("American Football - NFL (United States)");
@@ -64,7 +118,7 @@ public class ManageSportSelection
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, 
 				android.R.layout.simple_spinner_dropdown_item, sports);
-		sportSpinner.setAdapter(spinnerArrayAdapter);
+		sportSpinner.setAdapter(spinnerArrayAdapter);*/
 	}
 
 	/**

@@ -302,12 +302,12 @@ public class Home extends Activity {
 					int arg2, long arg3) {
 				isSubmit = false;
 				sw.removeAllViews();
-				if(arg1 != null && ((TextView)arg1).getText() != null && 
-						!((TextView)arg1).getText().toString().equals("Select a Sport")  && sport.getAdapter() != null
+				if(arg1 != null && arg2 > 0
 						&& sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
-					sportStr = ((TextView)arg1).getText().toString();	
+					sportStr = ManageSportSelection.getSportSelection(arg2);
+					//sportStr = ((TextView)arg1).getText().toString();	
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
