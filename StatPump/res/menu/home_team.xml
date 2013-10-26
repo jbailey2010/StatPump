@@ -1,11 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/search_player"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText" 
-        android:icon="@drawable/search"/> 
-    <item
         android:id="@+id/twitter"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
@@ -24,8 +19,4 @@
         android:id="@+id/help"  
         android:orderInCategory="100"
         android:title="Need Help?"/>
-   <item 
-        android:id="@+id/set_statwell_team"  
-        android:orderInCategory="100"
-        android:title="Set StatWell Content"/>
 </menu>

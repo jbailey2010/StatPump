@@ -69,6 +69,10 @@ public class HomeTeam extends Activity {
 	APIObject obj = new APIObject(this);
 	PlayerSearchObject po;
 	ActionBarView view;
+	Button search;
+	Button pInfo;
+	Button tInfo;
+	Button pStats;
 	//MyActionBarListener listener;
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -111,6 +115,14 @@ public class HomeTeam extends Activity {
 		{
 			checkInternet();
 		}
+		search = (Button)findViewById(R.id.sw_team_search);
+		pInfo = (Button)findViewById(R.id.sw_team_playerinfo);
+		tInfo = (Button)findViewById(R.id.sw_team_teaminfo);
+		pStats = (Button)findViewById(R.id.sw_team_playerstats);
+		search.setVisibility(View.GONE);
+		pInfo.setVisibility(View.GONE);
+		tInfo.setVisibility(View.GONE);
+		pStats.setVisibility(View.GONE);
 	} 
  
 	@Override
@@ -130,16 +142,6 @@ public class HomeTeam extends Activity {
 	{  
 		switch (item.getItemId()) 
 		{
-			case R.id.search_player: 
-				if(isSubmit)
-				{
-					po.searchInit(obj, cont, po, sw);
-				}
-				else
-				{
-					Toast.makeText(cont, "Please fill out all of the information below", Toast.LENGTH_SHORT).show();
-				}
-				return true;
 			case R.id.twitter:
 				TwitterWork.twitterInitial(cont);
 		    	return true; 
@@ -152,16 +154,6 @@ public class HomeTeam extends Activity {
 				return true;
 			case R.id.help:
 				HandleInput.helpPopUp(cont);
-				return true;
-			case R.id.set_statwell_team:
-				if(isSubmit)
-				{
-					setStatWellDialog(false);
-				}
-				else
-				{
-					Toast.makeText(cont, "You must hit submit before setting the content", Toast.LENGTH_SHORT).show();
-				}
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -323,6 +315,10 @@ public class HomeTeam extends Activity {
 				setStatWellDialog(true);
 				sw.removeAllViews();
 				po = new PlayerSearchObject(cont, obj);
+				search.setVisibility(View.VISIBLE);
+				pInfo.setVisibility(View.VISIBLE);
+				tInfo.setVisibility(View.VISIBLE);
+				pStats.setVisibility(View.VISIBLE);
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){
@@ -335,6 +331,18 @@ public class HomeTeam extends Activity {
 				team1.setVisibility(View.INVISIBLE);
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setVisibility(View.GONE);
+				pInfo.setVisibility(View.GONE);
+				tInfo.setVisibility(View.GONE);
+				pStats.setVisibility(View.GONE);
 			}
 		});
 	}
@@ -384,14 +392,20 @@ public class HomeTeam extends Activity {
 					if(playerInfo.isChecked())
 					{
 						obj.statwellSetting = "Player Information";
+						pInfo.setBackgroundResource(R.drawable.selected_tab);
+						pInfo.setTextColor(Color.parseColor("#000000"));
 					}
 					else if(teamInfo.isChecked())
 					{
 						obj.statwellSetting = "Team Information";
+						tInfo.setBackgroundResource(R.drawable.selected_tab);
+						tInfo.setTextColor(Color.parseColor("#000000"));
 					}
 					else if(teamStats.isChecked())
 					{
 						obj.statwellSetting = "Player Statistics";
+						pStats.setBackgroundResource(R.drawable.selected_tab);
+						pStats.setTextColor(Color.parseColor("#000000"));
 					}
 					sw.removeAllViews();
 					StatWellUsage.statWellInit(obj, cont, po);
@@ -401,6 +415,73 @@ public class HomeTeam extends Activity {
 				{
 					Toast.makeText(cont, "Please wait a moment...", Toast.LENGTH_SHORT).show();
 				}
+			}
+		});
+		search.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				po.searchInit(obj, cont, po, sw);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setTextColor(Color.parseColor("#000000"));
+				search.setBackgroundResource(R.drawable.selected_tab);
+			}
+		});
+		pInfo.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				obj.statwellSetting = "Player Information";
+				StatWellUsage.statWellInit(obj,  cont, po);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#000000"));
+				pInfo.setBackgroundResource(R.drawable.selected_tab);
+			}
+		});
+		tInfo.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				obj.statwellSetting = "Team Information";
+				StatWellUsage.statWellInit(obj,  cont, po);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#000000"));
+				tInfo.setBackgroundResource(R.drawable.selected_tab);
+			}
+		});
+		pStats.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				obj.statwellSetting = "Player Statistics";
+				StatWellUsage.statWellInit(obj, cont, po);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#000000"));
+				pStats.setBackgroundResource(R.drawable.selected_tab);
 			}
 		});
 	}

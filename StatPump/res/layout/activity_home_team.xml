@@ -17,15 +17,75 @@
         android:layout_centerHorizontal="true" />
 
     <LinearLayout
+        android:id="@+id/statwell_base"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="205dp" 
+        android:orientation="vertical"
+        android:background="@drawable/view_well" >
+	        <LinearLayout
+	        android:id="@+id/category_base"
+	        android:layout_width="fill_parent"
+	        android:layout_height="40dp" 
+	        android:weightSum="100"> 
+	
+	        <Button
+	            android:id="@+id/sw_team_search"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Search"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	        <Button
+	            android:id="@+id/sw_team_playerinfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Player Info"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	        <Button
+	            android:id="@+id/sw_team_teaminfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Team Info"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+
+	        <Button
+	            android:id="@+id/sw_team_playerstats"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Player Stats"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	    </LinearLayout>
+     <LinearLayout
         android:id="@+id/statwell"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="205dp"
-        android:background="@drawable/view_well"
         android:orientation="vertical" >
-
+	        
+         </LinearLayout>
+	    
     </LinearLayout>
 
     <TextView
@@ -61,7 +121,7 @@
         style="@style/ButtonText"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/statwell"
+        android:layout_alignLeft="@+id/statwell_base"
         android:layout_below="@+id/team_name_spinner"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="3dp"
@@ -75,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/team_clear"
         android:layout_alignBottom="@+id/team_clear"
-        android:layout_alignRight="@+id/statwell"
+        android:layout_alignRight="@+id/statwell_base"
         android:layout_marginRight="3dp"
         android:background="@drawable/btn_blue"
         android:text="Submit" />
@@ -84,7 +144,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/statwell"
+        android:layout_alignTop="@+id/statwell_base"
         android:layout_centerHorizontal="true"
         android:text="Medium Text"
         android:visibility="invisible"
