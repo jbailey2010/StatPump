@@ -33,7 +33,7 @@ public class APIObject
 	public Spinner team1Spinner;
 	public Spinner team2Spinner;
 	public Context context;
-	//Maps sport to sport id
+	//Maps sport to sport id 
 	public Map<String, Integer> sportIDMap = new HashMap<String, Integer>();
 	public Map<String, Integer> teamIDMap = new HashMap<String, Integer>();
 	public List<String> opponents = new ArrayList<String>();

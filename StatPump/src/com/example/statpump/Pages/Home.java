@@ -495,6 +495,7 @@ public class Home extends Activity {
 		search.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				po.searchInit(obj, cont, po, sw);
 				search.setBackgroundResource(R.drawable.not_selected_tab);
 				vInfo.setBackgroundResource(R.drawable.not_selected_tab);
@@ -511,6 +512,7 @@ public class Home extends Activity {
 		vInfo.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				obj.statwellSetting = "Venue Information";
 				StatWellUsage.statWellInit(obj,  cont, po);
 				search.setBackgroundResource(R.drawable.not_selected_tab);
@@ -528,6 +530,7 @@ public class Home extends Activity {
 		gInfo.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				obj.statwellSetting = "Game Information";
 				StatWellUsage.statWellInit(obj,  cont, po);
 				search.setBackgroundResource(R.drawable.not_selected_tab);
@@ -545,6 +548,7 @@ public class Home extends Activity {
 		gStats.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				sw.removeAllViews();
 				obj.statwellSetting = "Game Statistics";
 				StatWellUsage.statWellInit(obj, cont, po);
 				search.setBackgroundResource(R.drawable.not_selected_tab);
