@@ -103,31 +103,13 @@ public class Loading extends Activity {
 	{
 		if(result)
 		{
-			text.setText("Connection established, please touch the logo.");
-			/*TextView info = (TextView)((Loading)cont).findViewById(R.id.credit_view);
-			info.setVisibility(View.VISIBLE);
-			info.setOnClickListener(new OnClickListener(){
-
-				@Override
-				public void onClick(View v) {
-					String url = "http://cavetechwebsolutions.com/";
-					Uri uriUrl = Uri.parse(url);
-			        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-			        ((Loading)cont).startActivity(launchBrowser);
-				}
-				
-			});*/
-			text.setTextSize(25);
-			p.setVisibility(View.INVISIBLE);
-			logo.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					HandleInput.chooseTeamOrGame(cont);			
-				} 
-			});
+			p.setVisibility(View.GONE);
+			text.setVisibility(View.GONE);
+			HandleInput.chooseTeamOrGame(cont);			
 		}
 		else
 		{
+			text.setVisibility(View.VISIBLE);
 			text.setText("Unable to connect to the server. If you're certain you have an internet connection (REQUIRED), please reset the app and try again.");
 			text.setTextSize(25);
 			isValid = false;

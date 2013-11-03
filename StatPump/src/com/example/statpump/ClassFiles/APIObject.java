@@ -239,6 +239,11 @@ public class APIObject
 		String sportURL = sport.split(" - ")[0].toLowerCase().replaceAll(" ", "");
 		this.sport = sport;
 		this.sportURL = sportURL;
+		System.out.println(this.sport);
+		for(String key : this.sportIDMap.keySet())
+		{
+			System.out.println(key);
+		}
 		this.sportID = this.sportIDMap.get(this.sport);
 		System.out.println("New sport is "+ this.sport + ", " + this.sportURL + ", " + this.sportID);
 		APIInteraction.getSeasonId(this);
@@ -329,6 +334,11 @@ public class APIObject
 	public String formGetMatchInfoDoneUrl(int matchID)
 	{
 		return this.sportURL + "/get_matches?id=" + matchID + "&type=match&detailed=yes&statistics=yes";
+	}
+	
+	public String formGetMatchInfoDoneUrlSoccer(int matchID)
+	{
+		return this.sportURL + "/get_matches?id=" + matchID + "&type=match&detailed=yes";
 	}
 	
 	/**

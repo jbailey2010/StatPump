@@ -53,7 +53,7 @@ public class ManageSportSelection
 		}
 		if(index == 4)
 		{
-			return "Basketball - NCAA Division 1 (United States)";
+			return "Basketball - NBA (United States)";
 		}
 		if(index == 5)
 		{

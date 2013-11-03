@@ -1207,6 +1207,16 @@ public class GameStatsObject
 			teamBLineup.setText(gsObj.teamBLineup);
 			teamAToggle.setText("Show Individual Statistics");
 			teamBToggle.setText("Show Individual Statistics");
+			if(list.get(0).equals("No stats available for this game. Either it hasn't been played yet, or the stats aren't available"))
+			{
+				teamAToggle.setVisibility(View.GONE);
+				teamAInfo.setVisibility(View.GONE);
+			}
+			if(listB.get(0).equals("No stats available for this game. Either it hasn't been played yet, or the stats aren't available"))
+			{
+				teamBToggle.setVisibility(View.GONE);
+				teamBInfo.setVisibility(View.GONE);
+			}
 			teamAToggle.setOnTouchListener(new ListView.OnTouchListener() {
 	            @Override
 	            public boolean onTouch(View v, MotionEvent event) {
@@ -1287,7 +1297,7 @@ public class GameStatsObject
 		else
 		{
 			outcome.setText("No stats available for this game. Either it hasn't been played yet, is currently in progress, or the stats aren't available. If it's not the latter, stats will be available soon after the game.");
-			attendance.setVisibility(View.GONE);
+			attendance.setText("For live scores go to \"Team Lookup/Team Information\"");
 			teamAStats.setVisibility(View.GONE);
 			teamBStats.setVisibility(View.GONE);
 			teamA.setVisibility(View.GONE);

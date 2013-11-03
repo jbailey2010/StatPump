@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/game_stats_toggleStatsB"
             android:layout_centerHorizontal="true"
-            android:text="Individual stats will be below"
+            android:text="Individual stats will appear below"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/game_stats_toggleStatsA"
-            android:text="Individual stats will be below"
+            android:text="Individual stats will appear below"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView

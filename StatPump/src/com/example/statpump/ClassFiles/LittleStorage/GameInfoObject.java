@@ -174,29 +174,30 @@ public class GameInfoObject
 		TextView addr = (TextView)res.findViewById(R.id.game_info_address);
 		TextView addr2 = (TextView)res.findViewById(R.id.game_info_address2);
 		TextView addr3 = (TextView)res.findViewById(R.id.game_info_address3);
-		if(addrSet.length == 0)
-		{
-			addr.setVisibility(View.GONE);
-			addr2.setVisibility(View.GONE);
-			addr3.setVisibility(View.GONE);
-		}
-		else if(addrSet.length == 1)
+		
+		if(addrSet.length == 1 && addrSet[0].length() > 7)
 		{
 			addr.setText(addrSet[0]);
 			addr2.setVisibility(View.GONE);
 			addr3.setVisibility(View.GONE);
 		}
-		else if(addrSet.length == 2)
+		else if(addrSet.length == 2 && addrSet[0].length() > 7)
 		{
 			addr.setText(addrSet[0]);
 			addr2.setText(addrSet[1]);;
 			addr3.setVisibility(View.GONE);
 		}
-		else if(addrSet.length == 3)
+		else if(addrSet.length == 3 && addrSet[0].length() > 7)
 		{
 			addr.setText(addrSet[0]);
 			addr2.setText(addrSet[1]);;
 			addr3.setText(addrSet[2]);
+		}
+		else
+		{
+			addr.setVisibility(View.GONE);
+			addr2.setVisibility(View.GONE);
+			addr3.setVisibility(View.GONE);
 		}
 		layout.addView(res);
 		

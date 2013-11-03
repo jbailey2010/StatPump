@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -487,7 +488,13 @@ public class TeamInfoObject
 						{
 							o.referees = refs.toString().substring(0, refs.toString().length()-2);
 						}
-						Document docWinner = APIInteraction.getXML(obj.formGetMatchInfoDoneUrl(obj.matchID), obj);
+						Document docWinner;
+						try{
+							docWinner = APIInteraction.getXML(obj.formGetMatchInfoDoneUrl(obj.matchID), obj);
+						} catch(HttpStatusException e)
+						{
+							docWinner = APIInteraction.getXML(obj.formGetMatchInfoDoneUrlSoccer(obj.matchID), obj);
+						}
 						Elements links = docWinner.select("match");
 						for(Element iter : links)
 						{

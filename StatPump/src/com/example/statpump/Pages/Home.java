@@ -579,19 +579,26 @@ public class Home extends Activity {
 		gStats.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				sw.removeAllViews();
-				obj.statwellSetting = "Game Statistics";
-				StatWellUsage.statWellInit(obj, cont, po);
-				search.setBackgroundResource(R.drawable.not_selected_tab);
-				vInfo.setBackgroundResource(R.drawable.not_selected_tab);
-				gInfo.setBackgroundResource(R.drawable.not_selected_tab);
-				gStats.setBackgroundResource(R.drawable.not_selected_tab);
-				search.setTextColor(Color.parseColor("#ffffff"));
-				vInfo.setTextColor(Color.parseColor("#ffffff"));
-				gInfo.setTextColor(Color.parseColor("#ffffff"));
-				gStats.setTextColor(Color.parseColor("#ffffff"));
-				gStats.setTextColor(Color.parseColor("#000000"));
-				gStats.setBackgroundResource(R.drawable.selected_tab);
+				if(!obj.sport.contains("Soccer"))
+				{
+					sw.removeAllViews();
+					obj.statwellSetting = "Game Statistics";
+					StatWellUsage.statWellInit(obj, cont, po);
+					search.setBackgroundResource(R.drawable.not_selected_tab);
+					vInfo.setBackgroundResource(R.drawable.not_selected_tab);
+					gInfo.setBackgroundResource(R.drawable.not_selected_tab);
+					gStats.setBackgroundResource(R.drawable.not_selected_tab);
+					search.setTextColor(Color.parseColor("#ffffff"));
+					vInfo.setTextColor(Color.parseColor("#ffffff"));
+					gInfo.setTextColor(Color.parseColor("#ffffff"));
+					gStats.setTextColor(Color.parseColor("#ffffff"));
+					gStats.setTextColor(Color.parseColor("#000000"));
+					gStats.setBackgroundResource(R.drawable.selected_tab);
+				}
+				else
+				{
+					Toast.makeText(cont, "Game Stats not currently available for Soccer", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}

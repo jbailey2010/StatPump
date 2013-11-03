@@ -279,7 +279,7 @@ public class HomeTeam extends Activity {
 					submit.setVisibility(View.INVISIBLE);
 					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
-					headerText.setBackgroundResource(R.drawable.header_background);
+					headerText.setBackground(null);
 				} 
 				search.setTextColor(Color.parseColor("#ffffff"));
 				pInfo.setTextColor(Color.parseColor("#ffffff"));
