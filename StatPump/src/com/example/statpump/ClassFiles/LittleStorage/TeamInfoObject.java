@@ -376,6 +376,16 @@ public class TeamInfoObject
 	public static TeamInfoObject parseXMLRecord(Document doc, TeamInfoObject obj, APIObject ao, String team)
 	{
         Elements links = doc.select("ranking");
+        if(links.size() <= 2)
+        {
+        	try {
+				doc = APIInteraction.getXML(ao.formGetLastTeamUrl(), ao);
+				links = doc.select("ranking");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         for (Element element : links) 
         {
         	if(element.attr("club_name").equals(team))

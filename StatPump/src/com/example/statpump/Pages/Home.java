@@ -308,6 +308,7 @@ public class Home extends Activity {
 					submit.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
+					headerText.setBackgroundResource(R.drawable.header_background);
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
 				else
@@ -317,8 +318,17 @@ public class Home extends Activity {
 					team2.setVisibility(View.INVISIBLE);
 					submit.setVisibility(View.INVISIBLE); 
 					clear.setVisibility(View.INVISIBLE);
+					headerText.setBackground(null);
 					headerText.setText("Select a Sport Below");
 				}
+				search.setTextColor(Color.parseColor("#ffffff"));
+				vInfo.setTextColor(Color.parseColor("#ffffff"));
+				gInfo.setTextColor(Color.parseColor("#ffffff"));
+				gStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setVisibility(View.GONE);
+				vInfo.setVisibility(View.GONE);
+				gInfo.setVisibility(View.GONE);
+				gStats.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -339,7 +349,14 @@ public class Home extends Activity {
 					team2.setSelection(0);
 					obj.getOpponentsInit(team1Str, (Activity)cont);
 				}
-				
+				search.setTextColor(Color.parseColor("#ffffff"));
+				vInfo.setTextColor(Color.parseColor("#ffffff"));
+				gInfo.setTextColor(Color.parseColor("#ffffff"));
+				gStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setVisibility(View.GONE);
+				vInfo.setVisibility(View.GONE);
+				gInfo.setVisibility(View.GONE);
+				gStats.setVisibility(View.GONE);
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
@@ -368,6 +385,15 @@ public class Home extends Activity {
 						submit.setVisibility(View.VISIBLE);
 					}
 				}
+				search.setTextColor(Color.parseColor("#ffffff"));
+				vInfo.setTextColor(Color.parseColor("#ffffff"));
+				gInfo.setTextColor(Color.parseColor("#ffffff"));
+				gStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setVisibility(View.GONE);
+				vInfo.setVisibility(View.GONE);
+				gInfo.setVisibility(View.GONE);
+				gStats.setVisibility(View.GONE);
+				
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
@@ -384,6 +410,10 @@ public class Home extends Activity {
 				HandleInput.checkFavorite(obj, cont);
 				setStatWellDialog(true);
 				po = new PlayerSearchObject(cont, obj);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				vInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				gInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				gStats.setBackgroundResource(R.drawable.not_selected_tab);
 				search.setVisibility(View.VISIBLE);
 				vInfo.setVisibility(View.VISIBLE);
 				gInfo.setVisibility(View.VISIBLE);
@@ -399,6 +429,7 @@ public class Home extends Activity {
 				team1.setVisibility(View.INVISIBLE);
 				team2.setVisibility(View.INVISIBLE);
 				headerText.setTextColor(Color.parseColor("#000000"));
+				headerText.setBackground(null);
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);
 				search.setBackgroundResource(R.drawable.not_selected_tab);

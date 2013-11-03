@@ -1,7 +1,6 @@
 package com.example.statpump.ClassFiles;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,10 +51,13 @@ public class APIObject
 	//Venue data
 	public int venueID;
 	//Year ID for later queries
+	public int lastYearID;
 	public int yearID;
 	public int roundID;
 	public String yearStart;
+	public String lastStart;
 	public String yearEnd;
+	public String lastEnd;
 	//Other data
 	public String favoriteTeam;
 	public String statwellSetting;
@@ -261,6 +263,11 @@ public class APIObject
 		return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
 	}
 	
+	public String formGetLastTeamUrl()
+	{
+		return this.sportURL + "/get_tables?id=" + this.lastYearID + "&type=season&tabletype=total";
+	}
+	
 	/**
 	 * forms the get match URL
 	 * @return
@@ -268,6 +275,11 @@ public class APIObject
 	public String formGetMatchUrl()
 	{
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.yearStart + "&end_date=" + this.yearEnd;
+	}
+	
+	public String formGetMatchLastUrl()
+	{
+		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.lastStart + "&end_date=" + this.lastEnd;
 	}
 	
 	/**
@@ -349,8 +361,10 @@ public class APIObject
 	
 	/**
 	 * Sets the year ID after the asynctask ends
+	 * @param secEnd 
+	 * @param secStart 
 	 */
-	public void setSeasonId(String id)
+	public void setSeasonId(String id, String lastID, String secStart, String secEnd)
 	{
 		System.out.println("Setting id as " + id);
 		if(id == null)
@@ -358,6 +372,12 @@ public class APIObject
 			return;
 		}
 		this.yearID = Integer.parseInt(id);
+		if(lastID != null)
+		{
+			this.lastYearID = Integer.parseInt(lastID);
+			this.lastStart = (secStart);
+			this.lastEnd = (secEnd);
+		} 
 	}
 
 	/**
@@ -417,7 +437,6 @@ public class APIObject
 	 */
 	public void handleMatchups(final List<String> result, final Activity act, final APIObject o) 
 	{
-		
 		if(result.size() == 1)
 		{
 			String total = result.get(0);

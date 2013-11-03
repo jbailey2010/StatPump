@@ -61,7 +61,7 @@ public class APIInteraction
 	 * Gets all of the matchups of a team
 	 */
 	public static List<String> parseXMLSetOpponents(Document doc, String params, APIObject obj)
-	{
+	{ 
         Elements links = doc.select(params);
         List<String> result = new ArrayList<String>();
         for (Element element : links) 
@@ -99,6 +99,7 @@ public class APIInteraction
         	{
         		teams.add(element.attr("team_b_name"));
         	}
+        	
         }
         return teams;
 	}
@@ -122,6 +123,9 @@ public class APIInteraction
 	public class ParseSeasonID extends AsyncTask<Object, Void, String> 
 	{
 			APIObject obj;
+			String sec = null;
+			String secStart = null;
+			String secEnd = null;
 		    public ParseSeasonID(APIObject object) 
 		    {
 		        obj = object;
@@ -134,7 +138,7 @@ public class APIInteraction
 	
 			@Override
 			protected void onPostExecute(String result){
-			   obj.setSeasonId(result);
+			   obj.setSeasonId(result, sec, secStart, secEnd);
 			   super.onPostExecute(result);
 			}
 			
@@ -146,13 +150,19 @@ public class APIInteraction
 					String dataSet = parseXML(doc, "season", "season_id");
 					String start = parseXML(doc, "season", "start_date");
 					String end = parseXML(doc, "season", "end_date");
-					String result = dataSet.split("\n")[dataSet.split("\n").length-1];
-					obj.yearID = Integer.parseInt(result);
 					obj.yearStart = start.split("\n")[start.split("\n").length-1];
 					obj.yearEnd = end.split("\n")[end.split("\n").length-1];
+					String result = dataSet.split("\n")[dataSet.split("\n").length-1];
+					if(dataSet.split("\n").length >= 2)
+					{
+						sec = dataSet.split("\n")[dataSet.split("\n").length - 2];
+						secStart = start.split("\n")[start.split("\n").length-2];
+						secEnd = end.split("\n")[end.split("\n").length-2];
+					}
+					obj.yearID = Integer.parseInt(result);
+
 					return result;
 				} catch (IOException e) {
-					System.out.println("BUG");
 					e.printStackTrace();
 				} 
 				return null; 
@@ -216,6 +226,14 @@ public class APIInteraction
 					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] teamSet = secSet.split("\n");
 					System.out.println("Team set size " + teamSet.length);
+					if(teamSet.length <= 2)
+					{
+						doc = getXML(obj.formGetLastTeamUrl(), obj);
+						dataSet = parseXML(doc, "ranking", "team_id");
+						idSet = dataSet.split("\n");
+						secSet = parseXML(doc, "ranking", "club_name");
+						teamSet = secSet.split("\n");
+					}
 					obj.roundID = Integer.valueOf(parseXML(doc, "round", "round_id").split("\n")[0]);
 					List<String> teams = Arrays.asList(teamSet);
 					Map<String, Integer> inter = new HashMap<String, Integer>();
@@ -288,6 +306,11 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetMatchUrl(), obj);
 					List<String> dataSet = parseXMLOpp(doc, "match", obj.team1);
+					if(dataSet.size() <= 2)
+					{
+						doc = getXML(obj.formGetMatchLastUrl(), obj);
+						dataSet = parseXMLOpp(doc, "match", obj.team1);
+					}
 					System.out.println("Opponent set size " + dataSet.size());
 					Collections.sort(dataSet, String.CASE_INSENSITIVE_ORDER);
 					obj.opponents = dataSet;
@@ -351,6 +374,11 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetMatchUrl(), obj);
 					List<String> dataSet = parseXMLSetOpponents(doc, "match", obj);
+					if(dataSet.size() == 0)
+					{
+						doc = getXML(obj.formGetMatchLastUrl(), obj);
+						dataSet = parseXMLSetOpponents(doc, "match", obj);
+					}
 					System.out.println("Matchup size: " + dataSet.size());
 					return dataSet;
 				} catch (IOException e) {

@@ -265,6 +265,7 @@ public class HomeTeam extends Activity {
 					//sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
+					headerText.setBackgroundResource(R.drawable.header_background);
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
@@ -278,7 +279,16 @@ public class HomeTeam extends Activity {
 					submit.setVisibility(View.INVISIBLE);
 					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
+					headerText.setBackgroundResource(R.drawable.header_background);
 				} 
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
+				search.setVisibility(View.GONE);
+				pInfo.setVisibility(View.GONE);
+				tInfo.setVisibility(View.GONE);
+				pStats.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -299,6 +309,14 @@ public class HomeTeam extends Activity {
 					team1Str = ((TextView)arg1).getText().toString();
 					obj.team1 = team1Str;
 					obj.team1ID = obj.teamIDMap.get(obj.team1);
+					search.setTextColor(Color.parseColor("#ffffff"));
+					pInfo.setTextColor(Color.parseColor("#ffffff"));
+					tInfo.setTextColor(Color.parseColor("#ffffff"));
+					pStats.setTextColor(Color.parseColor("#ffffff"));
+					search.setVisibility(View.GONE);
+					pInfo.setVisibility(View.GONE);
+					tInfo.setVisibility(View.GONE);
+					pStats.setVisibility(View.GONE);
 				}
 				
 			}
@@ -315,6 +333,10 @@ public class HomeTeam extends Activity {
 				setStatWellDialog(true);
 				sw.removeAllViews();
 				po = new PlayerSearchObject(cont, obj);
+				search.setBackgroundResource(R.drawable.not_selected_tab);
+				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
+				pStats.setBackgroundResource(R.drawable.not_selected_tab);
 				search.setVisibility(View.VISIBLE);
 				pInfo.setVisibility(View.VISIBLE);
 				tInfo.setVisibility(View.VISIBLE);
@@ -328,6 +350,7 @@ public class HomeTeam extends Activity {
 				obj.clearObject();
 				sport.setSelection(0);
 				headerText.setTextColor(Color.parseColor("#000000"));
+				headerText.setBackground(null);
 				team1.setVisibility(View.INVISIBLE);
 				headerText.setText("Select a Sport Below");
 				sportImg.setVisibility(View.INVISIBLE);

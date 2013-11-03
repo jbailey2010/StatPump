@@ -126,15 +126,21 @@ public class ManageSportSelection
 	 */
 	public static void setSportImage(String sportStr, Context cont,
 			ImageView image, APIObject obj) 
-	{
+	{ 
 		if(sportStr.contains("Baseball"))
 		{
+			System.out.println("Setting to image"); 
 			image.setImageResource(R.drawable.mlb);
 			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Basketball"))
 		{
 			image.setImageResource(R.drawable.nba);
+			image.setScaleType(ScaleType.FIT_XY);
+		}
+		else if(sportStr.contains("Football") && sportStr.contains("NCAA"))
+		{
+			image.setImageResource(R.drawable.cfb);
 			image.setScaleType(ScaleType.FIT_XY);
 		}
 		else if(sportStr.contains("Football"))
