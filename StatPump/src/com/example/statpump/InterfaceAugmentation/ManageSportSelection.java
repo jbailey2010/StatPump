@@ -129,7 +129,6 @@ public class ManageSportSelection
 	{ 
 		if(sportStr.contains("Baseball"))
 		{
-			System.out.println("Setting to image"); 
 			image.setImageResource(R.drawable.mlb);
 			image.setScaleType(ScaleType.FIT_XY);
 		}

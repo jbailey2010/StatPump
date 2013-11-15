@@ -153,7 +153,7 @@ public class Loading extends Activity {
 	    	APIObject dummy = (APIObject)data[0];
 	    	final Context cont = (Context)data[1];
 	    	try {
-				Document doc = APIInteraction.getXML("baseball/get_teams?id=79&type=season&detailed=yes", dummy);
+				Document doc = APIInteraction.getXML("baseball/get_seasons?&authorized=yes&active=yes", dummy);
 				flag = true;
 			} catch (IOException e) {
 				flag = false;

@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.View;
@@ -1298,6 +1299,8 @@ public class GameStatsObject
 		{
 			outcome.setText("No stats available for this game. Either it hasn't been played yet, is currently in progress, or the stats aren't available. If it's not the latter, stats will be available soon after the game.");
 			attendance.setText("For live scores go to \"Team Lookup/Team Information\"");
+			attendance.setTextSize(16);
+			attendance.setTextColor(Color.parseColor("#FF3333"));
 			teamAStats.setVisibility(View.GONE);
 			teamBStats.setVisibility(View.GONE);
 			teamA.setVisibility(View.GONE);

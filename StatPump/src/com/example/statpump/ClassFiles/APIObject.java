@@ -11,14 +11,18 @@ import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.TwoLineListItem;
 /**
  * Nothing fancy, stores all of the api interaction data
@@ -51,13 +55,13 @@ public class APIObject
 	//Venue data
 	public int venueID;
 	//Year ID for later queries
-	public int lastYearID;
+	//public int lastYearID;
 	public int yearID;
 	public int roundID;
 	public String yearStart;
-	public String lastStart;
+	//public String lastStart;
 	public String yearEnd;
-	public String lastEnd;
+	//public String lastEnd;
 	//Other data
 	public String favoriteTeam;
 	public String statwellSetting;
@@ -217,6 +221,14 @@ public class APIObject
 		this.matchDate = "";
 		this.matchHome="";
 		this.matchID = 0;
+		this.team1Spinner.setVisibility(View.GONE);
+		this.sportSpinner.setSelection(0);
+		TextView headerText = (TextView)((Activity)this.context).findViewById(R.id.game_title);
+		ImageView sportImg = (ImageView)((Activity)this.context).findViewById(R.id.game_sport_image);
+		headerText.setTextColor(Color.parseColor("#000000"));
+		headerText.setBackground(null);
+		headerText.setText("Select a Sport Below");
+		sportImg.setVisibility(View.INVISIBLE);
 	}
 	
 	/**
@@ -239,11 +251,6 @@ public class APIObject
 		String sportURL = sport.split(" - ")[0].toLowerCase().replaceAll(" ", "");
 		this.sport = sport;
 		this.sportURL = sportURL;
-		System.out.println(this.sport);
-		for(String key : this.sportIDMap.keySet())
-		{
-			System.out.println(key);
-		}
 		this.sportID = this.sportIDMap.get(this.sport);
 		System.out.println("New sport is "+ this.sport + ", " + this.sportURL + ", " + this.sportID);
 		APIInteraction.getSeasonId(this);
@@ -268,10 +275,10 @@ public class APIObject
 		return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
 	}
 	
-	public String formGetLastTeamUrl()
+	/*public String formGetLastTeamUrl()
 	{
 		return this.sportURL + "/get_tables?id=" + this.lastYearID + "&type=season&tabletype=total";
-	}
+	}*/
 	
 	/**
 	 * forms the get match URL
@@ -282,10 +289,10 @@ public class APIObject
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.yearStart + "&end_date=" + this.yearEnd;
 	}
 	
-	public String formGetMatchLastUrl()
+	/*public String formGetMatchLastUrl()
 	{
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.lastStart + "&end_date=" + this.lastEnd;
-	}
+	}*/
 	
 	/**
 	 * Forms the get match URL (specific match)
@@ -382,12 +389,12 @@ public class APIObject
 			return;
 		}
 		this.yearID = Integer.parseInt(id);
-		if(lastID != null)
+		/*if(lastID != null)
 		{
 			this.lastYearID = Integer.parseInt(lastID);
 			this.lastStart = (secStart);
 			this.lastEnd = (secEnd);
-		} 
+		} */
 	}
 
 	/**
@@ -501,5 +508,10 @@ public class APIObject
 				}
 			});
 		}
+	}
+
+	public static void killTeamLoading(APIObject obj) {
+		Toast.makeText(obj.context, "Either you have selected a sport which is in between seasons, in which case we no longer have access to last year's data, or an error has occurred", Toast.LENGTH_LONG).show();
+		obj.clearObject();
 	}
 }
