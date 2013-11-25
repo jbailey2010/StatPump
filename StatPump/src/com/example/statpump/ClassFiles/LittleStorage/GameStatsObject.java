@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -1124,9 +1125,14 @@ public class GameStatsObject
 		TextView teamBInfo = (TextView)res.findViewById(R.id.textView2);
 		final ListView teamAIndiv = (ListView)res.findViewById(R.id.game_stats_teamAIndiv);
 		final ListView teamBIndiv = (ListView)res.findViewById(R.id.game_stats_teamBIndiv);
-		final ToggleButton teamAToggle = (ToggleButton)res.findViewById(R.id.game_stats_toggleStatsA);
-		final ToggleButton teamBToggle = (ToggleButton)res.findViewById(R.id.game_stats_toggleStatsB);
-		
+		final Button showStatsA = (Button)res.findViewById(R.id.show_team_stats);
+		final Button showIndivA = (Button)res.findViewById(R.id.show_indiv_stats);
+		final Button showStatsB = (Button)res.findViewById(R.id.show_team_stats2);
+		final Button showIndivB = (Button)res.findViewById(R.id.show_indiv_stats2);
+		final RelativeLayout teamABase = (RelativeLayout)res.findViewById(R.id.team1_stats_base);
+		final RelativeLayout teamBBase = (RelativeLayout)res.findViewById(R.id.team2_stats_base);
+		final LinearLayout teamAButtons = (LinearLayout)res.findViewById(R.id.category_sub_base);
+		final LinearLayout teamBButtons = (LinearLayout)res.findViewById(R.id.category_sub_base2);		
 		if(gsObj.isPlayed)
 		{
 			final ArrayList<String> list = new ArrayList<String>();
@@ -1206,92 +1212,32 @@ public class GameStatsObject
 			teamA.setText(gsObj.teamAName);
 			teamALineup.setText(gsObj.teamALineup);
 			teamBLineup.setText(gsObj.teamBLineup);
-			teamAToggle.setText("Show Individual Statistics");
-			teamBToggle.setText("Show Individual Statistics");
-			if(list.get(0).equals("No stats available for this game. Either it hasn't been played yet, or the stats aren't available"))
-			{
-				teamAToggle.setVisibility(View.GONE);
-				teamAInfo.setVisibility(View.GONE);
-			}
-			if(listB.get(0).equals("No stats available for this game. Either it hasn't been played yet, or the stats aren't available"))
-			{
-				teamBToggle.setVisibility(View.GONE);
-				teamBInfo.setVisibility(View.GONE);
-			}
-			teamAToggle.setOnTouchListener(new ListView.OnTouchListener() {
-	            @Override
-	            public boolean onTouch(View v, MotionEvent event) {
-	            	int action = event.getAction();
-	                switch (action) {
-	                case MotionEvent.ACTION_DOWN:
-	                    // Disallow ScrollView to intercept touch events.
-	                    v.getParent().requestDisallowInterceptTouchEvent(true);
-	                    break;
-
-	                case MotionEvent.ACTION_UP:
-	                    // Allow ScrollView to intercept touch events.
-	                    v.getParent().requestDisallowInterceptTouchEvent(false);
-	                    break;
-	                }
-
-	                // Handle ListView touch events.
-	                v.onTouchEvent(event);
-	                return true;
-	            }
-	        });
-			teamBToggle.setOnTouchListener(new ListView.OnTouchListener() {
-	            @Override
-	            public boolean onTouch(View v, MotionEvent event) {
-	            	int action = event.getAction();
-	                switch (action) {
-	                case MotionEvent.ACTION_DOWN:
-	                    // Disallow ScrollView to intercept touch events.
-	                    v.getParent().requestDisallowInterceptTouchEvent(true);
-	                    break;
-
-	                case MotionEvent.ACTION_UP:
-	                    // Allow ScrollView to intercept touch events.
-	                    v.getParent().requestDisallowInterceptTouchEvent(false);
-	                    break;
-	                }
-
-	                // Handle ListView touch events.
-	                v.onTouchEvent(event);
-	                return true;
-	            }
-	        });
-			teamAToggle.setOnClickListener(new OnClickListener(){
+			showStatsA.setOnClickListener(new OnClickListener(){
 				@Override
-				public void onClick(View v) {
-					if(teamAToggle.isChecked())
-					{
-						teamAToggle.setText("Hide Individual Statistics");
-						teamAIndiv.setVisibility(View.VISIBLE);
-						gsObj.isHiddenA = false;
-					}
-					else
-					{
-						teamAToggle.setText("Show Individual Statistics");
-						teamAIndiv.setVisibility(View.GONE);
-						gsObj.isHiddenA = true;
-					}
+				public void onClick(View arg0) {
+					teamAIndiv.setVisibility(View.GONE);
+					teamABase.setVisibility(View.VISIBLE);
 				}
 			});
-			teamBToggle.setOnClickListener(new OnClickListener(){
+			showIndivA.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					if(teamBToggle.isChecked())
-					{
-						teamBToggle.setText("Hide Individual Statistics");
-						teamBIndiv.setVisibility(View.VISIBLE);
-						gsObj.isHiddenB = false;
-					}
-					else
-					{
-						teamBToggle.setText("Show Individual Statistics");
-						teamBIndiv.setVisibility(View.GONE);
-						gsObj.isHiddenB = true;
-					}
+					teamAIndiv.setVisibility(View.VISIBLE);
+					teamABase.setVisibility(View.GONE);
+				}
+			});
+			showStatsB.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					teamBIndiv.setVisibility(View.GONE);
+					teamBBase.setVisibility(View.VISIBLE);
+				}
+			});
+			showIndivB.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					teamBIndiv.setVisibility(View.VISIBLE);
+					teamBBase.setVisibility(View.GONE);
 				}
 			});
 		}
@@ -1311,8 +1257,8 @@ public class GameStatsObject
 			teamBLineup.setVisibility(View.GONE);
 			teamAIndiv.setVisibility(View.GONE);
 			teamBIndiv.setVisibility(View.GONE);
-			teamAToggle.setVisibility(View.GONE);
-			teamBToggle.setVisibility(View.GONE);
+			teamAButtons.setVisibility(View.GONE);
+			teamBButtons.setVisibility(View.GONE);
 		} 
 		layout.addView(res);
 	}

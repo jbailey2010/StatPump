@@ -74,37 +74,92 @@
             android:textColor="#191970"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/game_stats_teamBStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamBLineup"
-            android:layout_below="@+id/game_stats_teamBLineup"
-            android:layout_marginTop="18dp"
-            android:text="Team Y Stats"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+         	<LinearLayout
+	        android:id="@+id/category_sub_base"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:layout_below="@+id/game_stats_teamAName"
+	        android:weightSum="75"> 
+	
+	        <Button
+	            android:id="@+id/show_team_stats"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Team Stats"
+	            android:textStyle="bold"
+	            android:textColor="#FFFFFF"
+	            android:textSize="15sp" />
+	
+	        <Button 
+	            android:id="@+id/sw_game_venueinfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent" 
+	            android:layout_weight="25"
+	            android:clickable="false"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" /> 
+	  
+	        <Button
+	            android:id="@+id/show_indiv_stats"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:textStyle="bold"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Individual Stats"
+	            android:textColor="#FFFFFF"
+	            android:textSize="15sp" />
+	
+	    </LinearLayout>
 
-        <ToggleButton
-            android:id="@+id/game_stats_toggleStatsA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/game_stats_teamAName"
-            android:textSize="13sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:text="Button" />
 
-        <ToggleButton
-            android:id="@+id/game_stats_toggleStatsB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/game_stats_teamBName"
-            android:text="Button"
-            android:textColor="#000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            <LinearLayout
+	        android:id="@+id/category_sub_base2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	         android:layout_below="@+id/game_stats_teamBName"
+	        android:weightSum="75"> 
+	
+	        <Button
+	            android:id="@+id/show_team_stats2"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Team Stats"
+	            android:textStyle="bold"
+	            android:textColor="#FFFFFF"
+	            android:textSize="15sp" />
+	
+	        <Button 
+	            android:id="@+id/sw_game_venueinfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent" 
+	            android:layout_weight="25"
+	            android:clickable="false"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" /> 
+	  
+	        <Button
+	            android:id="@+id/show_indiv_stats2"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:textStyle="bold"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Individual Stats"
+	            android:textColor="#FFFFFF"
+	            android:textSize="15sp" />
+	
+	    </LinearLayout>
 
         <ListView
             android:id="@+id/game_stats_teamAIndiv"
@@ -115,7 +170,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
-            android:layout_below="@+id/game_stats_teamAStats"
+            android:layout_below="@+id/team1_stats_base"
             android:layout_marginTop="14dp" >
         </ListView>
 
@@ -141,57 +196,60 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
-            android:layout_below="@+id/game_stats_teamBStats"
+            android:layout_below="@+id/team2_stats_base"
             android:layout_marginTop="17dp" >
         </ListView>
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/game_stats_toggleStatsB"
-            android:layout_centerHorizontal="true"
-            android:text="Individual stats will appear below"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
+        <RelativeLayout
+            android:id="@+id/team2_stats_base"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignLeft="@+id/team1_stats_base"
+            android:layout_below="@+id/category_sub_base2" >
+            
         <TextView
             android:id="@+id/game_stats_teamBLineup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamAStats"
-            android:layout_below="@+id/textView1"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textView2"
+          <TextView
+            android:id="@+id/game_stats_teamBStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/game_stats_toggleStatsA"
-            android:text="Individual stats will appear below"
+            android:layout_alignLeft="@+id/game_stats_teamBLineup"
+            android:layout_below="@+id/game_stats_teamBLineup"
+            android:layout_marginTop="18dp"
+            android:text="Team Y Stats"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/game_stats_teamALineup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamAIndiv"
-            android:layout_below="@+id/textView2"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="15sp" />
+		<RelativeLayout
+		    android:id="@+id/team1_stats_base"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignLeft="@+id/game_stats_teamAIndiv"
+		    android:layout_below="@+id/category_sub_base" >
 
-        <TextView
-            android:id="@+id/game_stats_teamAStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/game_stats_teamALineup"
-            android:layout_below="@+id/game_stats_teamALineup"
-            android:layout_marginTop="16dp"
-            android:text="Team X Stats"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+	        <TextView
+	            android:id="@+id/game_stats_teamALineup"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Medium Text"
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:textSize="15sp" />
+	
+	        <TextView
+	            android:id="@+id/game_stats_teamAStats"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/game_stats_teamALineup"
+	            android:layout_below="@+id/game_stats_teamALineup"
+	            android:layout_marginTop="16dp"
+	            android:text="Team X Stats"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+	     </RelativeLayout>
 
     </RelativeLayout>
 </ScrollView>
