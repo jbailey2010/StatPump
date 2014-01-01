@@ -39,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -247,6 +248,7 @@ public class HomeTeam extends Activity {
 		submit = (Button)findViewById(R.id.team_submit);
 		clear = (Button)findViewById(R.id.team_clear);
 		headerText = (TextView)findViewById(R.id.team_title);
+		final RelativeLayout headerBase = (RelativeLayout)findViewById(R.id.header_base);
 		sportImg = (ImageView)findViewById(R.id.team_sport_image);
 		team1.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE);
@@ -265,7 +267,7 @@ public class HomeTeam extends Activity {
 					//sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
-					headerText.setBackgroundResource(R.drawable.header_background);
+					headerBase.setBackgroundResource(R.drawable.header_background);
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);
@@ -279,7 +281,8 @@ public class HomeTeam extends Activity {
 					submit.setVisibility(View.INVISIBLE);
 					clear.setVisibility(View.INVISIBLE);
 					headerText.setText("Select a Sport Below");
-					headerText.setBackground(null);
+					headerText.setTextColor(Color.parseColor("#000000"));
+					headerBase.setBackground(null);
 				} 
 				search.setTextColor(Color.parseColor("#ffffff"));
 				pInfo.setTextColor(Color.parseColor("#ffffff"));

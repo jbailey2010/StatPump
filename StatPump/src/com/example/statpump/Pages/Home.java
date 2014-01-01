@@ -22,6 +22,7 @@ import java.util.List;
 
 
 
+
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
@@ -66,6 +67,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -285,6 +287,7 @@ public class Home extends Activity {
 		clear = (Button)findViewById(R.id.game_clear);
 		sportImg = (ImageView)findViewById(R.id.game_sport_image);
 		headerText = (TextView)findViewById(R.id.game_title);
+		final RelativeLayout headerBase = (RelativeLayout)findViewById(R.id.header_base);
 		team1.setVisibility(View.INVISIBLE);
 		team2.setVisibility(View.INVISIBLE);
 		submit.setVisibility(View.INVISIBLE); 
@@ -308,7 +311,7 @@ public class Home extends Activity {
 					submit.setVisibility(View.INVISIBLE);
 					headerText.setText("Select the First Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
-					headerText.setBackgroundResource(R.drawable.header_background);
+					headerBase.setBackgroundResource(R.drawable.header_background);
 					ManageSportSelection.setSportImage(sportStr, cont, sportImg, obj);
 				}
 				else
@@ -318,7 +321,8 @@ public class Home extends Activity {
 					team2.setVisibility(View.INVISIBLE);
 					submit.setVisibility(View.INVISIBLE); 
 					clear.setVisibility(View.INVISIBLE);
-					headerText.setBackground(null);
+					headerBase.setBackground(null);
+					headerText.setTextColor(Color.parseColor("#000000"));
 					headerText.setText("Select a Sport Below");
 				}
 				search.setTextColor(Color.parseColor("#ffffff"));

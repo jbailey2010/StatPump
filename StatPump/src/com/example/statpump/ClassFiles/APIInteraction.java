@@ -214,10 +214,6 @@ public class APIInteraction
 			   {
 				   obj.setTeamSet(result);
 			   }
-			   else
-			   {
-				   APIObject.killTeamLoading(obj);
-			   }
 			}
 			 
 		    @Override
@@ -233,7 +229,7 @@ public class APIInteraction
 					String secSet = parseXML(doc, "ranking", "club_name");
 					String[] teamSet = secSet.split("\n");
 					System.out.println("Team set size " + teamSet.length);
-					/*if(teamSet.length <= 2)
+					if(teamSet.length <= 2)
 					{
 						System.out.println("In if");
 						doc = getXML(obj.formGetLastTeamUrl(), obj);
@@ -242,7 +238,7 @@ public class APIInteraction
 						secSet = parseXML(doc, "ranking", "club_name");
 						teamSet = secSet.split("\n");
 						System.out.println("New length is " + teamSet.length);
-					}*/
+					}
 					obj.roundID = Integer.valueOf(parseXML(doc, "round", "round_id").split("\n")[0]);
 					List<String> teams = Arrays.asList(teamSet);
 					Map<String, Integer> inter = new HashMap<String, Integer>();
@@ -324,11 +320,11 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetMatchUrl(), obj);
 					List<String> dataSet = parseXMLOpp(doc, "match", obj.team1);
-					/*if(dataSet.size() <= 2)
+					if(dataSet.size() <= 2)
 					{
 						doc = getXML(obj.formGetMatchLastUrl(), obj);
 						dataSet = parseXMLOpp(doc, "match", obj.team1);
-					}*/
+					}
 					System.out.println("Opponent set size " + dataSet.size());
 					Collections.sort(dataSet, String.CASE_INSENSITIVE_ORDER);
 					obj.opponents = dataSet;
@@ -392,11 +388,11 @@ public class APIInteraction
 		    	try {
 					Document doc = getXML(obj.formGetMatchUrl(), obj);
 					List<String> dataSet = parseXMLSetOpponents(doc, "match", obj);
-					/*if(dataSet.size() == 0)
+					if(dataSet.size() == 0)
 					{
 						doc = getXML(obj.formGetMatchLastUrl(), obj);
 						dataSet = parseXMLSetOpponents(doc, "match", obj);
-					}*/
+					}
 					System.out.println("Matchup size: " + dataSet.size());
 					return dataSet;
 				} catch (IOException e) {

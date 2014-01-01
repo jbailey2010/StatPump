@@ -55,13 +55,13 @@ public class APIObject
 	//Venue data
 	public int venueID;
 	//Year ID for later queries
-	//public int lastYearID;
+	public int lastYearID;
 	public int yearID;
 	public int roundID;
 	public String yearStart;
-	//public String lastStart;
+	public String lastStart;
 	public String yearEnd;
-	//public String lastEnd;
+	public String lastEnd;
 	//Other data
 	public String favoriteTeam;
 	public String statwellSetting;
@@ -275,10 +275,10 @@ public class APIObject
 		return this.sportURL + "/get_tables?id=" + this.yearID + "&type=season&tabletype=total";
 	}
 	
-	/*public String formGetLastTeamUrl()
+	public String formGetLastTeamUrl()
 	{
 		return this.sportURL + "/get_tables?id=" + this.lastYearID + "&type=season&tabletype=total";
-	}*/
+	}
 	
 	/**
 	 * forms the get match URL
@@ -289,10 +289,10 @@ public class APIObject
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.yearStart + "&end_date=" + this.yearEnd;
 	}
 	
-	/*public String formGetMatchLastUrl()
+	public String formGetMatchLastUrl()
 	{
 		return this.sportURL + "/get_matches?id=" + this.team1ID + "&type=team&start_date=" + this.lastStart + "&end_date=" + this.lastEnd;
-	}*/
+	}
 	
 	/**
 	 * Forms the get match URL (specific match)
@@ -389,12 +389,12 @@ public class APIObject
 			return;
 		}
 		this.yearID = Integer.parseInt(id);
-		/*if(lastID != null)
+		if(lastID != null)
 		{
 			this.lastYearID = Integer.parseInt(lastID);
 			this.lastStart = (secStart);
 			this.lastEnd = (secEnd);
-		} */
+		} 
 	}
 
 	/**
