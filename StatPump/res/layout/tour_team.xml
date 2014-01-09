@@ -25,7 +25,7 @@
 	        android:layout_below="@+id/textView1"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="20dp"
-	        android:text="Once you hit submit, it will prompt you for what type of information you'd like to see in the statwell in regards to the team selected. This can also be set from the menu."
+	        android:text="Once you hit submit, it will prompt you for what type of information you'd like to see in the statwell in regards to the team selected. This can also be set from the tabs that will appear."
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <TextView
@@ -35,7 +35,7 @@
 	        android:layout_below="@+id/textView2"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="26dp"
-	        android:text="Also accessible from the menu is a player search, a twitter button through which you can search public tweets and/or post a tweet, a facebook button with similar functionality, a help button, and a button to switch to game lookup."
+	        android:text="A menu for navigation is accessible from clicking on the logo at the top left. Also accessible from the top bar are both a twitter button through which you can search public tweets and/or post a tweet and a facebook button with similar functionality."
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <TextView
@@ -49,7 +49,7 @@
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <Button
-	        android:id="@+id/tour_finish"
+	        android:id="@+id/tour_continue"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/textView4"

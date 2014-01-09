@@ -1,11 +1,14 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
+import com.devspark.sidenavigation.ISideNavigationCallback;
+import com.devspark.sidenavigation.SideNavigationView;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
@@ -74,6 +77,7 @@ public class HomeTeam extends Activity {
 	Button pInfo;
 	Button tInfo;
 	Button pStats;
+	SideNavigationView sideNavigationView;
 	//MyActionBarListener listener;
 	/**
 	 * Sets up the layout, initial loading...etc.
@@ -97,21 +101,31 @@ public class HomeTeam extends Activity {
 		// Now set the view for your activity to be the wrapped view.
 		setContentView(actView);	*/	
 		initialSetUp();
-		View v = ((Activity) c).findViewById(android.R.id.home);
-		if(v != null)
-		{
-			v.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(cont, Loading.class);
-			        cont.startActivity(intent);		
-				}
-			});
-		}
-		else
-		{
-			Toast.makeText(cont, "An error occurred. Please use the menu option to navigate.", Toast.LENGTH_SHORT).show();
-		}
+		ISideNavigationCallback sideNavigationCallback = new ISideNavigationCallback() {
+		    @Override
+		    public void onSideNavigationItemClick(int itemId) {
+		    	switch (itemId) {
+	            case R.id.go_home:
+	            	Intent intent = new Intent(cont, Loading.class);
+	    	        cont.startActivity(intent);	
+	                break;
+	            case R.id.switch_lookup:
+	            	Intent intent2 = new Intent(cont, Home.class);
+	    	        cont.startActivity(intent2);	
+	                break;
+	            case R.id.help:
+	            	HandleInput.helpPopUp(cont);
+	                break; 
+	            default:
+	                return;
+		    	}
+		    }
+		};
+		sideNavigationView = (SideNavigationView) findViewById(R.id.side_navigation_view);
+	    sideNavigationView.setMenuItems(R.menu.side_navigation_menu_team);
+	    sideNavigationView.setMenuClickCallback(sideNavigationCallback);
+	   // sideNavigationView.setMode(/*SideNavigationView.Mode*/);
+	    getActionBar().setDisplayHomeAsUpEnabled(true);
 		if(menuObj != null)
 		{
 			checkInternet();
@@ -149,13 +163,9 @@ public class HomeTeam extends Activity {
 			case R.id.facebook:  
 				com.example.statpump.ClassFiles.FacebookWork.facebookInit(cont);
 				return true;
-			case R.id.switch_game:
-				Intent intent = new Intent(cont, Home.class);
-		        cont.startActivity(intent);	
-				return true;
-			case R.id.help:
-				HandleInput.helpPopUp(cont);
-				return true;
+			case android.R.id.home:
+		        sideNavigationView.toggleMenu();
+		        return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

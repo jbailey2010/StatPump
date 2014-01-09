@@ -23,9 +23,13 @@ import java.util.List;
 
 
 
+
+
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
+import com.devspark.sidenavigation.ISideNavigationCallback;
+import com.devspark.sidenavigation.SideNavigationView;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
@@ -101,6 +105,7 @@ public class Home extends Activity {
 	Button vInfo;
 	Button gInfo;
 	Button gStats;
+	SideNavigationView sideNavigationView;
 	//MyActionBarListener listener;
 	
 	/**
@@ -126,22 +131,31 @@ public class Home extends Activity {
 		//setContentView(actView);		
 			
 		initialSetUp();		
-
-		View v = ((Activity) c).findViewById(android.R.id.home);
-		if(v != null)
-		{
-			v.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(cont, Loading.class);
-			        cont.startActivity(intent);		
-				}
-			});
-		}
-		else
-		{
-			Toast.makeText(cont, "An error occurred. Please use the menu option to navigate.", Toast.LENGTH_SHORT).show();
-		}
+		ISideNavigationCallback sideNavigationCallback = new ISideNavigationCallback() {
+		    @Override
+		    public void onSideNavigationItemClick(int itemId) {
+		    	switch (itemId) {
+	            case R.id.go_home:
+	            	Intent intent = new Intent(cont, Loading.class);
+	    	        cont.startActivity(intent);	
+	                break;
+	            case R.id.switch_lookup:
+	            	Intent intent2 = new Intent(cont, HomeTeam.class);
+	    	        cont.startActivity(intent2);	
+	                break;
+	            case R.id.help:
+	            	HandleInput.helpPopUp(cont);
+	                break;
+	            default:
+	                return;
+		    	}
+		    }
+		};
+		sideNavigationView = (SideNavigationView) findViewById(R.id.side_navigation_view);
+	    sideNavigationView.setMenuItems(R.menu.side_navigation_menu_game);
+	    sideNavigationView.setMenuClickCallback(sideNavigationCallback);
+	   // sideNavigationView.setMode(/*SideNavigationView.Mode*/);
+	    getActionBar().setDisplayHomeAsUpEnabled(true);
 		if(menuObj != null)
 		{
 			checkInternet();
@@ -181,13 +195,9 @@ public class Home extends Activity {
 			case R.id.facebook: 
 				FacebookWork.facebookInit(cont);
 				return true;
-			case R.id.switch_team:
-				Intent intent = new Intent(cont, HomeTeam.class);
-		        cont.startActivity(intent);	
-				return true;
-			case R.id.help:
-				HandleInput.helpPopUp(cont);
-				return true;
+			case android.R.id.home:
+		        sideNavigationView.toggleMenu();
+		        return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

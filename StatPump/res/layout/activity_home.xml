@@ -162,5 +162,10 @@
         android:layout_alignTop="@+id/statwell_base"
         android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <com.devspark.sidenavigation.SideNavigationView
+        android:id="@+id/side_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

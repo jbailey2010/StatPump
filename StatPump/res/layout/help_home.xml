@@ -46,7 +46,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stat Lookup:\nAfter selecting a lookup context, the title at the top will dictate what to do next. Options will only appear if the previous one is set. Once you have set all of the options, hit submit. This will activate the player search.\n\n\nStatWell:\nThe StatWell is where information will appear. Set the content from the menu or by pressing submit. The content is interactive -- press and hold on a URL to open it...etc.\n\n\nTwitter/Facebook:\nOnce you click the menu option for facebook, you can post a status, and with Twitter a tweet. Additionally, if you feel like seeing what public perception of a player/team is, you can search public posts through each."
+                android:text="Stat Lookup:\nAfter selecting a lookup context, the title at the top will dictate what to do next. Options will only appear if the previous one is set. Once you have set all of the options, hit submit. This will activate the player search.\n\n\nStatWell:\nThe StatWell is where information will appear. Set the content from the tabs or by pressing submit. The content is interactive -- press and hold on a URL to open it...etc.\n\n\nTwitter/Facebook:\nOnce you click the menu option for facebook, you can post a status, and with Twitter a tweet. Additionally, if you feel like seeing what public perception of a player/team is, you can search public posts through each."
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </ScrollView>

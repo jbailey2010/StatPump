@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+   <item 
+       android:id="@+id/go_home"
+       android:title="Go Home"/>
+   <item
+        android:id="@+id/switch_lookup"
+        android:title="To Team Lookup"/>
+	<item
+        android:id="@+id/help"  
+        android:title="Need Help?"/>
+</menu>
