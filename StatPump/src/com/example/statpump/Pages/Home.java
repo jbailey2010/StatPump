@@ -143,6 +143,9 @@ public class Home extends Activity {
 	            	Intent intent2 = new Intent(cont, HomeTeam.class);
 	    	        cont.startActivity(intent2);	
 	                break;
+	            case R.id.ticket_popup:
+	            	HandleInput.ticketPopup(cont);
+	            	break;
 	            case R.id.help:
 	            	HandleInput.helpPopUp(cont);
 	                break;
@@ -312,8 +315,8 @@ public class Home extends Activity {
 						&& sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
-					sportStr = ManageSportSelection.getSportSelection(arg2);
-					//sportStr = ((TextView)arg1).getText().toString();	
+					//sportStr = ManageSportSelection.getSportSelection(arg2);
+					sportStr = ((TextView)arg1).getText().toString();	
 					clear.setVisibility(View.VISIBLE);
 					team1.setVisibility(View.VISIBLE);
 					team1.setSelection(0);

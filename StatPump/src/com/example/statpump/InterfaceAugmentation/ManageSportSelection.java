@@ -31,9 +31,9 @@ public class ManageSportSelection
 	static ImageView sportLogo;
 	static String selectedSport;
 	static String selectedSportSpec;
-	public static Integer[] iconSet = {R.drawable.ssdd, R.drawable.nfldd, R.drawable.ncaadd,
+	/*public static Integer[] iconSet = {R.drawable.ssdd, R.drawable.nfldd, R.drawable.ncaadd,
 			R.drawable.mlbdd, R.drawable.nbadd, R.drawable.nhldd, 
-			R.drawable.soccerdd};
+			R.drawable.soccerdd};*/
 
 	
 	public static String getSportSelection(int index)
@@ -76,7 +76,7 @@ public class ManageSportSelection
 		sportSpinner = spinner;
 		context = cont;
 		List<Map<String, Integer>> data = new ArrayList<Map<String, Integer>>();
-		for(Integer icon : iconSet)
+		/*for(Integer icon : iconSet)
 		{
 			Map<String, Integer> datum = new HashMap<String, Integer>();
 			datum.put("icon", icon);
@@ -86,8 +86,8 @@ public class ManageSportSelection
                 R.layout.image_dropdown,
                 new String[] {"icon"},
                 new int[] {R.id.sport_icon});
-		sportSpinner.setAdapter(adapter);
-		/*
+		sportSpinner.setAdapter(adapter);*/
+		
 		List<String> sports = new ArrayList<String>();
 		sports.add("Select a Sport");
 		sports.add("American Football - NFL (United States)");
@@ -118,7 +118,7 @@ public class ManageSportSelection
 		//Setting the adapter
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, 
 				android.R.layout.simple_spinner_dropdown_item, sports);
-		sportSpinner.setAdapter(spinnerArrayAdapter);*/
+		sportSpinner.setAdapter(spinnerArrayAdapter);
 	}
 
 	/**

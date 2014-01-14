@@ -119,7 +119,7 @@
         android:layout_below="@+id/header_base"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="@drawable/spinner_sharp" />
+        android:background="@drawable/spinner_well" />
 
     <Button
         android:id="@+id/team_clear"

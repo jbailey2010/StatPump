@@ -113,6 +113,9 @@ public class HomeTeam extends Activity {
 	            	Intent intent2 = new Intent(cont, Home.class);
 	    	        cont.startActivity(intent2);	
 	                break;
+	            case R.id.ticket_popup:
+	            	HandleInput.ticketPopup(cont);
+	            	break;
 	            case R.id.help:
 	            	HandleInput.helpPopUp(cont);
 	                break; 
@@ -273,8 +276,8 @@ public class HomeTeam extends Activity {
 						sport.getAdapter() != null && sport.getAdapter().getCount() > 0)
 				{
 					sportImg.setVisibility(View.VISIBLE);
-					sportStr = ManageSportSelection.getSportSelection(arg2);
-					//sportStr = ((TextView)arg1).getText().toString();	
+					//sportStr = ManageSportSelection.getSportSelection(arg2);
+					sportStr = ((TextView)arg1).getText().toString();	
 					headerText.setText("Select the Team Below");
 					headerText.setTextColor(Color.parseColor("#ffffff"));
 					headerBase.setBackgroundResource(R.drawable.header_background);

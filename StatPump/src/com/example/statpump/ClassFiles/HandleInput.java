@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
@@ -30,6 +31,40 @@ import android.widget.TextView;
  */ 
 public class HandleInput 
 { 
+	/**
+	 * Makes the ticket popup do stuff
+	 * @param cont
+	 */
+	public static void ticketPopup(final Context cont)
+	{
+		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.ticket_popup);
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.FILL_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+		dialog.show();
+		Button close = (Button)dialog.findViewById(R.id.twitter_choose_cancel);
+		close.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		Button go = (Button)dialog.findViewById(R.id.twitterChooseTweet);
+		go.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				String url = "http://www.seatgeek.com/?aid=10677";
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				cont.startActivity(i);
+			}
+		});
+	}
+	
 	/**
 	 * Pops up the dialog to allow the user to decide if they want a lookup relative to a game
 	 * or a team

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitter_choose_cancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text=" "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/twitterChooseTweet"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitterChooseHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_blue"
+        android:text="Open" />
+
+    <Button
+        android:id="@+id/twitter_choose_cancel"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitterChooseTweet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/btn_green"
+        android:text="Close" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/sglogo" />
+
+    <TextView
+        android:id="@+id/twitterChooseHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView1"
+        android:text="We have searched for the best ticket sites out there and have found it with SEAT GEEK. Here you will be able to buy your tickets for sporting or concert events, and you know you&apos;ll have the best prices as they search the internet themselves for the options you&apos;ll see."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
