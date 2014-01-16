@@ -105,20 +105,20 @@
 	</RelativeLayout>
     <com.example.statpump.InterfaceAugmentation.NDSpinner
         android:id="@+id/team_name_spinner"
-        android:layout_width="275px"
-        android:layout_height="50px"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/team_sport_spinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/spinner_well" />
 
     <com.example.statpump.InterfaceAugmentation.NDSpinner
         android:id="@+id/team_sport_spinner"
-        android:layout_width="275px"
-        android:layout_height="50px"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/header_base"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/spinner_well" />
 
     <Button
@@ -128,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/statwell_base"
         android:layout_below="@+id/team_name_spinner"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="7dp"
         android:layout_marginLeft="3dp"
         android:background="@drawable/btn_green"
         android:text="Clear" />
