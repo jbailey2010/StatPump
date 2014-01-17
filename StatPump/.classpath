@@ -15,7 +15,6 @@
 	<classpathentry kind="lib" path="libs/socialauth-android-2.0.jar"/>
 	<classpathentry kind="lib" path="libs/facebook4j-core-1.1.9.jar"/>
 	<classpathentry kind="lib" path="libs/Facebook.jar"/>
-	<classpathentry kind="lib" path="libs/socialize-2.7.4.jar"/>
 	<classpathentry kind="lib" path="libs/twitter4j-async-3.0.5.jar"/>
 	<classpathentry kind="lib" path="libs/twitter4j-core-3.0.5.jar"/>
 	<classpathentry kind="lib" path="libs/twitter4j-examples-3.0.5.jar"/>
