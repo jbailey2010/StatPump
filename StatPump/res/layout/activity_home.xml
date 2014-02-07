@@ -14,77 +14,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 
-    <LinearLayout
-        android:id="@+id/statwell_base"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="205dp" 
-        android:orientation="vertical"
-        android:background="@drawable/view_well" >
-	        <LinearLayout
-	        android:id="@+id/category_base"
-	        android:layout_width="fill_parent"
-	        android:layout_height="40dp" 
-	        android:weightSum="100"> 
-	
-	        <Button
-	            android:id="@+id/sw_game_search"
-	            style="?android:attr/buttonBarButtonStyle"
-	            android:layout_width="match_parent"
-	            android:layout_height="fill_parent"
-	            android:layout_weight="25"
-	            android:background="@drawable/not_selected_tab"
-	            android:text="Search"
-	            android:textColor="#FFFFFF"
-	            android:textSize="13sp" />
-	
-	        <Button
-	            android:id="@+id/sw_game_venueinfo"
-	            style="?android:attr/buttonBarButtonStyle"
-	            android:layout_width="match_parent"
-	            android:layout_height="fill_parent"
-	            android:layout_weight="25"
-	            android:background="@drawable/not_selected_tab"
-	            android:text="Venue Info"
-	            android:textColor="#FFFFFF"
-	            android:textSize="13sp" />
-	
-	        <Button
-	            android:id="@+id/sw_game_gameinfo"
-	            style="?android:attr/buttonBarButtonStyle"
-	            android:layout_width="match_parent"
-	            android:layout_height="fill_parent"
-	            android:layout_weight="25"
-	            android:background="@drawable/not_selected_tab"
-	            android:text="Game Info"
-	            android:textColor="#FFFFFF"
-	            android:textSize="13sp" />
-
-	        <Button
-	            android:id="@+id/sw_game_gamestats"
-	            style="?android:attr/buttonBarButtonStyle"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="25"
-	            android:background="@drawable/not_selected_tab"
-	            android:text="Game Stats"
-	            android:textColor="#FFFFFF"
-	            android:textSize="13sp" />
-	
-	    </LinearLayout>
-     <LinearLayout
-        android:id="@+id/statwell"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical" >
-	        
-         </LinearLayout>
-	    
-    </LinearLayout>
+    
 <RelativeLayout
 	    android:id="@+id/header_base"
 	    android:layout_width="wrap_content"
@@ -162,6 +92,78 @@
         android:layout_alignTop="@+id/statwell_base"
         android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <LinearLayout
+        android:id="@+id/statwell_base"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="205dp" 
+        android:orientation="vertical"
+        android:background="@drawable/view_well" >
+	        <LinearLayout
+	        android:id="@+id/category_base"
+	        android:layout_width="fill_parent"
+	        android:layout_height="40dp" 
+	        android:weightSum="100"> 
+	
+	        <Button
+	            android:id="@+id/sw_game_search"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Search"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	        <Button
+	            android:id="@+id/sw_game_venueinfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Venue Info"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	        <Button
+	            android:id="@+id/sw_game_gameinfo"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Game Info"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+
+	        <Button
+	            android:id="@+id/sw_game_gamestats"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="25"
+	            android:background="@drawable/not_selected_tab"
+	            android:text="Game Stats"
+	            android:textColor="#FFFFFF"
+	            android:textSize="13sp" />
+	
+	    </LinearLayout>
+     <LinearLayout
+        android:id="@+id/statwell"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
+	        
+         </LinearLayout>
+	    
+    </LinearLayout>
     
     <com.devspark.sidenavigation.SideNavigationView
         android:id="@+id/side_navigation_view"

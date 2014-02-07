@@ -11,4 +11,10 @@
 	<item
         android:id="@+id/help"  
         android:title="Need Help?"/>
+	<item
+	    android:id="@+id/max_min_sw"
+	    android:title="Max/Min Statwell" />
+	<item
+	    android:id="@+id/stats"
+	    android:title="Popularity Stats" />
 </menu>

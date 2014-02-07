@@ -57,7 +57,7 @@
 	        android:layout_marginTop="20dp"
 	        android:background="@drawable/btn_blue"
 	        style="@style/ButtonText"
-	        android:text="Finish" />
+	        android:text="Continue" />
 
 	</RelativeLayout>
 </ScrollView>

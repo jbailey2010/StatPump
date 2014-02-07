@@ -25,6 +25,9 @@ import java.util.List;
 
 
 
+
+
+
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
@@ -34,6 +37,7 @@ import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
+import com.example.statpump.ClassFiles.HandleStats;
 import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject;
 import com.example.statpump.InterfaceAugmentation.ManageSportSelection;
@@ -48,6 +52,7 @@ import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 import com.socialize.ActionBarUtils;
 import com.socialize.Socialize;
 import com.socialize.entity.Entity;
+import com.socialize.ui.actionbar.ActionBarOptions;
 import com.socialize.ui.actionbar.ActionBarView;
 
 import android.os.Bundle;
@@ -57,9 +62,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.Menu; 
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
@@ -81,6 +88,7 @@ import android.widget.Toast;
  *
  */
 public class Home extends Activity {
+	public boolean isMax = false;
 	final Context cont = this;
 	static Context c;
 	public List<String> sportList = new ArrayList<String>();
@@ -106,7 +114,7 @@ public class Home extends Activity {
 	Button gInfo;
 	Button gStats;
 	SideNavigationView sideNavigationView;
-	//MyActionBarListener listener;
+	MyActionBarListener listener;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -116,20 +124,29 @@ public class Home extends Activity {
 		c = cont;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		//Socialize.onCreate(this, savedInstanceState);
+		Socialize.onCreate(this, savedInstanceState);
 		// Your entity key. May be passed as a Bundle parameter to your activity
-		//String entityKey = "http://www.statpump.com/homegamelookup";
+		String entityKey = "http://www.statpump.com/homegamelookup";
 		
 		// Create an entity object including a name
 		// The Entity object is Serializable, so you could also store the whole object in the Intent
-		//Entity entity = Entity.newInstance(entityKey, "Game Lookup Home");
-		//listener = new MyActionBarListener();
+		Entity entity = Entity.newInstance(entityKey, "Game Lookup Home");
+		listener = new MyActionBarListener();
 		// Wrap your existing view with the action bar.
 		// your_layout refers to the resource ID of your current layout.
-		//View actView = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, null, listener);
+		//// Create an options instance to disable comments
+		ActionBarOptions options = new ActionBarOptions();
+
+		// Hide sharing
+		options.setHideShare(true);
+		options.setFillColor(Color.parseColor("#272727"));
+		options.setBackgroundColor(Color.parseColor("#191919"));
+		options.setAccentColor(Color.parseColor("#0000ff"));
+		
+		View actionBarWrapped = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, options);
 		// Now set the view for your activity to be the wrapped view.
-		//setContentView(actView);		
-			
+		setContentView(actionBarWrapped);		
+		
 		initialSetUp();		
 		ISideNavigationCallback sideNavigationCallback = new ISideNavigationCallback() {
 		    @Override
@@ -149,6 +166,18 @@ public class Home extends Activity {
 	            case R.id.help:
 	            	HandleInput.helpPopUp(cont);
 	                break;
+	            case R.id.max_min_sw:
+	            	if(isSubmit)
+	            	{
+	            		maxMinSW(cont);
+	            	}
+	            	else
+	            	{
+	            		Toast.makeText(cont, "Please fill out the fields below first", Toast.LENGTH_SHORT).show();
+	            	}
+	            case R.id.stats:
+	            	HandleStats.handleStatsInit(cont);
+	            	break;
 	            default:
 	                return;
 		    	}
@@ -228,6 +257,30 @@ public class Home extends Activity {
 		
 		super.onDestroy();
 	}
+	
+	public void maxMinSW(Context cont) 
+	{
+		LinearLayout sw_base = (LinearLayout)findViewById(R.id.statwell_base);
+		if(!isMax)
+		{
+			RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+			        ViewGroup.LayoutParams.MATCH_PARENT);
+			p.topMargin = 0;
+			sw_base.setLayoutParams(p);
+			isMax = true;
+		}
+		else
+		{
+			RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+			        ViewGroup.LayoutParams.MATCH_PARENT);
+			int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 205, getResources().getDisplayMetrics());
+			p.topMargin = height;
+			sw_base.setLayoutParams(p);
+			isMax = false;
+			
+		}
+	}
+	
 	/**
 	 * Sees if there's internet. Adjusts interface as such
 	 */
@@ -524,14 +577,14 @@ public class Home extends Activity {
 					StatWellUsage.statWellInit(obj, cont, po);
 					headerText.setText(obj.matchHome + " - " + obj.matchDate);	
 					
-					/*String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str + "_vs_" + team2Str + "on" + obj.matchDate;
+					String entityKey = "http://www.statpump.com/" + sportStr + "/" + team1Str + "_vs_" + team2Str + "on" + obj.matchDate;
 					Entity entity = Entity.newInstance(entityKey, obj.matchDate + ": " + obj.matchHome);
 					view = listener.getActionBarView();
 					
 					if (view != null) {
 						view.setEntity(entity);
 						view.refresh();
-					}	*/
+					}	
 					dialog.dismiss();
 				}
 				else

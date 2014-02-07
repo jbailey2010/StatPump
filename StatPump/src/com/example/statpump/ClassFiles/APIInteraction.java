@@ -151,7 +151,10 @@ public class APIInteraction
 					String start = parseXML(doc, "season", "start_date");
 					String end = parseXML(doc, "season", "end_date");
 					obj.yearStart = start.split("\n")[start.split("\n").length-1];
-					obj.yearEnd = end.split("\n")[end.split("\n").length-1];
+					String[]endSet = end.split("\n")[end.split("\n").length-1].split("-");
+					Integer newDay = Integer.valueOf(endSet[2]) + 3;
+					obj.yearEnd = endSet[0] + "-" + endSet[1] + "-" + newDay;
+					System.out.println(obj.yearEnd);
 					String result = dataSet.split("\n")[dataSet.split("\n").length-1];
 					if(dataSet.split("\n").length >= 2)
 					{

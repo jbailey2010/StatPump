@@ -120,7 +120,7 @@ public class HandleInput
 		dialog.setCancelable(false);
 		dialog.setContentView(R.layout.tour_game);
 		dialog.show();
-		Button continueButton = (Button)dialog.findViewById(R.id.tour_continue);
+		Button continueButton = (Button)dialog.findViewById(R.id.tour_finish);
 		continueButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -130,7 +130,7 @@ public class HandleInput
 				dialog.setCancelable(false);
 				dialog.setContentView(R.layout.tour_team);
 				dialog.show();
-				Button finish = (Button)dialog.findViewById(R.id.tour_finish);
+				Button finish = (Button)dialog.findViewById(R.id.tour_continue);
 				finish.setOnClickListener(new OnClickListener(){
 					@Override
 					public void onClick(View v) {
