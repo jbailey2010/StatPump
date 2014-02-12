@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class HandleStats {
 	public static TextView output;
-	public static StringBuilder sb = new StringBuilder(10000);
+	public static StringBuilder sb;
 
 	public static void handleStatsInit(Context cont) {
 		final Dialog dialog = new Dialog(cont, R.style.RoundCornersFull);
@@ -93,6 +93,7 @@ public class HandleStats {
 					i++;
 					data.append(i + ". "+ elem.getDisplayName() + " - " + elem.getEntityStats().getComments() + " likes\n");
 				}
+				sb = new StringBuilder(1000);
 				sb.append(data.toString());
 				if(sb.toString().length () > 4)
 				{
