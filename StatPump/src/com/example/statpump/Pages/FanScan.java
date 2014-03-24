@@ -1,5 +1,7 @@
 package com.example.statpump.Pages;
 
+import com.statpump.statpump.R;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -17,16 +19,11 @@ public class FanScan extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fan_scan);
-
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
+ 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.fan_scan, menu);
 		return true;
@@ -44,21 +41,5 @@ public class FanScan extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_fan_scan,
-					container, false);
-			return rootView;
-		}
-	}
 
 }

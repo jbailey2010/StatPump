@@ -1,16 +1,16 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
+
+
 import java.util.List;
 
-import com.statpump.statpump.FanScan;
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
 import com.devspark.sidenavigation.ISideNavigationCallback;
 import com.devspark.sidenavigation.SideNavigationView;
 import com.example.statpump.ClassFiles.APIObject;
-import com.example.statpump.ClassFiles.FacebookWork;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.HandleStats;
 import com.example.statpump.ClassFiles.TwitterWork;
@@ -193,9 +193,6 @@ public class HomeTeam extends Activity {
 			case R.id.twitter:
 				TwitterWork.twitterInitial(cont);
 		    	return true; 
-			case R.id.facebook:  
-				com.example.statpump.ClassFiles.FacebookWork.facebookInit(cont);
-				return true;
 			case android.R.id.home:
 		        sideNavigationView.toggleMenu();
 		        return true;

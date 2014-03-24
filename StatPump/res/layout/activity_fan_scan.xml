@@ -1,8 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/home_team_base"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.statpump.statpump.FanScan"
-    tools:ignore="MergeRootFrame" />
+    android:background="#E5E5E5" >
 
+ 
+    
+
+    <com.devspark.sidenavigation.SideNavigationView
+        android:id="@+id/side_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

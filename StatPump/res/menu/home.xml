@@ -5,9 +5,4 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText" 
         android:icon="@drawable/twitter_icon"        />
-   <item
-        android:id="@+id/facebook"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:icon="@drawable/facebook_logo"/>
 </menu>
