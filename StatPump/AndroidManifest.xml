@@ -74,7 +74,7 @@
             android:label="" >
         </activity>
         <activity
-            android:name="com.example.statpump.Pages.FanScan"
+            android:name="com.statpump.statpump.FanScan"
             android:label="@string/title_activity_fan_scan" >
         </activity>
     </application>
