@@ -1,4 +1,4 @@
-package com.statpump.statpump;
+package com.example.statpump.Pages;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -31,7 +31,7 @@ public class FanScan extends Activity {
 		getMenuInflater().inflate(R.menu.fan_scan, menu);
 		return true;
 	}
-
+ 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will

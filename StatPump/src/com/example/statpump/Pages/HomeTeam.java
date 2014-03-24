@@ -1,10 +1,8 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
-import com.statpump.statpump.FanScan;
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
