@@ -182,7 +182,7 @@ int id com_facebook_usersettingsfragment_profile_name 0x7f050036
 int id date_spinner 0x7f05003e
 int id decider_header 0x7f050049
 int id dummy_scroll 0x7f050041
-int id fanscan 0x7f0500d3
+int id fanscan 0x7f0500d7
 int id favorite_team_submit 0x7f050038
 int id game_clear 0x7f05000b
 int id game_info_address 0x7f050069
@@ -234,7 +234,7 @@ int id large 0x7f050002
 int id loading_prompt 0x7f050022
 int id logo_loading 0x7f050020
 int id match_date_selection_submit 0x7f05003f
-int id max_min_sw 0x7f0500d6
+int id max_min_sw 0x7f0500d8
 int id normal 0x7f050001
 int id picker_subtitle 0x7f050034
 int id player_list 0x7f050042
@@ -266,7 +266,7 @@ int id side_navigation_outside_view 0x7f05004f
 int id side_navigation_view 0x7f050004
 int id small 0x7f050000
 int id sport_icon 0x7f05003d
-int id stats 0x7f0500d7
+int id stats 0x7f0500d6
 int id statwell 0x7f050014
 int id statwell_base 0x7f05000e
 int id statwell_game_cancel 0x7f050058
@@ -326,7 +326,7 @@ int id sw_venue_info_header 0x7f0500a1
 int id sw_venue_info_hometeam 0x7f0500a3
 int id sw_venue_previousnames 0x7f0500a4
 int id sw_venue_url 0x7f0500aa
-int id switch_lookup 0x7f0500d2
+int id switch_lookup 0x7f0500d3
 int id take_tour 0x7f05004c
 int id team1_stats_base 0x7f05007e
 int id team2_stats_base 0x7f050080
@@ -346,6 +346,7 @@ int id textView3 0x7f050044
 int id textView4 0x7f05004b
 int id textView5 0x7f0500b4
 int id ticket_popup 0x7f0500d4
+int id to_team_lookup 0x7f0500d2
 int id tour_continue 0x7f0500b2
 int id tour_finish 0x7f0500b1
 int id tweet_back 0x7f0500c8
@@ -424,8 +425,9 @@ int menu fan_scan 0x7f0a0000
 int menu home 0x7f0a0001
 int menu home_team 0x7f0a0002
 int menu loading 0x7f0a0003
-int menu side_navigation_menu_game 0x7f0a0004
-int menu side_navigation_menu_team 0x7f0a0005
+int menu side_navigation_menu_fs 0x7f0a0004
+int menu side_navigation_menu_game 0x7f0a0005
+int menu side_navigation_menu_team 0x7f0a0006
 int string action_settings 0x7f06001a
 int string app_name 0x7f060019
 int string com_facebook_choose_friends 0x7f06000f
