@@ -6,6 +6,9 @@
         android:id="@+id/switch_lookup"
         android:title="To Team Lookup"/>
    <item
+       android:id="@+id/fanscan"
+       android:title="FanScan"/>
+   <item
        android:id="@+id/ticket_popup"
        android:title="SeatGeek"/>
 	<item

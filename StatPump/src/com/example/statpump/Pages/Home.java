@@ -1,7 +1,6 @@
 package com.example.statpump.Pages;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -29,6 +28,9 @@ import java.util.List;
 
 
 
+
+
+import com.statpump.statpump.FanScan;
 import com.statpump.statpump.R;
 import com.statpump.statpump.R.layout;
 import com.statpump.statpump.R.menu;
@@ -161,6 +163,10 @@ public class Home extends Activity {
 	            	Intent intent2 = new Intent(cont, HomeTeam.class);
 	    	        cont.startActivity(intent2);	
 	                break;
+	            case R.id.fanscan:
+	            	Intent fsIntent = new Intent(cont, FanScan.class);
+	            	cont.startActivity(fsIntent);
+	            	break;
 	            case R.id.ticket_popup:
 	            	HandleInput.ticketPopup(cont);
 	            	break;
