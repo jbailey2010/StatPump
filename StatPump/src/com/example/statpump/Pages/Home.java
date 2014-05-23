@@ -112,14 +112,14 @@ public class Home extends Activity {
 		// your_layout refers to the resource ID of your current layout.
 		//// Create an options instance to disable comments
 		ActionBarOptions options = new ActionBarOptions();
-
+ 
 		// Hide sharing
 		options.setHideShare(true);
 		options.setFillColor(Color.parseColor("#272727"));
 		options.setBackgroundColor(Color.parseColor("#191919"));
 		options.setAccentColor(Color.parseColor("#0000ff"));
 		
-		View actionBarWrapped = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, options);
+		View actionBarWrapped = ActionBarUtils.showActionBar(this, R.layout.activity_home, entity, options, listener);
 		// Now set the view for your activity to be the wrapped view.
 		setContentView(actionBarWrapped);		
 		
@@ -160,7 +160,7 @@ public class Home extends Activity {
 	            	break;
 	            default:
 	                return;
-		    	}
+		    	} 
 		    }
 		};
 		sideNavigationView = (SideNavigationView) findViewById(R.id.side_navigation_view);
@@ -461,6 +461,10 @@ public class Home extends Activity {
 				vInfo.setBackgroundResource(R.drawable.not_selected_tab);
 				gInfo.setBackgroundResource(R.drawable.not_selected_tab);
 				gStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				vInfo.setTextColor(Color.parseColor("#ffffff"));
+				gInfo.setTextColor(Color.parseColor("#ffffff"));
+				gStats.setTextColor(Color.parseColor("#ffffff"));
 				search.setVisibility(View.VISIBLE);
 				vInfo.setVisibility(View.VISIBLE);
 				gInfo.setVisibility(View.VISIBLE);

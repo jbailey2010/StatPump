@@ -213,19 +213,24 @@ public class PlayerStatsObject
 		numberView.setText(num);
 		TextView stats = (TextView)res.findViewById(R.id.sw_playerstats_statslist);
 		StringBuilder statsList = new StringBuilder(1000);
-		for(String stat : this.stats)
-		{
-			String[] statSet = stat.split(" ");
-			StringBuilder statBuilder = new StringBuilder(100);
-			for(int i = 1; i < statSet.length; i++)
+		if(this.stats.size() == 1 && this.stats.get(0).contains("no stats listed")){
+			statsList.append(this.stats.get(0));
+		}
+		else{
+			for(String stat : this.stats)
 			{
-				statBuilder.append(statSet[i] + " ");
+				String[] statSet = stat.split(" ");
+				StringBuilder statBuilder = new StringBuilder(100);
+				for(int i = 1; i < statSet.length; i++)
+				{
+					statBuilder.append(statSet[i] + " ");
+				}
+				String statStr = statBuilder.toString();
+				statStr = statStr.substring(0, statStr.length() - 1);
+				statStr = statStr + ": ";
+				statStr = statStr + statSet[0];
+				statsList.append(statStr + "\n");
 			}
-			String statStr = statBuilder.toString();
-			statStr = statStr.substring(0, statStr.length() - 1);
-			statStr = statStr + ": ";
-			statStr = statStr + statSet[0];
-			statsList.append(statStr + "\n");
 		}
 		stats.setText(statsList.toString());
 		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);

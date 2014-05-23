@@ -1,6 +1,7 @@
 package com.example.statpump.InterfaceAugmentation;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.apache.http.client.protocol.ClientContext;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.RelativeLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
 import com.statpump.statpump.R;
@@ -38,7 +41,7 @@ import com.example.statpump.ClassFiles.LittleStorage.VenueInfoObject;
  */
 public class StatWellUsage 
 {
-	public static BounceListView playerList;
+	public static OutBounceListView playerList;
 	static LinearLayout sw;
 	/**
 	 * Distributes work based on statwell selection
@@ -99,19 +102,19 @@ public class StatWellUsage
 		View res = listViewPlayers(obj, cont, po);
 		final PlayerInfoObject pio = new PlayerInfoObject();
 		pio.number = "Number not listed";
-		BounceListView lv = (BounceListView)res.findViewById(R.id.player_list);
+		OutBounceListView lv = (OutBounceListView)res.findViewById(R.id.player_list);
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				sw.removeAllViews();
-				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
+				String tweet = ((TextView)(((RelativeLayout)arg1).findViewById(R.id.text1))).getText().toString();
+				String teamPos = ((TextView)((RelativeLayout)arg1).findViewById(R.id.text2)).getText().toString();
 				pio.name = tweet.split(", ")[0];
 				if(tweet.split(", ").length > 1)
 				{
 					pio.number = tweet.split(", ")[1].replace("#", "");
 				}
-				String teamPos = ((TwoLineListItem)arg1).getText2().getText().toString();
 				pio.pos = teamPos.split(" - ")[0];
 				pio.team = teamPos.split(" - ")[1];
 				pio.playerID = po.players.get(pio.name + "//" + pio.pos + "//" + pio.team + "//" + pio.number);
@@ -130,20 +133,20 @@ public class StatWellUsage
 	{
 		final PlayerStatsObject o = new PlayerStatsObject();
 		View res = listViewPlayers(obj, cont, po);
-		BounceListView lv = (BounceListView)res.findViewById(R.id.player_list);
+		OutBounceListView lv = (OutBounceListView)res.findViewById(R.id.player_list);
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				sw.removeAllViews();
-				String tweet = ((TwoLineListItem)arg1).getText1().getText().toString();
+				String tweet = ((TextView)(((RelativeLayout)arg1).findViewById(R.id.text1))).getText().toString();
+				String teamPos = ((TextView)((RelativeLayout)arg1).findViewById(R.id.text2)).getText().toString();
 				String name = tweet.split(", ")[0];
 				String number = "Number not listed";
 				if(tweet.split(", ").length > 1)
 				{
 					number = tweet.split(", ")[1].replace("#", "");
 				}
-				String teamPos = ((TwoLineListItem)arg1).getText2().getText().toString();
 				String pos = teamPos.split(" - ")[0];
 				String team = teamPos.split(" - ")[1];
 				int playerID = po.players.get(name + "//" + pos + "//" + team + "//" + number);
@@ -245,11 +248,11 @@ public class StatWellUsage
 			}
 		}
 		SimpleAdapter adapter = new SimpleAdapter(cont, data,
-		                                          android.R.layout.simple_list_item_2,
+		                                          R.layout.bold_header_elem,
 		                                          new String[] {"title", "date"},
-		                                          new int[] {android.R.id.text1,
-		                                                     android.R.id.text2});
-		BounceListView listview = (BounceListView)res.findViewById(R.id.player_list);
+		                                          new int[] {R.id.text1,
+		                                                     R.id.text2});
+		OutBounceListView listview = (OutBounceListView)res.findViewById(R.id.player_list);
 		listview.setAdapter(adapter);
 		playerList = listview;
 		listview.setOverscrollHeader(cont.getResources().getDrawable(R.drawable.overscroll_blue));

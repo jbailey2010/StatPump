@@ -103,14 +103,14 @@ public class HomeTeam extends Activity {
 		// your_layout refers to the resource ID of your current layout.
 		// Create an options instance to disable comments
 			ActionBarOptions options = new ActionBarOptions();
-
+ 
 			// Hide sharing
 			options.setHideShare(true);
 			options.setFillColor(Color.parseColor("#272727"));
 			options.setBackgroundColor(Color.parseColor("#191919"));
 			options.setAccentColor(Color.parseColor("#0000ff"));
 			
-			View actionBarWrapped = ActionBarUtils.showActionBar(this, R.layout.activity_home_team, entity, options);
+			View actionBarWrapped = ActionBarUtils.showActionBar(this, R.layout.activity_home_team, entity, options, listener);
 		// Now set the view for your activity to be the wrapped view.
 		setContentView(actionBarWrapped);	
 		initialSetUp();
@@ -403,6 +403,10 @@ public class HomeTeam extends Activity {
 				pInfo.setBackgroundResource(R.drawable.not_selected_tab);
 				tInfo.setBackgroundResource(R.drawable.not_selected_tab);
 				pStats.setBackgroundResource(R.drawable.not_selected_tab);
+				search.setTextColor(Color.parseColor("#ffffff"));
+				pInfo.setTextColor(Color.parseColor("#ffffff"));
+				tInfo.setTextColor(Color.parseColor("#ffffff"));
+				pStats.setTextColor(Color.parseColor("#ffffff"));
 				search.setVisibility(View.VISIBLE);
 				pInfo.setVisibility(View.VISIBLE);
 				tInfo.setVisibility(View.VISIBLE);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.statpump.statpump"
-    android:versionCode="23"
-    android:versionName="2.5.0" >
+    android:versionCode="25"
+    android:versionName="2.5.2" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="13" 
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -50,8 +50,7 @@
         <activity
             android:name="com.example.statpump.Pages.Loading"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="StatPump"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+            android:label="StatPump" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

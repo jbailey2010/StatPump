@@ -1121,8 +1121,6 @@ public class GameStatsObject
 		TextView teamBStats = (TextView)res.findViewById(R.id.game_stats_teamBStats);
 		TextView teamALineup = (TextView)res.findViewById(R.id.game_stats_teamALineup);
 		TextView teamBLineup = (TextView)res.findViewById(R.id.game_stats_teamBLineup);
-		TextView teamAInfo = (TextView)res.findViewById(R.id.textView1);
-		TextView teamBInfo = (TextView)res.findViewById(R.id.textView2);
 		final ListView teamAIndiv = (ListView)res.findViewById(R.id.game_stats_teamAIndiv);
 		final ListView teamBIndiv = (ListView)res.findViewById(R.id.game_stats_teamBIndiv);
 		final Button showStatsA = (Button)res.findViewById(R.id.show_team_stats);
@@ -1251,8 +1249,6 @@ public class GameStatsObject
 			teamBStats.setVisibility(View.GONE);
 			teamA.setVisibility(View.GONE);
 			teamB.setVisibility(View.GONE);
-			teamAInfo.setVisibility(View.GONE);
-			teamBInfo.setVisibility(View.GONE);
 			teamALineup.setVisibility(View.GONE);
 			teamBLineup.setVisibility(View.GONE);
 			teamAIndiv.setVisibility(View.GONE);
