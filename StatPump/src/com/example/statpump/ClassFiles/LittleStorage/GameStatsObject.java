@@ -1132,7 +1132,7 @@ public class GameStatsObject
 		final LinearLayout teamAButtons = (LinearLayout)res.findViewById(R.id.category_sub_base);
 		final LinearLayout teamBButtons = (LinearLayout)res.findViewById(R.id.category_sub_base2);		
 		if(gsObj.isPlayed)
-		{
+		{ 
 			final ArrayList<String> list = new ArrayList<String>();
 		    for(String name : gsObj.teamAIndivStats.keySet())
 		    {

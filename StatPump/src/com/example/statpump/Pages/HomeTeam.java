@@ -411,6 +411,7 @@ public class HomeTeam extends Activity {
 				pInfo.setVisibility(View.VISIBLE);
 				tInfo.setVisibility(View.VISIBLE);
 				pStats.setVisibility(View.VISIBLE);
+				sideNavigationView.bringToFront();
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){

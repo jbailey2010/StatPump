@@ -32,6 +32,7 @@ import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.HandleInput;
 import com.example.statpump.ClassFiles.APIInteraction.ParseTeamID;
+import com.example.statpump.InterfaceAugmentation.OutBounceListView;
 
 /**
  * Gets team info from the API
@@ -263,7 +264,7 @@ public class TeamInfoObject
 		{
 			place.setVisibility(View.GONE);
 		}
-		ListView schedule = (ListView)res.findViewById(R.id.game_info_schedule);
+		OutBounceListView schedule = (OutBounceListView)res.findViewById(R.id.game_info_schedule);
 		if(this.schedule.size() > 1)
 		{
 			final List<Map<String, String>> data = new ArrayList<Map<String, String>>();
@@ -283,10 +284,10 @@ public class TeamInfoObject
 				data.add(datum);
 			}
 		    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
-		    		android.R.layout.simple_list_item_2, 
+		    		R.layout.bold_header_elem, 
 		    		new String[] {"main", "sub"}, 
-		    		new int[] {android.R.id.text1, 
-		    			android.R.id.text2});
+		    		new int[] {R.id.text1, 
+		    			R.id.text2});
 		    schedule.setAdapter(adapter);
 			schedule.setOnTouchListener(new ListView.OnTouchListener() {
 	            @Override

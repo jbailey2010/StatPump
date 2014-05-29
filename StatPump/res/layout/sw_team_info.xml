@@ -72,17 +72,19 @@
          android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ListView
+    <com.example.statpump.InterfaceAugmentation.OutBounceListView
         android:id="@+id/game_info_schedule"
         android:layout_width="match_parent"
         android:layout_height="500px"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
+        android:background="#888888"
+    	android:divider="#888888"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/spinner_well" >
+        android:layout_marginRight="10dp">
+        
+    </com.example.statpump.InterfaceAugmentation.OutBounceListView>
 
-    </ListView>
 
     <TextView
         android:id="@+id/sw_team_info_place"

@@ -469,6 +469,7 @@ public class Home extends Activity {
 				vInfo.setVisibility(View.VISIBLE);
 				gInfo.setVisibility(View.VISIBLE);
 				gStats.setVisibility(View.VISIBLE);
+				sideNavigationView.bringToFront();
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){

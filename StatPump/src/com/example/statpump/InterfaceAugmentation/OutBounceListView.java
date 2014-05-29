@@ -119,7 +119,7 @@ public class OutBounceListView extends ListView {
         double degree = 90 - (180 / Math.PI) * radians;
 
         mCamera.save();
-        mCamera.translate(0, 0, radius - translateZ);
+        mCamera.translate(0, 0, (radius - translateZ)/4);
         if (distanceY < 0) {
             degree = 360 - degree;
         }
