@@ -351,7 +351,7 @@ public class TwitterWork
 	    	data.add(datum);
 	    }
 	    final SimpleAdapter adapter = new SimpleAdapter(cont, data, 
-	    		R.layout.web_listview_item, 
+	    		R.layout.bold_header_elem, 
 	    		new String[] {"header", "footer"}, 
 	    		new int[] {R.id.text1, 
 	    			R.id.text2});

@@ -81,14 +81,14 @@
 
     </RelativeLayout>
 
-    <com.example.statpump.InterfaceAugmentation.BounceListView
+    <com.example.statpump.InterfaceAugmentation.OutBounceListView
         android:id="@+id/tweets_results"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:divider="#A1A1A1"
-        android:background="#FFFFFF"
+        android:divider="#999999"
+        android:background="#999999"
         android:dividerHeight="1dp"
         android:layout_width="fill_parent" >
-    </com.example.statpump.InterfaceAugmentation.BounceListView>
+    </com.example.statpump.InterfaceAugmentation.OutBounceListView>
 
 </LinearLayout>
