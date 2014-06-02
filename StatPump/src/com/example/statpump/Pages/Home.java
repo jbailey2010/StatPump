@@ -91,6 +91,7 @@ public class Home extends Activity {
 	Button gStats;
 	SideNavigationView sideNavigationView;
 	MyActionBarListener listener;
+	ISideNavigationCallback sideNavigationCallback;
 	
 	/**
 	 * Sets up initial loading/views for the activity
@@ -124,7 +125,7 @@ public class Home extends Activity {
 		setContentView(actionBarWrapped);		
 		
 		initialSetUp();		
-		ISideNavigationCallback sideNavigationCallback = new ISideNavigationCallback() {
+		sideNavigationCallback = new ISideNavigationCallback() {
 		    @Override
 		    public void onSideNavigationItemClick(int itemId) {
 		    	switch (itemId) {
@@ -205,6 +206,7 @@ public class Home extends Activity {
 				TwitterWork.twitterInitial(cont);
 		    	return true;
 			case android.R.id.home:
+				sideNavigationView.bringToFront();
 		        sideNavigationView.toggleMenu();
 		        return true;
 			default:
@@ -496,6 +498,7 @@ public class Home extends Activity {
 				vInfo.setVisibility(View.GONE);
 				gInfo.setVisibility(View.GONE);
 				gStats.setVisibility(View.GONE);
+				sideNavigationView.bringToFront();
 			}
 		});
 	}

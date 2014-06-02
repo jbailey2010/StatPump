@@ -14,6 +14,7 @@ import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
 import com.example.statpump.ClassFiles.HandleInput;
+import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.APIInteraction.ParseOpponentDates;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerStatsObject.ParsePlayerStats;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
@@ -306,7 +307,7 @@ public class PlayerSearchObject
 	 * @param result
 	 * @param obj
 	 */
-	public void finishSearch(Context a, PlayerStatsObject result, APIObject obj) {
+	public void finishSearch(final Context a, PlayerStatsObject result, APIObject obj) {
 		final LinearLayout layout = (LinearLayout)((Activity) a).findViewById(R.id.statwell);
 		layout.removeAllViews();
 		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_info, layout, false);
@@ -364,6 +365,15 @@ public class PlayerSearchObject
 		stats.setText(statsList.toString());
 		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);
 		back.setVisibility(View.GONE);
+		ImageView twit = (ImageView)res.findViewById(R.id.imageView1);
+		twit.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				TwitterWork.twitterAutoInitial(a, piObj.name);
+			}
+			
+		});
 		layout.addView(res);
 	}
 }

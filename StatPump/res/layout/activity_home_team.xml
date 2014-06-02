@@ -144,8 +144,11 @@
 	            android:textColor="#FFFFFF"
 	            android:textSize="13sp" />
 	        
-	
+	 
 	    </LinearLayout>
+	     
+	        
+
      <LinearLayout
         android:id="@+id/statwell"
         android:layout_width="fill_parent"
@@ -155,10 +158,10 @@
         android:orientation="vertical" >
 	        
          </LinearLayout>
-	    
-    </LinearLayout>
-    
 
+    </LinearLayout>
+    	    
+     
     <com.devspark.sidenavigation.SideNavigationView
         android:id="@+id/side_navigation_view"
         android:layout_width="match_parent"

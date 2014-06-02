@@ -195,6 +195,7 @@ public class HomeTeam extends Activity {
 		    	return true; 
 			case android.R.id.home:
 		        sideNavigationView.toggleMenu();
+		       
 		        return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -411,7 +412,6 @@ public class HomeTeam extends Activity {
 				pInfo.setVisibility(View.VISIBLE);
 				tInfo.setVisibility(View.VISIBLE);
 				pStats.setVisibility(View.VISIBLE);
-				sideNavigationView.bringToFront();
 			}
 		});
 		clear.setOnClickListener(new OnClickListener(){

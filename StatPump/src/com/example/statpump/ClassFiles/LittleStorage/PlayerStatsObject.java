@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerInfoObject.ParsePlayerInfo;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
@@ -190,7 +191,7 @@ public class PlayerStatsObject
 		    }
 	  }
 
-	public void teamInfoFill(PlayerStatsObject result, final Activity a, String n,
+	public void teamInfoFill(PlayerStatsObject result, final Activity a, final String n,
 			String t, String p2, String number) {
 		final LinearLayout layout = (LinearLayout)a.findViewById(R.id.statwell);
 		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_stats, layout, false);
@@ -240,6 +241,15 @@ public class PlayerStatsObject
 				layout.removeAllViews();
 				StatWellUsage.playerStats(ao, a, p);
 			}
+		});
+		ImageView twit = (ImageView)res.findViewById(R.id.imageView1);
+		twit.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				TwitterWork.twitterAutoInitial(a, n);
+			}
+			
 		});
 		layout.addView(res);
 	}

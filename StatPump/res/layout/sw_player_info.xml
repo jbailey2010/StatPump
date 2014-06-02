@@ -126,6 +126,14 @@
           android:textSize="24sp"
           android:textStyle="bold" />
 
+      <ImageView
+          android:id="@+id/imageView1"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentTop="true"
+          android:src="@drawable/icon_twitter" />
+
 </RelativeLayout>
 
    

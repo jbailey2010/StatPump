@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.statpump.statpump.R;
 import com.example.statpump.ClassFiles.APIInteraction;
 import com.example.statpump.ClassFiles.APIObject;
+import com.example.statpump.ClassFiles.TwitterWork;
 import com.example.statpump.ClassFiles.LittleStorage.PlayerSearchObject.ParseSquads;
 import com.example.statpump.InterfaceAugmentation.StatWellUsage;
 
@@ -160,7 +161,7 @@ public class PlayerInfoObject
 	 * @param result
 	 * @param a
 	 */
-	public void teamInfoFill(PlayerInfoObject result, final Activity a) {
+	public void teamInfoFill(final PlayerInfoObject result, final Activity a) {
 		final LinearLayout layout = (LinearLayout)a.findViewById(R.id.statwell);
 		View res = ((Activity) a).getLayoutInflater().inflate(R.layout.sw_player_info, layout, false);
 		TextView nameView = (TextView)res.findViewById(R.id.sw_playerinfo_name);
@@ -192,6 +193,15 @@ public class PlayerInfoObject
 		TextView stats = (TextView)res.findViewById(R.id.sw_playerinfo_statslist);
 		stats.setVisibility(View.GONE);
 		layout.addView(res);
+		ImageView twit = (ImageView)res.findViewById(R.id.imageView1);
+		twit.setOnClickListener(new OnClickListener(){
+ 
+			@Override
+			public void onClick(View v) {
+				TwitterWork.twitterAutoInitial(a, result.name);
+			}
+			
+		});
 		ImageView back = (ImageView)res.findViewById(R.id.sw_back_arrow);
 		back.setOnClickListener(new OnClickListener(){
 			@Override
