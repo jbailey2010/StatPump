@@ -70,6 +70,14 @@ public class APIInteraction
         			|| (element.attr("team_a_name").equals(obj.team2) && element.attr("team_b_name").equals(obj.team1)))
         	{
         		String date = element.attr("date_utc");
+        		
+        		String time = element.attr("time_utc");
+        		int timeSplit = Integer.parseInt(time.split(":")[0]);
+        		if(timeSplit - 4 < 0){
+        			String[] dateSet = date.split("-");
+        			date = dateSet[0] + "-" + dateSet[1] + "-" + (Integer.parseInt(dateSet[2]) - 1);
+        			System.out.println("Fixing date to " + date);
+        		}
         		String id = element.attr("match_id");
         		String home = obj.team1 + " at " + obj.team2;
         		if(element.attr("team_a_name").equals(obj.team1))

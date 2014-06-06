@@ -93,14 +93,13 @@
         android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/statwell_base"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="205dp" 
-        android:orientation="vertical"
         android:background="@drawable/view_well" >
 	        <LinearLayout
 	        android:id="@+id/category_base"
@@ -156,15 +155,14 @@
 
      <LinearLayout
         android:id="@+id/statwell"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/category_base"
         android:orientation="vertical" >
 	        
          </LinearLayout>
 	   
-    </LinearLayout>
+    </RelativeLayout>
      	        <com.devspark.sidenavigation.SideNavigationView
         android:id="@+id/side_navigation_view"
         android:layout_width="match_parent"

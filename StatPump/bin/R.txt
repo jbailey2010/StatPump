@@ -190,7 +190,6 @@ int id com_facebook_usersettingsfragment_profile_name 0x7f060038
 int id date_spinner 0x7f060040
 int id decider_header 0x7f06004b
 int id dummy_scroll 0x7f060043
-int id fanscan 0x7f0600dd
 int id favorite_team_submit 0x7f06003a
 int id game_clear 0x7f06000b
 int id game_info_address 0x7f060071
@@ -245,7 +244,7 @@ int id left_item_text 0x7f060057
 int id loading_prompt 0x7f060022
 int id logo_loading 0x7f060020
 int id match_date_selection_submit 0x7f060041
-int id max_min_sw 0x7f0600de
+int id max_min_sw 0x7f0600dd
 int id normal 0x7f060001
 int id picker_subtitle 0x7f060034
 int id player_list 0x7f060044

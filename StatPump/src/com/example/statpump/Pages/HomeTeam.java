@@ -126,10 +126,10 @@ public class HomeTeam extends Activity {
 	            	Intent intent2 = new Intent(cont, Home.class);
 	    	        cont.startActivity(intent2);	
 	                break;
-	            case R.id.fanscan:
+	            /*case R.id.fanscan:
 	            	Intent fsIntent = new Intent(cont, FanScan.class);
 	            	cont.startActivity(fsIntent);
-	            	break;
+	            	break;*/
 	            case R.id.ticket_popup:
 	            	HandleInput.ticketPopup(cont);
 	            	break;

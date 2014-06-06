@@ -1104,7 +1104,6 @@ public class GameStatsObject
 	public void setContentView(final GameStatsObject gsObj)
 	{ 
 		LinearLayout layout = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
-		layout.removeAllViews();
 		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.sw_game_stats, layout, false);
 		TextView header = (TextView)res.findViewById(R.id.game_stats_header);
 		header.setText(gsObj.matchHome);
@@ -1257,5 +1256,6 @@ public class GameStatsObject
 			teamBButtons.setVisibility(View.GONE);
 		} 
 		layout.addView(res);
+		
 	}
 }

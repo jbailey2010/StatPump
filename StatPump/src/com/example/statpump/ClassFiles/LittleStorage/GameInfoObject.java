@@ -58,7 +58,6 @@ public class GameInfoObject
 	public static void setDisplay(TeamInfoObject result, APIObject obj, Context cont) {
 		tio2 = result;
 		LinearLayout layout = (LinearLayout)((Activity) cont).findViewById(R.id.statwell);
-		layout.removeAllViews();
 		View res = ((Activity) cont).getLayoutInflater().inflate(R.layout.sw_game_info, layout, false);
 		TextView header = (TextView)res.findViewById(R.id.game_info_header);
 		header.setText(obj.matchHome);

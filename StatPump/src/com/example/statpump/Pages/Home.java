@@ -137,10 +137,10 @@ public class Home extends Activity {
 	            	Intent intent2 = new Intent(cont, HomeTeam.class);
 	    	        cont.startActivity(intent2);	
 	                break;
-	            case R.id.fanscan:
+	            /*case R.id.fanscan:
 	            	Intent fsIntent = new Intent(cont, FanScan.class);
 	            	cont.startActivity(fsIntent);
-	            	break;
+	            	break;*/
 	            case R.id.ticket_popup:
 	            	HandleInput.ticketPopup(cont);
 	            	break;
@@ -167,7 +167,7 @@ public class Home extends Activity {
 		sideNavigationView = (SideNavigationView) findViewById(R.id.side_navigation_view);
 	    sideNavigationView.setMenuItems(R.menu.side_navigation_menu_game);
 	    sideNavigationView.setMenuClickCallback(sideNavigationCallback);
-	   // sideNavigationView.setMode(/*SideNavigationView.Mode*/);
+	    sideNavigationView.setMode(SideNavigationView.Mode.LEFT);
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
 		if(menuObj != null)
 		{
@@ -206,7 +206,8 @@ public class Home extends Activity {
 				TwitterWork.twitterInitial(cont);
 		    	return true;
 			case android.R.id.home:
-				sideNavigationView.bringToFront();
+				//sideNavigationView.bringToFront();
+				
 		        sideNavigationView.toggleMenu();
 		        return true;
 			default:
